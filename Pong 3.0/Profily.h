@@ -14,7 +14,7 @@ class Profily
 {
 public:
 
-	/*int ulozeni_profilu(std::vector<std::vector<int>> data_profil, std::vector< std::vector<char>> nazev_profil);*/
+	int ulozeni_profilu(std::vector<std::vector<int>> data_profil, std::vector< std::vector<char>> nazev_profil);
 	std::vector<std::vector<int>> nacteni_dat_profilu();
 	std::vector<std::vector<char>> nacteni_jmen_profilu();
 };

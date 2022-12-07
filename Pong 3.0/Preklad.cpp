@@ -1,219 +1,231 @@
 #include "Preklad.h"
 
+std::vector<std::wstring> Preklad::StringToWString(std::vector<std::string> s)
+{
+	std::string sTmp;
+	std::vector<std::wstring> ws;
+	for (int i = 0; i < s.size(); i++)
+	{
+		sTmp = s.at(i);
+		std::wstring wsTmp(sTmp.begin(), sTmp.end());
+		ws.push_back(wsTmp);
+	}
+	return ws;
+}
 std::vector<std::wstring> Preklad::nacteni_textu_profil()
 {
-	TiXMLDocument xmlDoc;
+	XMLDocument xmlDoc;
 
 	std::vector<int> vektor_poctu_stringu;
 
-	xmlDoc.LoadFile(L"Preklad.xml");
+	xmlDoc.LoadFile("Preklad.xml");
 
 	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* base = root->FirstChildElement(L"zaklad");
+	XMLElement* base = root->FirstChildElement("zaklad");
 
-	XMLElement* profil = base->FirstChildElement(L"profil");
+	XMLElement* profil = base->FirstChildElement("profil");
 	profil->QueryIntText(&profil_stringu);
 
-	XMLElement* jazyk = root->FirstChildElement(L"CZ");
+	XMLElement* jazyk = root->FirstChildElement("CZ");
 	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement(L"CZ");
-	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement(L"EN");
+		jazyk = root->FirstChildElement("CZ");
+	if (menu.jazyk == menu.EN)
+		jazyk = root->FirstChildElement("EN");
 
-	XMLElement* menu = jazyk->FirstChildElement(L"profil");
-	XMLElement* text = menu->FirstChildElement(L"string");
+	XMLElement* menu = jazyk->FirstChildElement("profil");
+	XMLElement* text = menu->FirstChildElement("string");
 	for (int i = 0; i < profil_stringu; i++)
 	{
-		const wchar_t* data = text->GetText();
-		std::wstring sdata = data;
+		const char* data = text->GetText();
+		std::string sdata = data;
 		vektor_stringu.push_back(sdata);
-		text = text->NextSiblingElement(L"string");
+		text = text->NextSiblingElement("string");
+	}
+	return StringToWString(vektor_stringu);
+}
+std::vector<std::string> Preklad::nacteni_textu_hlavni()
+{
+	XMLDocument xmlDoc;
+
+	std::vector<int> vektor_poctu_stringu;
+
+	xmlDoc.LoadFile("Preklad.xml");
+
+	XMLNode* root = xmlDoc.FirstChild();
+	XMLElement* base = root->FirstChildElement("zaklad");
+
+	XMLElement* profil = base->FirstChildElement("hlavni");
+	profil->QueryIntText(&profil_stringu);
+
+	XMLElement* jazyk = root->FirstChildElement("CZ");
+	if (menu.jazyk == menu.CZ)
+		jazyk = root->FirstChildElement("CZ");
+	if (menu.jazyk == menu.EN)
+		jazyk = root->FirstChildElement("EN");
+
+	XMLElement* menu = jazyk->FirstChildElement("hlavni");
+	XMLElement* text = menu->FirstChildElement("string");
+	for (int i = 0; i < profil_stringu; i++)
+	{
+		const char* data = text->GetText();
+		std::string sdata = data;
+		vektor_stringu.push_back(sdata);
+		text = text->NextSiblingElement("string");
 	}
 	return vektor_stringu;
 }
-std::vector<std::wstring> Preklad::nacteni_textu_hlavni()
+std::vector<std::string> Preklad::nacteni_textu_herni_mody()
 {
-	TiXMLDocument xmlDoc;
+	XMLDocument xmlDoc;
 
 	std::vector<int> vektor_poctu_stringu;
 
-	xmlDoc.LoadFile(L"Preklad.xml");
+	xmlDoc.LoadFile("Preklad.xml");
 
 	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* base = root->FirstChildElement(L"zaklad");
+	XMLElement* base = root->FirstChildElement("zaklad");
 
-	XMLElement* profil = base->FirstChildElement(L"hlavni");
+	XMLElement* profil = base->FirstChildElement("herni_mody");
 	profil->QueryIntText(&profil_stringu);
 
-	XMLElement* jazyk = root->FirstChildElement(L"CZ");
+	XMLElement* jazyk = root->FirstChildElement("CZ");
 	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement(L"CZ");
-	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement(L"EN");
+		jazyk = root->FirstChildElement("CZ");
+	if (menu.jazyk == menu.EN)
+		jazyk = root->FirstChildElement("EN");
 
-	XMLElement* menu = jazyk->FirstChildElement(L"hlavni");
-	XMLElement* text = menu->FirstChildElement(L"string");
+	XMLElement* menu = jazyk->FirstChildElement("herni_mody");
+	XMLElement* text = menu->FirstChildElement("string");
 	for (int i = 0; i < profil_stringu; i++)
 	{
-		const wchar_t* data = text->GetText();
-		std::wstring sdata = data;
+		const char* data = text->GetText();
+		std::string sdata = data;
 		vektor_stringu.push_back(sdata);
-		text = text->NextSiblingElement(L"string");
+		text = text->NextSiblingElement("string");
 	}
 	return vektor_stringu;
 }
-std::vector<std::wstring> Preklad::nacteni_textu_herni_mody()
+std::vector<std::string> Preklad::nacteni_textu_vzhled_plosiny()
 {
-	TiXMLDocument xmlDoc;
+	XMLDocument xmlDoc;
 
 	std::vector<int> vektor_poctu_stringu;
 
-	xmlDoc.LoadFile(L"Preklad.xml");
+	xmlDoc.LoadFile("Preklad.xml");
 
 	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* base = root->FirstChildElement(L"zaklad");
+	XMLElement* base = root->FirstChildElement("zaklad");
 
-	XMLElement* profil = base->FirstChildElement(L"herni_mody");
+	XMLElement* profil = base->FirstChildElement("vzhled_plosiny");
 	profil->QueryIntText(&profil_stringu);
 
-	XMLElement* jazyk = root->FirstChildElement(L"CZ");
+	XMLElement* jazyk = root->FirstChildElement("CZ");
 	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement(L"CZ");
-	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement(L"EN");
+		jazyk = root->FirstChildElement("CZ");
+	if (menu.jazyk == menu.EN)
+		jazyk = root->FirstChildElement("EN");
 
-	XMLElement* menu = jazyk->FirstChildElement(L"herni_mody");
-	XMLElement* text = menu->FirstChildElement(L"string");
+	XMLElement* menu = jazyk->FirstChildElement("vzhled_plosiny");
+	XMLElement* text = menu->FirstChildElement("string");
 	for (int i = 0; i < profil_stringu; i++)
 	{
-		const wchar_t* data = text->GetText();
-		std::wstring sdata = data;
+		const char* data = text->GetText();
+		std::string sdata = data;
 		vektor_stringu.push_back(sdata);
-		text = text->NextSiblingElement(L"string");
+		text = text->NextSiblingElement("string");
 	}
 	return vektor_stringu;
 }
-std::vector<std::wstring> Preklad::nacteni_textu_vzhled_plosiny()
+std::vector<std::string> Preklad::nacteni_textu_nastaveni()
 {
-	TiXMLDocument xmlDoc;
+	XMLDocument xmlDoc;
 
 	std::vector<int> vektor_poctu_stringu;
 
-	xmlDoc.LoadFile(L"Preklad.xml");
+	xmlDoc.LoadFile("Preklad.xml");
 
 	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* base = root->FirstChildElement(L"zaklad");
+	XMLElement* base = root->FirstChildElement("zaklad");
 
-	XMLElement* profil = base->FirstChildElement(L"vzhled_plosiny");
+	XMLElement* profil = base->FirstChildElement("nastaveni");
 	profil->QueryIntText(&profil_stringu);
 
-	XMLElement* jazyk = root->FirstChildElement(L"CZ");
+	XMLElement* jazyk = root->FirstChildElement("CZ");
 	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement(L"CZ");
-	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement(L"EN");
+		jazyk = root->FirstChildElement("CZ");
+	if (menu.jazyk == menu.EN)
+		jazyk = root->FirstChildElement("EN");
 
-	XMLElement* menu = jazyk->FirstChildElement(L"vzhled_plosiny");
-	XMLElement* text = menu->FirstChildElement(L"string");
+	XMLElement* menu = jazyk->FirstChildElement("nastaveni");
+	XMLElement* text = menu->FirstChildElement("string");
 	for (int i = 0; i < profil_stringu; i++)
 	{
-		const wchar_t* data = text->GetText();
-		std::wstring sdata = data;
+		const char* data = text->GetText();
+		std::string sdata = data;
 		vektor_stringu.push_back(sdata);
-		text = text->NextSiblingElement(L"string");
+		text = text->NextSiblingElement("string");
 	}
 	return vektor_stringu;
 }
-std::vector<std::wstring> Preklad::nacteni_textu_nastaveni()
+std::vector<std::string> Preklad::nacteni_textu_ovladani()
 {
-	TiXMLDocument xmlDoc;
+	XMLDocument xmlDoc;
 
 	std::vector<int> vektor_poctu_stringu;
 
-	xmlDoc.LoadFile(L"Preklad.xml");
+	xmlDoc.LoadFile("Preklad.xml");
 
 	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* base = root->FirstChildElement(L"zaklad");
+	XMLElement* base = root->FirstChildElement("zaklad");
 
-	XMLElement* profil = base->FirstChildElement(L"nastaveni");
+	XMLElement* profil = base->FirstChildElement("ovladani");
 	profil->QueryIntText(&profil_stringu);
 
-	XMLElement* jazyk = root->FirstChildElement(L"CZ");
+	XMLElement* jazyk = root->FirstChildElement("CZ");
 	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement(L"CZ");
-	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement(L"EN");
+		jazyk = root->FirstChildElement("CZ");
+	if (menu.jazyk == menu.EN)
+		jazyk = root->FirstChildElement("EN");
 
-	XMLElement* menu = jazyk->FirstChildElement(L"nastaveni");
-	XMLElement* text = menu->FirstChildElement(L"string");
+	XMLElement* menu = jazyk->FirstChildElement("ovladani");
+	XMLElement* text = menu->FirstChildElement("string");
 	for (int i = 0; i < profil_stringu; i++)
 	{
-		const wchar_t* data = text->GetText();
-		std::wstring sdata = data;
+		const char* data = text->GetText();
+		std::string sdata = data;
 		vektor_stringu.push_back(sdata);
-		text = text->NextSiblingElement(L"string");
+		text = text->NextSiblingElement("string");
 	}
 	return vektor_stringu;
 }
-std::vector<std::wstring> Preklad::nacteni_textu_ovladani()
+std::vector<std::string> Preklad::nacteni_textu_konec_kola()
 {
-	TiXMLDocument xmlDoc;
+	XMLDocument xmlDoc;
 
 	std::vector<int> vektor_poctu_stringu;
 
-	xmlDoc.LoadFile(L"Preklad.xml");
+	xmlDoc.LoadFile("Preklad.xml");
 
 	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* base = root->FirstChildElement(L"zaklad");
+	XMLElement* base = root->FirstChildElement("zaklad");
 
-	XMLElement* profil = base->FirstChildElement(L"ovladani");
+	XMLElement* profil = base->FirstChildElement("konec_kola");
 	profil->QueryIntText(&profil_stringu);
 
-	XMLElement* jazyk = root->FirstChildElement(L"CZ");
+	XMLElement* jazyk = root->FirstChildElement("CZ");
 	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement(L"CZ");
-	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement(L"EN");
+		jazyk = root->FirstChildElement("CZ");
+	if (menu.jazyk == menu.EN)
+		jazyk = root->FirstChildElement("EN");
 
-	XMLElement* menu = jazyk->FirstChildElement(L"ovladani");
-	XMLElement* text = menu->FirstChildElement(L"string");
+	XMLElement* menu = jazyk->FirstChildElement("konec_kola");
+	XMLElement* text = menu->FirstChildElement("string");
 	for (int i = 0; i < profil_stringu; i++)
 	{
-		const wchar_t* data = text->GetText();
-		std::wstring sdata = data;
+		const char* data = text->GetText();
+		std::string sdata = data;
 		vektor_stringu.push_back(sdata);
-		text = text->NextSiblingElement(L"string");
-	}
-	return vektor_stringu;
-}
-std::vector<std::wstring> Preklad::nacteni_textu_konec_kola()
-{
-	TiXMLDocument xmlDoc;
-
-	std::vector<int> vektor_poctu_stringu;
-
-	xmlDoc.LoadFile(L"Preklad.xml");
-
-	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* base = root->FirstChildElement(L"zaklad");
-
-	XMLElement* profil = base->FirstChildElement(L"konec_kola");
-	profil->QueryIntText(&profil_stringu);
-
-	XMLElement* jazyk = root->FirstChildElement(L"CZ");
-	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement(L"CZ");
-	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement(L"EN");
-
-	XMLElement* menu = jazyk->FirstChildElement(L"konec_kola");
-	XMLElement* text = menu->FirstChildElement(L"string");
-	for (int i = 0; i < profil_stringu; i++)
-	{
-		const wchar_t* data = text->GetText();
-		std::wstring sdata = data;
-		vektor_stringu.push_back(sdata);
-		text = text->NextSiblingElement(L"string");
+		text = text->NextSiblingElement("string");
 	}
 	return vektor_stringu;
 }

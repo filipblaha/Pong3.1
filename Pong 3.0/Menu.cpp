@@ -4,6 +4,7 @@ Commands set;
 
 void Menu::vykresleni_menu_start()
 {
+	_setmode(_fileno(stdout), _O_U16TEXT);  // nastaveni graficke vizualizace
 	set.setCursorPosition(0, 0);
 	////////////    vykreslovani plocha    ////////////
 	for (int j = 0; j < vyska_menu; j++)

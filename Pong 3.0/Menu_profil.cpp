@@ -2,7 +2,7 @@
 #include "Commands.h"
 
 
-void  Menu_profil::vykresleni_profil()
+void Menu_profil::vykresleni_profil()
 {
 	Commands set;
 	///////    Ramecek   ///////

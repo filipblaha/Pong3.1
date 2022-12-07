@@ -6,59 +6,59 @@
 #include <iostream>
 #include <vector>
 
-//bool menu_profil()
-//{
-//	Menu_profil profil;
-//	switch (profil.vstup_menu(profil.profil_e))
-//	{
-//	case profil.enter:
-//	{
-//		{
-//			if (profil.rozhodovac(profil.profil_e, profil.enter) == 1)
-//			{
-//				while (menu_hlavni())
-//				{
-//					profil.ukladani_profilu();
-//				}
-//			}
-//		}
-//		break;
-//	}
-//	case profil.del:
-//	{
-//		{
-//			profil.vykresleni_otazka();
-//
-//			if (profil.vstup_menu(profil.profil_e) == profil.enter)
-//			{
-//				profil.rozhodovac(profil.profil_e, profil.del);
-//
-//				if (profil.pouzit == 0)
-//				{
-//					profil.vykresleni_nazev_profilu();
-//					profil.nacteni_vyberu_profilu();
-//					profil.pojmenovani_profilu();
-//					profil.ulozeni_vyberu_profilu();
-//				}
-//			}
-//			profil.smazani_otazka();
-//		}
-//		break;
-//	}
-//	case profil.exit:
-//	{
-//		return 0;
-//	}
-//	default:
-//	{
-//		profil.vykresleni_oznaceni();
-//	}
-//	break;
-//	}
-//}
+bool menu_profil()
+{
+	Menu_profil profil;
+	switch (profil.vstup_menu(profil.profil_e))
+	{
+	case profil.enter:
+	{
+		{
+			if (profil.rozhodovac(profil.profil_e, profil.enter) == 1)
+			{
+				while (menu_hlavni())
+				{
+					profil.ukladani_profilu();
+				}
+			}
+		}
+		break;
+	}
+	case profil.del:
+	{
+		{
+			profil.vykresleni_otazka();
+
+			if (profil.vstup_menu(profil.profil_e) == profil.enter)
+			{
+				profil.rozhodovac(profil.profil_e, profil.del);
+
+				if (profil.pouzit == 0)
+				{
+					profil.vykresleni_nazev_profilu();
+					profil.nacteni_vyberu_profilu();
+					profil.pojmenovani_profilu();
+					profil.ulozeni_vyberu_profilu();
+				}
+			}
+			profil.smazani_otazka();
+		}
+		break;
+	}
+	case profil.exit:
+	{
+		return 0;
+	}
+	default:
+	{
+		profil.vykresleni_oznaceni();
+	}
+	break;
+	}
+}
 int main()
 {
-	//while (menu_profil);
+	while (menu_profil);
 	/*std::vector<int> testint1 = { 1, 5, 3, 66, 5 };
 	std::vector<int> testint2 = { 8, 4, 6, 11, 4 , 18 };
 	std::vector<int> testint3 = { 8, 2, 6, 11, 5 , 11 };
@@ -105,14 +105,4 @@ int main()
 		}
 		std::cout << '\n';
 	}*/
-
-	Preklad trans;
-	Menu m;
-	trans.nacteni_textu_ovladani();
-	
-	for (size_t i = 0; i < trans.vektor_stringu.size(); i++)
-	{
-		std::wcout << trans.vektor_stringu.at(i) << '\n';
-	}
-
 }

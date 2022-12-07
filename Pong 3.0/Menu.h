@@ -33,8 +33,6 @@ public:
 		zavory.push_back(leva_z);
 		zavory.push_back(prava_z);
 
-
-		_setmode(_fileno(stdout), _O_U16TEXT);  // nastaveni graficke vizualizace
 		set.prechod();
 		set.font(0, 20);
 		set.SetWindow(delka_menu, vyska_menu - 2);
