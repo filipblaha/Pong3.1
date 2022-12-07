@@ -43,7 +43,7 @@ std::vector<std::wstring> Preklad::nacteni_textu_profil()
 	}
 	return StringToWString(vektor_stringu);
 }
-std::vector<std::string> Preklad::nacteni_textu_hlavni()
+std::vector<std::wstring> Preklad::nacteni_textu_hlavni()
 {
 	XMLDocument xmlDoc;
 
@@ -72,9 +72,9 @@ std::vector<std::string> Preklad::nacteni_textu_hlavni()
 		vektor_stringu.push_back(sdata);
 		text = text->NextSiblingElement("string");
 	}
-	return vektor_stringu;
+	return StringToWString(vektor_stringu);
 }
-std::vector<std::string> Preklad::nacteni_textu_herni_mody()
+std::vector<std::wstring> Preklad::nacteni_textu_herni_mody()
 {
 	XMLDocument xmlDoc;
 
@@ -103,9 +103,9 @@ std::vector<std::string> Preklad::nacteni_textu_herni_mody()
 		vektor_stringu.push_back(sdata);
 		text = text->NextSiblingElement("string");
 	}
-	return vektor_stringu;
+	return StringToWString(vektor_stringu);
 }
-std::vector<std::string> Preklad::nacteni_textu_vzhled_plosiny()
+std::vector<std::wstring> Preklad::nacteni_textu_vzhled_plosiny()
 {
 	XMLDocument xmlDoc;
 
@@ -134,9 +134,9 @@ std::vector<std::string> Preklad::nacteni_textu_vzhled_plosiny()
 		vektor_stringu.push_back(sdata);
 		text = text->NextSiblingElement("string");
 	}
-	return vektor_stringu;
+	return StringToWString(vektor_stringu);
 }
-std::vector<std::string> Preklad::nacteni_textu_nastaveni()
+std::vector<std::wstring> Preklad::nacteni_textu_nastaveni()
 {
 	XMLDocument xmlDoc;
 
@@ -165,9 +165,9 @@ std::vector<std::string> Preklad::nacteni_textu_nastaveni()
 		vektor_stringu.push_back(sdata);
 		text = text->NextSiblingElement("string");
 	}
-	return vektor_stringu;
+	return StringToWString(vektor_stringu);
 }
-std::vector<std::string> Preklad::nacteni_textu_ovladani()
+std::vector<std::wstring> Preklad::nacteni_textu_ovladani()
 {
 	XMLDocument xmlDoc;
 
@@ -196,9 +196,9 @@ std::vector<std::string> Preklad::nacteni_textu_ovladani()
 		vektor_stringu.push_back(sdata);
 		text = text->NextSiblingElement("string");
 	}
-	return vektor_stringu;
+	return StringToWString(vektor_stringu);
 }
-std::vector<std::string> Preklad::nacteni_textu_konec_kola()
+std::vector<std::wstring> Preklad::nacteni_textu_konec_kola()
 {
 	XMLDocument xmlDoc;
 
@@ -227,5 +227,5 @@ std::vector<std::string> Preklad::nacteni_textu_konec_kola()
 		vektor_stringu.push_back(sdata);
 		text = text->NextSiblingElement("string");
 	}
-	return vektor_stringu;
+	return StringToWString(vektor_stringu);
 }

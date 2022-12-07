@@ -1,6 +1,7 @@
 #include "Menu.h"
 
 Commands set;
+Profily prof;
 
 void Menu::vykresleni_menu_start()
 {
@@ -46,12 +47,12 @@ void Menu::vykresleni_menu_start()
 }
 void Menu::vykresleni_oznaceni()
 {
-	set.setCursorPosition(oznaceni.at(0), oznaceni.at(1));
+	set.setCursorPosition(oznaceni.at(x), oznaceni.at(y));
 	std::wcout << L"\x25ba";
 }
 void Menu::smazani_oznaceni()
 {
-	set.setCursorPosition(oznaceni.at(0), oznaceni.at(1));
+	set.setCursorPosition(oznaceni.at(x), oznaceni.at(y));
 	std::wcout << ' ';
 }
 
@@ -79,8 +80,6 @@ void Menu::smazani_otazka()
 }
 
 
-
-
 /////////////////////    Input     //////////////////////////
 int Menu::vstup_menu(int strana)
 {
@@ -90,42 +89,42 @@ int Menu::vstup_menu(int strana)
 	{
 		smazani_oznaceni();
 		{
-			if ((oznaceni.at(1) > zavory.at(0)) && (strana == 0))
+			if ((oznaceni.at(y) > zavory.at(0)) && (strana == profil_e))
 			{
-				if (oznaceni.at(1) <= 12)
+				if (oznaceni.at(y) <= 12)
 				{
-					oznaceni.at(1) -= 2;
+					oznaceni.at(y) -= 2;
 				}
 				else
 				{
-					oznaceni.at(1) -= 5;
-					oznaceni.at(0) = 10;
+					oznaceni.at(y) -= 5;
+					oznaceni.at(x) = 10;
 				}
 			}
-			/*if ((oznaceni.at(1) > zavory.at(0)) && (strana == 0 || strana == 1))
+			/*if ((oznaceni.at(y) > zavory.at(0)) && (strana == 0 || strana == 1))
 			{
-				oznaceni.at(1) -= 2;
+				oznaceni.at(y) -= 2;
 			}
 
-			if ((oznaceni.at(1) > zavory.at(0)) && (strana == 2))
+			if ((oznaceni.at(y) > zavory.at(0)) && (strana == 2))
 			{
-				oznaceni.at(1) -= 4;
+				oznaceni.at(y) -= 4;
 			}
-			if ((oznaceni.at(1) > zavory.at(0)) && (strana == 3))
+			if ((oznaceni.at(y) > zavory.at(0)) && (strana == 3))
 			{
-				if (oznaceni.at(1) <= 12)
+				if (oznaceni.at(y) <= 12)
 				{
-					oznaceni.at(0) = 4;
+					oznaceni.at(x) = 4;
 				}
 				else
 				{
-					oznaceni.at(0) = 7;
+					oznaceni.at(x) = 7;
 				}
-				oznaceni.at(1) -= 2;
+				oznaceni.at(y) -= 2;
 			}
-			if ((oznaceni.at(1) > zavory.at(0)) && (strana == 4))
+			if ((oznaceni.at(y) > zavory.at(0)) && (strana == 4))
 			{
-				oznaceni.at(1) = oznaceni.at(1)--;
+				oznaceni.at(y) = oznaceni.at(y)--;
 			}*/
 		}
 		break;
@@ -134,41 +133,41 @@ int Menu::vstup_menu(int strana)
 	{
 		smazani_oznaceni();
 		{
-			if ((oznaceni.at(1) < zavory.at(1)) && (strana == 0))
+			if ((oznaceni.at(y) < zavory.at(1)) && (strana == profil_e))
 			{
-				if (oznaceni.at(1) < 12)
+				if (oznaceni.at(y) < 12)
 				{
-					oznaceni.at(1) += 2;
+					oznaceni.at(y) += 2;
 				}
 				else
 				{
-					oznaceni.at(1) += 5;
-					oznaceni.at(0) = 2;
+					oznaceni.at(y) += 5;
+					oznaceni.at(x) = 2;
 				}
 			}
-			/*if ((oznaceni.at(1) < zavory.at(1)) && (strana == 0 || strana == 1))
+			/*if ((oznaceni.at(y) < zavory.at(1)) && (strana == 0 || strana == 1))
 			{
-				oznaceni.at(1) += 2;
+				oznaceni.at(y) += 2;
 			}
-			if ((oznaceni.at(1) < zavory.at(1)) && (strana == 2))
+			if ((oznaceni.at(y) < zavory.at(1)) && (strana == 2))
 			{
-				oznaceni.at(1) += 4;
+				oznaceni.at(y) += 4;
 			}
-			if ((oznaceni.at(1) < zavory.at(1)) && (strana == 3))
+			if ((oznaceni.at(y) < zavory.at(1)) && (strana == 3))
 			{
-				if (oznaceni.at(1) <= 8)
+				if (oznaceni.at(y) <= 8)
 				{
-					oznaceni.at(0) = 4;
+					oznaceni.at(x) = 4;
 				}
 				else
 				{
-					oznaceni.at(0) = 7;
+					oznaceni.at(x) = 7;
 				}
-				oznaceni.at(1) += 2;
+				oznaceni.at(y) += 2;
 			}
-			if ((oznaceni.at(1) < zavory.at(1)) && (strana == 4))
+			if ((oznaceni.at(y) < zavory.at(1)) && (strana == 4))
 			{
-				oznaceni.at(1)++;
+				oznaceni.at(y)++;
 			}*/
 		}
 		break;
@@ -177,9 +176,9 @@ int Menu::vstup_menu(int strana)
 	{
 		smazani_oznaceni();
 		{
-			if (oznaceni.at(0) > zavory.at(2))
+			if (oznaceni.at(x) > zavory.at(2))
 			{
-				oznaceni.at(0) -= 10;
+				oznaceni.at(x) -= 10;
 			}
 		}
 		break;
@@ -188,9 +187,9 @@ int Menu::vstup_menu(int strana)
 	{
 		smazani_oznaceni();
 		{
-			if (oznaceni.at(0) < zavory.at(3))
+			if (oznaceni.at(x) < zavory.at(3))
 			{
-				oznaceni.at(0) += 10;
+				oznaceni.at(x) += 10;
 			}
 		}
 		break;
@@ -205,34 +204,26 @@ int Menu::vstup_menu(int strana)
 	case ' ':
 	{
 		{
-			if (strana == -1)
+			/*if (strana == -1)
 			{
 				return exit;
-			}
+			}*/
 		}
 		break;
 	}
 	case 'q':
 	{
 		{
-			if (strana == 0)
+			if (strana == profil_e)
 			{
 				return exit;
-			}
-			else if (strana == 4)
-			{
-
-			}
-			else
-			{
-
 			}
 		}
 		break;
 	}
 	case char(8) :
 	{
-		if (strana == 0)
+		if (strana == profil_e)
 		{
 			return del;
 		}
@@ -242,14 +233,18 @@ int Menu::vstup_menu(int strana)
 		break;
 	}
 }
-//int Menu::rozhodovac(int strana, int prikaz)
-//{
-//	////////    Profily     ////////
-//	if (strana == 0)
-//	{
-//		if (oznaceni.at(1) == 8)
-//		{
-//
-//		}
-//	}
-//}
+int Menu::rozhodovac(int strana, int prikaz)
+{
+	////////    Profily     ////////
+	if (strana == profil_e)
+	{
+		if (oznaceni.at(y) == 8)
+		{
+			if (prikaz == enter)
+			{
+				prof.nacteni_dat_profilu();
+			}
+		}
+	}
+	return 0; //
+}

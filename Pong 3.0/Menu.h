@@ -14,6 +14,7 @@
 //#include "Profily.h"
 //#include "Plosina.h"
 #include "Commands.h"
+#include "Profily.h"
 
 
 class Menu
@@ -67,6 +68,12 @@ public:
 		CZ,
 		EN,
 	};
+	enum souradnice
+	{
+		x,
+		y,
+	};
+
 	int jazyk = CZ;
 
 	std::vector<int> zavory;
@@ -85,7 +92,5 @@ public:
 
 	//void vykresleni_otazka();
 	void smazani_otazka();
-
-
 
 };

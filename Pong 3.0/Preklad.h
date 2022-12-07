@@ -25,11 +25,11 @@ public:
 	std::vector<std::wstring> StringToWString(std::vector<std::string> s);
 
 	std::vector<std::wstring> nacteni_textu_profil();
-	std::vector<std::string> nacteni_textu_hlavni();
-	std::vector<std::string> nacteni_textu_herni_mody();
-	std::vector<std::string> nacteni_textu_vzhled_plosiny();
-	std::vector<std::string> nacteni_textu_nastaveni();
-	std::vector<std::string> nacteni_textu_ovladani();
-	std::vector<std::string> nacteni_textu_konec_kola();
+	std::vector<std::wstring> nacteni_textu_hlavni();
+	std::vector<std::wstring> nacteni_textu_herni_mody();
+	std::vector<std::wstring> nacteni_textu_vzhled_plosiny();
+	std::vector<std::wstring> nacteni_textu_nastaveni();
+	std::vector<std::wstring> nacteni_textu_ovladani();
+	std::vector<std::wstring> nacteni_textu_konec_kola();
 };
 
