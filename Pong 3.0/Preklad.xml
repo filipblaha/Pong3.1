@@ -1,0 +1,129 @@
+<root>
+	<zaklad>
+		<profil>8</profil>
+		<hlavni>4</hlavni>
+		<herni_mody>5</herni_mody>
+		<vzhled_plosiny>2</vzhled_plosiny>
+		<nastaveni>5</nastaveni>
+		<ovladani>9</ovladani>
+		<konec_kola>10</konec_kola>
+	</zaklad>
+    <CZ>
+		<profil>
+			<string>Vyber si svuj profil</string>
+			<string>Profil 1</string>
+			<string>Profil 2</string>
+			<string>Profil 3</string>
+			<string>Smazat pokrok</string>
+			<string>Opravdu chcete smazat pokrok?</string>
+			<string>[ENTER]</string>
+			<string>Zadej nazev profilu</string>
+		</profil>
+		<hlavni>
+			<string>Herni mody</string>
+			<string>Vzhled plosiny</string>
+			<string>Nastaveni</string>
+			<string>verze </string>
+		</hlavni>
+		<herni_mody>
+			<string>HERNI MODY</string>
+			<string>Klasik</string>
+			<string>Rogue like - zatim nefunkcni</string>
+			<string>Stejne tvary - zatim nefunkcni</string>
+			<string>Bloky padaji</string>
+		</herni_mody>
+		<vzhled_plosiny>
+			<string>VZHLED PLOSINY</string>
+			<string>Odemkne se na urovni  </string>
+		</vzhled_plosiny>
+		<nastaveni>
+			<string>NASTAVENI</string>
+			<string>Ovladani</string>
+			<string>Jazyk</string>
+			<string>Cesky</string>
+			<string>Anglicky</string>
+		</nastaveni>
+		<ovladani>
+			<string>OVLADANI</string>
+			<string>Ovladani v menu</string>
+			<string>Ovladani ve hre</string>
+			<string>Enter</string>
+			<string>Mezernik</string>
+			<string>Pouzit schopnost</string>
+			<string>Pohyb - vlevo</string>
+			<string>Pohyb - vpravo</string>
+			<string>Pauza</string>
+		</ovladani>
+		<konec_kola>
+			<string>Zkus to znovu.</string>
+			<string>VYHRAL JSI!</string>
+			<string>Restart[MEZERNIK]</string>
+			<string>Menu[Q]</string>
+			<string>NEJLEPSI CAS: </string>
+			<string>Dosazeny cas: </string>
+			<string>Bloku zbylo: </string>
+			<string>Uroven </string>
+			<string>Bloku zniceno: </string>
+			<string>NEJVICE ZNICENYCH BLOKU: </string>
+		</konec_kola>
+    </CZ>
+	<EN>
+		<profil>
+			<string>Choose your profile</string>
+			<string>Profile 1</string>
+			<string>Profile 2</string>
+			<string>Profile 3</string>
+			<string>Delete progress</string>
+			<string>Do you want to delete progress?</string>
+			<string>[ENTER]</string>
+			<string>Enter a profile name</string>
+		</profil>
+		<hlavni>
+			<string>Game modes</string>
+			<string>Skins</string>
+			<string>Settings</string>
+			<string>version </string>
+		</hlavni>
+		<herni_mody>
+			<string>GAME MODES</string>
+			<string>Classic</string>
+			<string>Rogue like - zatim nefunkcni</string>
+			<string>Hit the same color - zatim nefunkcni</string>
+			<string>Falling blocks</string>
+		</herni_mody>
+		<vzhled_plosiny>
+			<string>SKINS</string>
+			<string>Unlocks after level </string>
+		</vzhled_plosiny>
+		<nastaveni>
+			<string>SETTINGS</string>
+			<string>Controls</string>
+			<string>Language</string>
+			<string>Czech</string>
+			<string>English</string>
+		</nastaveni>
+		<ovladani>
+			<string>CONTROLS</string>
+			<string>Menu controls</string>
+			<string>In-game controls</string>
+			<string>Enter</string>
+			<string>Spacebar</string>
+			<string>Use ability</string>
+			<string>Movement - left</string>
+			<string>Movement - right</string>
+			<string>Pause</string>
+		</ovladani>
+		<konec_kola>
+			<string>Try again.</string>
+			<string>YOU'VE WON!</string>
+			<string>Restart [SPACEBAR]</string>
+			<string>Menu [Q]</string>
+			<string>BEST TIME: </string>
+			<string>Your time: </string>
+			<string>Blocks left: </string>
+			<string>Level </string>
+			<string>Blocks destroyed: </string>
+			<string>HIGHSCORE: </string>
+		</konec_kola>
+	</EN>
+</root>

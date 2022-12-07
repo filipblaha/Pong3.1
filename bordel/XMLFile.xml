@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<hello>
+		<profil>8</profil>
+		<hlavni>4</hlavni>
+		<herni_mody>5</herni_mody>
+		<vzhled_plosiny>2</vzhled_plosiny>
+		<nastaveni>5</nastaveni>
+		<ovladani>9</ovladani>
+		<konec_kola>10</konec_kola>
+	</hello>
+</root>
