@@ -1,8 +1,9 @@
 #include "Profily.h"
 
-XMLDocument xmlDoc;
+
 int Profily::ulozeni_profilu(int profil, std::vector<std::string> nazev_profil)
 {
+	XMLDocument xmlDoc;
 	std::vector<std::vector<int>> data_profil;
 	vlozeni_dat_do_vektoru(profil, data_profil);
 
@@ -16,7 +17,7 @@ int Profily::ulozeni_profilu(int profil, std::vector<std::string> nazev_profil)
 	pocet_profilu->SetText(data_profil.size());
 	base->InsertEndChild(pocet_profilu);
 
-
+	
 	XMLElement* profily_nazev;
 	for (int j = 0; j < nazev_profil.size(); j++)
 	{
@@ -60,6 +61,7 @@ void Profily::vlozeni_dat_do_vektoru(int profil, std::vector<std::vector<int>>& 
 }
 std::vector<std::vector<int>> Profily::nacteni_dat_profilu()
 {
+	XMLDocument xmlDoc;
 	int data = 0;
 	int pocet_profilu_s = 0;
 	std::vector<int> vektor_dat;
@@ -91,6 +93,7 @@ std::vector<std::vector<int>> Profily::nacteni_dat_profilu()
 }
 std::vector<std::string> Profily::nacteni_jmen_profilu()
 {
+	XMLDocument xmlDoc;
 	int data = 0;
 	std::string vektor_pismen;
 	std::vector<std::string> v_v_pismen;

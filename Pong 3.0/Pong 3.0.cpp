@@ -85,7 +85,7 @@ int main()
 	Profily save;
 	save.ulozeni_profilu(0, testchar);
 
-	std::vector<std::vector<int>> prosim = save.nacteni_dat_profilu();
+	/*std::vector<std::vector<int>> prosim = save.nacteni_dat_profilu();
 	for (size_t j = 0; j < prosim.size(); j++)
 	{
 		for (size_t i = 0; i < prosim.at(j).size(); i++)
@@ -98,5 +98,5 @@ int main()
 	for (size_t i = 0; i < prosim2.size(); i++)
 	{
 		std::cout << prosim2.at(i) << '\n';
-	}
+	}*/
 }

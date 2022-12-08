@@ -2,12 +2,7 @@
     <Zakladni>
         <Pocet_profilu>3</Pocet_profilu>
         <Nazev_profilu>
-            <Pismeno>100</Pismeno>
             <Pismeno>115</Pismeno>
-            <Pismeno>97</Pismeno>
-            <Pismeno>100</Pismeno>
-            <Pismeno>115</Pismeno>
-            <Pismeno>97</Pismeno>
         </Nazev_profilu>
         <Nazev_profilu>
             <Pismeno>112</Pismeno>
@@ -31,21 +26,21 @@
         <Hodnota>5</Hodnota>
     </Profil>
     <Profil>
-        <Hodnota>1</Hodnota>
-        <Hodnota>5</Hodnota>
-        <Hodnota>3</Hodnota>
-        <Hodnota>66</Hodnota>
-        <Hodnota>5</Hodnota>
-        <Hodnota>5</Hodnota>
-        <Hodnota>5</Hodnota>
+        <Hodnota>8</Hodnota>
+        <Hodnota>4</Hodnota>
+        <Hodnota>6</Hodnota>
+        <Hodnota>11</Hodnota>
+        <Hodnota>4</Hodnota>
+        <Hodnota>18</Hodnota>
+        <Hodnota>18</Hodnota>
     </Profil>
     <Profil>
-        <Hodnota>1</Hodnota>
+        <Hodnota>8</Hodnota>
+        <Hodnota>2</Hodnota>
+        <Hodnota>6</Hodnota>
+        <Hodnota>11</Hodnota>
         <Hodnota>5</Hodnota>
-        <Hodnota>3</Hodnota>
-        <Hodnota>66</Hodnota>
         <Hodnota>5</Hodnota>
-        <Hodnota>5</Hodnota>
-        <Hodnota>5</Hodnota>
+        <Hodnota>11</Hodnota>
     </Profil>
 </root>
