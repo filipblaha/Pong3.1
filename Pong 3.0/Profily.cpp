@@ -1,11 +1,15 @@
 #include "Profily.h"
 
 
-int Profily::ulozeni_profilu(int profil, std::vector<std::string> nazev_profil)
+int Profily::ulozeni_profilu(int profil, bool zmena_jmena = 0)
 {
 	XMLDocument xmlDoc;
+
 	std::vector<std::vector<int>> data_profil;
 	vlozeni_dat_do_vektoru(profil, data_profil);
+
+	if (!zmena_jmena)
+	nazev_profil = nacteni_jmen_profilu();
 
 	XMLNode* root = xmlDoc.NewElement("root");
 	xmlDoc.InsertFirstChild(root);
@@ -17,15 +21,17 @@ int Profily::ulozeni_profilu(int profil, std::vector<std::string> nazev_profil)
 	pocet_profilu->SetText(data_profil.size());
 	base->InsertEndChild(pocet_profilu);
 
-	
+
+	std::string temp;
 	XMLElement* profily_nazev;
-	for (int j = 0; j < nazev_profil.size(); j++)
+	for (itr = nazev_profil.begin(); itr != nazev_profil.end(); itr++)
 	{
 		profily_nazev = xmlDoc.NewElement("Nazev_profilu");
-		for (int i = 0; i < nazev_profil.at(j).size(); i++)
+		temp = *itr;
+		for (int i = 0; i < temp.size(); i++)
 		{
 			XMLElement* pismeno = xmlDoc.NewElement("Pismeno");
-			pismeno->SetText(nazev_profil.at(j).at(i));
+			pismeno->SetText(temp.at(i));
 			profily_nazev->InsertEndChild(pismeno);
 		}
 		base->InsertEndChild(profily_nazev);
@@ -59,6 +65,7 @@ void Profily::vlozeni_dat_do_vektoru(int profil, std::vector<std::vector<int>>& 
 	level = data_profil.at(profil).at(5);
 	exp = data_profil.at(profil).at(6);
 }
+
 std::vector<std::vector<int>> Profily::nacteni_dat_profilu()
 {
 	XMLDocument xmlDoc;
@@ -91,14 +98,12 @@ std::vector<std::vector<int>> Profily::nacteni_dat_profilu()
 	}
 	return v_v_dat;
 }
-std::vector<std::string> Profily::nacteni_jmen_profilu()
+std::list<std::string> Profily::nacteni_jmen_profilu()
 {
 	XMLDocument xmlDoc;
 	int data = 0;
 	std::string vektor_pismen;
-	std::vector<std::string> v_v_pismen;
-
-	int pocet_profilu_s = 0;
+	std::list<std::string> v_v_pismen;
 
 	xmlDoc.LoadFile("profily.xml");
 
@@ -126,14 +131,17 @@ std::vector<std::string> Profily::nacteni_jmen_profilu()
 
 void Profily::zmena_jmeno_profilu(int profil)
 {
-	jmena_profilu = nacteni_jmen_profilu();
+	nazev_profil = nacteni_jmen_profilu();
 	Commands set;
 	set.setCursorPosition(10, 10);
 	std::string jmeno_profilu;
 	std::cin >> jmeno_profilu;
 
+	itr = nazev_profil.begin();
+	advance(itr, profil);
 
-	//jmena_profilu.at(profil);
-
-	ulozeni_profilu(profil, jmena_profilu);
+	nazev_profil.insert(itr, jmeno_profilu);
+	nazev_profil.erase(itr);
+	
+	ulozeni_profilu(profil, 1);
 }

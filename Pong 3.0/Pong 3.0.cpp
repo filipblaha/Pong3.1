@@ -58,32 +58,8 @@
 //}
 int main()
 {
-	//while (menu_profil);
-	std::vector<int> testint1 = { 1, 5, 3, 66, 5 };
-	std::vector<int> testint2 = { 8, 4, 6, 11, 4 , 18 };
-	std::vector<int> testint3 = { 8, 2, 6, 11, 5 , 11 };
-	std::vector<std::vector<int>> testint = {testint1, testint2, testint3};
-
-	std::string a;
-	std::cin >> a;
-
-	std::string b;
-	b.push_back('p');
-	b.push_back('e');
-	b.push_back('t');
-	b.push_back('a');
-
-	std::string c;
-	c.push_back('k');
-	c.push_back('u');
-	c.push_back('k');
-
-	std::vector<std::string> testchar;
-	testchar.push_back(a);
-	testchar.push_back(b);
-	testchar.push_back(c);
 	Profily save;
-	save.ulozeni_profilu(0, testchar);
+	save.zmena_jmeno_profilu(1);
 
 	/*std::vector<std::vector<int>> prosim = save.nacteni_dat_profilu();
 	for (size_t j = 0; j < prosim.size(); j++)

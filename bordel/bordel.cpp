@@ -54,7 +54,11 @@ int main()
 	}
 
 	std::cout << '\n';
-	erase_list(profil_list, 2);
+	itr = profil_list.begin();
+	advance(itr, 2);
+
+	profil_list.insert(itr, f);
+	profil_list.erase(itr);
 
 	for (itr = profil_list.begin(); itr != profil_list.end(); itr++)
 	{
