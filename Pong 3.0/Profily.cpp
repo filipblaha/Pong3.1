@@ -1,7 +1,7 @@
 #include "Profily.h"
 
 
-int Profily::ulozeni_profilu(int profil, bool zmena_jmena = 0)
+int Profily::ulozeni_profilu(int profil, bool zmena_jmena)
 {
 	XMLDocument xmlDoc;
 

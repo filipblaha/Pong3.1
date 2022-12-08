@@ -1,6 +1,6 @@
 <root>
 	<zaklad>
-		<profil>8</profil>
+		<profil>7</profil>
 		<hlavni>4</hlavni>
 		<herni_mody>5</herni_mody>
 		<vzhled_plosiny>2</vzhled_plosiny>
@@ -11,9 +11,8 @@
     <CZ>
 		<profil>
 			<string>Vyber si svuj profil</string>
-			<string>Profil 1</string>
-			<string>Profil 2</string>
-			<string>Profil 3</string>
+			<string>Jazyk</string>
+			<string>Cesky</string>
 			<string>Smazat pokrok</string>
 			<string>Opravdu chcete smazat pokrok?</string>
 			<string>[ENTER]</string>
@@ -70,9 +69,8 @@
 	<EN>
 		<profil>
 			<string>Choose your profile</string>
-			<string>Profile 1</string>
-			<string>Profile 2</string>
-			<string>Profile 3</string>
+			<string>Language</string>
+			<string>English</string>
 			<string>Delete progress</string>
 			<string>Do you want to delete progress?</string>
 			<string>[ENTER]</string>

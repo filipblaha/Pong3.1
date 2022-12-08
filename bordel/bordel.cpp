@@ -52,8 +52,8 @@ int main()
 	{
 		std::cout << *itr << '\n';
 	}
-
-	std::cout << '\n';
+	
+	std::cout << '\n';/*
 	itr = profil_list.begin();
 	advance(itr, 2);
 
@@ -63,5 +63,12 @@ int main()
 	for (itr = profil_list.begin(); itr != profil_list.end(); itr++)
 	{
 		std::cout << *itr << '\n';
-	}
+	}*/
+	itr = profil_list.begin();
+	advance(itr, 2);
+
+
+	std::list<std::string*>::iterator itr2 = *itr;
+
+	std::cout << *itr << '\n';
 }

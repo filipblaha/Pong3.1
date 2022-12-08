@@ -1,18 +1,6 @@
 #pragma once
-#include <iostream>
-#include <vector>
 #include <conio.h>
 
-#ifndef WIN32_LEAN_AND_MEAN // xml a windows.h nejdou do sebe, tohle to vyresi
-#define WIN32_LEAN_AND_MEAN
-#endif
-
-#include <Windows.h>
-#include <fcntl.h>
-#include <io.h> // graficke knihovny
-
-//#include "Profily.h"
-//#include "Plosina.h"
 #include "Commands.h"
 #include "Profily.h"
 

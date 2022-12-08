@@ -12,6 +12,19 @@ std::vector<std::wstring> Preklad::StringToWString(std::vector<std::string> s)
 	}
 	return ws;
 }
+std::list<std::wstring> Preklad::StringToWStringList(std::list<std::string> s)
+{
+	std::string sTmp;
+	std::list<std::wstring> ws;
+	std::list<std::string>::iterator itr;
+	for (itr = s.begin(); itr != s.end(); itr++)
+	{
+		sTmp = *itr;
+		std::wstring wsTmp(sTmp.begin(), sTmp.end());
+		ws.push_back(wsTmp);
+	}
+	return ws;
+}
 std::vector<std::wstring> Preklad::nacteni_textu_profil()
 {
 	XMLDocument xmlDoc;

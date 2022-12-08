@@ -1,7 +1,7 @@
 #include "Menu.h"
 
 Commands set;
-Profily prof;
+Profily profil;
 
 void Menu::vykresleni_menu_start()
 {
@@ -100,6 +100,10 @@ int Menu::vstup_menu(int strana)
 					oznaceni.at(y) -= 5;
 					oznaceni.at(x) = 10;
 				}
+			}
+			else
+			{
+				//profil.nacteni_jmen_profilu()
 			}
 			/*if ((oznaceni.at(y) > zavory.at(0)) && (strana == 0 || strana == 1))
 			{
@@ -242,7 +246,8 @@ int Menu::rozhodovac(int strana, int prikaz)
 		{
 			if (prikaz == enter)
 			{
-				prof.nacteni_dat_profilu();
+				profil.nacteni_dat_profilu();
+				return enter;
 			}
 		}
 	}

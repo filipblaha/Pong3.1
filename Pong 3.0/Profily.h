@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include <vector>
 #include <list>
 
@@ -33,7 +32,7 @@ public:
 		EN,
 	};
 
-	int pocet_profilu_s;
+	int pocet_profilu_s = 0;
 
 	int pouzit;
 	int jazyk;
@@ -46,7 +45,7 @@ public:
 	std::list<std::string>::iterator itr;
 	std::list<std::string> nazev_profil;
 
-	int ulozeni_profilu(int profil, bool zmena_jmena);
+	int ulozeni_profilu(int profil, bool zmena_jmena = 0);
 	std::vector<std::vector<int>> nacteni_dat_profilu();
 	std::list<std::string> nacteni_jmen_profilu();
 

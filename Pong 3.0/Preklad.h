@@ -1,7 +1,4 @@
 #pragma once
-#include <iostream>
-#include <vector>
-#include "tinyxml2.h"
 #include "menu.h"
 
 using namespace tinyxml2;
@@ -34,6 +31,7 @@ public:
 	std::vector<std::wstring> vektor_wstringu;
 
 	std::vector<std::wstring> StringToWString(std::vector<std::string> s);
+	std::list<std::wstring> StringToWStringList(std::list<std::string> s);
 
 	std::vector<std::wstring> nacteni_textu_profil();
 	std::vector<std::wstring> nacteni_textu_hlavni();
