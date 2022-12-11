@@ -1,6 +1,11 @@
 #pragma once
-#include "menu.h"
+#include <iostream>
+#include <list>
+#include <vector>
+#include <fcntl.h>
+#include <io.h>
 
+#include "tinyxml2.h"
 using namespace tinyxml2;
 class Preklad
 {
@@ -15,9 +20,15 @@ public:
 		nastaveni_stringu = 0;
 		ovladani_stringu = 0;
 		konec_kola_stringu = 0;
+
+		jazyk = CZ;
 	}
 
-	Menu menu;
+	enum jazyk_e
+	{
+		CZ,
+		EN,
+	};
 
 	int profil_stringu;
 	int hlavni_stringu;
@@ -26,6 +37,8 @@ public:
 	int nastaveni_stringu;
 	int ovladani_stringu;
 	int konec_kola_stringu;
+
+	int jazyk;
 
 	std::vector<std::string> vektor_stringu;
 	std::vector<std::wstring> vektor_wstringu;

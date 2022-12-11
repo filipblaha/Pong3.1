@@ -1,6 +1,5 @@
 #pragma once
 #include "Menu.h"
-#include "Preklad.h"
 class Menu_profil : public Menu
 {
     public:
@@ -8,14 +7,18 @@ class Menu_profil : public Menu
         Profily profil;
         Preklad transl;
 
-    Menu_profil() : Menu(profil_e, 10, 8, 8, 17)
+    Menu_profil() : Menu(profil_e, 10, 8, 8)
     {
         Preklad transl;
-        vykresleni_profil(urceni_prvniho_profilu());
+        nastav_spodni_zavoru();
+        aktual_nazev_profilu_start();
+        vykresleni_profil();
     }
 
-    void vykresleni_profil(std::wstring prvni_profil_v);
+
+    int vstup_menu(int strana);
+    void vykresleni_profil();
 private:
-    std::wstring urceni_prvniho_profilu();
+    void nastav_spodni_zavoru();
 };
 

@@ -3,11 +3,15 @@
 
 #include "Commands.h"
 #include "Profily.h"
+#include "Preklad.h"
 
 
 class Menu
 {
 public:
+	Preklad transl;
+	Commands set;
+	Profily profil;
 	Menu()
 	{}
 	Menu(int strana, int x = 0, int y = 0, int horni_z = 0, int dolni_z = 0, int leva_z = 0, int prava_z = 0)
@@ -49,6 +53,7 @@ public:
 	{
 		exit,
 		enter,
+		posun,
 		del,
 	};
 	enum jazyk_e
@@ -62,10 +67,11 @@ public:
 		y,
 	};
 
-	int jazyk = CZ;
 
+	std::vector<int> ulozena_data;
 	std::vector<int> zavory;
 	std::vector<int> oznaceni;
+	std::list<std::string> aktual;
 
 
 	void vykresleni_menu_start();
@@ -81,4 +87,10 @@ public:
 	//void vykresleni_otazka();
 	void smazani_otazka();
 
+
+	void aktual_nazev_profilu_start();
+	std::list<std::string> aktual_nazev_profilu(int inkrement = 0);
+private:
+
+	int index_profilu(int inkrement = 0);
 };

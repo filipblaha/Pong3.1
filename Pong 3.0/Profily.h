@@ -46,11 +46,11 @@ public:
 	std::list<std::string> nazev_profil;
 
 	int ulozeni_profilu(int profil, bool zmena_jmena = 0);
-	std::vector<std::vector<int>> nacteni_dat_profilu();
+	std::vector<int> nacteni_dat_profilu(int profil);
 	std::list<std::string> nacteni_jmen_profilu();
+	void nacteni_poctu_profilu();
 
-	void vlozeni_dat_do_vektoru(int profil, std::vector<std::vector<int>> &data_profil);
+	std::vector<int> vlozeni_dat_do_vektoru(int profil);
 	void vlozeni_jmen_do_vektoru(int profil, std::list<std::string> &nazev_profil);
 	void zmena_jmeno_profilu(int profil);
-
 };

@@ -1,15 +1,20 @@
 #include "Profily.h"
 
-
 int Profily::ulozeni_profilu(int profil, bool zmena_jmena)
 {
 	XMLDocument xmlDoc;
-
 	std::vector<std::vector<int>> data_profil;
-	vlozeni_dat_do_vektoru(profil, data_profil);
+	for (int i = 0; i < pocet_profilu_s - 1; i++)
+	{
+		if (i = profil)
+			data_profil.push_back(vlozeni_dat_do_vektoru(profil));
+		else
+			data_profil.push_back(nacteni_dat_profilu(i));
+	}
+
 
 	if (!zmena_jmena)
-	nazev_profil = nacteni_jmen_profilu();
+		nazev_profil = nacteni_jmen_profilu();
 
 	XMLNode* root = xmlDoc.NewElement("root");
 	xmlDoc.InsertFirstChild(root);
@@ -53,35 +58,20 @@ int Profily::ulozeni_profilu(int profil, bool zmena_jmena)
 	XMLError eResult = xmlDoc.SaveFile("profily.xml");
 	XMLCheckResult(eResult);
 }
-void Profily::vlozeni_dat_do_vektoru(int profil, std::vector<std::vector<int>>& data_profil)
-{
-	data_profil = nacteni_dat_profilu();
 
-	pouzit = data_profil.at(profil).at(0);
-	jazyk = data_profil.at(profil).at(1);
-	plosina_skin = data_profil.at(profil).at(2);
-	highscore_cas = data_profil.at(profil).at(3);
-	highscore_znicenych_bloku = data_profil.at(profil).at(4);
-	level = data_profil.at(profil).at(5);
-	exp = data_profil.at(profil).at(6);
-}
-
-std::vector<std::vector<int>> Profily::nacteni_dat_profilu()
+std::vector<int> Profily::nacteni_dat_profilu(int profil)
 {
 	XMLDocument xmlDoc;
 	int data = 0;
-	int pocet_profilu_s = 0;
 	std::vector<int> vektor_dat;
 	std::vector<std::vector<int>> v_v_dat;
 
 
 	xmlDoc.LoadFile("profily.xml");
 
-	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* base = root->FirstChildElement("Zakladni");
-	XMLElement* pocet_profilu = base->FirstChildElement("Pocet_profilu");
-	pocet_profilu->QueryIntText(&pocet_profilu_s);
+	nacteni_poctu_profilu();
 
+	XMLNode* root = xmlDoc.FirstChild();
 	XMLElement* profily_data = root->FirstChildElement("Profil");
 	for (int i = 0; i < pocet_profilu_s; i++)
 	{
@@ -96,7 +86,7 @@ std::vector<std::vector<int>> Profily::nacteni_dat_profilu()
 		vektor_dat.clear();
 		profily_data = profily_data->NextSiblingElement("Profil");
 	}
-	return v_v_dat;
+	return v_v_dat.at(profil);
 }
 std::list<std::string> Profily::nacteni_jmen_profilu()
 {
@@ -107,11 +97,10 @@ std::list<std::string> Profily::nacteni_jmen_profilu()
 
 	xmlDoc.LoadFile("profily.xml");
 
+	nacteni_poctu_profilu();
+
 	XMLNode* root = xmlDoc.FirstChild();
 	XMLElement* base = root->FirstChildElement("Zakladni");
-	XMLElement* pocet_profilu = base->FirstChildElement("Pocet_profilu");
-	pocet_profilu->QueryIntText(&pocet_profilu_s);
-
 	XMLElement* profily_jmena = base->FirstChildElement("Nazev_profilu");
 	for (int i = 0; i < pocet_profilu_s; i++)
 	{
@@ -128,7 +117,30 @@ std::list<std::string> Profily::nacteni_jmen_profilu()
 	}
 	return v_v_pismen;
 }
+void  Profily::nacteni_poctu_profilu()
+{
+	XMLDocument xmlDoc;
+	xmlDoc.LoadFile("profily.xml");
 
+	XMLNode* root = xmlDoc.FirstChild();
+	XMLElement* base = root->FirstChildElement("Zakladni");
+	XMLElement* pocet_profilu = base->FirstChildElement("Pocet_profilu");
+	pocet_profilu->QueryIntText(&pocet_profilu_s);
+}
+
+std::vector<int> Profily::vlozeni_dat_do_vektoru(int profil)
+{
+	std::vector<int> data_profil = nacteni_dat_profilu(profil);
+
+	pouzit = data_profil.at(0);
+	jazyk = data_profil.at(1);
+	plosina_skin = data_profil.at(2);
+	highscore_cas = data_profil.at(3);
+	highscore_znicenych_bloku = data_profil.at(4);
+	level = data_profil.at(5);
+	exp = data_profil.at(6);
+	return data_profil;
+}
 void Profily::zmena_jmeno_profilu(int profil)
 {
 	nazev_profil = nacteni_jmen_profilu();
@@ -142,6 +154,6 @@ void Profily::zmena_jmeno_profilu(int profil)
 
 	nazev_profil.insert(itr, jmeno_profilu);
 	nazev_profil.erase(itr);
-	
+
 	ulozeni_profilu(profil, 1);
 }

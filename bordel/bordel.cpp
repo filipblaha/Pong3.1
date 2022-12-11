@@ -64,11 +64,31 @@ int main()
 	{
 		std::cout << *itr << '\n';
 	}*/
-	itr = profil_list.begin();
-	advance(itr, 2);
+	
+	std::list<std::string> aktual = profil_list;
+	aktual.pop_front();
+	while (aktual.size() > 3)
+	{
+		aktual.pop_back();
+	}
 
+	itr = aktual.begin();
+	/*
+	itr++;
+	std::cout << *itr << '\n';*/
 
-	std::list<std::string*>::iterator itr2 = *itr;
+	while (*profil_list.rbegin() != *aktual.rbegin())
+		profil_list.pop_back();
 
-	std::cout << *itr << '\n';
+	for (aktual.begin(); itr != aktual.end(); itr++)
+	{
+		std::cout << *itr << '\n';
+	}
+	std::cout << "\n\n";
+
+	for (itr = profil_list.begin(); itr != profil_list.end(); itr++)
+	{
+		std::cout << *itr << '\n';
+	}
+
 }

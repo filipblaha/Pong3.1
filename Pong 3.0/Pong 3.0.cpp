@@ -1,61 +1,68 @@
 #include "Menu_profil.h"
+#include "Menu_hlavni.h"
 
 
-bool menu_hlavni()
+bool menu_hlavni(Menu_profil data)
 {
+	Menu_hlavni menu;
+	std::wcout << data.ulozena_data.at(0);/////
 	return 0;
 }
 
 bool menu_profil()
 {
-	Menu_profil profil;
+	Menu_profil menu;
 	Profily save;
 	while (menu_profil)
 	{
-		switch (profil.vstup_menu(profil.profil_e))
+		switch (menu.vstup_menu(menu.profil_e))
 		{
-		case profil.enter:
+		case menu.enter:
 		{
 			{
-				if (profil.rozhodovac(profil.profil_e, profil.enter) == 1)
+				if (menu.rozhodovac(menu.profil_e, menu.enter) == 1)
 				{
-					while (menu_hlavni())
+					while (menu_hlavni(menu))
 					{
-						save.ulozeni_profilu(profil.profil_e);
+						save.ulozeni_profilu(menu.profil_e);
 					}
 				}
 			}
 			break;
 		}
-		/*case profil.del:
+		/*case menu.del:
 		{
 			{
-				profil.vykresleni_otazka();
+				menu.vykresleni_otazka();
 
-				if (profil.vstup_menu(profil.profil_e) == profil.enter)
+				if (menu.vstup_menu(menu.profil_e) == menu.enter)
 				{
-					profil.rozhodovac(profil.profil_e, profil.del);
+					menu.rozhodovac(menu.profil_e, menu.del);
 
-					if (profil.pouzit == 0)
+					if (menu.pouzit == 0)
 					{
-						profil.vykresleni_nazev_profilu();
-						profil.nacteni_vyberu_profilu();
-						profil.pojmenovani_profilu();
-						profil.ulozeni_vyberu_profilu();
+						menu.vykresleni_nazev_profilu();
+						menu.nacteni_vyberu_profilu();
+						menu.pojmenovani_profilu();
+						menu.ulozeni_vyberu_profilu();
 					}
 				}
-				profil.smazani_otazka();
+				menu.smazani_otazka();
 			}
 			break;
 		}*/
-		case profil.exit:
+		case menu.exit:
 		{
 			return 0;
+		}
+		case menu.posun:
+		{
+			menu.vykresleni_oznaceni();
 		}
 		default:
 		{
 			//profil.vykresleni_profil();
-			profil.vykresleni_oznaceni();
+			menu.vykresleni_oznaceni();
 		}
 		break;
 		}

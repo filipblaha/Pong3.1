@@ -39,13 +39,13 @@ std::vector<std::wstring> Preklad::nacteni_textu_profil()
 	XMLElement* profil = base->FirstChildElement("profil");
 	profil->QueryIntText(&profil_stringu);
 
-	XMLElement* jazyk = root->FirstChildElement("CZ");
-	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement("CZ");
-	if (menu.jazyk == menu.EN)
-		jazyk = root->FirstChildElement("EN");
+	XMLElement*jazyk_p = root->FirstChildElement("CZ");
+	if (jazyk == CZ)
+		jazyk_p = root->FirstChildElement("CZ");
+	if (jazyk == EN)
+		jazyk_p = root->FirstChildElement("EN");
 
-	XMLElement* menu = jazyk->FirstChildElement("profil");
+	XMLElement* menu =jazyk_p->FirstChildElement("profil");
 	XMLElement* text = menu->FirstChildElement("string");
 	for (int i = 0; i < profil_stringu; i++)
 	{
@@ -70,13 +70,13 @@ std::vector<std::wstring> Preklad::nacteni_textu_hlavni()
 	XMLElement* profil = base->FirstChildElement("hlavni");
 	profil->QueryIntText(&profil_stringu);
 
-	XMLElement* jazyk = root->FirstChildElement("CZ");
-	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement("CZ");
-	if (menu.jazyk == menu.EN)
-		jazyk = root->FirstChildElement("EN");
+	XMLElement*jazyk_p = root->FirstChildElement("CZ");
+	if (jazyk == CZ)
+		jazyk_p = root->FirstChildElement("CZ");
+	if (jazyk == EN)
+		jazyk_p = root->FirstChildElement("EN");
 
-	XMLElement* menu = jazyk->FirstChildElement("hlavni");
+	XMLElement* menu =jazyk_p->FirstChildElement("hlavni");
 	XMLElement* text = menu->FirstChildElement("string");
 	for (int i = 0; i < profil_stringu; i++)
 	{
@@ -101,13 +101,13 @@ std::vector<std::wstring> Preklad::nacteni_textu_herni_mody()
 	XMLElement* profil = base->FirstChildElement("herni_mody");
 	profil->QueryIntText(&profil_stringu);
 
-	XMLElement* jazyk = root->FirstChildElement("CZ");
-	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement("CZ");
-	if (menu.jazyk == menu.EN)
-		jazyk = root->FirstChildElement("EN");
+	XMLElement*jazyk_p = root->FirstChildElement("CZ");
+	if (jazyk == CZ)
+		jazyk_p = root->FirstChildElement("CZ");
+	if (jazyk == EN)
+		jazyk_p = root->FirstChildElement("EN");
 
-	XMLElement* menu = jazyk->FirstChildElement("herni_mody");
+	XMLElement* menu =jazyk_p->FirstChildElement("herni_mody");
 	XMLElement* text = menu->FirstChildElement("string");
 	for (int i = 0; i < profil_stringu; i++)
 	{
@@ -132,13 +132,13 @@ std::vector<std::wstring> Preklad::nacteni_textu_vzhled_plosiny()
 	XMLElement* profil = base->FirstChildElement("vzhled_plosiny");
 	profil->QueryIntText(&profil_stringu);
 
-	XMLElement* jazyk = root->FirstChildElement("CZ");
-	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement("CZ");
-	if (menu.jazyk == menu.EN)
-		jazyk = root->FirstChildElement("EN");
+	XMLElement*jazyk_p = root->FirstChildElement("CZ");
+	if (jazyk == CZ)
+		jazyk_p = root->FirstChildElement("CZ");
+	if (jazyk == EN)
+		jazyk_p = root->FirstChildElement("EN");
 
-	XMLElement* menu = jazyk->FirstChildElement("vzhled_plosiny");
+	XMLElement* menu =jazyk_p->FirstChildElement("vzhled_plosiny");
 	XMLElement* text = menu->FirstChildElement("string");
 	for (int i = 0; i < profil_stringu; i++)
 	{
@@ -163,13 +163,13 @@ std::vector<std::wstring> Preklad::nacteni_textu_nastaveni()
 	XMLElement* profil = base->FirstChildElement("nastaveni");
 	profil->QueryIntText(&profil_stringu);
 
-	XMLElement* jazyk = root->FirstChildElement("CZ");
-	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement("CZ");
-	if (menu.jazyk == menu.EN)
-		jazyk = root->FirstChildElement("EN");
+	XMLElement*jazyk_p = root->FirstChildElement("CZ");
+	if (jazyk == CZ)
+		jazyk_p = root->FirstChildElement("CZ");
+	if (jazyk == EN)
+		jazyk_p = root->FirstChildElement("EN");
 
-	XMLElement* menu = jazyk->FirstChildElement("nastaveni");
+	XMLElement* menu =jazyk_p->FirstChildElement("nastaveni");
 	XMLElement* text = menu->FirstChildElement("string");
 	for (int i = 0; i < profil_stringu; i++)
 	{
@@ -194,13 +194,13 @@ std::vector<std::wstring> Preklad::nacteni_textu_ovladani()
 	XMLElement* profil = base->FirstChildElement("ovladani");
 	profil->QueryIntText(&profil_stringu);
 
-	XMLElement* jazyk = root->FirstChildElement("CZ");
-	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement("CZ");
-	if (menu.jazyk == menu.EN)
-		jazyk = root->FirstChildElement("EN");
+	XMLElement*jazyk_p = root->FirstChildElement("CZ");
+	if (jazyk == CZ)
+		jazyk_p = root->FirstChildElement("CZ");
+	if (jazyk == EN)
+		jazyk_p = root->FirstChildElement("EN");
 
-	XMLElement* menu = jazyk->FirstChildElement("ovladani");
+	XMLElement* menu =jazyk_p->FirstChildElement("ovladani");
 	XMLElement* text = menu->FirstChildElement("string");
 	for (int i = 0; i < profil_stringu; i++)
 	{
@@ -225,13 +225,13 @@ std::vector<std::wstring> Preklad::nacteni_textu_konec_kola()
 	XMLElement* profil = base->FirstChildElement("konec_kola");
 	profil->QueryIntText(&profil_stringu);
 
-	XMLElement* jazyk = root->FirstChildElement("CZ");
-	if (menu.jazyk == menu.CZ)
-		jazyk = root->FirstChildElement("CZ");
-	if (menu.jazyk == menu.EN)
-		jazyk = root->FirstChildElement("EN");
+	XMLElement*jazyk_p = root->FirstChildElement("CZ");
+	if (jazyk == CZ)
+		jazyk_p = root->FirstChildElement("CZ");
+	if (jazyk == EN)
+		jazyk_p = root->FirstChildElement("EN");
 
-	XMLElement* menu = jazyk->FirstChildElement("konec_kola");
+	XMLElement* menu =jazyk_p->FirstChildElement("konec_kola");
 	XMLElement* text = menu->FirstChildElement("string");
 	for (int i = 0; i < profil_stringu; i++)
 	{
