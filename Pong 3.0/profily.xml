@@ -1,6 +1,12 @@
 <root>
     <Zakladni>
-        <Pocet_profilu>5</Pocet_profilu>
+        <Pocet_profilu>3</Pocet_profilu>
+        <Nazev_profilu>
+            <Pismeno>100</Pismeno>
+            <Pismeno>97</Pismeno>
+            <Pismeno>115</Pismeno>
+            <Pismeno>100</Pismeno>
+        </Nazev_profilu>
         <Nazev_profilu>
             <Pismeno>102</Pismeno>
             <Pismeno>97</Pismeno>
@@ -9,31 +15,20 @@
             <Pismeno>97</Pismeno>
         </Nazev_profilu>
         <Nazev_profilu>
-            <Pismeno>109</Pismeno>
             <Pismeno>97</Pismeno>
-            <Pismeno>116</Pismeno>
-            <Pismeno>105</Pismeno>
-            <Pismeno>107</Pismeno>
-            <Pismeno>97</Pismeno>
+            <Pismeno>110</Pismeno>
+            <Pismeno>100</Pismeno>
         </Nazev_profilu>
-		<Nazev_profilu>
-			<Pismeno>97</Pismeno>
-			<Pismeno>110</Pismeno>
-			<Pismeno>100</Pismeno>
-		</Nazev_profilu>
-		<Nazev_profilu>
-			<Pismeno>97</Pismeno>
-			<Pismeno>110</Pismeno>
-			<Pismeno>109</Pismeno>
-			<Pismeno>97</Pismeno>
-			<Pismeno>116</Pismeno>
-			<Pismeno>105</Pismeno>
-		</Nazev_profilu>
-		<Nazev_profilu>
-			<Pismeno>100</Pismeno>
-			<Pismeno>97</Pismeno>
-		</Nazev_profilu>
     </Zakladni>
+    <Profil>
+        <Hodnota>0</Hodnota>
+        <Hodnota>0</Hodnota>
+        <Hodnota>0</Hodnota>
+        <Hodnota>0</Hodnota>
+        <Hodnota>0</Hodnota>
+        <Hodnota>0</Hodnota>
+        <Hodnota>0</Hodnota>
+    </Profil>
     <Profil>
         <Hodnota>0</Hodnota>
         <Hodnota>5</Hodnota>
@@ -43,40 +38,13 @@
         <Hodnota>5</Hodnota>
         <Hodnota>5</Hodnota>
     </Profil>
-	<Profil>
-		<Hodnota>1</Hodnota>
-		<Hodnota>5</Hodnota>
-		<Hodnota>3</Hodnota>
-		<Hodnota>66</Hodnota>
-		<Hodnota>5</Hodnota>
-		<Hodnota>5</Hodnota>
-		<Hodnota>5</Hodnota>
-	</Profil>
-	<Profil>
-		<Hodnota>2</Hodnota>
-		<Hodnota>5</Hodnota>
-		<Hodnota>3</Hodnota>
-		<Hodnota>66</Hodnota>
-		<Hodnota>5</Hodnota>
-		<Hodnota>5</Hodnota>
-		<Hodnota>5</Hodnota>
-	</Profil>
     <Profil>
-        <Hodnota>3</Hodnota>
-        <Hodnota>4</Hodnota>
-        <Hodnota>6</Hodnota>
-        <Hodnota>11</Hodnota>
-        <Hodnota>4</Hodnota>
-        <Hodnota>18</Hodnota>
-        <Hodnota>18</Hodnota>
-    </Profil>
-    <Profil>
-        <Hodnota>4</Hodnota>
         <Hodnota>2</Hodnota>
-        <Hodnota>6</Hodnota>
-        <Hodnota>11</Hodnota>
+        <Hodnota>5</Hodnota>
+        <Hodnota>3</Hodnota>
+        <Hodnota>66</Hodnota>
         <Hodnota>5</Hodnota>
         <Hodnota>5</Hodnota>
-        <Hodnota>11</Hodnota>
+        <Hodnota>5</Hodnota>
     </Profil>
 </root>

@@ -20,75 +20,7 @@ void add_list(std::list<std::string>& list, std::vector<std::string> v)
 
 int main()
 {
-	std::list<std::string> profil_list;
-	std::vector<std::string> v;
-
-	std::string a;
-
-	a.push_back('F');
-	a.push_back('i');
-	a.push_back('l');
-	a.push_back('i');
-	a.push_back('p');
-
-	std::string b = "Fanda";
-	std::string c = "Jirka";
-	std::string d = "smazak";
-	std::string e = "macek";
-	std::string f = "pacek";
-
-	v.push_back(a);
-	v.push_back(b);
-	v.push_back(c);
-	v.push_back(d);
-	v.push_back(e);
-	v.push_back(f);
+	char s;
+	std::cin >> s;
 	
-
-	add_list(profil_list, v);
-	std::list<std::string>::iterator itr;
-
-	for (itr = profil_list.begin(); itr != profil_list.end(); itr++)
-	{
-		std::cout << *itr << '\n';
-	}
-	
-	std::cout << '\n';/*
-	itr = profil_list.begin();
-	advance(itr, 2);
-
-	profil_list.insert(itr, f);
-	profil_list.erase(itr);
-
-	for (itr = profil_list.begin(); itr != profil_list.end(); itr++)
-	{
-		std::cout << *itr << '\n';
-	}*/
-	
-	std::list<std::string> aktual = profil_list;
-	aktual.pop_front();
-	while (aktual.size() > 3)
-	{
-		aktual.pop_back();
-	}
-
-	itr = aktual.begin();
-	/*
-	itr++;
-	std::cout << *itr << '\n';*/
-
-	while (*profil_list.rbegin() != *aktual.rbegin())
-		profil_list.pop_back();
-
-	for (aktual.begin(); itr != aktual.end(); itr++)
-	{
-		std::cout << *itr << '\n';
-	}
-	std::cout << "\n\n";
-
-	for (itr = profil_list.begin(); itr != profil_list.end(); itr++)
-	{
-		std::cout << *itr << '\n';
-	}
-
 }

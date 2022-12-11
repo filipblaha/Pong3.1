@@ -215,34 +215,6 @@ int Menu::vstup_menu(int strana)
 	}
 	}
 }
-int Menu::rozhodovac(int strana, int prikaz)
-{
-	////////    Profily     ////////
-	if (strana == profil_e)
-	{
-		int index = 0;
-		if (oznaceni.at(y) == 8)
-			index = index_profilu();
-		if (oznaceni.at(y) == 10)
-			index = index_profilu(1);
-		if (oznaceni.at(y) == 12)
-			index = index_profilu(2);
-
-		if (prikaz == enter)
-		{
-			if (index == 0)
-			{
-				
-			}
-			else
-			{
-				ulozena_data = profil.nacteni_dat_profilu(index);
-				return enter;
-			}
-		}
-
-	}
-}
 
 
 void Menu::aktual_nazev_profilu_start()
@@ -269,7 +241,12 @@ std::list<std::string> Menu::aktual_nazev_profilu(int inkrement)
 	
 
 	aktual.clear();
-	for (int i = 0; i < 3; i++)
+	int n = 0;
+	if (profil.pocet_profilu_s >= 3)
+		n = 3;
+	else
+		n = profil.pocet_profilu_s;
+	for (int i = 0; i < n; i++)
 	{
 		aktual.push_back(*itr);
 		itr++;

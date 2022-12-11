@@ -81,7 +81,6 @@ public:
 
 	/////////////////////    Input     //////////////////////////
 	int vstup_menu(int strana);
-	int rozhodovac(int strana, int prikaz);
 
 
 	//void vykresleni_otazka();
@@ -90,7 +89,8 @@ public:
 
 	void aktual_nazev_profilu_start();
 	std::list<std::string> aktual_nazev_profilu(int inkrement = 0);
-private:
 
 	int index_profilu(int inkrement = 0);
+private:
+
 };

@@ -1,10 +1,11 @@
 #include "Profily.h"
 
-int Profily::ulozeni_profilu(int profil, bool zmena_jmena)
+void Profily::ulozeni_profilu(int profil, bool zmena_jmena)
 {
-	XMLDocument xmlDoc;
-	std::vector<std::vector<int>> data_profil;
-	for (int i = 0; i < pocet_profilu_s - 1; i++)
+	std::list<std::vector<int>> data_profil;
+	std::list<std::string> nazev_profil;
+
+	for (int i = 0; i < pocet_profilu_s; i++)
 	{
 		if (i = profil)
 			data_profil.push_back(vlozeni_dat_do_vektoru(profil));
@@ -12,10 +13,63 @@ int Profily::ulozeni_profilu(int profil, bool zmena_jmena)
 			data_profil.push_back(nacteni_dat_profilu(i));
 	}
 
-
 	if (!zmena_jmena)
 		nazev_profil = nacteni_jmen_profilu();
 
+	zapsani_profilu(data_profil, nazev_profil);
+}
+void Profily::vytvoreni_noveho_profilu(std::string nazev_noveho_profilu)
+{
+	std::vector<int> data_noveho_profilu;
+	std::list<std::vector<int>> data_profil;
+	for (int i = 0; i < 7; i++)
+	{
+		data_noveho_profilu.push_back(0);
+	}
+	for (int i = 0; i < pocet_profilu_s; i++)
+	{
+			data_profil.push_back(nacteni_dat_profilu(i));
+	}
+	std::list<std::string> nazev_profil = nacteni_jmen_profilu();
+
+	itri = data_profil.begin();
+	itri++;
+	data_profil.insert(itri, data_noveho_profilu);
+
+	itr = nazev_profil.begin();
+	itr++;
+	nazev_profil.insert(itr, nazev_noveho_profilu);
+
+	pocet_profilu_s++;
+
+	zapsani_profilu(data_profil, nazev_profil);
+}
+void Profily::odstraneni_profilu(int profil)
+{
+	std::list<std::vector<int>> data_profil;
+	std::list<std::string> nazev_profil;
+
+	for (int i = 0; i < pocet_profilu_s; i++)
+	{
+		data_profil.push_back(nacteni_dat_profilu(i));
+	}
+	nazev_profil = nacteni_jmen_profilu();
+
+	itri = data_profil.begin();
+	advance(itri, profil);
+	data_profil.erase(itri);
+
+	itr = nazev_profil.begin();
+	advance(itr, profil);
+	nazev_profil.erase(itr);
+
+	pocet_profilu_s--;
+
+	zapsani_profilu(data_profil, nazev_profil);
+}
+int Profily::zapsani_profilu(std::list<std::vector<int>> data, std::list<std::string> nazev)
+{
+	XMLDocument xmlDoc;
 	XMLNode* root = xmlDoc.NewElement("root");
 	xmlDoc.InsertFirstChild(root);
 
@@ -23,13 +77,13 @@ int Profily::ulozeni_profilu(int profil, bool zmena_jmena)
 	root->InsertEndChild(base);
 
 	XMLElement* pocet_profilu = xmlDoc.NewElement("Pocet_profilu");
-	pocet_profilu->SetText(data_profil.size());
+	pocet_profilu->SetText(pocet_profilu_s);
 	base->InsertEndChild(pocet_profilu);
 
 
 	std::string temp;
 	XMLElement* profily_nazev;
-	for (itr = nazev_profil.begin(); itr != nazev_profil.end(); itr++)
+	for (itr = nazev.begin(); itr != nazev.end(); itr++)
 	{
 		profily_nazev = xmlDoc.NewElement("Nazev_profilu");
 		temp = *itr;
@@ -42,19 +96,21 @@ int Profily::ulozeni_profilu(int profil, bool zmena_jmena)
 		base->InsertEndChild(profily_nazev);
 	}
 
+	std::vector<int> tempi;
 	XMLElement* profily_data;
-	for (int j = 0; j < data_profil.size(); j++)
+	for (itri = data.begin(); itri != data.end(); itri++)
 	{
 		profily_data = xmlDoc.NewElement("Profil");
-		for (int i = 0; i < data_profil.at(j).size(); i++)
+		tempi = *itri;
+		for (int i = 0; i < tempi.size(); i++)
 		{
 			XMLElement* hodnoty = xmlDoc.NewElement("Hodnota");
-			hodnoty->SetText(data_profil.at(j).at(i));
-
+			hodnoty->SetText(tempi.at(i));
 			profily_data->InsertEndChild(hodnoty);
 		}
 		root->InsertEndChild(profily_data);
 	}
+
 	XMLError eResult = xmlDoc.SaveFile("profily.xml");
 	XMLCheckResult(eResult);
 }
@@ -141,19 +197,19 @@ std::vector<int> Profily::vlozeni_dat_do_vektoru(int profil)
 	exp = data_profil.at(6);
 	return data_profil;
 }
-void Profily::zmena_jmeno_profilu(int profil)
-{
-	nazev_profil = nacteni_jmen_profilu();
-	Commands set;
-	set.setCursorPosition(10, 10);
-	std::string jmeno_profilu;
-	std::cin >> jmeno_profilu;
-
-	itr = nazev_profil.begin();
-	advance(itr, profil);
-
-	nazev_profil.insert(itr, jmeno_profilu);
-	nazev_profil.erase(itr);
-
-	ulozeni_profilu(profil, 1);
-}
+//void Profily::zmena_jmeno_profilu(int profil)
+//{
+//	nazev_profil = nacteni_jmen_profilu();
+//	Commands set;
+//	set.setCursorPosition(10, 10);
+//	std::string jmeno_profilu;
+//	std::cin >> jmeno_profilu;
+//
+//	itr = nazev_profil.begin();
+//	advance(itr, profil);
+//
+//	nazev_profil.insert(itr, jmeno_profilu);
+//	nazev_profil.erase(itr);
+//
+//	ulozeni_profilu(profil, 1);
+//}

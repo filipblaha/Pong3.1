@@ -5,7 +5,7 @@
 bool menu_hlavni(Menu_profil data)
 {
 	Menu_hlavni menu;
-	std::wcout << data.ulozena_data.at(0);/////
+	//std::wcout << data.ulozena_data.at(0);/////
 	return 0;
 }
 
@@ -20,37 +20,26 @@ bool menu_profil()
 		case menu.enter:
 		{
 			{
-				if (menu.rozhodovac(menu.profil_e, menu.enter) == 1)
+				menu.rozhodovac(menu.enter);
+				while (menu_hlavni(menu))
 				{
-					while (menu_hlavni(menu))
-					{
-						save.ulozeni_profilu(menu.profil_e);
-					}
+					save.ulozeni_profilu(menu.profil_e);
 				}
 			}
 			break;
 		}
-		/*case menu.del:
+		case menu.del:
 		{
 			{
 				menu.vykresleni_otazka();
-
 				if (menu.vstup_menu(menu.profil_e) == menu.enter)
 				{
-					menu.rozhodovac(menu.profil_e, menu.del);
-
-					if (menu.pouzit == 0)
-					{
-						menu.vykresleni_nazev_profilu();
-						menu.nacteni_vyberu_profilu();
-						menu.pojmenovani_profilu();
-						menu.ulozeni_vyberu_profilu();
-					}
+					menu.rozhodovac(menu.del);
 				}
 				menu.smazani_otazka();
 			}
 			break;
-		}*/
+		}
 		case menu.exit:
 		{
 			return 0;

@@ -43,14 +43,18 @@ public:
 	int exp;
 
 	std::list<std::string>::iterator itr;
-	std::list<std::string> nazev_profil;
+	std::list<std::vector<int>>::iterator itri;
 
-	int ulozeni_profilu(int profil, bool zmena_jmena = 0);
+	void ulozeni_profilu(int profil, bool zmena_jmena = 0);
+	void vytvoreni_noveho_profilu(std::string nazev_noveho_profilu);
+	void odstraneni_profilu(int profil);
+	int zapsani_profilu(std::list<std::vector<int>> data, std::list<std::string> nazvy);
+
 	std::vector<int> nacteni_dat_profilu(int profil);
 	std::list<std::string> nacteni_jmen_profilu();
 	void nacteni_poctu_profilu();
 
 	std::vector<int> vlozeni_dat_do_vektoru(int profil);
-	void vlozeni_jmen_do_vektoru(int profil, std::list<std::string> &nazev_profil);
-	void zmena_jmeno_profilu(int profil);
+	//void vlozeni_jmen_do_vektoru(int profil, std::list<std::string> &nazev_profil);
+	//void zmena_jmeno_profilu(int profil);
 };
