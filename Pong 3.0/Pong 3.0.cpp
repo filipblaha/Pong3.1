@@ -5,7 +5,6 @@
 bool menu_hlavni(Menu_profil data)
 {
 	Menu_hlavni menu;
-	//std::wcout << data.ulozena_data.at(0);/////
 	return 0;
 }
 
@@ -50,7 +49,6 @@ bool menu_profil()
 		}
 		default:
 		{
-			//profil.vykresleni_profil();
 			menu.vykresleni_oznaceni();
 		}
 		break;
@@ -60,4 +58,4 @@ bool menu_profil()
 int main()
 {
 	while (menu_profil());
-}
+}//pri del nemuzu odstranit profil, z ktereho se chyta aktual a posledni profil

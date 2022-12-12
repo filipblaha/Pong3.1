@@ -1,10 +1,16 @@
 #include "Menu_profil.h"
 
-void Menu_profil::vykresleni_profil()
+void Menu_profil::vykresleni_profil(int jazyk)
 {
+	set.prechod();
+	vykresleni_menu_start(); 
+	
+	transl.jazyk = jazyk;
+	t = transl.nacteni_textu_profil();
+	vykresleni_oznaceni();
 
 	///////    Ramecek   ///////
-	/*set.setCursorPosition(8, 7);
+	set.setCursorPosition(8, 7);
 	for (int i = 0; i < 24; i++)
 	{
 		if (i == 0)
@@ -42,6 +48,7 @@ void Menu_profil::vykresleni_profil()
 		else
 			std::wcout << L"\x2500";
 	}
+	///////    DEL   ///////
 	set.setCursorPosition(32, 16);
 	for (int i = 0; i < 7; i++)
 	{
@@ -73,11 +80,41 @@ void Menu_profil::vykresleni_profil()
 			std::wcout << L"\x2518";
 		else
 			std::wcout << L"\x2500";
-	}*/
+	}
+	///////    Zmena jazyka   ///////
+	set.setCursorPosition(1, 16);
+	for (int i = 0; i < 5; i++)
+	{
+		if (i == 0)
+			std::wcout << L"\x250c";
+		else if (i == 4)
+			std::wcout << L"\x2510";
+		else
+			std::wcout << L"\x2500";
+	}
+	set.setCursorPosition(1, 17);
+	for (int i = 0; i < 5; i++)
+	{
+		if (i == 0 || i == 4)
+			std::wcout << L"\x2502";
+		else if (i == 2)
+			std::wcout << L'L';
+		else
+			std::wcout << ' ';
+	}
+	set.setCursorPosition(1, 18);
+	for (int i = 0; i < 5; i++)
+	{
+		if (i == 0)
+			std::wcout << L"\x2514";
+		else if (i == 4)
+			std::wcout << L"\x2518";
+		else
+			std::wcout << L"\x2500";
+	}
 
 	///////    Text   ///////
-
-	std::list<std::string> l = aktual_nazev_profilu();
+	std::list<std::string> l = aktual;
 	std::list<std::wstring> wl = transl.StringToWStringList(l);
 	std::list<std::wstring>::iterator itr;
 
@@ -86,7 +123,7 @@ void Menu_profil::vykresleni_profil()
 
 	itr = wl.begin();
 	set.setCursorPosition(12, 8);
-	std::wcout << *itr;
+	std::wcout << t.at(1);
 	itr++;
 	if (itr != wl.end())
 	{
@@ -100,18 +137,13 @@ void Menu_profil::vykresleni_profil()
 		}
 	}
 
-	set.setCursorPosition(4, 16);
-	std::wcout << t.at(1);
-	set.setCursorPosition(4, 17);
+	set.setCursorPosition(7, 17);
 	std::wcout << t.at(2);
 	if (!transl.jazyk)
 		set.setCursorPosition(18, 17);
 	if (transl.jazyk)
 		set.setCursorPosition(17, 17);
 	std::wcout << t.at(3);
-
-	//set.setCursorPosition(17, 15);
-	//std::cout << pocet_zbyvajicich_profilu();
 }
 void Menu_profil::smazani_v_ramecku()
 {
@@ -148,15 +180,24 @@ void Menu_profil::nastav_spodni_zavoru()
 	else if (profil.pocet_profilu_s >= 3)
 		zavory.at(1) = 12;
 }
+void Menu_profil::nastav_oznaceni()
+{
+	nastav_spodni_zavoru();
+	if (profil.pocet_profilu_s < 3)
+		oznaceni.at(y) = zavory.at(1);
+}
 std::string Menu_profil::zadani_nazvu_profilu()
 {
 	std::string nazev;
 	set.setCursorPosition(10, 10);
 	std::cin >> nazev;
-	while (nazev.size() > 8)
+	while (nazev.size() > 20)
 	{
+		set.setCursorPosition(10, 10);
+		smazani_v_ramecku();
 		std::cin >> nazev;
 	}
+	smazani_v_ramecku();
 	return nazev;
 }
 
@@ -168,86 +209,56 @@ int Menu_profil::vstup_menu(int strana)
 	case 'w':
 	{
 		smazani_oznaceni();
+		if ((oznaceni.at(y) > zavory.at(0)))
 		{
-			if ((oznaceni.at(y) > zavory.at(0)))
+			if (oznaceni.at(y) <= 12)
 			{
-				if (oznaceni.at(y) <= 12)
-				{
-					oznaceni.at(y) -= 2;
-				}
-				return posun;
+				oznaceni.at(y) -= 2;
 			}
-			else
+			return posun;
+		}
+		else
+		{
+			if (*profil.nacteni_jmen_profilu().begin() != *aktual.begin())
 			{
-				if (*profil.nacteni_jmen_profilu().begin() != *aktual.begin())
-				{
-					aktual_nazev_profilu(-1);
-					smazani_v_ramecku();
-					vykresleni_profil();
-				}
-				return posun;
+				rozhodovac(0, 1);
+				smazani_v_ramecku();
+				vykresleni_profil(profil.jazyk);
 			}
+			return posun;
 		}
 	}
 	case 's':
 	{
 		smazani_oznaceni();
+		if ((oznaceni.at(y) < zavory.at(1)) && (strana == profil_e))
 		{
-			if ((oznaceni.at(y) < zavory.at(1)) && (strana == profil_e))
+			if (oznaceni.at(y) < 12)
 			{
-				if (oznaceni.at(y) < 12)
-				{
-					oznaceni.at(y) += 2;
-				}
-				return posun;
-			}
-			else
-			{
-				if (*profil.nacteni_jmen_profilu().rbegin() != *aktual.rbegin())
-				{
-					aktual_nazev_profilu(1);
-					smazani_v_ramecku();
-					vykresleni_profil();
-				}
-				return posun;
-			}
-		}
-	}
-	case 'a':
-	{
-		smazani_oznaceni();
-		{
-			if (oznaceni.at(x) > zavory.at(2) && (strana == vzhled_plosiny_e))
-			{
-				oznaceni.at(x) -= 10;
+				oznaceni.at(y) += 2;
 			}
 			return posun;
 		}
-	}
-	case 'd':
-	{
-		smazani_oznaceni();
+		else
 		{
-			if (oznaceni.at(x) < zavory.at(3) && (strana == vzhled_plosiny_e))
+			if (*profil.nacteni_jmen_profilu().rbegin() != *aktual.rbegin())
 			{
-				oznaceni.at(x) += 10;
+				rozhodovac(0, -1);
+				smazani_v_ramecku();
+				vykresleni_profil(profil.jazyk);
 			}
 			return posun;
 		}
 	}
 	case '\r':
 	{
-		{
-			return enter;
-		}
+		return enter;
 	}
 	case 'q':
 	{
+		if (strana == profil_e)
 		{
-			if (strana == profil_e)
-			{
-				return exit;
-			}
+			return exit;
 		}
 	}
 	case char(8) :
@@ -257,17 +268,31 @@ int Menu_profil::vstup_menu(int strana)
 			return del;
 		}
 	}
+	case 'l':
+	{
+		vykresleni_profil(set_jazyk(1));
+	}
 	}
 }
-void Menu_profil::rozhodovac(int prikaz)
+void Menu_profil::rozhodovac(int prikaz, int inkrement)
 {
 	int index = 0;
+	int poradi = 0;
 	if (oznaceni.at(y) == 8)
+	{
 		index = index_profilu();
+		poradi = 0;
+	}
 	if (oznaceni.at(y) == 10)
+	{
 		index = index_profilu(1);
+		poradi = 1;
+	}
 	if (oznaceni.at(y) == 12)
+	{
 		index = index_profilu(2);
+		poradi = 2;
+	}
 
 	if (prikaz == enter)
 	{
@@ -275,11 +300,11 @@ void Menu_profil::rozhodovac(int prikaz)
 		{
 			vykresleni_nazev_profilu();
 			profil.vytvoreni_noveho_profilu(zadani_nazvu_profilu());
+			vykresleni_profil(profil.jazyk);
 		}
 		else
 		{
 			ulozena_data = profil.nacteni_dat_profilu(index);
-			vykresleni_nazev_profilu();
 		}
 	}
 	if (prikaz == del)
@@ -287,8 +312,16 @@ void Menu_profil::rozhodovac(int prikaz)
 		if (index != 0)
 		{
 			profil.odstraneni_profilu(index);
-			vykresleni_profil();
+			smazani_v_ramecku();
+			aktual_nazev_profilu(index, poradi, 0, 1);
+			nastav_oznaceni();
+			vykresleni_oznaceni();
+			vykresleni_profil(profil.jazyk);
 		}
+	}
+	else
+	{
+		aktual_nazev_profilu(index, poradi, inkrement);
 	}
 }
 

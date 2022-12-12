@@ -26,13 +26,8 @@ public:
 		zavory.push_back(leva_z);
 		zavory.push_back(prava_z);
 
-		set.prechod();
 		set.font(0, 20);
 		set.SetWindow(delka_menu, vyska_menu - 2);
-
-
-		vykresleni_menu_start();
-		vykresleni_oznaceni();
 	}
 
 
@@ -48,6 +43,7 @@ public:
 		vzhled_plosiny_e,
 		nastaveni_e,
 		ovladani_e,
+		konec_kola_e,
 	};
 	enum vstup
 	{
@@ -81,14 +77,14 @@ public:
 
 	/////////////////////    Input     //////////////////////////
 	int vstup_menu(int strana);
-
+	int set_jazyk(bool zmena = 0);
 
 	//void vykresleni_otazka();
 	void smazani_otazka();
 
 
 	void aktual_nazev_profilu_start();
-	std::list<std::string> aktual_nazev_profilu(int inkrement = 0);
+	std::list<std::string> aktual_nazev_profilu(int index, int poradi, int inkrement = 0, bool del = 0);
 
 	int index_profilu(int inkrement = 0);
 private:

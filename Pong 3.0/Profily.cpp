@@ -1,14 +1,14 @@
 #include "Profily.h"
 
-void Profily::ulozeni_profilu(int profil, bool zmena_jmena)
+void Profily::ulozeni_profilu(int profil, std::vector<int> d, bool zmena_jmena)
 {
 	std::list<std::vector<int>> data_profil;
 	std::list<std::string> nazev_profil;
 
 	for (int i = 0; i < pocet_profilu_s; i++)
 	{
-		if (i = profil)
-			data_profil.push_back(vlozeni_dat_do_vektoru(profil));
+		if (i == profil)
+			data_profil.push_back(vlozeni_dat_do_vektoru(profil, d));
 		else
 			data_profil.push_back(nacteni_dat_profilu(i));
 	}
@@ -184,17 +184,28 @@ void  Profily::nacteni_poctu_profilu()
 	pocet_profilu->QueryIntText(&pocet_profilu_s);
 }
 
-std::vector<int> Profily::vlozeni_dat_do_vektoru(int profil)
+std::vector<int> Profily::vlozeni_dat_do_vektoru(int profil, std::vector<int> d)
 {
 	std::vector<int> data_profil = nacteni_dat_profilu(profil);
 
-	pouzit = data_profil.at(0);
+	if (d.at(0) == 0)
+		data_profil.at(0) = d.at(1);
+	if (d.at(0) == 1)
+		data_profil.at(1) = d.at(1);
+	if (d.at(0) == 2)
+		data_profil.at(2) = d.at(1);
+	if (d.at(0) == 3)
+		data_profil.at(3) = d.at(1);
+	if (d.at(0) == 4)
+		data_profil.at(4) = d.at(1);
+	if (d.at(0) == 5)
+		data_profil.at(5) = d.at(1);
+	if (d.at(0) == 6)
+		data_profil.at(6) = d.at(1);
+
+
 	jazyk = data_profil.at(1);
-	plosina_skin = data_profil.at(2);
-	highscore_cas = data_profil.at(3);
-	highscore_znicenych_bloku = data_profil.at(4);
-	level = data_profil.at(5);
-	exp = data_profil.at(6);
+
 	return data_profil;
 }
 //void Profily::zmena_jmeno_profilu(int profil)

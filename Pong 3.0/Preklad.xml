@@ -11,7 +11,7 @@
     <CZ>
 		<profil>
 			<string>Vyber si svuj profil</string>
-			<string>Jazyk</string>
+			<string>Novy profil</string>
 			<string>Cesky</string>
 			<string>Smazat pokrok</string>
 			<string>Opravdu chcete smazat pokrok?</string>
@@ -69,7 +69,7 @@
 	<EN>
 		<profil>
 			<string>Choose your profile</string>
-			<string>Language</string>
+			<string>New profile</string>
 			<string>English</string>
 			<string>Delete progress</string>
 			<string>Do you want to delete progress?</string>

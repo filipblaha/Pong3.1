@@ -30,6 +30,7 @@ std::vector<std::wstring> Preklad::nacteni_textu_profil()
 	XMLDocument xmlDoc;
 
 	std::vector<int> vektor_poctu_stringu;
+	vektor_stringu.clear();
 
 	xmlDoc.LoadFile("Preklad.xml");
 
@@ -61,6 +62,7 @@ std::vector<std::wstring> Preklad::nacteni_textu_hlavni()
 	XMLDocument xmlDoc;
 
 	std::vector<int> vektor_poctu_stringu;
+	vektor_stringu.clear();
 
 	xmlDoc.LoadFile("Preklad.xml");
 
@@ -92,6 +94,7 @@ std::vector<std::wstring> Preklad::nacteni_textu_herni_mody()
 	XMLDocument xmlDoc;
 
 	std::vector<int> vektor_poctu_stringu;
+	vektor_stringu.clear();
 
 	xmlDoc.LoadFile("Preklad.xml");
 
@@ -123,6 +126,7 @@ std::vector<std::wstring> Preklad::nacteni_textu_vzhled_plosiny()
 	XMLDocument xmlDoc;
 
 	std::vector<int> vektor_poctu_stringu;
+	vektor_stringu.clear();
 
 	xmlDoc.LoadFile("Preklad.xml");
 
@@ -154,6 +158,7 @@ std::vector<std::wstring> Preklad::nacteni_textu_nastaveni()
 	XMLDocument xmlDoc;
 
 	std::vector<int> vektor_poctu_stringu;
+	vektor_stringu.clear();
 
 	xmlDoc.LoadFile("Preklad.xml");
 
@@ -185,6 +190,7 @@ std::vector<std::wstring> Preklad::nacteni_textu_ovladani()
 	XMLDocument xmlDoc;
 
 	std::vector<int> vektor_poctu_stringu;
+	vektor_stringu.clear();
 
 	xmlDoc.LoadFile("Preklad.xml");
 
@@ -216,6 +222,7 @@ std::vector<std::wstring> Preklad::nacteni_textu_konec_kola()
 	XMLDocument xmlDoc;
 
 	std::vector<int> vektor_poctu_stringu;
+	vektor_stringu.clear();
 
 	xmlDoc.LoadFile("Preklad.xml");
 

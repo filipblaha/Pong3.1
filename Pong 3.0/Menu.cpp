@@ -54,21 +54,6 @@ void Menu::smazani_oznaceni()
 	std::wcout << ' ';
 }
 
-
-
-//void Menu::vykresleni_otazka()
-//{
-//	set.setCursorPosition(5, 2);
-//	if (!jazyk)
-//		std::wcout << smazani_pokrok_otazka1CZ;
-//	if (jazyk)
-//		std::wcout << smazani_pokrok_otazka1EN;
-//	set.setCursorPosition(26, 3);
-//	if (!jazyk)
-//		std::wcout << smazani_pokrok_otazka2CZ;
-//	if (jazyk)
-//		std::wcout << smazani_pokrok_otazka2EN;
-//}
 void Menu::smazani_otazka()
 {
 	set.setCursorPosition(5, 2);
@@ -215,6 +200,28 @@ int Menu::vstup_menu(int strana)
 	}
 	}
 }
+int Menu::set_jazyk(bool zmena)
+{
+	std::vector<int> v = profil.nacteni_dat_profilu(0);
+	std::vector<int> d;
+	d.push_back(1);
+
+	if (zmena)
+	{
+		if (v.at(1) == CZ)
+			d.push_back(1);
+		if (v.at(1) == EN)
+			d.push_back(0);
+	}
+	else
+	{
+		d.push_back(v.at(1));
+	}
+
+	profil.ulozeni_profilu(0, d);
+	v = profil.nacteni_dat_profilu(0);
+	return v.at(1);
+}
 
 
 void Menu::aktual_nazev_profilu_start()
@@ -226,17 +233,23 @@ void Menu::aktual_nazev_profilu_start()
 		aktual.pop_back();
 	}
 }
-std::list<std::string> Menu::aktual_nazev_profilu(int inkrement)
+std::list<std::string> Menu::aktual_nazev_profilu(int index, int poradi, int inkrement, bool del)
 {
 	std::list<std::string> temp = profil.nacteni_jmen_profilu();
 	std::list<std::string>::iterator itr = temp.begin();
-	while (*itr != *aktual.begin())
+	
+	if (del)
 	{
-		itr++;
+		if (poradi == 0 || (poradi == 2 && index == profil.pocet_profilu_s && profil.pocet_profilu_s > 3) || (poradi == 1 && index + 1 == profil.pocet_profilu_s && profil.pocet_profilu_s > 3))
+		{
+			inkrement = 1;
+		}
 	}
-	if (inkrement == 1)
-		itr++;
+	itr = temp.begin();
+	advance(itr, index - poradi);
 	if (inkrement == -1)
+		itr++;
+	if (inkrement == 1)
 		itr--;
 	
 
@@ -253,6 +266,35 @@ std::list<std::string> Menu::aktual_nazev_profilu(int inkrement)
 	}
 	return aktual;
 }
+//std::list<std::string> Menu::aktual_nazev_profilu_del(int index, int poradi)
+//{
+//	std::list<std::string> temp = profil.nacteni_jmen_profilu();
+//	std::list<std::string>::iterator itr = temp.begin();
+//	
+//	/*while (*itr != *aktual.begin())
+//	{
+//		itr++;
+//	}
+//	if (profil.pocet_profilu_s == index && profil.pocet_profilu_s >= 3)
+//		itr--;
+//	else if (aktual.rbegin() == temp.rbegin())
+//		itr--;*/
+//
+//
+//	aktual.clear();
+//	int n = 0;
+//	if (profil.pocet_profilu_s >= 3)
+//		n = 3;
+//	else
+//		n = profil.pocet_profilu_s;
+//	
+//	for (int i = 0; i < n; i++)
+//	{
+//		aktual.push_back(*itr);
+//		itr++;
+//	}
+//	return aktual;
+//}
 int Menu::index_profilu(int inkrement)
 {
 	int index = 0;
