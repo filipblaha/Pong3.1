@@ -1,15 +1,74 @@
 #include "Menu_profil.h"
 #include "Menu_hlavni.h"
 
+bool HerniModyMenu(MenuProfil data)
+{
+	return 0;
+}
+bool VzhledPlosinyMenu(MenuProfil data)
+{
+	return 0;
+}
+bool NastaveniMenu(MenuProfil data)
+{
+	return 0;
+}
+bool OvladaniMenu(MenuProfil data)
+{
+	return 0;
+}
 
-bool HlavniMenu(Menu_profil data)
+bool HlavniMenu(MenuProfil data)
 {
 	MenuHlavni menu;
-	return 0;
+	while (HlavniMenu)
+	{
+		switch (menu.VstupMenu(menu.hlavni_e))
+		{
+		case menu.enter:
+		{
+			{
+				switch (menu.Rozhodovac(menu.enter))
+				{
+				case menu.herni_mody_e:
+				{
+					while (HerniModyMenu(data));
+					break;
+				}
+				case menu.vzhled_plosiny_e:
+				{
+					while (VzhledPlosinyMenu(data));
+					break;
+				}
+				case menu.nastaveni_e:
+				{
+					while (NastaveniMenu(data));
+					break;
+				}
+				}
+			}
+			break;
+		}
+		case menu.posun:
+		{
+			menu.OznaceniVykresleni();
+			break;
+		}
+		case menu.exit:
+		{
+			return 0;
+		}
+		default:
+		{
+			menu.OznaceniVykresleni();
+		}
+		break;
+		}
+	}
 }
 bool ProfilMenu()
 {
-	Menu_profil menu;
+	MenuProfil menu;
 	Profily save;
 	while (ProfilMenu)
 	{
@@ -38,13 +97,14 @@ bool ProfilMenu()
 			}
 			break;
 		}
-		case menu.exit:
-		{
-			return 0;
-		}
 		case menu.posun:
 		{
 			menu.OznaceniVykresleni();
+			break;
+		}
+		case menu.exit:
+		{
+			return 0;
 		}
 		default:
 		{
@@ -57,5 +117,7 @@ bool ProfilMenu()
 
 int main()
 {
-	while (ProfilMenu());
+	//while (ProfilMenu());
+	MenuProfil menu;
+	while (HlavniMenu(menu));
 }

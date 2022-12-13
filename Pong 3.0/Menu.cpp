@@ -10,12 +10,9 @@ int Menu::VstupMenu(int strana)
 	{
 		OznaceniSmazani();
 		{
-			if ((oznaceni.at(y) > zavory.at(0)) && (strana == profil_e/**/))
+			if (oznaceni.at(y) > zavory.at(0))
 			{
-				if (oznaceni.at(y) <= 12)
-				{
-					oznaceni.at(y) -= 2;
-				}
+				oznaceni.at(y) -= 2;
 				return posun;
 			}
 			/*if ((oznaceni.at(y) > zavory.at(0)) && (strana == 0 || strana == 1))
@@ -50,12 +47,9 @@ int Menu::VstupMenu(int strana)
 	{
 		OznaceniSmazani();
 		{
-			if ((oznaceni.at(y) < zavory.at(1)) && (strana == profil_e/**/))
+			if (oznaceni.at(y) < zavory.at(1))
 			{
-				if (oznaceni.at(y) < 12)
-				{
-					oznaceni.at(y) += 2;
-				}
+				oznaceni.at(y) += 2;
 				return posun;
 			}
 			/*if ((oznaceni.at(y) < zavory.at(1)) && (strana == 0 || strana == 1))
@@ -166,7 +160,7 @@ int Menu::JazykSet(bool zmena)
 void Menu::MenuSTARTVykresleni()
 {
 	_setmode(_fileno(stdout), _O_U16TEXT);  // nastaveni graficke vizualizace
-	set.setCursorPosition(0, 0);
+	set.SetCursorPosition(0, 0);
 	////////////    vykreslovani plocha    ////////////
 	for (int j = 0; j < vyska_menu; j++)
 	{
@@ -207,19 +201,19 @@ void Menu::MenuSTARTVykresleni()
 }
 void Menu::OznaceniVykresleni()
 {
-	set.setCursorPosition(oznaceni.at(x), oznaceni.at(y));
+	set.SetCursorPosition(oznaceni.at(x), oznaceni.at(y));
 	std::wcout << L"\x25ba";
 }
 void Menu::OznaceniSmazani()
 {
-	set.setCursorPosition(oznaceni.at(x), oznaceni.at(y));
+	set.SetCursorPosition(oznaceni.at(x), oznaceni.at(y));
 	std::wcout << ' ';
 }
 void Menu::OtazkaSmazani()
 {
-	set.setCursorPosition(5, 2);
+	set.SetCursorPosition(5, 2);
 	std::wcout << "                               ";
-	set.setCursorPosition(26, 3);
+	set.SetCursorPosition(26, 3);
 	std::wcout << "       ";
 }
 

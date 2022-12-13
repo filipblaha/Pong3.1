@@ -30,7 +30,7 @@ std::list<std::wstring> Preklad::StringToWStringList(std::list<std::string> s)
 
 //-----------------------  Nacteni textu  -----------------------//
 
-std::vector<std::wstring> Preklad::nacteni_textu_profil()
+std::vector<std::wstring> Preklad::NacteniTextProfil()
 {
 	XMLDocument xmlDoc;
 
@@ -62,7 +62,7 @@ std::vector<std::wstring> Preklad::nacteni_textu_profil()
 	}
 	return StringToWString(vektor_stringu);
 }
-std::vector<std::wstring> Preklad::nacteni_textu_hlavni()
+std::vector<std::wstring> Preklad::NacteniTextHlavni()
 {
 	XMLDocument xmlDoc;
 
@@ -94,7 +94,7 @@ std::vector<std::wstring> Preklad::nacteni_textu_hlavni()
 	}
 	return StringToWString(vektor_stringu);
 }
-std::vector<std::wstring> Preklad::nacteni_textu_herni_mody()
+std::vector<std::wstring> Preklad::NacteniTextHerni_mody()
 {
 	XMLDocument xmlDoc;
 
@@ -126,7 +126,7 @@ std::vector<std::wstring> Preklad::nacteni_textu_herni_mody()
 	}
 	return StringToWString(vektor_stringu);
 }
-std::vector<std::wstring> Preklad::nacteni_textu_vzhled_plosiny()
+std::vector<std::wstring> Preklad::NacteniTextVzhled_plosiny()
 {
 	XMLDocument xmlDoc;
 
@@ -158,7 +158,7 @@ std::vector<std::wstring> Preklad::nacteni_textu_vzhled_plosiny()
 	}
 	return StringToWString(vektor_stringu);
 }
-std::vector<std::wstring> Preklad::nacteni_textu_nastaveni()
+std::vector<std::wstring> Preklad::NacteniTextNastaveni()
 {
 	XMLDocument xmlDoc;
 
@@ -190,7 +190,7 @@ std::vector<std::wstring> Preklad::nacteni_textu_nastaveni()
 	}
 	return StringToWString(vektor_stringu);
 }
-std::vector<std::wstring> Preklad::nacteni_textu_ovladani()
+std::vector<std::wstring> Preklad::NacteniTextOvladani()
 {
 	XMLDocument xmlDoc;
 
@@ -222,7 +222,7 @@ std::vector<std::wstring> Preklad::nacteni_textu_ovladani()
 	}
 	return StringToWString(vektor_stringu);
 }
-std::vector<std::wstring> Preklad::nacteni_textu_konec_kola()
+std::vector<std::wstring> Preklad::NacteniTextKonec_kola()
 {
 	XMLDocument xmlDoc;
 

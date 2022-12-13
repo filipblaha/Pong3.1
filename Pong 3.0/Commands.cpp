@@ -1,8 +1,8 @@
 #include "Commands.h"
 
-void Commands::prechod()
+void Commands::Prechod()
 	{
-	setCursorPosition(0, 0);
+	SetCursorPosition(0, 0);
 	for (int j = 0; j < 20; j++)
 	{
 		for (int i = 0; i < 40; i++)

@@ -11,15 +11,15 @@ class Commands
 {
 public:
 
-	void prechod();
-	void setCursorPosition(int x, int y)
+	void Prechod();
+	void SetCursorPosition(int x, int y)
 	{
 		static const HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 		std::cout.flush();
 		COORD coord = { (SHORT)x, (SHORT)y };
 		SetConsoleCursorPosition(hOut, coord);
 	}
-	void font(int f1, int f2)
+	void Font(int f1, int f2)
 	{
 		CONSOLE_FONT_INFOEX cfi;
 		cfi.cbSize = sizeof(cfi);

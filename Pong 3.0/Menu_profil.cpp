@@ -1,9 +1,8 @@
 #include "Menu_profil.h"
 
-
 //-----------------------  Input  -----------------------//
 
-int Menu_profil::VstupMenu(int strana)
+int MenuProfil::VstupMenu(int strana)
 {
 	switch (_getch())
 	{
@@ -73,7 +72,7 @@ int Menu_profil::VstupMenu(int strana)
 	}
 	}
 }
-void Menu_profil::Rozhodovac(int prikaz, int inkrement)
+void MenuProfil::Rozhodovac(int prikaz, int inkrement)
 {
 	int index = 0;
 	int poradi = 0;
@@ -126,11 +125,10 @@ void Menu_profil::Rozhodovac(int prikaz, int inkrement)
 //-----------------------  Vykresleni -----------------------//
 
 // public
-void Menu_profil::ProfilVykresleni(int jazyk)
+void MenuProfil::ProfilVykresleni(int jazyk)
 {
-	MenuSTARTVykresleni();
 	///////    Ramecek   ///////
-	set.setCursorPosition(8, 7);
+	set.SetCursorPosition(8, 7);
 	for (int i = 0; i < 24; i++)
 	{
 		if (i == 0)
@@ -142,7 +140,7 @@ void Menu_profil::ProfilVykresleni(int jazyk)
 	}
 	for (int j = 8; j < 13; j++)
 	{
-		set.setCursorPosition(8, j);
+		set.SetCursorPosition(8, j);
 		for (int i = 0; i < 24; i++)
 		{
 			if (i == 0)
@@ -151,14 +149,14 @@ void Menu_profil::ProfilVykresleni(int jazyk)
 	}
 	for (int j = 8; j < 13; j++)
 	{
-		set.setCursorPosition(31, j);
+		set.SetCursorPosition(31, j);
 		for (int i = 0; i < 24; i++)
 		{
 			if (i == 0)
 				std::wcout << L"\x2502";
 		}
 	}
-	set.setCursorPosition(8, 13);
+	set.SetCursorPosition(8, 13);
 	for (int i = 0; i < 24; i++)
 	{
 		if (i == 0)
@@ -169,7 +167,7 @@ void Menu_profil::ProfilVykresleni(int jazyk)
 			std::wcout << L"\x2500";
 	}
 	///////    DEL   ///////
-	set.setCursorPosition(32, 16);
+	set.SetCursorPosition(32, 16);
 	for (int i = 0; i < 7; i++)
 	{
 		if (i == 0)
@@ -179,7 +177,7 @@ void Menu_profil::ProfilVykresleni(int jazyk)
 		else
 			std::wcout << L"\x2500";
 	}
-	set.setCursorPosition(32, 17);
+	set.SetCursorPosition(32, 17);
 	for (int i = 0; i < 7; i++)
 	{
 		if (i == 0 || i == 6)
@@ -191,7 +189,7 @@ void Menu_profil::ProfilVykresleni(int jazyk)
 		else
 			std::wcout << ' ';
 	}
-	set.setCursorPosition(32, 18);
+	set.SetCursorPosition(32, 18);
 	for (int i = 0; i < 7; i++)
 	{
 		if (i == 0)
@@ -202,7 +200,7 @@ void Menu_profil::ProfilVykresleni(int jazyk)
 			std::wcout << L"\x2500";
 	}
 	///////    Zmena jazyka   ///////
-	set.setCursorPosition(1, 16);
+	set.SetCursorPosition(1, 16);
 	for (int i = 0; i < 5; i++)
 	{
 		if (i == 0)
@@ -212,7 +210,7 @@ void Menu_profil::ProfilVykresleni(int jazyk)
 		else
 			std::wcout << L"\x2500";
 	}
-	set.setCursorPosition(1, 17);
+	set.SetCursorPosition(1, 17);
 	for (int i = 0; i < 5; i++)
 	{
 		if (i == 0 || i == 4)
@@ -222,7 +220,7 @@ void Menu_profil::ProfilVykresleni(int jazyk)
 		else
 			std::wcout << ' ';
 	}
-	set.setCursorPosition(1, 18);
+	set.SetCursorPosition(1, 18);
 	for (int i = 0; i < 5; i++)
 	{
 		if (i == 0)
@@ -235,75 +233,78 @@ void Menu_profil::ProfilVykresleni(int jazyk)
 	TextProfilVykresleni(jazyk);
 	OznaceniVykresleni();
 }
-void Menu_profil::TextProfilVykresleni(int jazyk)
+void MenuProfil::TextProfilVykresleni(int jazyk)
 {
 	transl.jazyk = jazyk;
-	t = transl.nacteni_textu_profil();
-	OznaceniVykresleni();
+	text = transl.NacteniTextProfil();
 
-	///////    Text   ///////
-
-	RamecekSmazani();
 	std::list<std::wstring> wl = transl.StringToWStringList(aktual);
-	std::list<std::wstring>::iterator itr;
-	std::list<int>::iterator itri;
-
 	std::list<int> p = profil.nacteni_urovni_profilu();
 	std::vector<int> v = profil.nacteni_dat_profilu(0);
 
-	set.setCursorPosition(10, 5);
-	std::wcout << t.at(0);
-
+	std::list<std::wstring>::iterator itr;
+	std::list<int>::iterator itri;
 	itr = wl.begin();
 	itri = p.begin();
-	set.setCursorPosition(12, 8);
+
+
+	OznaceniVykresleni();
+	RamecekSmazani();
+
+	///-------  Text  -------//
+
+	set.SetCursorPosition(10, 5);
+	std::wcout << text.at(0);
+
+	set.SetCursorPosition(12, 8);
 	if (*aktual.begin() == "Novy_profil")
-		std::wcout << t.at(1);
+		std::wcout << text.at(1);
 	else
-		std::wcout << *itr << "  (" << t.at(7) << *itri << ")";
+		std::wcout << *itr << "  (" << text.at(7) << *itri << ")";
 	itr++;
 	itri++;
 	if (itr != wl.end())
 	{
-		set.setCursorPosition(12, 10);
-		std::wcout << *itr << "  (" << t.at(7) << *itri << ")";
+		set.SetCursorPosition(12, 10);
+		std::wcout << *itr << "  (" << text.at(7) << *itri << ")";
 		itr++;
 		itri++;
 		if (itr != wl.end())
 		{
-			set.setCursorPosition(12, 12);
-			std::wcout << *itr << "  (" << t.at(7) << *itri << ")";
+			set.SetCursorPosition(12, 12);
+			std::wcout << *itr << "  (" << text.at(7) << *itri << ")";
 		}
 	}
 
-	set.setCursorPosition(7, 17);
-	std::wcout << t.at(2);
+	set.SetCursorPosition(7, 17);
+	std::wcout << text.at(2);
 	if (!transl.jazyk)
-		set.setCursorPosition(18, 17);
+		set.SetCursorPosition(18, 17);
 	if (transl.jazyk)
-		set.setCursorPosition(17, 17);
-	std::wcout << t.at(3);
+		set.SetCursorPosition(17, 17);
+	std::wcout << text.at(3);
 
 }
-void Menu_profil::OtazkaVykresleni()
+void MenuProfil::OtazkaVykresleni()
 {
-	set.setCursorPosition(5, 2);
-	std::wcout << t.at(4);
-	set.setCursorPosition(26, 3);
-	std::wcout << t.at(5);
+	set.SetCursorPosition(5, 2);
+	std::wcout << text.at(4);
+	set.SetCursorPosition(26, 3);
+	std::wcout << text.at(5);
 }
+
 // private
-void Menu_profil::NazevProfiluVykresleni()
+void MenuProfil::NazevProfiluVykresleni()
 {
 	RamecekSmazani();
-	set.setCursorPosition(10, 8);
-	std::wcout << t.at(6);
+	set.SetCursorPosition(10, 8);
+	std::wcout << text.at(6);
 }
-void Menu_profil::RamecekSmazani()
+void MenuProfil::RamecekSmazani()
 {
 	for (int j = 8; j < 13; j++)
 	{
-		set.setCursorPosition(9, j);
+		set.SetCursorPosition(9, j);
 		for (int i = 0; i < 22; i++)
 		{
 			std::wcout << ' ';
@@ -313,7 +314,7 @@ void Menu_profil::RamecekSmazani()
 
 //-----------------------  Set -----------------------//
 
-void Menu_profil::SpodniZavoraSet()
+void MenuProfil::SpodniZavoraSet()
 {
 	profil.nacteni_poctu_profilu();
 	if (profil.pocet_profilu_s == 1)
@@ -323,20 +324,20 @@ void Menu_profil::SpodniZavoraSet()
 	else if (profil.pocet_profilu_s >= 3)
 		zavory.at(1) = 12;
 }
-void Menu_profil::OznaceniSet()
+void MenuProfil::OznaceniSet()
 {
 	SpodniZavoraSet();
 	if (profil.pocet_profilu_s < 3)
 		oznaceni.at(y) = zavory.at(1);
 }
-std::string Menu_profil::NazevProfiluSet()
+std::string MenuProfil::NazevProfiluSet()
 {
 	std::string nazev;
-	set.setCursorPosition(10, 10);
+	set.SetCursorPosition(10, 10);
 	std::cin >> nazev;
 	while (nazev.size() >= 12)
 	{
-		set.setCursorPosition(10, 10);
+		set.SetCursorPosition(10, 10);
 		RamecekSmazani();
 		std::cin >> nazev;
 	}

@@ -1,14 +1,14 @@
 #pragma once
 #include "Menu.h"
 
-class Menu_profil : public Menu
+class MenuProfil : public Menu
 {
 public:
     Commands set;
     Profily profil;
     Preklad transl;
 
-    Menu_profil() : Menu(profil_e, 10, 8, 8)
+    MenuProfil() : Menu(profil_e, 10, 8, 8)
     {
         Preklad transl;
       
@@ -16,7 +16,7 @@ public:
         AktualNazevProfiluSTART();
         ProfilVykresleni(JazykSet());
     }
-    std::vector<std::wstring> t;
+    std::vector<std::wstring> text;
 
     //-----------------------  Input  -----------------------//
 

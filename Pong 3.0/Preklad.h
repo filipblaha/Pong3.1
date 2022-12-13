@@ -50,12 +50,12 @@ public:
 
 	//-----------------------  Nacteni textu  -----------------------//
 
-	std::vector<std::wstring> nacteni_textu_profil();
-	std::vector<std::wstring> nacteni_textu_hlavni();
-	std::vector<std::wstring> nacteni_textu_herni_mody();
-	std::vector<std::wstring> nacteni_textu_vzhled_plosiny();
-	std::vector<std::wstring> nacteni_textu_nastaveni();
-	std::vector<std::wstring> nacteni_textu_ovladani();
-	std::vector<std::wstring> nacteni_textu_konec_kola();
+	std::vector<std::wstring> NacteniTextProfil();
+	std::vector<std::wstring> NacteniTextHlavni();
+	std::vector<std::wstring> NacteniTextHerni_mody();
+	std::vector<std::wstring> NacteniTextVzhled_plosiny();
+	std::vector<std::wstring> NacteniTextNastaveni();
+	std::vector<std::wstring> NacteniTextOvladani();
+	std::vector<std::wstring> NacteniTextKonec_kola();
 };
 

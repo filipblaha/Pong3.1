@@ -26,9 +26,11 @@ public:
 		zavory.push_back(leva_z);
 		zavory.push_back(prava_z);
 
-		set.font(0, 20);
+		set.Font(0, 20);
 		set.SetWindow(delka_menu, vyska_menu - 2);
-		set.prechod();
+		set.Prechod();
+
+		MenuSTARTVykresleni();
 	}
 
 	const int delka_menu = 40;
