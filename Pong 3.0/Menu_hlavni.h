@@ -1,13 +1,13 @@
 #pragma once
 #include "Menu.h"
-class Menu_hlavni : public Menu
+class MenuHlavni : public Menu
 {
-public:
 public:
     Commands set;
     Profily profil;
     Preklad transl;
 
+    MenuHlavni()
+    {}
 private:
-
 };

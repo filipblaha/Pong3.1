@@ -1,5 +1,7 @@
 #include "Preklad.h"
 
+//-----------------------  Premena string na wstring  -----------------------//
+
 std::vector<std::wstring> Preklad::StringToWString(std::vector<std::string> s)
 {
 	std::string sTmp;
@@ -25,6 +27,9 @@ std::list<std::wstring> Preklad::StringToWStringList(std::list<std::string> s)
 	}
 	return ws;
 }
+
+//-----------------------  Nacteni textu  -----------------------//
+
 std::vector<std::wstring> Preklad::nacteni_textu_profil()
 {
 	XMLDocument xmlDoc;

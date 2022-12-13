@@ -1,8 +1,134 @@
 #include "Menu_profil.h"
 
-void Menu_profil::vykresleni_profil(int jazyk)
+
+//-----------------------  Input  -----------------------//
+
+int Menu_profil::VstupMenu(int strana)
 {
-	vykresleni_menu_start(); 
+	switch (_getch())
+	{
+	case 'w':
+	{
+		OznaceniSmazani();
+		if ((oznaceni.at(y) > zavory.at(0)))
+		{
+			if (oznaceni.at(y) <= 12)
+			{
+				oznaceni.at(y) -= 2;
+			}
+			return posun;
+		}
+		else
+		{
+			if (*profil.nacteni_jmen_profilu().begin() != *aktual.begin())
+			{
+				Rozhodovac(0, 1);
+				TextProfilVykresleni(JazykSet());
+			}
+			return posun;
+		}
+	}
+	case 's':
+	{
+		OznaceniSmazani();
+		if ((oznaceni.at(y) < zavory.at(1)) && (strana == profil_e))
+		{
+			if (oznaceni.at(y) < 12)
+			{
+				oznaceni.at(y) += 2;
+			}
+			return posun;
+		}
+		else
+		{
+			if (*profil.nacteni_jmen_profilu().rbegin() != *aktual.rbegin())
+			{
+				Rozhodovac(0, -1);
+				TextProfilVykresleni(JazykSet());
+			}
+			return posun;
+		}
+	}
+	case '\r':
+	{
+		return enter;
+	}
+	case 'q':
+	{
+		if (strana == profil_e)
+		{
+			return exit;
+		}
+	}
+	case char(8) :
+	{
+		if (strana == profil_e)
+		{
+			return del;
+		}
+	}
+	case 'l':
+	{
+		ProfilVykresleni(JazykSet(1));
+	}
+	}
+}
+void Menu_profil::Rozhodovac(int prikaz, int inkrement)
+{
+	int index = 0;
+	int poradi = 0;
+	if (oznaceni.at(y) == 8)
+	{
+		index = IndexProfilu();
+		poradi = 0;
+	}
+	if (oznaceni.at(y) == 10)
+	{
+		index = IndexProfilu(1);
+		poradi = 1;
+	}
+	if (oznaceni.at(y) == 12)
+	{
+		index = IndexProfilu(2);
+		poradi = 2;
+	}
+
+	if (prikaz == enter)
+	{
+		if (index == 0)
+		{
+			NazevProfiluVykresleni();
+			profil.vytvoreni_noveho_profilu(NazevProfiluSet());
+			ProfilVykresleni(profil.jazyk);
+		}
+		else
+		{
+			ulozena_data = profil.nacteni_dat_profilu(index);
+		}
+	}
+	if (prikaz == del)
+	{
+		if (index != 0)
+		{
+			profil.odstraneni_profilu(index);
+			RamecekSmazani();
+			AktualNazevProfilu(index, poradi, 0, 1);
+			OznaceniSet();
+			ProfilVykresleni(profil.jazyk);
+		}
+	}
+	else
+	{
+		AktualNazevProfilu(index, poradi, inkrement);
+	}
+}
+
+//-----------------------  Vykresleni -----------------------//
+
+// public
+void Menu_profil::ProfilVykresleni(int jazyk)
+{
+	MenuSTARTVykresleni();
 	///////    Ramecek   ///////
 	set.setCursorPosition(8, 7);
 	for (int i = 0; i < 24; i++)
@@ -106,17 +232,18 @@ void Menu_profil::vykresleni_profil(int jazyk)
 		else
 			std::wcout << L"\x2500";
 	}
-	vykresleni_text_profil(jazyk);
+	TextProfilVykresleni(jazyk);
+	OznaceniVykresleni();
 }
-void Menu_profil::vykresleni_text_profil(int jazyk)
+void Menu_profil::TextProfilVykresleni(int jazyk)
 {
 	transl.jazyk = jazyk;
 	t = transl.nacteni_textu_profil();
-	vykresleni_oznaceni();
+	OznaceniVykresleni();
 
 	///////    Text   ///////
 
-	smazani_v_ramecku();
+	RamecekSmazani();
 	std::list<std::wstring> wl = transl.StringToWStringList(aktual);
 	std::list<std::wstring>::iterator itr;
 	std::list<int>::iterator itri;
@@ -158,7 +285,21 @@ void Menu_profil::vykresleni_text_profil(int jazyk)
 	std::wcout << t.at(3);
 
 }
-void Menu_profil::smazani_v_ramecku()
+void Menu_profil::OtazkaVykresleni()
+{
+	set.setCursorPosition(5, 2);
+	std::wcout << t.at(4);
+	set.setCursorPosition(26, 3);
+	std::wcout << t.at(5);
+}
+// private
+void Menu_profil::NazevProfiluVykresleni()
+{
+	RamecekSmazani();
+	set.setCursorPosition(10, 8);
+	std::wcout << t.at(6);
+}
+void Menu_profil::RamecekSmazani()
 {
 	for (int j = 8; j < 13; j++)
 	{
@@ -169,21 +310,10 @@ void Menu_profil::smazani_v_ramecku()
 		}
 	}
 }
-void Menu_profil::vykresleni_nazev_profilu()
-{
-	smazani_v_ramecku();
-	set.setCursorPosition(10, 8);
-	std::wcout << t.at(6);
-}
-void Menu_profil::vykresleni_otazka()
-{
-	set.setCursorPosition(5, 2);
-		std::wcout << t.at(4);
-	set.setCursorPosition(26, 3);
-		std::wcout << t.at(5);
-}
 
-void Menu_profil::nastav_spodni_zavoru()
+//-----------------------  Set -----------------------//
+
+void Menu_profil::SpodniZavoraSet()
 {
 	profil.nacteni_poctu_profilu();
 	if (profil.pocet_profilu_s == 1)
@@ -193,13 +323,13 @@ void Menu_profil::nastav_spodni_zavoru()
 	else if (profil.pocet_profilu_s >= 3)
 		zavory.at(1) = 12;
 }
-void Menu_profil::nastav_oznaceni()
+void Menu_profil::OznaceniSet()
 {
-	nastav_spodni_zavoru();
+	SpodniZavoraSet();
 	if (profil.pocet_profilu_s < 3)
 		oznaceni.at(y) = zavory.at(1);
 }
-std::string Menu_profil::zadani_nazvu_profilu()
+std::string Menu_profil::NazevProfiluSet()
 {
 	std::string nazev;
 	set.setCursorPosition(10, 10);
@@ -207,131 +337,10 @@ std::string Menu_profil::zadani_nazvu_profilu()
 	while (nazev.size() >= 12)
 	{
 		set.setCursorPosition(10, 10);
-		smazani_v_ramecku();
+		RamecekSmazani();
 		std::cin >> nazev;
 	}
-	smazani_v_ramecku();
+	RamecekSmazani();
 	return nazev;
 }
 
-
-int Menu_profil::vstup_menu(int strana)
-{
-	switch (_getch())
-	{
-	case 'w':
-	{
-		smazani_oznaceni();
-		if ((oznaceni.at(y) > zavory.at(0)))
-		{
-			if (oznaceni.at(y) <= 12)
-			{
-				oznaceni.at(y) -= 2;
-			}
-			return posun;
-		}
-		else
-		{
-			if (*profil.nacteni_jmen_profilu().begin() != *aktual.begin())
-			{
-				rozhodovac(0, 1);
-				vykresleni_text_profil(set_jazyk());
-			}
-			return posun;
-		}
-	}
-	case 's':
-	{
-		smazani_oznaceni();
-		if ((oznaceni.at(y) < zavory.at(1)) && (strana == profil_e))
-		{
-			if (oznaceni.at(y) < 12)
-			{
-				oznaceni.at(y) += 2;
-			}
-			return posun;
-		}
-		else
-		{
-			if (*profil.nacteni_jmen_profilu().rbegin() != *aktual.rbegin())
-			{
-				rozhodovac(0, -1);
-				vykresleni_text_profil(set_jazyk());
-			}
-			return posun;
-		}
-	}
-	case '\r':
-	{
-		return enter;
-	}
-	case 'q':
-	{
-		if (strana == profil_e)
-		{
-			return exit;
-		}
-	}
-	case char(8) :
-	{
-		if (strana == profil_e)
-		{
-			return del;
-		}
-	}
-	case 'l':
-	{
-		vykresleni_profil(set_jazyk(1));
-	}
-	}
-}
-void Menu_profil::rozhodovac(int prikaz, int inkrement)
-{
-	int index = 0;
-	int poradi = 0;
-	if (oznaceni.at(y) == 8)
-	{
-		index = index_profilu();
-		poradi = 0;
-	}
-	if (oznaceni.at(y) == 10)
-	{
-		index = index_profilu(1);
-		poradi = 1;
-	}
-	if (oznaceni.at(y) == 12)
-	{
-		index = index_profilu(2);
-		poradi = 2;
-	}
-
-	if (prikaz == enter)
-	{
-		if (index == 0)
-		{
-			vykresleni_nazev_profilu();
-			profil.vytvoreni_noveho_profilu(zadani_nazvu_profilu());
-			vykresleni_profil(profil.jazyk);
-		}
-		else
-		{
-			ulozena_data = profil.nacteni_dat_profilu(index);
-		}
-	}
-	if (prikaz == del)
-	{
-		if (index != 0)
-		{
-			profil.odstraneni_profilu(index);
-			smazani_v_ramecku();
-			aktual_nazev_profilu(index, poradi, 0, 1);
-			nastav_oznaceni();
-			vykresleni_profil(profil.jazyk);
-			vykresleni_oznaceni();
-		}
-	}
-	else
-	{
-		aktual_nazev_profilu(index, poradi, inkrement);
-	}
-}

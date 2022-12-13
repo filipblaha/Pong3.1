@@ -1,10 +1,8 @@
 <root>
     <Zakladni>
-        <Pocet_profilu>3</Pocet_profilu>
+        <Pocet_profilu>1</Pocet_profilu>
         <Uroven_profilu>
             <Hodnota>0</Hodnota>
-            <Hodnota>0</Hodnota>
-            <Hodnota>2</Hodnota>
         </Uroven_profilu>
         <Nazev_profilu>
             <Pismeno>78</Pismeno>
@@ -19,40 +17,7 @@
             <Pismeno>105</Pismeno>
             <Pismeno>108</Pismeno>
         </Nazev_profilu>
-        <Nazev_profilu>
-            <Pismeno>108</Pismeno>
-            <Pismeno>108</Pismeno>
-            <Pismeno>108</Pismeno>
-            <Pismeno>108</Pismeno>
-            <Pismeno>108</Pismeno>
-            <Pismeno>108</Pismeno>
-            <Pismeno>108</Pismeno>
-            <Pismeno>108</Pismeno>
-            <Pismeno>108</Pismeno>
-            <Pismeno>108</Pismeno>
-        </Nazev_profilu>
-        <Nazev_profilu>
-            <Pismeno>100</Pismeno>
-            <Pismeno>115</Pismeno>
-            <Pismeno>97</Pismeno>
-        </Nazev_profilu>
     </Zakladni>
-    <Profil>
-        <Hodnota>0</Hodnota>
-        <Hodnota>0</Hodnota>
-        <Hodnota>0</Hodnota>
-        <Hodnota>0</Hodnota>
-        <Hodnota>0</Hodnota>
-        <Hodnota>0</Hodnota>
-    </Profil>
-    <Profil>
-        <Hodnota>0</Hodnota>
-        <Hodnota>0</Hodnota>
-        <Hodnota>0</Hodnota>
-        <Hodnota>0</Hodnota>
-        <Hodnota>0</Hodnota>
-        <Hodnota>0</Hodnota>
-    </Profil>
     <Profil>
         <Hodnota>0</Hodnota>
         <Hodnota>0</Hodnota>

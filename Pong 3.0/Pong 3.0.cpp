@@ -2,25 +2,24 @@
 #include "Menu_hlavni.h"
 
 
-bool menu_hlavni(Menu_profil data)
+bool HlavniMenu(Menu_profil data)
 {
-	Menu_hlavni menu;
+	MenuHlavni menu;
 	return 0;
 }
-
-bool menu_profil()
+bool ProfilMenu()
 {
 	Menu_profil menu;
 	Profily save;
-	while (menu_profil)
+	while (ProfilMenu)
 	{
-		switch (menu.vstup_menu(menu.profil_e))
+		switch (menu.VstupMenu(menu.profil_e))
 		{
 		case menu.enter:
 		{
 			{
-				menu.rozhodovac(menu.enter);
-				while (menu_hlavni(menu))
+				menu.Rozhodovac(menu.enter);
+				while (HlavniMenu(menu))
 				{
 					save.ulozeni_profilu(menu.profil_e);
 				}
@@ -30,12 +29,12 @@ bool menu_profil()
 		case menu.del:
 		{
 			{
-				menu.vykresleni_otazka();
-				if (menu.vstup_menu(menu.profil_e) == menu.enter)
+				menu.OtazkaVykresleni();
+				if (menu.VstupMenu(menu.profil_e) == menu.enter)
 				{
-					menu.rozhodovac(menu.del);
+					menu.Rozhodovac(menu.del);
 				}
-				menu.smazani_otazka();
+				menu.OtazkaSmazani();
 			}
 			break;
 		}
@@ -45,17 +44,18 @@ bool menu_profil()
 		}
 		case menu.posun:
 		{
-			menu.vykresleni_oznaceni();
+			menu.OznaceniVykresleni();
 		}
 		default:
 		{
-			menu.vykresleni_oznaceni();
+			menu.OznaceniVykresleni();
 		}
 		break;
 		}
 	}
 }
+
 int main()
 {
-	while (menu_profil());
-}//pri del nemuzu odstranit profil, z ktereho se chyta aktual a posledni profil
+	while (ProfilMenu());
+}

@@ -1,5 +1,7 @@
 #include "Profily.h"
 
+//-----------------------  Ukladani profilu  -----------------------//
+
 void Profily::ulozeni_profilu(int profil, std::vector<int> d, bool zmena_jmena)
 {
 	std::list<int> uroven_profil = nacteni_urovni_profilu();
@@ -23,6 +25,29 @@ void Profily::ulozeni_profilu(int profil, std::vector<int> d, bool zmena_jmena)
 
 	zapsani_profilu(uroven_profil, data_profil, nazev_profil);
 }
+std::vector<int> Profily::vlozeni_dat_do_vektoru(int profil, std::vector<int> d)
+{
+	std::vector<int> data_profil = nacteni_dat_profilu(profil);
+
+	if (d.at(0) == 0)
+		data_profil.at(0) = d.at(1);
+	if (d.at(0) == 1)
+		data_profil.at(1) = d.at(1);
+	if (d.at(0) == 2)
+		data_profil.at(2) = d.at(1);
+	if (d.at(0) == 3)
+		data_profil.at(3) = d.at(1);
+	if (d.at(0) == 4)
+		data_profil.at(4) = d.at(1);
+	if (d.at(0) == 5)
+		data_profil.at(5) = d.at(1);
+
+	jazyk = data_profil.at(0);
+	level = data_profil.at(1);
+
+	return data_profil;
+}
+
 void Profily::vytvoreni_noveho_profilu(std::string nazev_noveho_profilu)
 {
 	std::list<int> uroven_profil;
@@ -83,6 +108,7 @@ void Profily::odstraneni_profilu(int profil)
 
 	zapsani_profilu(uroven_profil, data_profil, nazev_profil);
 }
+
 int Profily::zapsani_profilu(std::list<int> uroven_profil, std::list<std::vector<int>> data, std::list<std::string> nazev)
 {
 	XMLDocument xmlDoc;
@@ -140,6 +166,18 @@ int Profily::zapsani_profilu(std::list<int> uroven_profil, std::list<std::vector
 	XMLCheckResult(eResult);
 }
 
+//-----------------------  Nacteni profilu  -----------------------//
+
+void  Profily::nacteni_poctu_profilu()
+{
+	XMLDocument xmlDoc;
+	xmlDoc.LoadFile("profily.xml");
+
+	XMLNode* root = xmlDoc.FirstChild();
+	XMLElement* base = root->FirstChildElement("Zakladni");
+	XMLElement* pocet_profilu = base->FirstChildElement("Pocet_profilu");
+	pocet_profilu->QueryIntText(&pocet_profilu_s);
+}
 std::list<int> Profily::nacteni_urovni_profilu()
 {
 	XMLDocument xmlDoc;
@@ -221,39 +259,9 @@ std::list<std::string> Profily::nacteni_jmen_profilu()
 	}
 	return v_v_pismen;
 }
-void  Profily::nacteni_poctu_profilu()
-{
-	XMLDocument xmlDoc;
-	xmlDoc.LoadFile("profily.xml");
 
-	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* base = root->FirstChildElement("Zakladni");
-	XMLElement* pocet_profilu = base->FirstChildElement("Pocet_profilu");
-	pocet_profilu->QueryIntText(&pocet_profilu_s);
-}
+//-----------------------  Zmena jmena ?  -----------------------//
 
-std::vector<int> Profily::vlozeni_dat_do_vektoru(int profil, std::vector<int> d)
-{
-	std::vector<int> data_profil = nacteni_dat_profilu(profil);
-
-	if (d.at(0) == 0)
-		data_profil.at(0) = d.at(1);
-	if (d.at(0) == 1)
-		data_profil.at(1) = d.at(1);
-	if (d.at(0) == 2)
-		data_profil.at(2) = d.at(1);
-	if (d.at(0) == 3)
-		data_profil.at(3) = d.at(1);
-	if (d.at(0) == 4)
-		data_profil.at(4) = d.at(1);
-	if (d.at(0) == 5)
-		data_profil.at(5) = d.at(1);
-
-	jazyk = data_profil.at(0);
-	level = data_profil.at(1);
-
-	return data_profil;
-}
 //void Profily::zmena_jmeno_profilu(int profil)
 //{
 //	nazev_profil = nacteni_jmen_profilu();

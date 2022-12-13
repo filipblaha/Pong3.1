@@ -1,33 +1,45 @@
 #pragma once
 #include "Menu.h"
+
 class Menu_profil : public Menu
 {
-    public:
-        Commands set;
-        Profily profil;
-        Preklad transl;
+public:
+    Commands set;
+    Profily profil;
+    Preklad transl;
 
     Menu_profil() : Menu(profil_e, 10, 8, 8)
     {
         Preklad transl;
       
-        nastav_spodni_zavoru();
-        aktual_nazev_profilu_start();
-        vykresleni_profil(set_jazyk());
+        SpodniZavoraSet();
+        AktualNazevProfiluSTART();
+        ProfilVykresleni(JazykSet());
     }
     std::vector<std::wstring> t;
 
-    int vstup_menu(int strana);
-    void vykresleni_profil(int jazyk);
-    void vykresleni_text_profil(int jazyk);
-    void vykresleni_otazka();
+    //-----------------------  Input  -----------------------//
 
-    void rozhodovac(int prikaz, int inkrement = 0);
+    int VstupMenu(int strana);
+    void Rozhodovac(int prikaz, int inkrement = 0);
+
+    //-----------------------  Vykresleni (public)  -----------------------//
+
+    void ProfilVykresleni(int jazyk);
+    void TextProfilVykresleni(int jazyk);
+    void OtazkaVykresleni();
+
 private:
-    void nastav_spodni_zavoru();
-    void nastav_oznaceni();
-    void vykresleni_nazev_profilu();
-    void smazani_v_ramecku();
-    std::string zadani_nazvu_profilu();
+
+    //-----------------------  Set  -----------------------//
+
+    void SpodniZavoraSet();
+    void OznaceniSet();
+    std::string NazevProfiluSet();
+
+    //-----------------------  Vykresleni (private)  -----------------------//
+
+    void NazevProfiluVykresleni();
+    void RamecekSmazani();
 };
 

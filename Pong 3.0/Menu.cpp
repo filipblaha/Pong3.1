@@ -1,7 +1,169 @@
 #include "Menu.h"
 
+//-----------------------  Input  -----------------------//
 
-void Menu::vykresleni_menu_start()
+int Menu::VstupMenu(int strana)
+{
+	switch (_getch())
+	{
+	case 'w':
+	{
+		OznaceniSmazani();
+		{
+			if ((oznaceni.at(y) > zavory.at(0)) && (strana == profil_e/**/))
+			{
+				if (oznaceni.at(y) <= 12)
+				{
+					oznaceni.at(y) -= 2;
+				}
+				return posun;
+			}
+			/*if ((oznaceni.at(y) > zavory.at(0)) && (strana == 0 || strana == 1))
+			{
+				oznaceni.at(y) -= 2;
+			}
+
+			if ((oznaceni.at(y) > zavory.at(0)) && (strana == 2))
+			{
+				oznaceni.at(y) -= 4;
+			}
+			if ((oznaceni.at(y) > zavory.at(0)) && (strana == 3))
+			{
+				if (oznaceni.at(y) <= 12)
+				{
+					oznaceni.at(x) = 4;
+				}
+				else
+				{
+					oznaceni.at(x) = 7;
+				}
+				oznaceni.at(y) -= 2;
+			}
+			if ((oznaceni.at(y) > zavory.at(0)) && (strana == 4))
+			{
+				oznaceni.at(y) = oznaceni.at(y)--;
+			}*/
+		}
+		break;
+	}
+	case 's':
+	{
+		OznaceniSmazani();
+		{
+			if ((oznaceni.at(y) < zavory.at(1)) && (strana == profil_e/**/))
+			{
+				if (oznaceni.at(y) < 12)
+				{
+					oznaceni.at(y) += 2;
+				}
+				return posun;
+			}
+			/*if ((oznaceni.at(y) < zavory.at(1)) && (strana == 0 || strana == 1))
+			{
+				oznaceni.at(y) += 2;
+			}
+			if ((oznaceni.at(y) < zavory.at(1)) && (strana == 2))
+			{
+				oznaceni.at(y) += 4;
+			}
+			if ((oznaceni.at(y) < zavory.at(1)) && (strana == 3))
+			{
+				if (oznaceni.at(y) <= 8)
+				{
+					oznaceni.at(x) = 4;
+				}
+				else
+				{
+					oznaceni.at(x) = 7;
+				}
+				oznaceni.at(y) += 2;
+			}
+			if ((oznaceni.at(y) < zavory.at(1)) && (strana == 4))
+			{
+				oznaceni.at(y)++;
+			}*/
+		}
+		break;
+	}
+	case 'a':
+	{
+		OznaceniSmazani();
+		{
+			if (oznaceni.at(x) > zavory.at(2) && (strana == vzhled_plosiny_e))
+			{
+				oznaceni.at(x) -= 10;
+			}
+			return posun;
+		}
+		break;
+	}
+	case 'd':
+	{
+		OznaceniSmazani();
+		{
+			if (oznaceni.at(x) < zavory.at(3) && (strana == vzhled_plosiny_e))
+			{
+				oznaceni.at(x) += 10;
+			}
+			return posun;
+		}
+		break;
+	}
+	case '\r':
+	{
+		{
+			return enter;
+		}
+		break;
+	}
+	case ' ':
+	{
+		{
+			/*if (strana == -1)
+			{
+				return exit;
+			}*/
+		}
+		break;
+	}
+	case 'q':
+	{
+		{
+			if (strana == profil_e)
+			{
+				return exit;
+			}
+		}
+		break;
+	}
+	}
+}
+int Menu::JazykSet(bool zmena)
+{
+	std::vector<int> v = profil.nacteni_dat_profilu(0);
+	std::vector<int> d;
+	d.push_back(0);
+
+	if (zmena)
+	{
+		if (v.at(0) == CZ)
+			d.push_back(1);
+		if (v.at(0) == EN)
+			d.push_back(0);
+	}
+	else
+	{
+		d.push_back(v.at(0));
+	}
+
+	profil.ulozeni_profilu(0, d);
+	v = profil.nacteni_dat_profilu(0);
+	return v.at(0);
+}
+
+//-----------------------  Vykresleni  -----------------------//
+
+void Menu::MenuSTARTVykresleni()
 {
 	_setmode(_fileno(stdout), _O_U16TEXT);  // nastaveni graficke vizualizace
 	set.setCursorPosition(0, 0);
@@ -43,18 +205,17 @@ void Menu::vykresleni_menu_start()
 			std::wcout << '\n';
 	}
 }
-void Menu::vykresleni_oznaceni()
+void Menu::OznaceniVykresleni()
 {
 	set.setCursorPosition(oznaceni.at(x), oznaceni.at(y));
 	std::wcout << L"\x25ba";
 }
-void Menu::smazani_oznaceni()
+void Menu::OznaceniSmazani()
 {
 	set.setCursorPosition(oznaceni.at(x), oznaceni.at(y));
 	std::wcout << ' ';
 }
-
-void Menu::smazani_otazka()
+void Menu::OtazkaSmazani()
 {
 	set.setCursorPosition(5, 2);
 	std::wcout << "                               ";
@@ -62,169 +223,33 @@ void Menu::smazani_otazka()
 	std::wcout << "       ";
 }
 
+//-----------------------  Profil  -----------------------//
 
-/////////////////////    Input     //////////////////////////
-int Menu::vstup_menu(int strana)
+int Menu::IndexProfilu(int inkrement)
 {
-	switch (_getch())
+	int index = 0;
+	std::list<std::string> temp = profil.nacteni_jmen_profilu();
+	std::list<std::string>::iterator itr = temp.begin();
+	while (*itr != *aktual.begin())
 	{
-	case 'w':
+		itr++;
+	}
+	for (int i = 0; i < abs(inkrement); i++)
 	{
-		smazani_oznaceni();
-		{
-			if ((oznaceni.at(y) > zavory.at(0)) && (strana == profil_e/**/))
-			{
-				if (oznaceni.at(y) <= 12)
-				{
-					oznaceni.at(y) -= 2;
-				}
-				return posun;
-			}
-			/*if ((oznaceni.at(y) > zavory.at(0)) && (strana == 0 || strana == 1))
-			{
-				oznaceni.at(y) -= 2;
-			}
+		if (inkrement > 0)
+			itr++;
+		if (inkrement < 0)
+			itr--;
+	}
 
-			if ((oznaceni.at(y) > zavory.at(0)) && (strana == 2))
-			{
-				oznaceni.at(y) -= 4;
-			}
-			if ((oznaceni.at(y) > zavory.at(0)) && (strana == 3))
-			{
-				if (oznaceni.at(y) <= 12)
-				{
-					oznaceni.at(x) = 4;
-				}
-				else
-				{
-					oznaceni.at(x) = 7;
-				}
-				oznaceni.at(y) -= 2;
-			}
-			if ((oznaceni.at(y) > zavory.at(0)) && (strana == 4))
-			{
-				oznaceni.at(y) = oznaceni.at(y)--;
-			}*/
-		}
-		break;
-	}
-	case 's':
+	while (itr != temp.begin())
 	{
-		smazani_oznaceni();
-		{
-			if ((oznaceni.at(y) < zavory.at(1)) && (strana == profil_e/**/))
-			{
-				if (oznaceni.at(y) < 12)
-				{
-					oznaceni.at(y) += 2;
-				}
-				return posun;
-			}
-			/*if ((oznaceni.at(y) < zavory.at(1)) && (strana == 0 || strana == 1))
-			{
-				oznaceni.at(y) += 2;
-			}
-			if ((oznaceni.at(y) < zavory.at(1)) && (strana == 2))
-			{
-				oznaceni.at(y) += 4;
-			}
-			if ((oznaceni.at(y) < zavory.at(1)) && (strana == 3))
-			{
-				if (oznaceni.at(y) <= 8)
-				{
-					oznaceni.at(x) = 4;
-				}
-				else
-				{
-					oznaceni.at(x) = 7;
-				}
-				oznaceni.at(y) += 2;
-			}
-			if ((oznaceni.at(y) < zavory.at(1)) && (strana == 4))
-			{
-				oznaceni.at(y)++;
-			}*/
-		}
-		break;
+		index++;
+		itr--;
 	}
-	case 'a':
-	{
-		smazani_oznaceni();
-		{
-			if (oznaceni.at(x) > zavory.at(2) && (strana == vzhled_plosiny_e))
-			{
-				oznaceni.at(x) -= 10;
-			}
-			return posun;
-		}
-		break;
-	}
-	case 'd':
-	{
-		smazani_oznaceni();
-		{
-			if (oznaceni.at(x) < zavory.at(3) && (strana == vzhled_plosiny_e))
-			{
-				oznaceni.at(x) += 10;
-			}
-			return posun;
-		}
-		break;
-	}
-	case '\r':
-	{
-		{
-			return enter;
-		}
-		break;
-	}
-	case ' ':
-	{
-		{
-			/*if (strana == -1)
-			{
-				return exit;
-			}*/
-		}
-		break;
-	}
-	case 'q':
-	{
-		{
-			if (strana == profil_e)
-			{
-				return exit;
-			}
-		}
-		break;
-	}
-	}
+	return index;
 }
-int Menu::set_jazyk(bool zmena)
-{
-	std::vector<int> v = profil.nacteni_dat_profilu(0);
-	std::vector<int> d;
-	d.push_back(0);
-
-	if (zmena)
-	{
-		if (v.at(0) == CZ)
-			d.push_back(1);
-		if (v.at(0) == EN)
-			d.push_back(0);
-	}
-	else
-	{
-		d.push_back(v.at(0));
-	}
-
-	profil.ulozeni_profilu(0, d);
-	v = profil.nacteni_dat_profilu(0);
-	return v.at(0);
-}
-
-
-void Menu::aktual_nazev_profilu_start()
+void Menu::AktualNazevProfiluSTART()
 {
 	aktual = profil.nacteni_jmen_profilu();
 
@@ -233,7 +258,7 @@ void Menu::aktual_nazev_profilu_start()
 		aktual.pop_back();
 	}
 }
-std::list<std::string> Menu::aktual_nazev_profilu(int index, int poradi, int inkrement, bool del)
+std::list<std::string> Menu::AktualNazevProfilu(int index, int poradi, int inkrement, bool del)
 {
 	std::list<std::string> temp = profil.nacteni_jmen_profilu();
 	std::list<std::string>::iterator itr = temp.begin();
@@ -265,57 +290,4 @@ std::list<std::string> Menu::aktual_nazev_profilu(int index, int poradi, int ink
 		itr++;
 	}
 	return aktual;
-}
-//std::list<std::string> Menu::aktual_nazev_profilu_del(int index, int poradi)
-//{
-//	std::list<std::string> temp = profil.nacteni_jmen_profilu();
-//	std::list<std::string>::iterator itr = temp.begin();
-//	
-//	/*while (*itr != *aktual.begin())
-//	{
-//		itr++;
-//	}
-//	if (profil.pocet_profilu_s == index && profil.pocet_profilu_s >= 3)
-//		itr--;
-//	else if (aktual.rbegin() == temp.rbegin())
-//		itr--;*/
-//
-//
-//	aktual.clear();
-//	int n = 0;
-//	if (profil.pocet_profilu_s >= 3)
-//		n = 3;
-//	else
-//		n = profil.pocet_profilu_s;
-//	
-//	for (int i = 0; i < n; i++)
-//	{
-//		aktual.push_back(*itr);
-//		itr++;
-//	}
-//	return aktual;
-//}
-int Menu::index_profilu(int inkrement)
-{
-	int index = 0;
-	std::list<std::string> temp = profil.nacteni_jmen_profilu();
-	std::list<std::string>::iterator itr = temp.begin();
-	while (*itr != *aktual.begin())
-	{
-		itr++;
-	}
-	for (int i = 0; i < abs(inkrement); i++)
-	{
-		if (inkrement > 0)
-			itr++;
-		if (inkrement < 0)
-			itr--;
-	}
-	
-	while (itr != temp.begin())
-	{
-		index++;
-		itr--;
-	}
-	return index;
 }

@@ -5,20 +5,20 @@
 #include "Profily.h"
 #include "Preklad.h"
 
-
 class Menu
 {
 public:
 	Preklad transl;
 	Commands set;
 	Profily profil;
+
 	Menu()
 	{}
 	Menu(int strana, int x = 0, int y = 0, int horni_z = 0, int dolni_z = 0, int leva_z = 0, int prava_z = 0)
 	{
 		Commands set;
 
-		oznaceni.push_back(x); // oznaceni a jeho zavory jednotlivych stran
+		oznaceni.push_back(x);
 		oznaceni.push_back(y);
 
 		zavory.push_back(horni_z);
@@ -30,8 +30,6 @@ public:
 		set.SetWindow(delka_menu, vyska_menu - 2);
 		set.prechod();
 	}
-
-
 
 	const int delka_menu = 40;
 	const int vyska_menu = 20;
@@ -71,23 +69,22 @@ public:
 	std::list<std::string> aktual;
 
 
-	void vykresleni_menu_start();
-	void vykresleni_oznaceni();
-	void smazani_oznaceni();
+	//-----------------------  Input  -----------------------//
 
+	int VstupMenu(int strana);
+	int JazykSet(bool zmena = 0);
 
-	/////////////////////    Input     //////////////////////////
-	int vstup_menu(int strana);
-	int set_jazyk(bool zmena = 0);
+	//-----------------------  Vykresleni  -----------------------//
 
-	//void vykresleni_otazka();
-	void smazani_otazka();
+	void MenuSTARTVykresleni();
+	void OznaceniVykresleni();
+	void OznaceniSmazani();
+	void OtazkaSmazani();
 
+	//-----------------------  Profil  -----------------------//
 
-	void aktual_nazev_profilu_start();
-	std::list<std::string> aktual_nazev_profilu(int index, int poradi, int inkrement = 0, bool del = 0);
-
-	int index_profilu(int inkrement = 0);
+	int IndexProfilu(int inkrement = 0);
+	void AktualNazevProfiluSTART();
+	std::list<std::string> AktualNazevProfilu(int index, int poradi, int inkrement = 0, bool del = 0);
 private:
-
 };

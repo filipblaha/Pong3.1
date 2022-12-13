@@ -43,8 +43,12 @@ public:
 	std::vector<std::string> vektor_stringu;
 	std::vector<std::wstring> vektor_wstringu;
 
+	//-----------------------  Premena string na wstring  -----------------------//
+
 	std::vector<std::wstring> StringToWString(std::vector<std::string> s);
 	std::list<std::wstring> StringToWStringList(std::list<std::string> s);
+
+	//-----------------------  Nacteni textu  -----------------------//
 
 	std::vector<std::wstring> nacteni_textu_profil();
 	std::vector<std::wstring> nacteni_textu_hlavni();
