@@ -1,6 +1,6 @@
 <root>
 	<zaklad>
-		<profil>7</profil>
+		<profil>8</profil>
 		<hlavni>4</hlavni>
 		<herni_mody>5</herni_mody>
 		<vzhled_plosiny>2</vzhled_plosiny>
@@ -17,6 +17,7 @@
 			<string>Opravdu chcete smazat pokrok?</string>
 			<string>[ENTER]</string>
 			<string>Zadej nazev profilu</string>
+			<string>Ur.</string>
 		</profil>
 		<hlavni>
 			<string>Herni mody</string>
@@ -75,6 +76,7 @@
 			<string>Do you want to delete progress?</string>
 			<string>[ENTER]</string>
 			<string>Enter a profile name</string>
+			<string>Lvl. </string>
 		</profil>
 		<hlavni>
 			<string>Game modes</string>

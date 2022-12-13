@@ -14,12 +14,12 @@ class Menu_profil : public Menu
         nastav_spodni_zavoru();
         aktual_nazev_profilu_start();
         vykresleni_profil(set_jazyk());
-
     }
     std::vector<std::wstring> t;
 
     int vstup_menu(int strana);
     void vykresleni_profil(int jazyk);
+    void vykresleni_text_profil(int jazyk);
     void vykresleni_otazka();
 
     void rozhodovac(int prikaz, int inkrement = 0);

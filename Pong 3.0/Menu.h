@@ -28,6 +28,7 @@ public:
 
 		set.font(0, 20);
 		set.SetWindow(delka_menu, vyska_menu - 2);
+		set.prechod();
 	}
 
 

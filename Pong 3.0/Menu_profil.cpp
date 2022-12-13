@@ -2,13 +2,7 @@
 
 void Menu_profil::vykresleni_profil(int jazyk)
 {
-	set.prechod();
 	vykresleni_menu_start(); 
-	
-	transl.jazyk = jazyk;
-	t = transl.nacteni_textu_profil();
-	vykresleni_oznaceni();
-
 	///////    Ramecek   ///////
 	set.setCursorPosition(8, 7);
 	for (int i = 0; i < 24; i++)
@@ -112,28 +106,41 @@ void Menu_profil::vykresleni_profil(int jazyk)
 		else
 			std::wcout << L"\x2500";
 	}
+	vykresleni_text_profil(jazyk);
+}
+void Menu_profil::vykresleni_text_profil(int jazyk)
+{
+	transl.jazyk = jazyk;
+	t = transl.nacteni_textu_profil();
+	vykresleni_oznaceni();
 
 	///////    Text   ///////
-	std::list<std::string> l = aktual;
-	std::list<std::wstring> wl = transl.StringToWStringList(l);
+
+	smazani_v_ramecku();
+	std::list<std::wstring> wl = transl.StringToWStringList(aktual);
 	std::list<std::wstring>::iterator itr;
+
+	std::vector<int> v = profil.nacteni_dat_profilu(0);
 
 	set.setCursorPosition(10, 5);
 	std::wcout << t.at(0);
 
 	itr = wl.begin();
 	set.setCursorPosition(12, 8);
-	std::wcout << t.at(1);
+	if (*aktual.begin() == "Novy_profil")
+		std::wcout << t.at(1);
+	else
+		std::wcout << *itr << "  (" << t.at(7) << v.at(1) << ")";
 	itr++;
 	if (itr != wl.end())
 	{
 		set.setCursorPosition(12, 10);
-		std::wcout << *itr;
+		std::wcout << *itr << "  (" << t.at(7) << v.at(1) << ")";
 		itr++;
 		if (itr != wl.end())
 		{
 			set.setCursorPosition(12, 12);
-			std::wcout << *itr;
+			std::wcout << *itr << "  (" << t.at(7) << v.at(1) << ")";
 		}
 	}
 
@@ -144,6 +151,7 @@ void Menu_profil::vykresleni_profil(int jazyk)
 	if (transl.jazyk)
 		set.setCursorPosition(17, 17);
 	std::wcout << t.at(3);
+
 }
 void Menu_profil::smazani_v_ramecku()
 {
@@ -222,8 +230,7 @@ int Menu_profil::vstup_menu(int strana)
 			if (*profil.nacteni_jmen_profilu().begin() != *aktual.begin())
 			{
 				rozhodovac(0, 1);
-				smazani_v_ramecku();
-				vykresleni_profil(profil.jazyk);
+				vykresleni_text_profil(set_jazyk());
 			}
 			return posun;
 		}
@@ -244,8 +251,7 @@ int Menu_profil::vstup_menu(int strana)
 			if (*profil.nacteni_jmen_profilu().rbegin() != *aktual.rbegin())
 			{
 				rozhodovac(0, -1);
-				smazani_v_ramecku();
-				vykresleni_profil(profil.jazyk);
+				vykresleni_text_profil(set_jazyk());
 			}
 			return posun;
 		}
@@ -315,8 +321,8 @@ void Menu_profil::rozhodovac(int prikaz, int inkrement)
 			smazani_v_ramecku();
 			aktual_nazev_profilu(index, poradi, 0, 1);
 			nastav_oznaceni();
-			vykresleni_oznaceni();
 			vykresleni_profil(profil.jazyk);
+			vykresleni_oznaceni();
 		}
 	}
 	else
@@ -324,4 +330,3 @@ void Menu_profil::rozhodovac(int prikaz, int inkrement)
 		aktual_nazev_profilu(index, poradi, inkrement);
 	}
 }
-

@@ -2,8 +2,13 @@
 
 void Profily::ulozeni_profilu(int profil, std::vector<int> d, bool zmena_jmena)
 {
+	std::list<int> uroven_profil = nacteni_urovni_profilu();
 	std::list<std::vector<int>> data_profil;
 	std::list<std::string> nazev_profil;
+
+	std::list<int>::iterator itr = uroven_profil.begin();
+	advance(itr, profil);
+	*itr = level;
 
 	for (int i = 0; i < pocet_profilu_s; i++)
 	{
@@ -16,13 +21,18 @@ void Profily::ulozeni_profilu(int profil, std::vector<int> d, bool zmena_jmena)
 	if (!zmena_jmena)
 		nazev_profil = nacteni_jmen_profilu();
 
-	zapsani_profilu(data_profil, nazev_profil);
+	zapsani_profilu(uroven_profil, data_profil, nazev_profil);
 }
 void Profily::vytvoreni_noveho_profilu(std::string nazev_noveho_profilu)
 {
+	std::list<int> uroven_profil;
 	std::vector<int> data_noveho_profilu;
 	std::list<std::vector<int>> data_profil;
-	for (int i = 0; i < 7; i++)
+
+	uroven_profil = nacteni_urovni_profilu();
+	uroven_profil.push_front(0);
+
+	for (int i = 0; i < 6; i++)
 	{
 		data_noveho_profilu.push_back(0);
 	}
@@ -42,12 +52,18 @@ void Profily::vytvoreni_noveho_profilu(std::string nazev_noveho_profilu)
 
 	pocet_profilu_s++;
 
-	zapsani_profilu(data_profil, nazev_profil);
+	zapsani_profilu(uroven_profil, data_profil, nazev_profil);
 }
 void Profily::odstraneni_profilu(int profil)
 {
+	std::list<int> uroven_profil = nacteni_urovni_profilu();
 	std::list<std::vector<int>> data_profil;
 	std::list<std::string> nazev_profil;
+
+	std::list<int>::iterator itrl = uroven_profil.begin();
+	advance(itrl, profil);
+	uroven_profil.erase(itrl);
+	
 
 	for (int i = 0; i < pocet_profilu_s; i++)
 	{
@@ -65,9 +81,9 @@ void Profily::odstraneni_profilu(int profil)
 
 	pocet_profilu_s--;
 
-	zapsani_profilu(data_profil, nazev_profil);
+	zapsani_profilu(uroven_profil, data_profil, nazev_profil);
 }
-int Profily::zapsani_profilu(std::list<std::vector<int>> data, std::list<std::string> nazev)
+int Profily::zapsani_profilu(std::list<int> uroven_profil, std::list<std::vector<int>> data, std::list<std::string> nazev)
 {
 	XMLDocument xmlDoc;
 	XMLNode* root = xmlDoc.NewElement("root");
@@ -80,6 +96,15 @@ int Profily::zapsani_profilu(std::list<std::vector<int>> data, std::list<std::st
 	pocet_profilu->SetText(pocet_profilu_s);
 	base->InsertEndChild(pocet_profilu);
 
+	std::list<int>::iterator itrl;
+	XMLElement* uroven_profilu = xmlDoc.NewElement("Uroven_profilu");
+	base->InsertEndChild(uroven_profilu);
+	for (itrl = uroven_profil.begin(); itrl != uroven_profil.end(); itrl++)
+	{
+		XMLElement* hodnota = xmlDoc.NewElement("Hodnota");
+		hodnota->SetText(*itrl);
+		uroven_profilu->InsertEndChild(hodnota);
+	}
 
 	std::string temp;
 	XMLElement* profily_nazev;
@@ -115,6 +140,29 @@ int Profily::zapsani_profilu(std::list<std::vector<int>> data, std::list<std::st
 	XMLCheckResult(eResult);
 }
 
+std::list<int> Profily::nacteni_urovni_profilu()
+{
+	XMLDocument xmlDoc;
+	int data = 0;
+	std::list<int> list_dat;
+
+
+	xmlDoc.LoadFile("profily.xml");
+
+	nacteni_poctu_profilu();
+
+	XMLNode* root = xmlDoc.FirstChild();
+	XMLElement* base = root->FirstChildElement("Zakladni");
+	XMLElement* profily_urovne = base->FirstChildElement("Uroven_profilu");
+	XMLElement* hodnoty = profily_urovne->FirstChildElement("Hodnota");
+	for (int i = 0; i < pocet_profilu_s; i++)
+	{
+		hodnoty->QueryIntText(&data);
+		list_dat.push_back(data);
+		hodnoty = hodnoty->NextSiblingElement("Hodnota");
+	}
+	return list_dat;
+}
 std::vector<int> Profily::nacteni_dat_profilu(int profil)
 {
 	XMLDocument xmlDoc;
@@ -200,11 +248,9 @@ std::vector<int> Profily::vlozeni_dat_do_vektoru(int profil, std::vector<int> d)
 		data_profil.at(4) = d.at(1);
 	if (d.at(0) == 5)
 		data_profil.at(5) = d.at(1);
-	if (d.at(0) == 6)
-		data_profil.at(6) = d.at(1);
 
-
-	jazyk = data_profil.at(1);
+	jazyk = data_profil.at(0);
+	level = data_profil.at(1);
 
 	return data_profil;
 }

@@ -17,7 +17,6 @@ public:
 
 	Profily()
 	{
-		pouzit = 0;
 		jazyk = CZ;
 		plosina_skin = 0;
 		highscore_cas = 0;
@@ -34,7 +33,6 @@ public:
 
 	int pocet_profilu_s = 0;
 
-	int pouzit;
 	int jazyk;
 	int plosina_skin;
 	int highscore_cas;
@@ -48,9 +46,10 @@ public:
 	void ulozeni_profilu(int profil, std::vector<int> d = {0}, bool zmena_jmena = 0);
 	void vytvoreni_noveho_profilu(std::string nazev_noveho_profilu);
 	void odstraneni_profilu(int profil);
-	int zapsani_profilu(std::list<std::vector<int>> data, std::list<std::string> nazvy);
+	int zapsani_profilu(std::list<int> uroven_profil, std::list<std::vector<int>> data, std::list<std::string> nazvy);
 
 	std::vector<int> nacteni_dat_profilu(int profil);
+	std::list<int> nacteni_urovni_profilu();
 	std::list<std::string> nacteni_jmen_profilu();
 	void nacteni_poctu_profilu();
 

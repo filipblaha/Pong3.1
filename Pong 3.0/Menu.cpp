@@ -204,23 +204,23 @@ int Menu::set_jazyk(bool zmena)
 {
 	std::vector<int> v = profil.nacteni_dat_profilu(0);
 	std::vector<int> d;
-	d.push_back(1);
+	d.push_back(0);
 
 	if (zmena)
 	{
-		if (v.at(1) == CZ)
+		if (v.at(0) == CZ)
 			d.push_back(1);
-		if (v.at(1) == EN)
+		if (v.at(0) == EN)
 			d.push_back(0);
 	}
 	else
 	{
-		d.push_back(v.at(1));
+		d.push_back(v.at(0));
 	}
 
 	profil.ulozeni_profilu(0, d);
 	v = profil.nacteni_dat_profilu(0);
-	return v.at(1);
+	return v.at(0);
 }
 
 
@@ -240,7 +240,7 @@ std::list<std::string> Menu::aktual_nazev_profilu(int index, int poradi, int ink
 	
 	if (del)
 	{
-		if (poradi == 0 || (poradi == 2 && index == profil.pocet_profilu_s && profil.pocet_profilu_s > 3) || (poradi == 1 && index + 1 == profil.pocet_profilu_s && profil.pocet_profilu_s > 3))
+		if (poradi == 0 || (poradi == 2 && index == profil.pocet_profilu_s && profil.pocet_profilu_s >= 3) || (poradi == 1 && index + 1 == profil.pocet_profilu_s && profil.pocet_profilu_s > 3))
 		{
 			inkrement = 1;
 		}
