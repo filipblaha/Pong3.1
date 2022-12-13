@@ -119,28 +119,33 @@ void Menu_profil::vykresleni_text_profil(int jazyk)
 	smazani_v_ramecku();
 	std::list<std::wstring> wl = transl.StringToWStringList(aktual);
 	std::list<std::wstring>::iterator itr;
+	std::list<int>::iterator itri;
 
+	std::list<int> p = profil.nacteni_urovni_profilu();
 	std::vector<int> v = profil.nacteni_dat_profilu(0);
 
 	set.setCursorPosition(10, 5);
 	std::wcout << t.at(0);
 
 	itr = wl.begin();
+	itri = p.begin();
 	set.setCursorPosition(12, 8);
 	if (*aktual.begin() == "Novy_profil")
 		std::wcout << t.at(1);
 	else
-		std::wcout << *itr << "  (" << t.at(7) << v.at(1) << ")";
+		std::wcout << *itr << "  (" << t.at(7) << *itri << ")";
 	itr++;
+	itri++;
 	if (itr != wl.end())
 	{
 		set.setCursorPosition(12, 10);
-		std::wcout << *itr << "  (" << t.at(7) << v.at(1) << ")";
+		std::wcout << *itr << "  (" << t.at(7) << *itri << ")";
 		itr++;
+		itri++;
 		if (itr != wl.end())
 		{
 			set.setCursorPosition(12, 12);
-			std::wcout << *itr << "  (" << t.at(7) << v.at(1) << ")";
+			std::wcout << *itr << "  (" << t.at(7) << *itri << ")";
 		}
 	}
 
@@ -199,7 +204,7 @@ std::string Menu_profil::zadani_nazvu_profilu()
 	std::string nazev;
 	set.setCursorPosition(10, 10);
 	std::cin >> nazev;
-	while (nazev.size() > 20)
+	while (nazev.size() >= 12)
 	{
 		set.setCursorPosition(10, 10);
 		smazani_v_ramecku();
