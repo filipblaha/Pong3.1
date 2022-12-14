@@ -45,12 +45,12 @@
 		<ovladani>
 			<string>OVLADANI</string>
 			<string>Ovladani v menu</string>
-			<string>Ovladani ve hre</string>
 			<string>Enter</string>
-			<string>Mezernik</string>
-			<string>Pouzit schopnost</string>
+			<string>Ovladani ve hre</string>
 			<string>Pohyb - vlevo</string>
 			<string>Pohyb - vpravo</string>
+			<string>Pouzit schopnost</string>
+			<string>Mezernik</string>
 			<string>Pauza</string>
 		</ovladani>
 		<konec_kola>
@@ -103,12 +103,12 @@
 		<ovladani>
 			<string>CONTROLS</string>
 			<string>Menu controls</string>
-			<string>In-game controls</string>
 			<string>Enter</string>
-			<string>Spacebar</string>
-			<string>Use ability</string>
+			<string>In-game controls</string>
 			<string>Movement - left</string>
 			<string>Movement - right</string>
+			<string>Use ability</string>
+			<string>Spacebar</string>
 			<string>Pause</string>
 		</ovladani>
 		<konec_kola>

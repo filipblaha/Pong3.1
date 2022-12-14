@@ -130,6 +130,7 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MenuHerniMody.cpp" />
     <ClCompile Include="MenuHlavni.cpp" />
+    <ClCompile Include="MenuOvladani.cpp" />
     <ClCompile Include="MenuProfil.cpp" />
     <ClCompile Include="MenuNastaveni.cpp" />
     <ClCompile Include="Pong 3.0.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="MenuNastaveni.h" />
     <ClInclude Include="MenuHerniMody.h" />
     <ClInclude Include="MenuHlavni.h" />
+    <ClInclude Include="MenuOvladani.h" />
     <ClInclude Include="MenuProfil.h" />
     <ClInclude Include="Objekt.h" />
     <ClInclude Include="Plosina.h" />

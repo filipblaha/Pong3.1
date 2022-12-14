@@ -2,6 +2,7 @@
 #include "MenuHlavni.h"
 #include "MenuHerniMody.h"
 #include "MenuNastaveni.h"
+#include "MenuOvladani.h"
 
 bool Klasik(MenuProfil data)
 {
@@ -10,12 +11,51 @@ bool Klasik(MenuProfil data)
 
 bool OvladaniMenu(MenuProfil data)
 {
-	return 0;
+	MenuOvladani menu;
+	while (OvladaniMenu)
+	{
+		switch (menu.VstupMenu(menu.ovladani_e))
+		{
+		case menu.enter:
+		{
+			{
+				switch (menu.Rozhodovac(menu.enter))
+				{
+				case menu.ovladani_e:
+				{
+					
+					break;
+				}
+				case menu.balic_e:
+				{
+					
+					break;
+				}
+				}
+			}
+			break;
+		}
+		case menu.posun:
+		{
+			menu.OznaceniVykresleni();
+			break;
+		}
+		case menu.exit:
+		{
+			return 0;
+		}
+		default:
+		{
+			menu.OznaceniVykresleni();
+		}
+		break;
+		}
+	}
 }
 bool NastaveniMenu(MenuProfil data)
 {
 	MenuNastaveni menu;
-	while (HerniModyMenu)
+	while (NastaveniMenu)
 	{
 		switch (menu.VstupMenu(menu.herni_mody_e))
 		{
@@ -27,12 +67,14 @@ bool NastaveniMenu(MenuProfil data)
 				case menu.ovladani_e:
 				{
 					while (OvladaniMenu(data));
+					menu.MenuSTARTVykresleni();
+					menu.NastaveniVykresleni(menu.JazykSet());
 					break;
 				}
 				case menu.balic_e:
 				{
 					menu.SpodniZavoraSet();
-					menu.TextNastaveniVykresleni(menu.JazykSet());
+					menu.NastaveniVykresleni(menu.JazykSet());
 					break;
 				}
 				}

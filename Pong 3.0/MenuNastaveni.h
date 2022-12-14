@@ -15,7 +15,7 @@ public:
         balic = 0;
 
         SpodniZavoraSet();
-        TextNastaveniVykresleni(JazykSet());
+        NastaveniVykresleni(JazykSet());
 
     }
     std::vector<std::wstring> text;
@@ -26,6 +26,7 @@ public:
 
     //-----------------------  Vykresleni  -----------------------//
 
+    void NastaveniVykresleni(int jazyk);
     void TextNastaveniVykresleni(int jazyk);
 
     //-----------------------  Set -----------------------//

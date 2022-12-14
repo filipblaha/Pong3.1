@@ -40,12 +40,15 @@ int MenuNastaveni::Rozhodovac(int prikaz)
 
 //-----------------------  Vykresleni -----------------------//
 
+void MenuNastaveni::NastaveniVykresleni(int jazyk)
+{
+	OznaceniVykresleni();
+	TextNastaveniVykresleni(jazyk);
+}
 void MenuNastaveni::TextNastaveniVykresleni(int jazyk)
 {
 	transl.jazyk = jazyk;
 	text = transl.NacteniTextNastaveni();
-
-	OznaceniVykresleni();
 
 	///-------  Text  -------//
 
