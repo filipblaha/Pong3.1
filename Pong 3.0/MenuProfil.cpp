@@ -46,7 +46,6 @@ int MenuProfil::VstupMenu(int strana)
 	}
 	case 'q':
 	{
-		set.Prechod();
 		return exit;
 	}
 	case char(8) :
@@ -81,20 +80,23 @@ void MenuProfil::Rozhodovac(int prikaz, int inkrement)
 		poradi = 2;
 	}
 
-	if (prikaz == enter)
+	switch (prikaz)
+	{
+	case enter:
 	{
 		if (index == 0)
 		{
 			NazevProfiluVykresleni();
 			profil.vytvoreni_noveho_profilu(NazevProfiluSet());
-			ProfilVykresleni(profil.jazyk);
+			profil.vybraniprofilu(1);
 		}
 		else
 		{
-			ulozena_data = profil.nacteni_dat_profilu(index);
+			profil.vybraniprofilu(index);
 		}
+		break;
 	}
-	if (prikaz == del)
+	case del:
 	{
 		if (index != 0)
 		{
@@ -104,9 +106,9 @@ void MenuProfil::Rozhodovac(int prikaz, int inkrement)
 			OznaceniSet();
 			ProfilVykresleni(JazykSet());
 		}
+		break;
 	}
-	else
-	{
+	default:
 		AktualNazevProfilu(index, poradi, inkrement);
 	}
 }

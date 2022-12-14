@@ -17,12 +17,8 @@ public:
 
 	Profily()
 	{
-		jazyk = CZ;
-		plosina_skin = 0;
-		highscore_cas = 0;
-		highscore_znicenych_bloku = 0;
-		level = 0;
-		exp = 0;
+		pocet_profilu_s = 0;
+		jsem_v_profilu = 0;
 	}
 
 	enum jazyk_e
@@ -31,14 +27,15 @@ public:
 		EN,
 	};
 
-	int pocet_profilu_s = 0;
+	int pocet_profilu_s;
+	int jsem_v_profilu;
 
-	int jazyk;
-	int plosina_skin;
-	int highscore_cas;
-	int highscore_znicenych_bloku;
-	int level;
-	int exp;
+	int jazyk = CZ;
+	int level = 0;
+	int exp = 0;
+	int plosina_skin = 0;
+	int highscore_cas = 0;
+	int highscore_znicenych_bloku = 0;
 
 	std::list<std::string>::iterator itr;
 	std::list<std::vector<int>>::iterator itri;
@@ -59,6 +56,9 @@ public:
 	std::list<int> nacteni_urovni_profilu();
 	std::vector<int> nacteni_dat_profilu(int profil);
 	std::list<std::string> nacteni_jmen_profilu();
+
+	void vybraniprofilu(int profil);
+	void prepsani_dat(int& jazyk_v,int& plosina_skin, int& highscore_cas, int& highscore_znicenych_bloku, int& level, int& exp);
 
 	//-----------------------  Zmena jmena ?  -----------------------//
 	

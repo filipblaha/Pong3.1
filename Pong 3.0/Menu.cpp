@@ -114,25 +114,16 @@ int Menu::VstupMenu(int strana)
 }
 int Menu::JazykSet(bool zmena)
 {
-	std::vector<int> v = profil.nacteni_dat_profilu(0);
-	std::vector<int> d;
-	d.push_back(0);
+	std::vector<int> v = profil.nacteni_dat_profilu(profil.jsem_v_profilu);
 
 	if (zmena)
 	{
 		if (v.at(0) == CZ)
-			d.push_back(1);
+			profil.jazyk = 1;
 		if (v.at(0) == EN)
-			d.push_back(0);
+			profil.jazyk = 0;
 	}
-	else
-	{
-		d.push_back(v.at(0));
-	}
-
-	profil.ulozeni_profilu(0, d);
-	v = profil.nacteni_dat_profilu(0);
-	return v.at(0);
+	return profil.jazyk;
 }
 
 //-----------------------  Vykresleni  -----------------------//
@@ -232,7 +223,7 @@ void Menu::AktualNazevProfiluSTART()
 		aktual.pop_back();
 	}
 }
-std::list<std::string> Menu::AktualNazevProfilu(int index, int poradi, int inkrement, bool del)
+void Menu::AktualNazevProfilu(int index, int poradi, int inkrement, bool del)
 {
 	std::list<std::string> temp = profil.nacteni_jmen_profilu();
 	std::list<std::string>::iterator itr = temp.begin();
@@ -263,5 +254,4 @@ std::list<std::string> Menu::AktualNazevProfilu(int index, int poradi, int inkre
 		aktual.push_back(*itr);
 		itr++;
 	}
-	return aktual;
 }

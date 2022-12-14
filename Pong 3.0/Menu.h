@@ -72,12 +72,9 @@ public:
 		y,
 	};
 
-
-	std::vector<int> ulozena_data;
 	std::vector<int> zavory;
 	std::vector<int> oznaceni;
 	std::list<std::string> aktual;
-
 
 	//-----------------------  Input  -----------------------//
 
@@ -95,6 +92,6 @@ public:
 
 	int IndexProfilu(int inkrement = 0);
 	void AktualNazevProfiluSTART();
-	std::list<std::string> AktualNazevProfilu(int index, int poradi, int inkrement = 0, bool del = 0);
+	void AktualNazevProfilu(int index, int poradi, int inkrement = 0, bool del = 0);
 private:
 };

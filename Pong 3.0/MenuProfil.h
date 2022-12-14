@@ -11,7 +11,7 @@ public:
     MenuProfil() : Menu(profil_e, 10, 8, 8)
     {
         Preklad transl;
-      
+
         SpodniZavoraSet();
         AktualNazevProfiluSTART();
         ProfilVykresleni(JazykSet());

@@ -42,9 +42,6 @@ std::vector<int> Profily::vlozeni_dat_do_vektoru(int profil, std::vector<int> d)
 	if (d.at(0) == 5)
 		data_profil.at(5) = d.at(1);
 
-	jazyk = data_profil.at(0);
-	level = data_profil.at(1);
-
 	return data_profil;
 }
 
@@ -258,6 +255,38 @@ std::list<std::string> Profily::nacteni_jmen_profilu()
 		profily_jmena = profily_jmena->NextSiblingElement("Nazev_profilu");
 	}
 	return v_v_pismen;
+}
+
+void Profily::vybraniprofilu(int profil)
+{
+	std::vector<int> vektor_dat = nacteni_dat_profilu(profil);
+
+	jsem_v_profilu = profil;
+
+	/*level = vektor_dat.at(0);
+	exp = vektor_dat.at(1);
+	plosina_skin = vektor_dat.at(2);
+	highscore_cas = vektor_dat.at(3);
+	highscore_znicenych_bloku = vektor_dat.at(4);*/
+
+	int jazyk_v = vektor_dat.at(0);
+	int level_v = vektor_dat.at(1);
+	int exp_v = vektor_dat.at(2);
+	int plosina_skin_v = vektor_dat.at(3);
+	int highscore_cas_v = vektor_dat.at(4);
+	int highscore_znicenych_bloku_v = vektor_dat.at(5);
+
+	//prepsani_dat(jazyk, plosina_skin, highscore_cas, highscore_znicenych_bloku, level, exp);
+	prepsani_dat(jazyk_v, plosina_skin_v, highscore_cas_v, highscore_znicenych_bloku_v, level_v, exp_v);
+}
+void Profily::prepsani_dat(int& jazyk_v, int& plosina_skin_v, int& highscore_cas_v, int& highscore_znicenych_bloku_v, int& level_v, int& exp_v)
+{
+	jazyk = jazyk_v;
+	level = level_v;
+	exp = exp_v;
+	plosina_skin = plosina_skin_v;
+	highscore_cas = highscore_cas_v;
+	highscore_znicenych_bloku = highscore_znicenych_bloku_v;
 }
 
 //-----------------------  Zmena jmena ?  -----------------------//

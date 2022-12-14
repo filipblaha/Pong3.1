@@ -51,6 +51,9 @@
     <ClCompile Include="MenuOvladani.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MenuVzhledPlosiny.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Menu.h">
@@ -90,6 +93,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MenuOvladani.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuVzhledPlosiny.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

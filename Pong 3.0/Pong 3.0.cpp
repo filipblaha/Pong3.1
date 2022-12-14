@@ -4,12 +4,12 @@
 #include "MenuNastaveni.h"
 #include "MenuOvladani.h"
 
-bool Klasik(MenuProfil data)
+bool Klasik(Profily data)
 {
 	return 0;
 }
 
-bool OvladaniMenu(MenuProfil data)
+bool OvladaniMenu(Profily data)
 {
 	MenuOvladani menu;
 	while (OvladaniMenu)
@@ -52,7 +52,7 @@ bool OvladaniMenu(MenuProfil data)
 		}
 	}
 }
-bool NastaveniMenu(MenuProfil data)
+bool NastaveniMenu(Profily data)
 {
 	MenuNastaveni menu;
 	while (NastaveniMenu)
@@ -98,11 +98,11 @@ bool NastaveniMenu(MenuProfil data)
 		}
 	}
 }
-bool VzhledPlosinyMenu(MenuProfil data)
+bool VzhledPlosinyMenu(Profily data)
 {
 	return 0;
 }
-bool HerniModyMenu(MenuProfil data)
+bool HerniModyMenu(Profily data)
 {
 	MenuHerniMody menu;
 	while (HerniModyMenu)
@@ -151,7 +151,7 @@ bool HerniModyMenu(MenuProfil data)
 	}
 }
 
-bool HlavniMenu(MenuProfil data)
+bool HlavniMenu(Profily data)
 {
 	MenuHlavni menu;
 	while (HlavniMenu)
@@ -203,7 +203,7 @@ bool HlavniMenu(MenuProfil data)
 bool ProfilMenu()
 {
 	MenuProfil menu;
-	Profily save;
+	Profily data;
 	while (ProfilMenu)
 	{
 		switch (menu.VstupMenu(menu.profil_e))
@@ -211,9 +211,9 @@ bool ProfilMenu()
 		case menu.enter:
 		{
 			menu.Rozhodovac(menu.enter);
-			while (HlavniMenu(menu))
+			while (HlavniMenu(data))
 			{
-				save.ulozeni_profilu(menu.profil_e);
+				data.ulozeni_profilu(menu.profil_e);
 			}
 			return 0;
 		}
