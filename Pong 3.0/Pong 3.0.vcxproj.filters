@@ -24,22 +24,28 @@
     <ClCompile Include="Profily.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tinyxml2.cpp">
+    <ClCompile Include="Tinyxml2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Plosina.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Menu_profil.cpp">
+    <ClCompile Include="MenuProfil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Menu_hlavni.cpp">
+    <ClCompile Include="MenuHlavni.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Commands.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Preklad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuHerniMody.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuNastaveni.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,7 +56,7 @@
     <ClInclude Include="Profily.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="tinyxml2.h">
+    <ClInclude Include="Tinyxml2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Plosina.h">
@@ -59,19 +65,25 @@
     <ClInclude Include="Objekt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Hraci_pole.h">
+    <ClInclude Include="HraciPole.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Commands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Menu_profil.h">
+    <ClInclude Include="MenuProfil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Menu_hlavni.h">
+    <ClInclude Include="MenuHlavni.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Preklad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuHerniMody.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuNastaveni.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

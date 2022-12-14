@@ -1,4 +1,4 @@
-#include "Menu_profil.h"
+#include "MenuProfil.h"
 
 //-----------------------  Input  -----------------------//
 
@@ -9,13 +9,9 @@ int MenuProfil::VstupMenu(int strana)
 	case 'w':
 	{
 		OznaceniSmazani();
-		if ((oznaceni.at(y) > zavory.at(0)))
+		if (oznaceni.at(y) > zavory.at(0))
 		{
-			if (oznaceni.at(y) <= 12)
-			{
-				oznaceni.at(y) -= 2;
-			}
-			return posun;
+			oznaceni.at(y) -= 2;
 		}
 		else
 		{
@@ -24,19 +20,15 @@ int MenuProfil::VstupMenu(int strana)
 				Rozhodovac(0, 1);
 				TextProfilVykresleni(JazykSet());
 			}
-			return posun;
 		}
+		return posun;
 	}
 	case 's':
 	{
 		OznaceniSmazani();
-		if ((oznaceni.at(y) < zavory.at(1)) && (strana == profil_e))
+		if (oznaceni.at(y) < zavory.at(1))
 		{
-			if (oznaceni.at(y) < 12)
-			{
-				oznaceni.at(y) += 2;
-			}
-			return posun;
+			oznaceni.at(y) += 2;
 		}
 		else
 		{
@@ -45,8 +37,8 @@ int MenuProfil::VstupMenu(int strana)
 				Rozhodovac(0, -1);
 				TextProfilVykresleni(JazykSet());
 			}
-			return posun;
 		}
+		return posun;
 	}
 	case '\r':
 	{
@@ -54,17 +46,14 @@ int MenuProfil::VstupMenu(int strana)
 	}
 	case 'q':
 	{
-		if (strana == profil_e)
-		{
-			return exit;
-		}
+		set.Prechod();
+		return exit;
 	}
 	case char(8) :
 	{
-		if (strana == profil_e)
-		{
+		if (IndexProfilu() != 0 || oznaceni.at(y) != 8)
 			return del;
-		}
+		break;
 	}
 	case 'l':
 	{
@@ -113,7 +102,7 @@ void MenuProfil::Rozhodovac(int prikaz, int inkrement)
 			RamecekSmazani();
 			AktualNazevProfilu(index, poradi, 0, 1);
 			OznaceniSet();
-			ProfilVykresleni(profil.jazyk);
+			ProfilVykresleni(JazykSet());
 		}
 	}
 	else
@@ -231,7 +220,6 @@ void MenuProfil::ProfilVykresleni(int jazyk)
 			std::wcout << L"\x2500";
 	}
 	TextProfilVykresleni(jazyk);
-	OznaceniVykresleni();
 }
 void MenuProfil::TextProfilVykresleni(int jazyk)
 {
@@ -247,9 +235,8 @@ void MenuProfil::TextProfilVykresleni(int jazyk)
 	itr = wl.begin();
 	itri = p.begin();
 
-
-	OznaceniVykresleni();
 	RamecekSmazani();
+	OznaceniVykresleni();
 
 	///-------  Text  -------//
 

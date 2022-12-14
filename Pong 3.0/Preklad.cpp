@@ -94,7 +94,7 @@ std::vector<std::wstring> Preklad::NacteniTextHlavni()
 	}
 	return StringToWString(vektor_stringu);
 }
-std::vector<std::wstring> Preklad::NacteniTextHerni_mody()
+std::vector<std::wstring> Preklad::NacteniTextHerniMody()
 {
 	XMLDocument xmlDoc;
 
@@ -126,7 +126,7 @@ std::vector<std::wstring> Preklad::NacteniTextHerni_mody()
 	}
 	return StringToWString(vektor_stringu);
 }
-std::vector<std::wstring> Preklad::NacteniTextVzhled_plosiny()
+std::vector<std::wstring> Preklad::NacteniTextVzhledPlosiny()
 {
 	XMLDocument xmlDoc;
 
@@ -222,7 +222,7 @@ std::vector<std::wstring> Preklad::NacteniTextOvladani()
 	}
 	return StringToWString(vektor_stringu);
 }
-std::vector<std::wstring> Preklad::NacteniTextKonec_kola()
+std::vector<std::wstring> Preklad::NacteniTextKonecKola()
 {
 	XMLDocument xmlDoc;
 

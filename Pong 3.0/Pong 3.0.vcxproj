@@ -128,26 +128,30 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="Menu_hlavni.cpp" />
-    <ClCompile Include="Menu_profil.cpp" />
+    <ClCompile Include="MenuHerniMody.cpp" />
+    <ClCompile Include="MenuHlavni.cpp" />
+    <ClCompile Include="MenuProfil.cpp" />
+    <ClCompile Include="MenuNastaveni.cpp" />
     <ClCompile Include="Pong 3.0.cpp" />
     <ClCompile Include="Preklad.cpp" />
     <ClCompile Include="Profily.cpp" />
     <ClCompile Include="Plosina.cpp" />
     <ClCompile Include="Commands.cpp" />
-    <ClCompile Include="tinyxml2.cpp" />
+    <ClCompile Include="Tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Commands.h" />
-    <ClInclude Include="Hraci_pole.h" />
-    <ClInclude Include="Menu_hlavni.h" />
-    <ClInclude Include="Menu_profil.h" />
+    <ClInclude Include="HraciPole.h" />
+    <ClInclude Include="MenuNastaveni.h" />
+    <ClInclude Include="MenuHerniMody.h" />
+    <ClInclude Include="MenuHlavni.h" />
+    <ClInclude Include="MenuProfil.h" />
     <ClInclude Include="Objekt.h" />
     <ClInclude Include="Plosina.h" />
     <ClInclude Include="Preklad.h" />
     <ClInclude Include="Profily.h" />
     <ClInclude Include="Menu.h" />
-    <ClInclude Include="tinyxml2.h" />
+    <ClInclude Include="Tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="profily.xml" />

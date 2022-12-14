@@ -2,7 +2,7 @@
 #include <vector>
 #include <list>
 
-#include "tinyxml2.h"
+#include "Tinyxml2.h"
 #include "Commands.h"
 
 #ifndef XMLCheckResult

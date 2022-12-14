@@ -36,9 +36,15 @@ public:
 	const int delka_menu = 40;
 	const int vyska_menu = 20;
 
+
+	enum jazyk_e
+	{
+		CZ,
+		EN,
+	};
 	enum menu_strana
 	{
-		profil_e,
+		profil_e = 3,
 		hlavni_e,
 		herni_mody_e,
 		vzhled_plosiny_e,
@@ -46,17 +52,19 @@ public:
 		ovladani_e,
 		konec_kola_e,
 	};
+	enum herni_mody
+	{
+		klasik_e = 10,
+		bloky_padaji_e,
+		rogue_like_e,
+	};
 	enum vstup
 	{
-		exit,
+		exit = 13,
 		enter,
 		posun,
 		del,
-	};
-	enum jazyk_e
-	{
-		CZ,
-		EN,
+		balic_e,
 	};
 	enum souradnice
 	{

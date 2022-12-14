@@ -2,7 +2,7 @@
 	<zaklad>
 		<profil>8</profil>
 		<hlavni>4</hlavni>
-		<herni_mody>5</herni_mody>
+		<herni_mody>4</herni_mody>
 		<vzhled_plosiny>2</vzhled_plosiny>
 		<nastaveni>5</nastaveni>
 		<ovladani>9</ovladani>
@@ -28,9 +28,8 @@
 		<herni_mody>
 			<string>HERNI MODY</string>
 			<string>Klasik</string>
-			<string>Rogue like - zatim nefunkcni</string>
-			<string>Stejne tvary - zatim nefunkcni</string>
 			<string>Bloky padaji</string>
+			<string>Rogue like - zatim nefunkcni</string>
 		</herni_mody>
 		<vzhled_plosiny>
 			<string>VZHLED PLOSINY</string>
@@ -87,9 +86,8 @@
 		<herni_mody>
 			<string>GAME MODES</string>
 			<string>Classic</string>
-			<string>Rogue like - zatim nefunkcni</string>
-			<string>Hit the same color - zatim nefunkcni</string>
 			<string>Falling blocks</string>
+			<string>Rogue like - zatim nefunkcni</string>
 		</herni_mody>
 		<vzhled_plosiny>
 			<string>SKINS</string>

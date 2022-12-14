@@ -1,18 +1,18 @@
-#include "Menu_hlavni.h"
+#include "MenuHlavni.h"
 
 //-----------------------  Input  -----------------------//
 
 int MenuHlavni::Rozhodovac(int prikaz)
 {
-	if (oznaceni.at(y) == 8)
+	if (oznaceni.at(y) == 10)
 	{
 		return herni_mody_e;
 	}
-	if (oznaceni.at(y) == 10)
+	if (oznaceni.at(y) == 12)
 	{
 		return vzhled_plosiny_e;
 	}
-	if (oznaceni.at(y) == 12)
+	if (oznaceni.at(y) == 14)
 	{
 		return nastaveni_e;
 	}
@@ -98,14 +98,13 @@ void MenuHlavni::HlavniVykresleni(int jazyk)
 			}
 		}
 	}
+	OznaceniVykresleni();
 	TextHlavniVykresleni(jazyk);
 }
 void MenuHlavni::TextHlavniVykresleni(int jazyk)
 {
 	transl.jazyk = jazyk;
-
 	text = transl.NacteniTextHlavni();
-	OznaceniVykresleni();
 
 	///-------  Text  -------//
 

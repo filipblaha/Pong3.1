@@ -9,13 +9,11 @@ int Menu::VstupMenu(int strana)
 	case 'w':
 	{
 		OznaceniSmazani();
+		if (oznaceni.at(y) > zavory.at(0))
 		{
-			if (oznaceni.at(y) > zavory.at(0))
-			{
-				oznaceni.at(y) -= 2;
-				return posun;
-			}
-			/*if ((oznaceni.at(y) > zavory.at(0)) && (strana == 0 || strana == 1))
+			oznaceni.at(y) -= 2;
+		}
+		/*if ((oznaceni.at(y) > zavory.at(0)) && (strana == 0 || strana == 1))
 			{
 				oznaceni.at(y) -= 2;
 			}
@@ -40,19 +38,16 @@ int Menu::VstupMenu(int strana)
 			{
 				oznaceni.at(y) = oznaceni.at(y)--;
 			}*/
-		}
-		break;
+		return posun;
 	}
 	case 's':
 	{
 		OznaceniSmazani();
+		if (oznaceni.at(y) < zavory.at(1))
 		{
-			if (oznaceni.at(y) < zavory.at(1))
-			{
-				oznaceni.at(y) += 2;
-				return posun;
-			}
-			/*if ((oznaceni.at(y) < zavory.at(1)) && (strana == 0 || strana == 1))
+			oznaceni.at(y) += 2;
+		}
+		/*if ((oznaceni.at(y) < zavory.at(1)) && (strana == 0 || strana == 1))
 			{
 				oznaceni.at(y) += 2;
 			}
@@ -76,8 +71,7 @@ int Menu::VstupMenu(int strana)
 			{
 				oznaceni.at(y)++;
 			}*/
-		}
-		break;
+		return posun;
 	}
 	case 'a':
 	{
@@ -94,41 +88,27 @@ int Menu::VstupMenu(int strana)
 	case 'd':
 	{
 		OznaceniSmazani();
+		if (oznaceni.at(x) < zavory.at(3) && (strana == vzhled_plosiny_e))
 		{
-			if (oznaceni.at(x) < zavory.at(3) && (strana == vzhled_plosiny_e))
-			{
-				oznaceni.at(x) += 10;
-			}
-			return posun;
+			oznaceni.at(x) += 10;
 		}
-		break;
+		return posun;
 	}
 	case '\r':
 	{
-		{
-			return enter;
-		}
-		break;
+		return enter;
 	}
 	case ' ':
 	{
+		/*if (strana == -1)
 		{
-			/*if (strana == -1)
-			{
-				return exit;
-			}*/
-		}
-		break;
+			return exit;
+		}*/
 	}
 	case 'q':
 	{
-		{
-			if (strana == profil_e)
-			{
-				return exit;
-			}
-		}
-		break;
+		set.Prechod();
+		return exit;
 	}
 	}
 }

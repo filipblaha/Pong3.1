@@ -5,7 +5,7 @@
 #include <fcntl.h>
 #include <io.h>
 
-#include "tinyxml2.h"
+#include "Tinyxml2.h"
 using namespace tinyxml2;
 class Preklad
 {
@@ -52,10 +52,10 @@ public:
 
 	std::vector<std::wstring> NacteniTextProfil();
 	std::vector<std::wstring> NacteniTextHlavni();
-	std::vector<std::wstring> NacteniTextHerni_mody();
-	std::vector<std::wstring> NacteniTextVzhled_plosiny();
+	std::vector<std::wstring> NacteniTextHerniMody();
+	std::vector<std::wstring> NacteniTextVzhledPlosiny();
 	std::vector<std::wstring> NacteniTextNastaveni();
 	std::vector<std::wstring> NacteniTextOvladani();
-	std::vector<std::wstring> NacteniTextKonec_kola();
+	std::vector<std::wstring> NacteniTextKonecKola();
 };
 
