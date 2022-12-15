@@ -56,58 +56,60 @@ int MenuVzhledPlosiny::Rozhodovac(int prikaz)
 
 void MenuVzhledPlosiny::VzhledPlosinyVykresleni(int jazyk)
 {
+	wstring 
+
 	/*set.SetCursorPosition(7, 10);
-	std::wcout << "IIIIII";
+	wcout << "IIIIII";
 
 	if (navod_menu.level >= navod_menu.potr_urov1)
 	{
 		set.SetCursorPosition(17, 10);
-		std::wcout << "======";
+		wcout << "======";
 	}
 	else
 	{
 		set.SetCursorPosition(17, 10);
-		std::wcout << "??????";
+		wcout << "??????";
 	}
 	if (navod_menu.level >= navod_menu.potr_urov2)
 	{
 		set.SetCursorPosition(27, 10);
-		std::wcout << "FELZCU";
+		wcout << "FELZCU";
 	}
 	else
 	{
 		set.SetCursorPosition(27, 10);
-		std::wcout << "??????";
+		wcout << "??????";
 	}
 	if (navod_menu.level >= navod_menu.potr_urov3)
 	{
 		set.SetCursorPosition(7, 14);
-		std::wcout << "8====D";
+		wcout << "8====D";
 	}
 	else
 	{
 		set.SetCursorPosition(7, 14);
-		std::wcout << "??????";
+		wcout << "??????";
 	}
 	if (navod_menu.level >= navod_menu.potr_urov4)
 	{
 		set.SetCursorPosition(17, 14);
-		std::wcout << char(174) << char(174) << char(174) << char(175) << char(175) << char(175);
+		wcout << char(174) << char(174) << char(174) << char(175) << char(175) << char(175);
 	}
 	else
 	{
 		set.SetCursorPosition(17, 14);
-		std::wcout << "??????";
+		wcout << "??????";
 	}
 	if (navod_menu.level >= navod_menu.potr_urov5)
 	{
 		set.SetCursorPosition(27, 14);
-		std::wcout << "______";
+		wcout << "______";
 	}
 	else
 	{
 		set.SetCursorPosition(27, 14);
-		std::wcout << "??????";
+		wcout << "??????";
 	}*/
 
 	OznaceniVykresleni();
@@ -121,7 +123,7 @@ void MenuVzhledPlosiny::TextVzhledPlosinyVykresleni(int jazyk)
 	///-------  Text  -------//
 
 	set.SetCursorPosition(13, 3);
-	std::wcout << text.at(0);
+	wcout << text.at(0);
 	set.SetCursorPosition(18, 3);
-	std::wcout << text.at(1);
+	wcout << text.at(1);
 }

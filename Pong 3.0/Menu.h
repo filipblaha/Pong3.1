@@ -72,9 +72,9 @@ public:
 		y,
 	};
 
-	std::vector<int> zavory;
-	std::vector<int> oznaceni;
-	std::list<std::string> aktual;
+	vector<int> zavory;
+	vector<int> oznaceni;
+	list<string> aktual;
 
 	//-----------------------  Input  -----------------------//
 

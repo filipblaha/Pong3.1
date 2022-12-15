@@ -16,7 +16,7 @@ public:
         AktualNazevProfiluSTART();
         ProfilVykresleni(JazykSet());
     }
-    std::vector<std::wstring> text;
+    vector<wstring> text;
 
     //-----------------------  Input  -----------------------//
 
@@ -35,7 +35,7 @@ private:
 
     void SpodniZavoraSet();
     void OznaceniSet();
-    std::string NazevProfiluSet();
+    string NazevProfiluSet();
 
     //-----------------------  Vykresleni (private)  -----------------------//
 

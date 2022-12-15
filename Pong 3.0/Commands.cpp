@@ -7,8 +7,8 @@ void Commands::Prechod()
 	{
 		for (int i = 0; i < 40; i++)
 		{
-			std::wcout << " ";
+			wcout << " ";
 		}
-		std::wcout << "\n";
+		wcout << "\n";
 	}
 	}

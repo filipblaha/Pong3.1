@@ -57,25 +57,25 @@ int MenuOvladani::Rozhodovac(int prikaz)
 void MenuOvladani::OvladaniVykresleni(int jazyk)
 {
 	set.SetCursorPosition(9, 7);
-	std::wcout << "W";
+	wcout << "W";
 	set.SetCursorPosition(7, 8);
-	std::wcout << "A S D";
+	wcout << "A S D";
 	set.SetCursorPosition(17, 8);
 	set.SetCursorPosition(26, 8);
-	std::wcout << "Q";
+	wcout << "Q";
 
 	set.SetCursorPosition(7, 12);
 	for (int i = 0; i < 20;i++)
-		std::wcout << ".";
+		wcout << ".";
 	set.SetCursorPosition(7, 13);
 	for (int i = 0; i < 20;i++)
-		std::wcout << ".";
+		wcout << ".";
 	set.SetCursorPosition(7, 14);
 	for (int i = 0; i < 20;i++)
-		std::wcout << ".";
+		wcout << ".";
 	set.SetCursorPosition(7, 15);
 	for (int i = 0; i < 20;i++)
-		std::wcout << ".";
+		wcout << ".";
 
 	OznaceniVykresleni();
 	TextOvladaniVykresleni(jazyk);
@@ -88,31 +88,31 @@ void MenuOvladani::TextOvladaniVykresleni(int jazyk)
 	///-------  Text  -------//
 
 	set.SetCursorPosition(15, 3);
-	std::wcout << text.at(0);
+	wcout << text.at(0);
 	set.SetCursorPosition(6, 5);
-	std::wcout << text.at(1);
+	wcout << text.at(1);
 	set.SetCursorPosition(17, 8);
-	std::wcout << text.at(2);
+	wcout << text.at(2);
 	set.SetCursorPosition(6, 10);
-	std::wcout << text.at(3);
+	wcout << text.at(3);
 	set.SetCursorPosition(7, 12);
-	std::wcout << text.at(4);
+	wcout << text.at(4);
 	set.SetCursorPosition(29, 12);
 	
 	set.SetCursorPosition(7, 13);
-	std::wcout << text.at(5);
+	wcout << text.at(5);
 	set.SetCursorPosition(29, 13);
 	
 	set.SetCursorPosition(7, 14);
-	std::wcout << text.at(6);
+	wcout << text.at(6);
 	set.SetCursorPosition(29, 14);
 	
-	std::wcout << text.at(7);
-	//std::wcout << (char)navod_menu.pouziti_schopnosti;
+	wcout << text.at(7);
+	//wcout << (char)navod_menu.pouziti_schopnosti;
 
 	set.SetCursorPosition(7, 15);
-	std::wcout << text.at(8);
+	wcout << text.at(8);
 	set.SetCursorPosition(29, 15);
-	std::wcout << "Esc";
-	//std::wcout << (char)navod_menu.pauza;
+	wcout << "Esc";
+	//wcout << (char)navod_menu.pauza;
 }

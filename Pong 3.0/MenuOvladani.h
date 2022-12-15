@@ -14,7 +14,7 @@ public:
 
         OvladaniVykresleni(JazykSet());
     }
-    std::vector<std::wstring> text;
+    vector<wstring> text;
 
     //-----------------------  Input  -----------------------//
 

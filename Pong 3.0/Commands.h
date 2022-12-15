@@ -7,6 +7,8 @@
 #include <fcntl.h>
 #include <io.h>
 
+using namespace std;
+
 class Commands
 {
 public:
@@ -15,7 +17,7 @@ public:
 	void SetCursorPosition(int x, int y)
 	{
 		static const HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-		std::cout.flush();
+		cout.flush();
 		COORD coord = { (SHORT)x, (SHORT)y };
 		SetConsoleCursorPosition(hOut, coord);
 	}

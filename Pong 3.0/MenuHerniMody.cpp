@@ -33,11 +33,11 @@ void MenuHerniMody::TextHerniModyVykresleni(int jazyk)
 	///-------  Text  -------//
 
 	set.SetCursorPosition(14, 4);
-	std::wcout << text.at(0);
+	wcout << text.at(0);
 	set.SetCursorPosition(6, 10);
-	std::wcout << text.at(1);
+	wcout << text.at(1);
 	set.SetCursorPosition(6, 12);
-	std::wcout << text.at(2);
+	wcout << text.at(2);
 	set.SetCursorPosition(6, 14);
-	std::wcout << text.at(3);
+	wcout << text.at(3);
 }

@@ -1,16 +1,17 @@
 #include<iostream>
 #include<list>
 #include<vector>
+using namespace std;
 
-void erase_list(std::list<std::string> &list, int x)
+void erase_list(list<string> &list, int x)
 {
-	std::list<std::string>::iterator itr;
+	list<string>::iterator itr;
 	itr = list.begin();
 
 	advance(itr, x);
 	list.erase(itr);
 }
-void add_list(std::list<std::string>& list, std::vector<std::string> v)
+void add_list(list<string>& list, vector<string> v)
 {
 	for (int i = 0; i < v.size(); i++)
 	{
@@ -21,6 +22,6 @@ void add_list(std::list<std::string>& list, std::vector<std::string> v)
 int main()
 {
 	char s;
-	std::cin >> s;
+	cin >> s;
 	
 }

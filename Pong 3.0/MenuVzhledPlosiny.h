@@ -14,7 +14,7 @@ public:
 
         VzhledPlosinyVykresleni(JazykSet());
     }
-    std::vector<std::wstring> text;
+    vector<wstring> text;
 
     bool dostatecna_uroven;
 

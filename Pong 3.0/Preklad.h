@@ -6,7 +6,10 @@
 #include <io.h>
 
 #include "Tinyxml2.h"
+
 using namespace tinyxml2;
+using namespace std;
+
 class Preklad
 {
 public:
@@ -40,22 +43,22 @@ public:
 
 	int jazyk;
 
-	std::vector<std::string> vektor_stringu;
-	std::vector<std::wstring> vektor_wstringu;
+	vector<string> vektor_stringu;
+	vector<wstring> vektor_wstringu;
 
 	//-----------------------  Premena string na wstring  -----------------------//
 
-	std::vector<std::wstring> StringToWString(std::vector<std::string> s);
-	std::list<std::wstring> StringToWStringList(std::list<std::string> s);
+	vector<wstring> StringToWString(vector<string> s);
+	list<wstring> StringToWStringList(list<string> s);
 
 	//-----------------------  Nacteni textu  -----------------------//
 
-	std::vector<std::wstring> NacteniTextProfil();
-	std::vector<std::wstring> NacteniTextHlavni();
-	std::vector<std::wstring> NacteniTextHerniMody();
-	std::vector<std::wstring> NacteniTextVzhledPlosiny();
-	std::vector<std::wstring> NacteniTextNastaveni();
-	std::vector<std::wstring> NacteniTextOvladani();
-	std::vector<std::wstring> NacteniTextKonecKola();
+	vector<wstring> NacteniTextProfil();
+	vector<wstring> NacteniTextHlavni();
+	vector<wstring> NacteniTextHerniMody();
+	vector<wstring> NacteniTextVzhledPlosiny();
+	vector<wstring> NacteniTextNastaveni();
+	vector<wstring> NacteniTextOvladani();
+	vector<wstring> NacteniTextKonecKola();
 };
 

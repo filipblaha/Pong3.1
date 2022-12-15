@@ -114,7 +114,7 @@ int Menu::VstupMenu(int strana)
 }
 int Menu::JazykSet(bool zmena)
 {
-	std::vector<int> v = profil.nacteni_dat_profilu(profil.jsem_v_profilu);
+	vector<int> v = profil.nacteni_dat_profilu(profil.jsem_v_profilu);
 
 	if (zmena)
 	{
@@ -139,53 +139,53 @@ void Menu::MenuSTARTVykresleni()
 		{
 			if (j == 0 && i == 0)
 			{
-				std::wcout << L"\x2554";
+				wcout << L"\x2554";
 			}
 			else if (i == 0 && j == vyska_menu - 1)
 			{
-				std::wcout << L"\x255a";
+				wcout << L"\x255a";
 			}
 			else if (j == 0 && i == delka_menu - 1)
 			{
-				std::wcout << L"\x2557";
+				wcout << L"\x2557";
 			}
 			else if (j == vyska_menu - 1 && i == delka_menu - 1)
 			{
-				std::wcout << L"\x255d";
+				wcout << L"\x255d";
 			}
 			else if (j == 0 || j == vyska_menu - 1)
 			{
-				std::wcout << L"\x2550";
+				wcout << L"\x2550";
 			}
 			else if (i == 0 || i == delka_menu - 1)
 			{
-				std::wcout << L"\x2551";
+				wcout << L"\x2551";
 			}
 			else
 			{
-				std::wcout << ' ';
+				wcout << ' ';
 			}
 		}
 		if (!(j == vyska_menu - 1))
-			std::wcout << '\n';
+			wcout << '\n';
 	}
 }
 void Menu::OznaceniVykresleni()
 {
 	set.SetCursorPosition(oznaceni.at(x), oznaceni.at(y));
-	std::wcout << L"\x25ba";
+	wcout << L"\x25ba";
 }
 void Menu::OznaceniSmazani()
 {
 	set.SetCursorPosition(oznaceni.at(x), oznaceni.at(y));
-	std::wcout << ' ';
+	wcout << ' ';
 }
 void Menu::OtazkaSmazani()
 {
 	set.SetCursorPosition(5, 2);
-	std::wcout << "                               ";
+	wcout << "                               ";
 	set.SetCursorPosition(26, 3);
-	std::wcout << "       ";
+	wcout << "       ";
 }
 
 //-----------------------  Profil  -----------------------//
@@ -193,8 +193,8 @@ void Menu::OtazkaSmazani()
 int Menu::IndexProfilu(int inkrement)
 {
 	int index = 0;
-	std::list<std::string> temp = profil.nacteni_jmen_profilu();
-	std::list<std::string>::iterator itr = temp.begin();
+	list<string> temp = profil.nacteni_jmen_profilu();
+	list<string>::iterator itr = temp.begin();
 	while (*itr != *aktual.begin())
 	{
 		itr++;
@@ -225,8 +225,8 @@ void Menu::AktualNazevProfiluSTART()
 }
 void Menu::AktualNazevProfilu(int index, int poradi, int inkrement, bool del)
 {
-	std::list<std::string> temp = profil.nacteni_jmen_profilu();
-	std::list<std::string>::iterator itr = temp.begin();
+	list<string> temp = profil.nacteni_jmen_profilu();
+	list<string>::iterator itr = temp.begin();
 	
 	if (del)
 	{
