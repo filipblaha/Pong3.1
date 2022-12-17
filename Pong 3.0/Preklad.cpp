@@ -30,9 +30,10 @@ list<wstring> Preklad::StringToWStringList(list<string> s)
 
 //-----------------------  Nacteni textu  -----------------------//
 
-vector<wstring> Preklad::NacteniTextProfil()
+vector<wstring> Preklad::NacteniTextProfil(Profily data)
 {
 	XMLDocument xmlDoc;
+
 
 	vector<int> vektor_poctu_stringu;
 	vektor_stringu.clear();
@@ -46,9 +47,9 @@ vector<wstring> Preklad::NacteniTextProfil()
 	profil->QueryIntText(&profil_stringu);
 
 	XMLElement*jazyk_p = root->FirstChildElement("CZ");
-	if (jazyk == CZ)
+	if (data.jazyk == CZ)
 		jazyk_p = root->FirstChildElement("CZ");
-	if (jazyk == EN)
+	if (data.jazyk == EN)
 		jazyk_p = root->FirstChildElement("EN");
 
 	XMLElement* menu =jazyk_p->FirstChildElement("profil");
@@ -62,7 +63,7 @@ vector<wstring> Preklad::NacteniTextProfil()
 	}
 	return StringToWString(vektor_stringu);
 }
-vector<wstring> Preklad::NacteniTextHlavni()
+vector<wstring> Preklad::NacteniTextHlavni(Profily data)
 {
 	XMLDocument xmlDoc;
 
@@ -78,9 +79,9 @@ vector<wstring> Preklad::NacteniTextHlavni()
 	profil->QueryIntText(&profil_stringu);
 
 	XMLElement*jazyk_p = root->FirstChildElement("CZ");
-	if (jazyk == CZ)
+	if (data.jazyk == CZ)
 		jazyk_p = root->FirstChildElement("CZ");
-	if (jazyk == EN)
+	if (data.jazyk == EN)
 		jazyk_p = root->FirstChildElement("EN");
 
 	XMLElement* menu =jazyk_p->FirstChildElement("hlavni");
@@ -94,7 +95,7 @@ vector<wstring> Preklad::NacteniTextHlavni()
 	}
 	return StringToWString(vektor_stringu);
 }
-vector<wstring> Preklad::NacteniTextHerniMody()
+vector<wstring> Preklad::NacteniTextHerniMody(Profily data)
 {
 	XMLDocument xmlDoc;
 
@@ -110,9 +111,9 @@ vector<wstring> Preklad::NacteniTextHerniMody()
 	profil->QueryIntText(&profil_stringu);
 
 	XMLElement*jazyk_p = root->FirstChildElement("CZ");
-	if (jazyk == CZ)
+	if (data.jazyk == CZ)
 		jazyk_p = root->FirstChildElement("CZ");
-	if (jazyk == EN)
+	if (data.jazyk == EN)
 		jazyk_p = root->FirstChildElement("EN");
 
 	XMLElement* menu =jazyk_p->FirstChildElement("herni_mody");
@@ -126,7 +127,7 @@ vector<wstring> Preklad::NacteniTextHerniMody()
 	}
 	return StringToWString(vektor_stringu);
 }
-vector<wstring> Preklad::NacteniTextVzhledPlosiny()
+vector<wstring> Preklad::NacteniTextVzhledPlosiny(Profily data)
 {
 	XMLDocument xmlDoc;
 
@@ -142,9 +143,9 @@ vector<wstring> Preklad::NacteniTextVzhledPlosiny()
 	profil->QueryIntText(&profil_stringu);
 
 	XMLElement*jazyk_p = root->FirstChildElement("CZ");
-	if (jazyk == CZ)
+	if (data.jazyk == CZ)
 		jazyk_p = root->FirstChildElement("CZ");
-	if (jazyk == EN)
+	if (data.jazyk == EN)
 		jazyk_p = root->FirstChildElement("EN");
 
 	XMLElement* menu =jazyk_p->FirstChildElement("vzhled_plosiny");
@@ -158,7 +159,7 @@ vector<wstring> Preklad::NacteniTextVzhledPlosiny()
 	}
 	return StringToWString(vektor_stringu);
 }
-vector<wstring> Preklad::NacteniTextNastaveni()
+vector<wstring> Preklad::NacteniTextNastaveni(Profily data)
 {
 	XMLDocument xmlDoc;
 
@@ -174,9 +175,9 @@ vector<wstring> Preklad::NacteniTextNastaveni()
 	profil->QueryIntText(&profil_stringu);
 
 	XMLElement*jazyk_p = root->FirstChildElement("CZ");
-	if (jazyk == CZ)
+	if (data.jazyk == CZ)
 		jazyk_p = root->FirstChildElement("CZ");
-	if (jazyk == EN)
+	if (data.jazyk == EN)
 		jazyk_p = root->FirstChildElement("EN");
 
 	XMLElement* menu =jazyk_p->FirstChildElement("nastaveni");
@@ -190,7 +191,7 @@ vector<wstring> Preklad::NacteniTextNastaveni()
 	}
 	return StringToWString(vektor_stringu);
 }
-vector<wstring> Preklad::NacteniTextOvladani()
+vector<wstring> Preklad::NacteniTextOvladani(Profily data)
 {
 	XMLDocument xmlDoc;
 
@@ -206,9 +207,9 @@ vector<wstring> Preklad::NacteniTextOvladani()
 	profil->QueryIntText(&profil_stringu);
 
 	XMLElement*jazyk_p = root->FirstChildElement("CZ");
-	if (jazyk == CZ)
+	if (data.jazyk == CZ)
 		jazyk_p = root->FirstChildElement("CZ");
-	if (jazyk == EN)
+	if (data.jazyk == EN)
 		jazyk_p = root->FirstChildElement("EN");
 
 	XMLElement* menu =jazyk_p->FirstChildElement("ovladani");
@@ -222,7 +223,7 @@ vector<wstring> Preklad::NacteniTextOvladani()
 	}
 	return StringToWString(vektor_stringu);
 }
-vector<wstring> Preklad::NacteniTextKonecKola()
+vector<wstring> Preklad::NacteniTextKonecKola(Profily data)
 {
 	XMLDocument xmlDoc;
 
@@ -238,9 +239,9 @@ vector<wstring> Preklad::NacteniTextKonecKola()
 	profil->QueryIntText(&profil_stringu);
 
 	XMLElement*jazyk_p = root->FirstChildElement("CZ");
-	if (jazyk == CZ)
+	if (data.jazyk == CZ)
 		jazyk_p = root->FirstChildElement("CZ");
-	if (jazyk == EN)
+	if (data.jazyk == EN)
 		jazyk_p = root->FirstChildElement("EN");
 
 	XMLElement* menu =jazyk_p->FirstChildElement("konec_kola");

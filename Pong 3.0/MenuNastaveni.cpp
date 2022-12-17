@@ -2,7 +2,7 @@
 
 //-----------------------  Input  -----------------------//
 
-int MenuNastaveni::Rozhodovac(int prikaz)
+int MenuNastaveni::Rozhodovac(Profily& data, int prikaz)
 {
 	if (oznaceni.at(y) == 10)
 	{
@@ -24,15 +24,13 @@ int MenuNastaveni::Rozhodovac(int prikaz)
 	}
 	if (oznaceni.at(y) == 14 || oznaceni.at(y) == 16)
 	{
-		if(oznaceni.at(y) == 14 && JazykSet() != CZ)
-			JazykSet(1);
-		if (oznaceni.at(y) == 16 && JazykSet() != EN)
-			JazykSet(1);
+		JazykSet(data);
 
 		balic = 0;
 
 		set.Prechod();
 		MenuSTARTVykresleni();
+		NastaveniVykresleni(data);
 
 		return balic_e;
 	}
@@ -40,15 +38,14 @@ int MenuNastaveni::Rozhodovac(int prikaz)
 
 //-----------------------  Vykresleni -----------------------//
 
-void MenuNastaveni::NastaveniVykresleni(int jazyk)
+void MenuNastaveni::NastaveniVykresleni(Profily& data)
 {
 	OznaceniVykresleni();
-	TextNastaveniVykresleni(jazyk);
+	TextNastaveniVykresleni(data);
 }
-void MenuNastaveni::TextNastaveniVykresleni(int jazyk)
+void MenuNastaveni::TextNastaveniVykresleni(Profily& data)
 {
-	transl.jazyk = jazyk;
-	text = transl.NacteniTextNastaveni();
+	text = transl.NacteniTextNastaveni(data);
 
 	///-------  Text  -------//
 

@@ -1,10 +1,5 @@
 <root>
     <Zakladni>
-        <Pocet_profilu>2</Pocet_profilu>
-        <Uroven_profilu>
-            <Hodnota>0</Hodnota>
-            <Hodnota>5</Hodnota>
-        </Uroven_profilu>
         <Nazev_profilu>
             <Pismeno>78</Pismeno>
             <Pismeno>111</Pismeno>
@@ -27,7 +22,7 @@
         </Nazev_profilu>
     </Zakladni>
     <Profil>
-        <Hodnota>0</Hodnota>
+        <Hodnota>1</Hodnota>
         <Hodnota>0</Hodnota>
         <Hodnota>0</Hodnota>
         <Hodnota>0</Hodnota>

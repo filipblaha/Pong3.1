@@ -14,19 +14,17 @@ public:
 
         SpodniZavoraSet();
         AktualNazevProfiluSTART();
-        ProfilVykresleni(JazykSet());
     }
-    vector<wstring> text;
 
     //-----------------------  Input  -----------------------//
 
-    int VstupMenu(int strana);
-    void Rozhodovac(int prikaz, int inkrement = 0);
+    int VstupMenu(Profily& data, int strana);
+    void Rozhodovac(Profily &data, int prikaz, int inkrement = 0);
 
     //-----------------------  Vykresleni (public)  -----------------------//
 
-    void ProfilVykresleni(int jazyk);
-    void TextProfilVykresleni(int jazyk);
+    void ProfilVykresleni(Profily& data);
+    void TextProfilVykresleni(Profily& data);
     void OtazkaVykresleni();
 
 private:

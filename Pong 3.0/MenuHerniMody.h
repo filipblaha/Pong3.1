@@ -11,19 +11,16 @@ public:
     MenuHerniMody() : Menu(hlavni_e, 4, 10, 10, 14)
     {
         Preklad trans;
-
-        MenuHerniModyVykresleni(JazykSet());
     }
-    vector<wstring> text;
 
     //-----------------------  Input  -----------------------//
 
-    int Rozhodovac(int prikaz);
+    int Rozhodovac(Profily& data, int prikaz);
 
     //-----------------------  Vykresleni  -----------------------//
 
-    void MenuHerniModyVykresleni(int jazyk);
-    void TextHerniModyVykresleni(int jazyk);
+    void MenuHerniModyVykresleni(Profily& data);
+    void TextHerniModyVykresleni(Profily& data);
 
 private:
 };

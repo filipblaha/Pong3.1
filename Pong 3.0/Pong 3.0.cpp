@@ -3,35 +3,87 @@
 #include "MenuHerniMody.h"
 #include "MenuNastaveni.h"
 #include "MenuOvladani.h"
+#include "MenuVzhledPlosiny.h"
 
-bool Klasik(Profily data)
+
+
+bool Klasik(Profily &data)
 {
 	return 0;
 }
 
-bool OvladaniMenu(Profily data)
+bool HerniModyMenu(Profily &data)
+{
+	MenuHerniMody menu;
+
+	menu.MenuHerniModyVykresleni(data);
+	while (HerniModyMenu)
+	{
+		switch (menu.VstupMenu())
+		{
+		case menu.enter:
+		{
+			switch (menu.Rozhodovac(data, menu.enter))
+			{
+			case menu.klasik_e:
+			{
+				while (Klasik(data));
+				break;
+			}
+			/*case menu.bloky_padaji_e:
+			{
+				while (BlokyPadaji(data));
+				break;
+			}
+			case menu.rogue_like_e:
+			{
+				while (RogueLike(data));
+				break;
+			}*/
+			}
+			break;
+		}
+		case menu.posun:
+		{
+			menu.OznaceniVykresleni();
+			break;
+		}
+		case menu.exit:
+		{
+			return 0;
+		}
+		default:
+		{
+			menu.OznaceniVykresleni();
+		}
+		break;
+		}
+	}
+	return 0;
+}
+bool OvladaniMenu(Profily &data)
 {
 	MenuOvladani menu;
+
+	menu.OvladaniVykresleni(data);
 	while (OvladaniMenu)
 	{
 		switch (menu.VstupMenu(menu.ovladani_e))
 		{
 		case menu.enter:
 		{
+			switch (menu.Rozhodovac(data, menu.enter))
 			{
-				switch (menu.Rozhodovac(menu.enter))
-				{
-				case menu.ovladani_e:
-				{
-					
-					break;
-				}
-				case menu.balic_e:
-				{
-					
-					break;
-				}
-				}
+			case menu.ovladani_e:
+			{
+
+				break;
+			}
+			case menu.balic_e:
+			{
+
+				break;
+			}
 			}
 			break;
 		}
@@ -51,33 +103,34 @@ bool OvladaniMenu(Profily data)
 		break;
 		}
 	}
+	return 1;
 }
-bool NastaveniMenu(Profily data)
+bool NastaveniMenu(Profily &data)
 {
 	MenuNastaveni menu;
+
+	menu.NastaveniVykresleni(data);
 	while (NastaveniMenu)
 	{
-		switch (menu.VstupMenu(menu.herni_mody_e))
+		switch (menu.VstupMenu())
 		{
 		case menu.enter:
 		{
+			switch (menu.Rozhodovac(data, menu.enter))
 			{
-				switch (menu.Rozhodovac(menu.enter))
-				{
-				case menu.ovladani_e:
-				{
-					while (OvladaniMenu(data));
-					menu.MenuSTARTVykresleni();
-					menu.NastaveniVykresleni(menu.JazykSet());
-					break;
-				}
-				case menu.balic_e:
-				{
-					menu.SpodniZavoraSet();
-					menu.NastaveniVykresleni(menu.JazykSet());
-					break;
-				}
-				}
+			case menu.ovladani_e:
+			{
+				while (OvladaniMenu(data));
+				menu.MenuSTARTVykresleni();
+				menu.NastaveniVykresleni(data);
+				break;
+			}
+			case menu.balic_e:
+			{
+				menu.SpodniZavoraSet();
+				menu.NastaveniVykresleni(data);
+				break;
+			}
 			}
 			break;
 		}
@@ -97,40 +150,20 @@ bool NastaveniMenu(Profily data)
 		break;
 		}
 	}
-}
-bool VzhledPlosinyMenu(Profily data)
-{
 	return 0;
 }
-bool HerniModyMenu(Profily data)
+bool VzhledPlosinyMenu(Profily &data)
 {
-	MenuHerniMody menu;
-	while (HerniModyMenu)
+	MenuVzhledPlosiny menu;
+
+	menu.VzhledPlosinyVykresleni(data);
+	while (NastaveniMenu)
 	{
-		switch (menu.VstupMenu(menu.herni_mody_e))
+		switch (menu.VstupMenu(data, menu.herni_mody_e))
 		{
 		case menu.enter:
 		{
-			{
-				switch (menu.Rozhodovac(menu.enter))
-				{
-				case menu.klasik_e:
-				{
-					while (Klasik(data));
-					break;
-				}
-				/*case menu.bloky_padaji_e:
-				{
-					while (BlokyPadaji(data));
-					break;
-				}
-				case menu.rogue_like_e:
-				{
-					while (RogueLike(data));
-					break;
-				}*/
-				}
-			}
+			menu.Rozhodovac(data, menu.enter);
 			break;
 		}
 		case menu.posun:
@@ -149,18 +182,20 @@ bool HerniModyMenu(Profily data)
 		break;
 		}
 	}
+	return 0;
 }
-
-bool HlavniMenu(Profily data)
+bool HlavniMenu(Profily &data)
 {
 	MenuHlavni menu;
+
+	menu.HlavniVykresleni(data);
 	while (HlavniMenu)
 	{
-		switch (menu.VstupMenu(menu.hlavni_e))
+		switch (menu.VstupMenu())
 		{
 		case menu.enter:
 		{
-			switch (menu.Rozhodovac(menu.enter))
+			switch (menu.Rozhodovac(data, menu.enter))
 			{
 			case menu.herni_mody_e:
 			{
@@ -179,7 +214,7 @@ bool HlavniMenu(Profily data)
 			}
 			}
 			menu.MenuSTARTVykresleni();
-			menu.HlavniVykresleni(menu.JazykSet());
+			menu.HlavniVykresleni(data);
 			menu.OznaceniVykresleni();
 			break;
 		}
@@ -199,30 +234,34 @@ bool HlavniMenu(Profily data)
 		break;
 		}
 	}
+	return 0;
 }
+
 bool ProfilMenu()
 {
-	MenuProfil menu;
 	Profily data;
+	MenuProfil menu;
+
+	menu.ProfilVykresleni(data);
 	while (ProfilMenu)
 	{
-		switch (menu.VstupMenu(menu.profil_e))
+		switch (menu.VstupMenu(data, menu.profil_e))
 		{
 		case menu.enter:
 		{
-			menu.Rozhodovac(menu.enter);
+			menu.Rozhodovac(data, menu.enter);
 			while (HlavniMenu(data))
 			{
-				data.ulozeni_profilu(menu.profil_e);
+				data.UlozeniProfilu(menu.profil_e);
 			}
 			return 0;
 		}
 		case menu.del:
 		{
 			menu.OtazkaVykresleni();
-			if (menu.VstupMenu(menu.profil_e) == menu.enter)
+			if (menu.VstupMenu(data, menu.profil_e) == menu.enter)
 			{
-				menu.Rozhodovac(menu.del);
+				menu.Rozhodovac(data, menu.del);
 			}
 			menu.OtazkaSmazani();
 			break;
@@ -243,6 +282,7 @@ bool ProfilMenu()
 		break;
 		}
 	}
+	return 0;
 }
 
 int main()

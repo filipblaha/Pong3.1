@@ -2,7 +2,7 @@
 
 //-----------------------  Input  -----------------------//
 
-int MenuHerniMody::Rozhodovac(int prikaz)
+int MenuHerniMody::Rozhodovac(Profily& data, int prikaz)
 {
 	if (oznaceni.at(y) == 10)
 	{
@@ -20,15 +20,14 @@ int MenuHerniMody::Rozhodovac(int prikaz)
 
 //-----------------------  Vykresleni -----------------------//
 
-void MenuHerniMody::MenuHerniModyVykresleni(int jazyk)
+void MenuHerniMody::MenuHerniModyVykresleni(Profily& data)
 {
 	OznaceniVykresleni();
-	TextHerniModyVykresleni(jazyk);
+	TextHerniModyVykresleni(data);
 }
-void MenuHerniMody::TextHerniModyVykresleni(int jazyk) 
+void MenuHerniMody::TextHerniModyVykresleni(Profily& data)
 {
-	transl.jazyk = jazyk;
-	text = transl.NacteniTextHerniMody();
+	text = transl.NacteniTextHerniMody(data);
 
 	///-------  Text  -------//
 

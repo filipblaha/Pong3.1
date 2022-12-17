@@ -11,20 +11,17 @@ public:
     MenuOvladani() : Menu(hlavni_e, 4, 12, 12, 15)
     {
         Preklad trans;
-
-        OvladaniVykresleni(JazykSet());
     }
-    vector<wstring> text;
 
     //-----------------------  Input  -----------------------//
 
     int VstupMenu(int strana);
-    int Rozhodovac(int prikaz);
+    int Rozhodovac(Profily &data, int prikaz);
 
     //-----------------------  Vykresleni  -----------------------//
 
-    void OvladaniVykresleni(int jazyk);
-    void TextOvladaniVykresleni(int jazyk);
+    void OvladaniVykresleni(Profily& data);
+    void TextOvladaniVykresleni(Profily& data);
 
 private:
 };

@@ -2,7 +2,7 @@
 
 //-----------------------  Input  -----------------------//
 
-int MenuHlavni::Rozhodovac(int prikaz)
+int MenuHlavni::Rozhodovac(Profily& data, int prikaz)
 {
 	if (oznaceni.at(y) == 10)
 	{
@@ -20,7 +20,7 @@ int MenuHlavni::Rozhodovac(int prikaz)
 
 //-----------------------  Vykresleni -----------------------//
 
-void MenuHlavni::HlavniVykresleni(int jazyk)
+void MenuHlavni::HlavniVykresleni(Profily& data)
 {
 	int m = 10;
 	int n = 2;
@@ -99,12 +99,11 @@ void MenuHlavni::HlavniVykresleni(int jazyk)
 		}
 	}
 	OznaceniVykresleni();
-	TextHlavniVykresleni(jazyk);
+	TextHlavniVykresleni(data);
 }
-void MenuHlavni::TextHlavniVykresleni(int jazyk)
+void MenuHlavni::TextHlavniVykresleni(Profily& data)
 {
-	transl.jazyk = jazyk;
-	text = transl.NacteniTextHlavni();
+	text = transl.NacteniTextHlavni(data);
 
 	///-------  Text  -------//
 

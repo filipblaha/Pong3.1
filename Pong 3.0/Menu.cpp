@@ -2,7 +2,7 @@
 
 //-----------------------  Input  -----------------------//
 
-int Menu::VstupMenu(int strana)
+int Menu::VstupMenu()
 {
 	switch (_getch())
 	{
@@ -13,31 +13,6 @@ int Menu::VstupMenu(int strana)
 		{
 			oznaceni.at(y) -= 2;
 		}
-		/*if ((oznaceni.at(y) > zavory.at(0)) && (strana == 0 || strana == 1))
-			{
-				oznaceni.at(y) -= 2;
-			}
-
-			if ((oznaceni.at(y) > zavory.at(0)) && (strana == 2))
-			{
-				oznaceni.at(y) -= 4;
-			}
-			if ((oznaceni.at(y) > zavory.at(0)) && (strana == 3))
-			{
-				if (oznaceni.at(y) <= 12)
-				{
-					oznaceni.at(x) = 4;
-				}
-				else
-				{
-					oznaceni.at(x) = 7;
-				}
-				oznaceni.at(y) -= 2;
-			}
-			if ((oznaceni.at(y) > zavory.at(0)) && (strana == 4))
-			{
-				oznaceni.at(y) = oznaceni.at(y)--;
-			}*/
 		return posun;
 	}
 	case 's':
@@ -47,63 +22,12 @@ int Menu::VstupMenu(int strana)
 		{
 			oznaceni.at(y) += 2;
 		}
-		/*if ((oznaceni.at(y) < zavory.at(1)) && (strana == 0 || strana == 1))
-			{
-				oznaceni.at(y) += 2;
-			}
-			if ((oznaceni.at(y) < zavory.at(1)) && (strana == 2))
-			{
-				oznaceni.at(y) += 4;
-			}
-			if ((oznaceni.at(y) < zavory.at(1)) && (strana == 3))
-			{
-				if (oznaceni.at(y) <= 8)
-				{
-					oznaceni.at(x) = 4;
-				}
-				else
-				{
-					oznaceni.at(x) = 7;
-				}
-				oznaceni.at(y) += 2;
-			}
-			if ((oznaceni.at(y) < zavory.at(1)) && (strana == 4))
-			{
-				oznaceni.at(y)++;
-			}*/
-		return posun;
-	}
-	case 'a':
-	{
-		OznaceniSmazani();
-		{
-			if (oznaceni.at(x) > zavory.at(2) && (strana == vzhled_plosiny_e))
-			{
-				oznaceni.at(x) -= 10;
-			}
-			return posun;
-		}
-		break;
-	}
-	case 'd':
-	{
-		OznaceniSmazani();
-		if (oznaceni.at(x) < zavory.at(3) && (strana == vzhled_plosiny_e))
-		{
-			oznaceni.at(x) += 10;
-		}
+		
 		return posun;
 	}
 	case '\r':
 	{
 		return enter;
-	}
-	case ' ':
-	{
-		/*if (strana == -1)
-		{
-			return exit;
-		}*/
 	}
 	case 'q':
 	{
@@ -112,18 +36,12 @@ int Menu::VstupMenu(int strana)
 	}
 	}
 }
-int Menu::JazykSet(bool zmena)
+void Menu::JazykSet(Profily& data)
 {
-	vector<int> v = profil.nacteni_dat_profilu(profil.jsem_v_profilu);
-
-	if (zmena)
-	{
-		if (v.at(0) == CZ)
-			profil.jazyk = 1;
-		if (v.at(0) == EN)
-			profil.jazyk = 0;
-	}
-	return profil.jazyk;
+	if (data.jazyk == CZ)
+		data.jazyk = EN;
+	else if (data.jazyk == EN)
+		data.jazyk = CZ;
 }
 
 //-----------------------  Vykresleni  -----------------------//
@@ -193,7 +111,7 @@ void Menu::OtazkaSmazani()
 int Menu::IndexProfilu(int inkrement)
 {
 	int index = 0;
-	list<string> temp = profil.nacteni_jmen_profilu();
+	list<string> temp = profil.NacteniJmenProfilu();
 	list<string>::iterator itr = temp.begin();
 	while (*itr != *aktual.begin())
 	{
@@ -216,7 +134,7 @@ int Menu::IndexProfilu(int inkrement)
 }
 void Menu::AktualNazevProfiluSTART()
 {
-	aktual = profil.nacteni_jmen_profilu();
+	aktual = profil.NacteniJmenProfilu();
 
 	while (aktual.size() > 3)
 	{
@@ -225,12 +143,12 @@ void Menu::AktualNazevProfiluSTART()
 }
 void Menu::AktualNazevProfilu(int index, int poradi, int inkrement, bool del)
 {
-	list<string> temp = profil.nacteni_jmen_profilu();
+	list<string> temp = profil.NacteniJmenProfilu();
 	list<string>::iterator itr = temp.begin();
 	
 	if (del)
 	{
-		if (poradi == 0 || (poradi == 2 && index == profil.pocet_profilu_s && profil.pocet_profilu_s >= 3) || (poradi == 1 && index + 1 == profil.pocet_profilu_s && profil.pocet_profilu_s > 3))
+		if (poradi == 0 || (poradi == 2 && index == profil.pocet_profilu && profil.pocet_profilu >= 3) || (poradi == 1 && index + 1 == profil.pocet_profilu && profil.pocet_profilu > 3))
 		{
 			inkrement = 1;
 		}
@@ -245,10 +163,10 @@ void Menu::AktualNazevProfilu(int index, int poradi, int inkrement, bool del)
 
 	aktual.clear();
 	int n = 0;
-	if (profil.pocet_profilu_s >= 3)
+	if (profil.pocet_profilu >= 3)
 		n = 3;
 	else
-		n = profil.pocet_profilu_s;
+		n = profil.pocet_profilu;
 	for (int i = 0; i < n; i++)
 	{
 		aktual.push_back(*itr);

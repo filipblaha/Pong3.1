@@ -15,19 +15,16 @@ public:
         balic = 0;
 
         SpodniZavoraSet();
-        NastaveniVykresleni(JazykSet());
-
     }
-    vector<wstring> text;
 
     //-----------------------  Input  -----------------------//
 
-    int Rozhodovac(int prikaz);
+    int Rozhodovac(Profily& data, int prikaz);
 
     //-----------------------  Vykresleni  -----------------------//
 
-    void NastaveniVykresleni(int jazyk);
-    void TextNastaveniVykresleni(int jazyk);
+    void NastaveniVykresleni(Profily& data);
+    void TextNastaveniVykresleni(Profily& data);
 
     //-----------------------  Set -----------------------//
 

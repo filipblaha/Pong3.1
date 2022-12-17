@@ -1,18 +1,11 @@
 #pragma once
-#include <iostream>
-#include <list>
-#include <vector>
-#include <fcntl.h>
-#include <io.h>
+#include "Profily.h"
 
-#include "Tinyxml2.h"
-
-using namespace tinyxml2;
-using namespace std;
 
 class Preklad
 {
 public:
+	Profily data;
 
 	Preklad()
 	{
@@ -24,24 +17,13 @@ public:
 		ovladani_stringu = 0;
 		konec_kola_stringu = 0;
 
-		jazyk = CZ;
 	}
-
 	enum jazyk_e
 	{
 		CZ,
 		EN,
 	};
 
-	int profil_stringu;
-	int hlavni_stringu;
-	int herni_mody_stringu;
-	int vzhled_plosiny_stringu;
-	int nastaveni_stringu;
-	int ovladani_stringu;
-	int konec_kola_stringu;
-
-	int jazyk;
 
 	vector<string> vektor_stringu;
 	vector<wstring> vektor_wstringu;
@@ -53,12 +35,20 @@ public:
 
 	//-----------------------  Nacteni textu  -----------------------//
 
-	vector<wstring> NacteniTextProfil();
-	vector<wstring> NacteniTextHlavni();
-	vector<wstring> NacteniTextHerniMody();
-	vector<wstring> NacteniTextVzhledPlosiny();
-	vector<wstring> NacteniTextNastaveni();
-	vector<wstring> NacteniTextOvladani();
-	vector<wstring> NacteniTextKonecKola();
+	vector<wstring> NacteniTextProfil(Profily data);
+	vector<wstring> NacteniTextHlavni(Profily data);
+	vector<wstring> NacteniTextHerniMody(Profily data);
+	vector<wstring> NacteniTextVzhledPlosiny(Profily data);
+	vector<wstring> NacteniTextNastaveni(Profily data);
+	vector<wstring> NacteniTextOvladani(Profily data);
+	vector<wstring> NacteniTextKonecKola(Profily data);
+private:
+	int profil_stringu;
+	int hlavni_stringu;
+	int herni_mody_stringu;
+	int vzhled_plosiny_stringu;
+	int nastaveni_stringu;
+	int ovladani_stringu;
+	int konec_kola_stringu;
 };
 

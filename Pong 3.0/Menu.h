@@ -75,11 +75,12 @@ public:
 	vector<int> zavory;
 	vector<int> oznaceni;
 	list<string> aktual;
+	vector<wstring> text;
 
 	//-----------------------  Input  -----------------------//
 
-	int VstupMenu(int strana);
-	int JazykSet(bool zmena = 0);
+	int VstupMenu();
+	void JazykSet(Profily &data);
 
 	//-----------------------  Vykresleni  -----------------------//
 

@@ -8,25 +8,29 @@ public:
     Profily profil;
     Preklad transl;
 
-    MenuVzhledPlosiny() : Menu(hlavni_e, 4, 12, 12, 15)
+    MenuVzhledPlosiny() : Menu(hlavni_e, 6, 9, 9, 13, 6, 26)
     {
         Preklad trans;
 
-        VzhledPlosinyVykresleni(JazykSet());
+        potrebna_uroven = { 0,1,2,3,4,5 };
+        NacteniSkiny();
     }
-    vector<wstring> text;
-
-    bool dostatecna_uroven;
 
     //-----------------------  Input  -----------------------//
 
-    int VstupMenu(int strana);
-    int Rozhodovac(int prikaz);
+    int VstupMenu(Profily& data, int strana);
+    int Rozhodovac(Profily& data, int prikaz);
 
     //-----------------------  Vykresleni  -----------------------//
 
-    void VzhledPlosinyVykresleni(int jazyk);
-    void TextVzhledPlosinyVykresleni(int jazyk);
+    void VzhledPlosinyVykresleni(Profily& data);
+    void TextVzhledPlosinyVykresleni(Profily& data);
+    void OznaceniVykresleni();
+    void OznaceniSmazani();
+    void NacteniSkiny();
+    void NedostatecnaUrovenVykresleni();
 
 private:
+    vector<int> potrebna_uroven;
+    vector<wstring> skiny;
 };

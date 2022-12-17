@@ -36,7 +36,7 @@ int MenuOvladani::VstupMenu(int strana)
 	}
 	}
 }
-int MenuOvladani::Rozhodovac(int prikaz)
+int MenuOvladani::Rozhodovac(Profily& data, int prikaz)
 {
 	if (oznaceni.at(y) == 10)
 	{
@@ -54,7 +54,7 @@ int MenuOvladani::Rozhodovac(int prikaz)
 
 //-----------------------  Vykresleni -----------------------//
 
-void MenuOvladani::OvladaniVykresleni(int jazyk)
+void MenuOvladani::OvladaniVykresleni(Profily& data)
 {
 	set.SetCursorPosition(9, 7);
 	wcout << "W";
@@ -78,12 +78,11 @@ void MenuOvladani::OvladaniVykresleni(int jazyk)
 		wcout << ".";
 
 	OznaceniVykresleni();
-	TextOvladaniVykresleni(jazyk);
+	TextOvladaniVykresleni(data);
 }
-void MenuOvladani::TextOvladaniVykresleni(int jazyk)
+void MenuOvladani::TextOvladaniVykresleni(Profily& data)
 {
-	transl.jazyk = jazyk;
-	text = transl.NacteniTextOvladani();
+	text = transl.NacteniTextOvladani(data);
 
 	///-------  Text  -------//
 
@@ -108,11 +107,11 @@ void MenuOvladani::TextOvladaniVykresleni(int jazyk)
 	set.SetCursorPosition(29, 14);
 	
 	wcout << text.at(7);
-	//wcout << (char)navod_menu.pouziti_schopnosti;
+	//wcout << (char)set.Spouziti_schopnosti;
 
 	set.SetCursorPosition(7, 15);
 	wcout << text.at(8);
 	set.SetCursorPosition(29, 15);
 	wcout << "Esc";
-	//wcout << (char)navod_menu.pauza;
+	//wcout << (char)set.Spauza;
 }

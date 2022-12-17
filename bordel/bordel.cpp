@@ -1,27 +1,41 @@
-#include<iostream>
+﻿#include<iostream>
 #include<list>
 #include<vector>
+#include <Windows.h>
+#include <fcntl.h>
+#include <io.h>
 using namespace std;
 
-void erase_list(list<string> &list, int x)
+class c
 {
-	list<string>::iterator itr;
-	itr = list.begin();
-
-	advance(itr, x);
-	list.erase(itr);
-}
-void add_list(list<string>& list, vector<string> v)
-{
-	for (int i = 0; i < v.size(); i++)
+public:
+	int hodnota = 0;
+	void b()
 	{
-		list.push_back(v.at(i));
+		hodnota = 3;
+		cout << hodnota << " class\n";
 	}
+
+};
+class d
+{
+public:
+	c navod;
+	void a(c &navod)
+	{
+		navod.b();
+	}
+};
+void f(c navod)
+{
+	cout << navod.hodnota << " fce\n";
 }
 
 int main()
 {
-	char s;
-	cin >> s;
-	
+	c navod;
+	d plan;
+	plan.a(navod);
+	cout << navod.hodnota << " main\n";
+	f(navod);
 }
