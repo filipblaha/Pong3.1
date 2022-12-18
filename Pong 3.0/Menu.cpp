@@ -155,19 +155,18 @@ void Menu::AktualNazevProfiluSTART()
 		aktual.pop_back();
 	}
 }
-void Menu::AktualNazevProfilu(int index, int poradi, int inkrement, bool del)
+void Menu::AktualNazevProfilu(Profily data, int index, int poradi, int inkrement, bool del)
 {
 	list<string> temp = data.NacteniJmenProfilu();
 	list<string>::iterator itr = temp.begin();
 	
 	if (del)
 	{
-		if (poradi == 0 || (poradi == 2 && index == data.pocet_profilu && data.pocet_profilu >= 3) || (poradi == 1 && index + 1 == data.pocet_profilu && data.pocet_profilu > 3))
+		if (poradi == 0 || (poradi == 2 && index == data.pocet_profilu && data.pocet_profilu >= 3) || (poradi == 1 && index + 1 == data.pocet_profilu && data.pocet_profilu >= 3))
 		{
 			inkrement = 1;
 		}
 	}
-	itr = temp.begin();
 	advance(itr, index - poradi);
 	if (inkrement == -1)
 		itr++;

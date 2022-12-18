@@ -230,3 +230,22 @@ void Profily::VybraniProfilu(int profil)
 	highscore_cas = vektor_dat.at(4);
 	highscore_znicenych_bloku = vektor_dat.at(5);
 }
+
+//-----------------------  Zmena jmena  -----------------------//
+
+void Profily::ZmenaJmena(string jmeno, int profil)
+{
+	list<string> nazev_profil = NacteniJmenProfilu();
+	itr = nazev_profil.begin();
+
+	advance(itr, profil);
+	*itr = jmeno;
+
+	list<vector<int>> data_profil;
+	for (int i = 0; i < pocet_profilu; i++)
+	{
+		data_profil.push_back(NacteniDatProfilu(i));
+	}
+
+	ZapsaniProfilu(data_profil, nazev_profil);
+}

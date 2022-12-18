@@ -61,6 +61,10 @@ public:
 	void VybraniProfilu(int profil);
 	void PrepsaniDat(int& jazyk_v,int& plosina_skin, int& highscore_cas, int& highscore_znicenych_bloku, int& level, int& exp);
 
+	//-----------------------  Zmena jmena  -----------------------//
+
+	void ZmenaJmena(string jmeno, int profil);
+
 private:
 	list<string>::iterator itr;
 	list<vector<int>>::iterator itri;

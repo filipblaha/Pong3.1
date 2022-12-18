@@ -7,11 +7,11 @@ public:
     Commands set;
     Preklad transl;
 
-    MenuProfil(Profily data) : Menu(data, profil_e, 10, 8, 8)
+    MenuProfil(Profily data) : Menu(data, profil_e, 10, 7, 7)
     {
         Preklad transl;
 
-        SpodniZavoraSet();
+        SpodniZavoraSet(data);
         AktualNazevProfiluSTART();
 
         ProfilVykresleni(data);
@@ -33,13 +33,13 @@ private:
 
     //-----------------------  Set  -----------------------//
 
-    void SpodniZavoraSet();
-    void OznaceniSet();
+    void SpodniZavoraSet(Profily data);
+    void OznaceniSet(Profily data);
     string NazevProfiluSet();
 
     //-----------------------  Vykresleni (private)  -----------------------//
 
-    void NazevProfiluVykresleni();
+    void ZadejProfilVykresleni();
     void RamecekSmazani();
 };
 

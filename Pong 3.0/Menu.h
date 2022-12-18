@@ -66,6 +66,7 @@ public:
 		posun,
 		del,
 		balic_e,
+		zmena_jazyka,
 	};
 	enum souradnice
 	{
@@ -97,7 +98,7 @@ public:
 
 	int IndexProfilu(int inkrement = 0);
 	void AktualNazevProfiluSTART();
-	void AktualNazevProfilu(int index, int poradi, int inkrement = 0, bool del = 0);
+	void AktualNazevProfilu(Profily data, int index, int poradi, int inkrement = 0, bool del = 0);
 
 private:
 

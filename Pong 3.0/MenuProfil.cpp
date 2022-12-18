@@ -54,12 +54,20 @@ int MenuProfil::VstupMenu(Profily& data, int strana)
 			return del;
 		break;
 	}
+	case 'r':
+	{
+		if (IndexProfilu() != 0 || oznaceni.at(y) != 8)
+			return zmena_jazyka;
+		break;
+		
+	}
 	case 'l':
 	{
 		JazykSet(data);
 		set.Prechod();
 		MenuSTARTVykresleni();
 		ProfilVykresleni(data);
+		break;
 	}
 	}
 }
@@ -67,17 +75,17 @@ void MenuProfil::Rozhodovac(Profily &data, int prikaz, int inkrement)
 {
 	int index = 0;
 	int poradi = 0;
-	if (oznaceni.at(y) == 8)
+	if (oznaceni.at(y) == 7)
 	{
 		index = IndexProfilu();
 		poradi = 0;
 	}
-	if (oznaceni.at(y) == 10)
+	if (oznaceni.at(y) == 9)
 	{
 		index = IndexProfilu(1);
 		poradi = 1;
 	}
-	if (oznaceni.at(y) == 12)
+	if (oznaceni.at(y) == 11)
 	{
 		index = IndexProfilu(2);
 		poradi = 2;
@@ -89,7 +97,6 @@ void MenuProfil::Rozhodovac(Profily &data, int prikaz, int inkrement)
 	{
 		if (index == 0)
 		{
-			NazevProfiluVykresleni();
 			data.VytvoreniNovehoProfilu(NazevProfiluSet());
 			data.VybraniProfilu(1);
 		}
@@ -105,14 +112,25 @@ void MenuProfil::Rozhodovac(Profily &data, int prikaz, int inkrement)
 		{
 			data.OdstraneniProfilu(index);
 			RamecekSmazani();
-			AktualNazevProfilu(index, poradi, 0, 1);
-			OznaceniSet();
-			ProfilVykresleni(data);
+			AktualNazevProfilu(data, index, poradi, 0, 1);
+			OznaceniSet(data);
+			TextProfilVykresleni(data);
+		}
+		break;
+	}
+	case zmena_jazyka:
+	{
+		if (index != 0)
+		{
+			data.ZmenaJmena(NazevProfiluSet(), index);
+			RamecekSmazani();
+			AktualNazevProfilu(data, index, poradi);
+			TextProfilVykresleni(data);
 		}
 		break;
 	}
 	default:
-		AktualNazevProfilu(index, poradi, inkrement);
+		AktualNazevProfilu(data, index, poradi, inkrement);
 	}
 }
 
@@ -154,7 +172,42 @@ void MenuProfil::ProfilVykresleni(Profily& data)
 		else
 			wcout << L"\x2500";
 	}
+
+	///////    Zmena jmena   ///////
+
+	set.SetCursorPosition(1, 13);
+	for (int i = 0; i < 5; i++)
+	{
+		if (i == 0)
+			wcout << L"\x250c";
+		else if (i == 4)
+			wcout << L"\x2510";
+		else
+			wcout << L"\x2500";
+	}
+	set.SetCursorPosition(1, 14);
+	for (int i = 0; i < 5; i++)
+	{
+		if (i == 0 || i == 4)
+			wcout << L"\x2502";
+		else if (i == 2)
+			wcout << 'R';
+		else
+			wcout << ' ';
+	}
+	set.SetCursorPosition(1, 15);
+	for (int i = 0; i < 5; i++)
+	{
+		if (i == 0)
+			wcout << L"\x2514";
+		else if (i == 4)
+			wcout << L"\x2518";
+		else
+			wcout << L"\x2500";
+	}
+
 	///////    Zmena jazyka   ///////
+
 	set.SetCursorPosition(1, 16);
 	for (int i = 0; i < 5; i++)
 	{
@@ -171,7 +224,7 @@ void MenuProfil::ProfilVykresleni(Profily& data)
 		if (i == 0 || i == 4)
 			wcout << L"\x2502";
 		else if (i == 2)
-			wcout << L'L';
+			wcout << 'L';
 		else
 			wcout << ' ';
 	}
@@ -190,7 +243,7 @@ void MenuProfil::ProfilVykresleni(Profily& data)
 }
 void MenuProfil::RamecekVykresleni()
 {
-	set.SetCursorPosition(8, 7);
+	set.SetCursorPosition(8, 6);
 	for (int i = 0; i < 24; i++)
 	{
 		if (i == 0)
@@ -200,17 +253,17 @@ void MenuProfil::RamecekVykresleni()
 		else
 			wcout << L"\x2500";
 	}
-	for (int i = 8; i < 13; i++)
+	for (int i = 7; i < 12; i++)
 	{
 		set.SetCursorPosition(8, i);
 		wcout << L"\x2502";
 	}
-	for (int i = 8; i < 13; i++)
+	for (int i = 7; i < 12; i++)
 	{
 		set.SetCursorPosition(31, i);
 		wcout << L"\x2502";
 	}
-	set.SetCursorPosition(8, 13);
+	set.SetCursorPosition(8, 12);
 	for (int i = 0; i < 24; i++)
 	{
 		if (i == 0)
@@ -239,59 +292,60 @@ void MenuProfil::TextProfilVykresleni(Profily& data)
 
 	///-------  Text  -------//
 
-	set.SetCursorPosition(10, 5);
+	set.SetCursorPosition(10, 4);
 	wcout << text.at(0);
 
-	set.SetCursorPosition(12, 8);
+	set.SetCursorPosition(12, 7);
 	if (*aktual.begin() == "Novy_profil")
 		wcout << text.at(1);
 	else
-		wcout << *itr << "  (" << text.at(7) << *itri << ")";
+		wcout << *itr << "  (" << text.at(8) << *itri << ")";
 	itr++;
 	itri++;
 	if (itr != wl.end())
 	{
-		set.SetCursorPosition(12, 10);
-		wcout << *itr << "  (" << text.at(7) << *itri << ")";
+		set.SetCursorPosition(12, 9);
+		wcout << *itr << "  (" << text.at(8) << *itri << ")";
 		itr++;
 		itri++;
 		if (itr != wl.end())
 		{
-			set.SetCursorPosition(12, 12);
-			wcout << *itr << "  (" << text.at(7) << *itri << ")";
+			set.SetCursorPosition(12, 11);
+			wcout << *itr << "  (" << text.at(8) << *itri << ")";
 		}
 	}
-
-	set.SetCursorPosition(7, 17);
+	set.SetCursorPosition(7, 14);
 	wcout << text.at(2);
+	set.SetCursorPosition(7, 17);
+	wcout << text.at(3);
 	if (!data.jazyk)
 		set.SetCursorPosition(18, 17);
 	if (data.jazyk)
 		set.SetCursorPosition(17, 17);
-	wcout << text.at(3);
+	wcout << text.at(4);
 
 }
 void MenuProfil::OtazkaVykresleni()
 {
 	set.SetCursorPosition(5, 2);
-	wcout << text.at(4);
-	set.SetCursorPosition(26, 3);
 	wcout << text.at(5);
+	set.SetCursorPosition(26, 3);
+	wcout << text.at(6);
 }
 
 // private
-void MenuProfil::NazevProfiluVykresleni()
+void MenuProfil::ZadejProfilVykresleni()
 {
 	RamecekSmazani();
-	set.SetCursorPosition(10, 8);
-	wcout << text.at(6);
+	set.SetCursorPosition(10, 7);
+	wcout << text.at(7);
 }
 void MenuProfil::RamecekSmazani()
 {
-	for (int j = 8; j < 13; j++)
+	for (int j = 7; j <= 11; j++)
 	{
 		set.SetCursorPosition(9, j);
-		for (int i = 0; i < 22; i++)
+		for (int i = 0; i < 21; i++)
 		{
 			wcout << ' ';
 		}
@@ -300,31 +354,33 @@ void MenuProfil::RamecekSmazani()
 
 //-----------------------  Set -----------------------//
 
-void MenuProfil::SpodniZavoraSet()
+void MenuProfil::SpodniZavoraSet(Profily data)
 {
 	data.NacteniPoctuProfilu();
 	if (data.pocet_profilu == 1)
-		zavory.at(1) = 8;
+		zavory.at(1) = 7;
 	else if (data.pocet_profilu == 2)
-		zavory.at(1) = 10;
+		zavory.at(1) = 9;
 	else if (data.pocet_profilu >= 3)
-		zavory.at(1) = 12;
+		zavory.at(1) = 11;
 }
-void MenuProfil::OznaceniSet()
+void MenuProfil::OznaceniSet(Profily data)
 {
-	SpodniZavoraSet();
+	SpodniZavoraSet(data);
 	if (data.pocet_profilu < 3)
 		oznaceni.at(y) = zavory.at(1);
 }
 string MenuProfil::NazevProfiluSet()
 {
+	ZadejProfilVykresleni();
+
 	string nazev;
-	set.SetCursorPosition(10, 10);
+	set.SetCursorPosition(10, 9);
 	cin >> nazev;
 	while (nazev.size() >= 12)
 	{
-		set.SetCursorPosition(10, 10);
 		RamecekSmazani();
+		set.SetCursorPosition(10, 9);
 		cin >> nazev;
 	}
 	RamecekSmazani();

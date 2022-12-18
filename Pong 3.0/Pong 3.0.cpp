@@ -258,6 +258,10 @@ bool ProfilMenu()
 			menu.OtazkaSmazani();
 			break;
 		}
+		case menu.zmena_jazyka:
+		{
+			menu.Rozhodovac(data, menu.zmena_jazyka);
+		}
 		case menu.posun:
 		{
 			menu.OznaceniVykresleni();
