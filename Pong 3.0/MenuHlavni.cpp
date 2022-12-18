@@ -22,6 +22,13 @@ int MenuHlavni::Rozhodovac(Profily& data, int prikaz)
 
 void MenuHlavni::HlavniVykresleni(Profily& data)
 {
+	LogoHlavniVykresleni();
+	OznaceniVykresleni();
+	VykresleniUroven(data);
+	TextHlavniVykresleni(data);
+}
+void MenuHlavni::LogoHlavniVykresleni()
+{
 	int m = 10;
 	int n = 2;
 	set.SetCursorPosition(m, n);
@@ -98,8 +105,6 @@ void MenuHlavni::HlavniVykresleni(Profily& data)
 			}
 		}
 	}
-	OznaceniVykresleni();
-	TextHlavniVykresleni(data);
 }
 void MenuHlavni::TextHlavniVykresleni(Profily& data)
 {

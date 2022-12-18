@@ -23,6 +23,7 @@ int MenuHerniMody::Rozhodovac(Profily& data, int prikaz)
 void MenuHerniMody::MenuHerniModyVykresleni(Profily& data)
 {
 	OznaceniVykresleni();
+	VykresleniUroven(data);
 	TextHerniModyVykresleni(data);
 }
 void MenuHerniMody::TextHerniModyVykresleni(Profily& data)

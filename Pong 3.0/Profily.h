@@ -43,7 +43,7 @@ public:
 	//-----------------------  Ukladani profilu  -----------------------//
 
 	void UlozeniProfilu(int profil);
-	vector<int> VlozeniDatDoVektoru(int profil);
+	vector<int> VlozeniDatDoVektoru();
 
 	void VytvoreniNovehoProfilu(string nazev_noveho_profilu);
 	void OdstraneniProfilu(int profil);

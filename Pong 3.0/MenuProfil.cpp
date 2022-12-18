@@ -1,4 +1,4 @@
-#include "MenuProfil.h"
+#include "Menuprofil.h"
 
 //-----------------------  Input  -----------------------//
 
@@ -15,7 +15,7 @@ int MenuProfil::VstupMenu(Profily& data, int strana)
 		}
 		else
 		{
-			if (*profil.NacteniJmenProfilu().begin() != *aktual.begin())
+			if (*data.NacteniJmenProfilu().begin() != *aktual.begin())
 			{
 				Rozhodovac(data , 0, 1);
 				TextProfilVykresleni(data);
@@ -32,7 +32,7 @@ int MenuProfil::VstupMenu(Profily& data, int strana)
 		}
 		else
 		{
-			if (*profil.NacteniJmenProfilu().rbegin() != *aktual.rbegin())
+			if (*data.NacteniJmenProfilu().rbegin() != *aktual.rbegin())
 			{
 				Rozhodovac(data, 0, -1);
 				TextProfilVykresleni(data);
@@ -90,7 +90,7 @@ void MenuProfil::Rozhodovac(Profily &data, int prikaz, int inkrement)
 		if (index == 0)
 		{
 			NazevProfiluVykresleni();
-			profil.VytvoreniNovehoProfilu(NazevProfiluSet());
+			data.VytvoreniNovehoProfilu(NazevProfiluSet());
 			data.VybraniProfilu(1);
 		}
 		else
@@ -103,7 +103,7 @@ void MenuProfil::Rozhodovac(Profily &data, int prikaz, int inkrement)
 	{
 		if (index != 0)
 		{
-			profil.OdstraneniProfilu(index);
+			data.OdstraneniProfilu(index);
 			RamecekSmazani();
 			AktualNazevProfilu(index, poradi, 0, 1);
 			OznaceniSet();
@@ -121,37 +121,6 @@ void MenuProfil::Rozhodovac(Profily &data, int prikaz, int inkrement)
 // public
 void MenuProfil::ProfilVykresleni(Profily& data)
 {
-	///////    Ramecek   ///////
-	set.SetCursorPosition(8, 7);
-	for (int i = 0; i < 24; i++)
-	{
-		if (i == 0)
-			wcout << L"\x250c";
-		else if (i == 23)
-			wcout << L"\x2510";
-		else
-			wcout << L"\x2500";
-	}
-	for (int i = 8; i < 13; i++)
-	{
-		set.SetCursorPosition(8, i);
-			wcout << L"\x2502";
-	}
-	for (int i = 8; i < 13; i++)
-	{
-		set.SetCursorPosition(31, i);
-			wcout << L"\x2502";
-	}
-	set.SetCursorPosition(8, 13);
-	for (int i = 0; i < 24; i++)
-	{
-		if (i == 0)
-			wcout << L"\x2514";
-		else if (i == 23)
-			wcout << L"\x2518";
-		else
-			wcout << L"\x2500";
-	}
 	///////    DEL   ///////
 	set.SetCursorPosition(32, 16);
 	for (int i = 0; i < 7; i++)
@@ -216,15 +185,49 @@ void MenuProfil::ProfilVykresleni(Profily& data)
 		else
 			wcout << L"\x2500";
 	}
+	RamecekVykresleni();
 	TextProfilVykresleni(data);
+}
+void MenuProfil::RamecekVykresleni()
+{
+	set.SetCursorPosition(8, 7);
+	for (int i = 0; i < 24; i++)
+	{
+		if (i == 0)
+			wcout << L"\x250c";
+		else if (i == 23)
+			wcout << L"\x2510";
+		else
+			wcout << L"\x2500";
+	}
+	for (int i = 8; i < 13; i++)
+	{
+		set.SetCursorPosition(8, i);
+		wcout << L"\x2502";
+	}
+	for (int i = 8; i < 13; i++)
+	{
+		set.SetCursorPosition(31, i);
+		wcout << L"\x2502";
+	}
+	set.SetCursorPosition(8, 13);
+	for (int i = 0; i < 24; i++)
+	{
+		if (i == 0)
+			wcout << L"\x2514";
+		else if (i == 23)
+			wcout << L"\x2518";
+		else
+			wcout << L"\x2500";
+	}
 }
 void MenuProfil::TextProfilVykresleni(Profily& data)
 {
 	text = transl.NacteniTextProfil(data);
 
 	list<wstring> wl = transl.StringToWStringList(aktual);
-	list<int> p = profil.NacteniUrovniProfilu();
-	vector<int> v = profil.NacteniDatProfilu(0);
+	list<int> p = data.NacteniUrovniProfilu();
+	vector<int> v = data.NacteniDatProfilu(0);
 
 	list<wstring>::iterator itr;
 	list<int>::iterator itri;
@@ -261,9 +264,9 @@ void MenuProfil::TextProfilVykresleni(Profily& data)
 
 	set.SetCursorPosition(7, 17);
 	wcout << text.at(2);
-	if (!profil.jazyk)
+	if (!data.jazyk)
 		set.SetCursorPosition(18, 17);
-	if (profil.jazyk)
+	if (data.jazyk)
 		set.SetCursorPosition(17, 17);
 	wcout << text.at(3);
 
@@ -299,18 +302,18 @@ void MenuProfil::RamecekSmazani()
 
 void MenuProfil::SpodniZavoraSet()
 {
-	profil.NacteniPoctuProfilu();
-	if (profil.pocet_profilu == 1)
+	data.NacteniPoctuProfilu();
+	if (data.pocet_profilu == 1)
 		zavory.at(1) = 8;
-	else if (profil.pocet_profilu == 2)
+	else if (data.pocet_profilu == 2)
 		zavory.at(1) = 10;
-	else if (profil.pocet_profilu >= 3)
+	else if (data.pocet_profilu >= 3)
 		zavory.at(1) = 12;
 }
 void MenuProfil::OznaceniSet()
 {
 	SpodniZavoraSet();
-	if (profil.pocet_profilu < 3)
+	if (data.pocet_profilu < 3)
 		oznaceni.at(y) = zavory.at(1);
 }
 string MenuProfil::NazevProfiluSet()

@@ -7,12 +7,10 @@ void Profily::UlozeniProfilu(int profil)
 	list<vector<int>> data_profil;
 	list<string> nazev_profil;
 
-	advance(itr, profil);
-
 	for (int i = 0; i < pocet_profilu; i++)
 	{
 		if (i == profil)
-			data_profil.push_back(VlozeniDatDoVektoru(profil));
+			data_profil.push_back(VlozeniDatDoVektoru());
 		else
 			data_profil.push_back(NacteniDatProfilu(i));
 	}
@@ -21,16 +19,16 @@ void Profily::UlozeniProfilu(int profil)
 
 	ZapsaniProfilu(data_profil, nazev_profil);
 }
-vector<int> Profily::VlozeniDatDoVektoru(int profil)
+vector<int> Profily::VlozeniDatDoVektoru()
 {
 	vector<int> data_profil;
 
-	data_profil.at(0) = jazyk;
-	data_profil.at(1) = level;
-	data_profil.at(2) = exp;
-	data_profil.at(3) = plosina_skin;
-	data_profil.at(4) = highscore_cas;
-	data_profil.at(5) = highscore_znicenych_bloku;
+	data_profil.push_back(jazyk);
+	data_profil.push_back(level);
+	data_profil.push_back(exp);
+	data_profil.push_back(plosina_skin);
+	data_profil.push_back(highscore_cas);
+	data_profil.push_back(highscore_znicenych_bloku);
 
 	return data_profil;
 }

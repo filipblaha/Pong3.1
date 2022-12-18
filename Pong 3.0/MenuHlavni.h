@@ -5,12 +5,13 @@ class MenuHlavni : public Menu
 {
 public:
     Commands set;
-    Profily profil;
     Preklad transl;
 
-    MenuHlavni() : Menu(hlavni_e, 4, 10, 10, 14)
+    MenuHlavni(Profily data) : Menu(data, hlavni_e, 4, 10, 10, 14)
     {
         Preklad trans;
+
+        HlavniVykresleni(data);
     }
 
     //-----------------------  Input  -----------------------//
@@ -20,6 +21,7 @@ public:
     //-----------------------  Vykresleni  -----------------------//
 
     void HlavniVykresleni(Profily& data);
+    void LogoHlavniVykresleni();
     void TextHlavniVykresleni(Profily& data);
 
 private:

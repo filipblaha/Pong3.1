@@ -10,11 +10,11 @@ class Menu
 public:
 	Preklad transl;
 	Commands set;
-	Profily profil;
+	Profily data;
 
 	Menu()
 	{}
-	Menu(int strana, int x = 0, int y = 0, int horni_z = 0, int dolni_z = 0, int leva_z = 0, int prava_z = 0)
+	Menu(Profily data, int strana, int x = 0, int y = 0, int horni_z = 0, int dolni_z = 0, int leva_z = 0, int prava_z = 0)
 	{
 		Commands set;
 
@@ -30,6 +30,7 @@ public:
 		set.SetWindow(delka_menu, vyska_menu - 2);
 		set.Prechod();
 
+		NaplneniExpBar(data);
 		MenuSTARTVykresleni();
 	}
 
@@ -74,8 +75,10 @@ public:
 
 	vector<int> zavory;
 	vector<int> oznaceni;
-	list<string> aktual;
+	vector<int> exp_pole;
 	vector<wstring> text;
+
+	list<string> aktual;
 
 	//-----------------------  Input  -----------------------//
 
@@ -88,11 +91,17 @@ public:
 	void OznaceniVykresleni();
 	void OznaceniSmazani();
 	void OtazkaSmazani();
+	void VykresleniUroven(Profily data);
 
 	//-----------------------  Profil  -----------------------//
 
 	int IndexProfilu(int inkrement = 0);
 	void AktualNazevProfiluSTART();
 	void AktualNazevProfilu(int index, int poradi, int inkrement = 0, bool del = 0);
+
 private:
+
+	//-----------------------  Exp  -----------------------//
+
+	void NaplneniExpBar(Profily data);
 };

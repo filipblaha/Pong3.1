@@ -1,4 +1,4 @@
-#include "MenuProfil.h"
+#include "Menuprofil.h"
 #include "MenuHlavni.h"
 #include "MenuHerniMody.h"
 #include "MenuNastaveni.h"
@@ -14,9 +14,8 @@ bool Klasik(Profily &data)
 
 bool HerniModyMenu(Profily &data)
 {
-	MenuHerniMody menu;
+	MenuHerniMody menu(data);
 
-	menu.MenuHerniModyVykresleni(data);
 	while (HerniModyMenu)
 	{
 		switch (menu.VstupMenu())
@@ -61,11 +60,41 @@ bool HerniModyMenu(Profily &data)
 	}
 	return 0;
 }
-bool OvladaniMenu(Profily &data)
+bool VzhledPlosinyMenu(Profily &data)
 {
-	MenuOvladani menu;
+	MenuVzhledPlosiny menu(data);
 
-	menu.OvladaniVykresleni(data);
+	while (VzhledPlosinyMenu)
+	{
+		switch (menu.VstupMenu(data, menu.herni_mody_e))
+		{
+		case menu.enter:
+		{
+			menu.Rozhodovac(data, menu.enter);
+			break;
+		}
+		case menu.posun:
+		{
+			menu.OznaceniVykresleni();
+			break;
+		}
+		case menu.exit:
+		{
+			return 0;
+		}
+		default:
+		{
+			menu.OznaceniVykresleni();
+		}
+		break;
+		}
+	}
+	return 0;
+}
+bool OvladaniMenu(Profily& data)
+{
+	MenuOvladani menu(data);
+
 	while (OvladaniMenu)
 	{
 		switch (menu.VstupMenu(menu.ovladani_e))
@@ -105,11 +134,10 @@ bool OvladaniMenu(Profily &data)
 	}
 	return 1;
 }
-bool NastaveniMenu(Profily &data)
+bool NastaveniMenu(Profily& data)
 {
-	MenuNastaveni menu;
+	MenuNastaveni menu(data);
 
-	menu.NastaveniVykresleni(data);
 	while (NastaveniMenu)
 	{
 		switch (menu.VstupMenu())
@@ -152,43 +180,10 @@ bool NastaveniMenu(Profily &data)
 	}
 	return 0;
 }
-bool VzhledPlosinyMenu(Profily &data)
-{
-	MenuVzhledPlosiny menu;
-
-	menu.VzhledPlosinyVykresleni(data);
-	while (NastaveniMenu)
-	{
-		switch (menu.VstupMenu(data, menu.herni_mody_e))
-		{
-		case menu.enter:
-		{
-			menu.Rozhodovac(data, menu.enter);
-			break;
-		}
-		case menu.posun:
-		{
-			menu.OznaceniVykresleni();
-			break;
-		}
-		case menu.exit:
-		{
-			return 0;
-		}
-		default:
-		{
-			menu.OznaceniVykresleni();
-		}
-		break;
-		}
-	}
-	return 0;
-}
 bool HlavniMenu(Profily &data)
 {
-	MenuHlavni menu;
+	MenuHlavni menu(data);
 
-	menu.HlavniVykresleni(data);
 	while (HlavniMenu)
 	{
 		switch (menu.VstupMenu())
@@ -225,6 +220,7 @@ bool HlavniMenu(Profily &data)
 		}
 		case menu.exit:
 		{
+			data.UlozeniProfilu(data.jsem_v_profilu);
 			return 0;
 		}
 		default:
@@ -240,9 +236,8 @@ bool HlavniMenu(Profily &data)
 bool ProfilMenu()
 {
 	Profily data;
-	MenuProfil menu;
+	MenuProfil menu(data);
 
-	menu.ProfilVykresleni(data);
 	while (ProfilMenu)
 	{
 		switch (menu.VstupMenu(data, menu.profil_e))
@@ -250,10 +245,7 @@ bool ProfilMenu()
 		case menu.enter:
 		{
 			menu.Rozhodovac(data, menu.enter);
-			while (HlavniMenu(data))
-			{
-				data.UlozeniProfilu(menu.profil_e);
-			}
+			while (HlavniMenu(data));
 			return 0;
 		}
 		case menu.del:
@@ -269,6 +261,7 @@ bool ProfilMenu()
 		case menu.posun:
 		{
 			menu.OznaceniVykresleni();
+
 			break;
 		}
 		case menu.exit:

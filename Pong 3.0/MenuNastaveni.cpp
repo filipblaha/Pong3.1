@@ -41,6 +41,7 @@ int MenuNastaveni::Rozhodovac(Profily& data, int prikaz)
 void MenuNastaveni::NastaveniVykresleni(Profily& data)
 {
 	OznaceniVykresleni();
+	VykresleniUroven(data);
 	TextNastaveniVykresleni(data);
 }
 void MenuNastaveni::TextNastaveniVykresleni(Profily& data)

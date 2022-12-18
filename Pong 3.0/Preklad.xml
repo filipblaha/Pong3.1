@@ -1,13 +1,4 @@
 <root>
-	<zaklad>
-		<profil>8</profil>
-		<hlavni>4</hlavni>
-		<herni_mody>4</herni_mody>
-		<vzhled_plosiny>2</vzhled_plosiny>
-		<nastaveni>5</nastaveni>
-		<ovladani>9</ovladani>
-		<konec_kola>10</konec_kola>
-	</zaklad>
     <CZ>
 		<profil>
 			<string>Vyber si svuj profil</string>
@@ -18,6 +9,7 @@
 			<string>[ENTER]</string>
 			<string>Zadej nazev profilu</string>
 			<string>Ur.</string>
+			<string>Uroven </string>
 		</profil>
 		<hlavni>
 			<string>Herni mody</string>
@@ -76,6 +68,7 @@
 			<string>[ENTER]</string>
 			<string>Enter a profile name</string>
 			<string>Lvl. </string>
+			<string>Level </string>
 		</profil>
 		<hlavni>
 			<string>Game modes</string>

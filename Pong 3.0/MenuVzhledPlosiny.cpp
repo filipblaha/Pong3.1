@@ -56,41 +56,53 @@ int MenuVzhledPlosiny::VstupMenu(Profily& data, int strana)
 }
 int MenuVzhledPlosiny::Rozhodovac(Profily& data, int prikaz)
 {
-	if (oznaceni.at(y) == 10)
+	if (oznaceni.at(y) == 9)
 	{
-		if (oznaceni.at(x) == 7)
+		if (oznaceni.at(x) == 6)
 		{
-			if (profil.level < potrebna_uroven.at(0))
+			if (data.level < potrebna_uroven.at(0))
 				NedostatecnaUrovenVykresleni();
+			else
+				data.plosina_skin = 0;
 		}
-		if (oznaceni.at(x) == 17) 
+		if (oznaceni.at(x) == 16) 
 		{
-			if (profil.level < potrebna_uroven.at(1))
+			if (data.level < potrebna_uroven.at(1))
 				NedostatecnaUrovenVykresleni();
+			else
+				data.plosina_skin = 1;
 		}
-		if (oznaceni.at(x) == 27)
+		if (oznaceni.at(x) == 26)
 		{
-			if (profil.level < potrebna_uroven.at(2))
+			if (data.level < potrebna_uroven.at(2))
 				NedostatecnaUrovenVykresleni();
+			else
+				data.plosina_skin = 2;
 		}
 	}
-	else if (oznaceni.at(y) == 14)
+	else if (oznaceni.at(y) == 13)
 	{
 
-		if (oznaceni.at(x) == 7)
+		if (oznaceni.at(x) == 6)
 		{
-			if (profil.level < potrebna_uroven.at(3))
+			if (data.level < potrebna_uroven.at(3))
 				NedostatecnaUrovenVykresleni();
+			else
+				data.plosina_skin = 3;
 		}
-		if (oznaceni.at(x) == 17)
+		if (oznaceni.at(x) == 16)
 		{
-			if (profil.level < potrebna_uroven.at(4))
+			if (data.level < potrebna_uroven.at(4))
 				NedostatecnaUrovenVykresleni();
+			else
+				data.plosina_skin = 4;
 		}
-		if (oznaceni.at(x) == 27)
+		if (oznaceni.at(x) == 26)
 		{
-			if (profil.level < potrebna_uroven.at(5))
+			if (data.level < potrebna_uroven.at(5))
 				NedostatecnaUrovenVykresleni();
+			else
+				data.plosina_skin = 5;
 		}
 	}
 	return 1;
@@ -99,6 +111,13 @@ int MenuVzhledPlosiny::Rozhodovac(Profily& data, int prikaz)
 //-----------------------  Vykresleni -----------------------//
 
 void MenuVzhledPlosiny::VzhledPlosinyVykresleni(Profily& data)
+{
+	SkinyVykresleni(data);
+	OznaceniVykresleni();
+	VykresleniUroven(data);
+	TextVzhledPlosinyVykresleni(data);
+}
+void MenuVzhledPlosiny::SkinyVykresleni(Profily data)
 {
 	int n = 7;
 	int m = 10;
@@ -110,16 +129,13 @@ void MenuVzhledPlosiny::VzhledPlosinyVykresleni(Profily& data)
 			m = 14;
 		}
 		set.SetCursorPosition(n, m);
-		if (profil.level >= potrebna_uroven.at(i))
+		if (data.level >= potrebna_uroven.at(i))
 			wcout << skiny.at(i + 1);
 		else
 			wcout << skiny.at(0);
 
 		n += 10;
 	}
-
-	OznaceniVykresleni();
-	TextVzhledPlosinyVykresleni(data);
 }
 void MenuVzhledPlosiny::TextVzhledPlosinyVykresleni(Profily& data)
 {

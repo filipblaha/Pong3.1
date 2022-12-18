@@ -5,15 +5,17 @@ class MenuVzhledPlosiny : public Menu
 {
 public:
     Commands set;
-    Profily profil;
     Preklad transl;
 
-    MenuVzhledPlosiny() : Menu(hlavni_e, 6, 9, 9, 13, 6, 26)
+    MenuVzhledPlosiny(Profily data) : Menu(data, hlavni_e, 6, 9, 9, 13, 6, 26)
     {
         Preklad trans;
 
         potrebna_uroven = { 0,1,2,3,4,5 };
+
         NacteniSkiny();
+
+        VzhledPlosinyVykresleni(data);
     }
 
     //-----------------------  Input  -----------------------//
@@ -25,6 +27,7 @@ public:
 
     void VzhledPlosinyVykresleni(Profily& data);
     void TextVzhledPlosinyVykresleni(Profily& data);
+    void SkinyVykresleni(Profily data);
     void OznaceniVykresleni();
     void OznaceniSmazani();
     void NacteniSkiny();

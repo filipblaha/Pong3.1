@@ -41,11 +41,6 @@ vector<wstring> Preklad::NacteniTextProfil(Profily data)
 	xmlDoc.LoadFile("Preklad.xml");
 
 	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* base = root->FirstChildElement("zaklad");
-
-	XMLElement* profil = base->FirstChildElement("profil");
-	profil->QueryIntText(&profil_stringu);
-
 	XMLElement*jazyk_p = root->FirstChildElement("CZ");
 	if (data.jazyk == CZ)
 		jazyk_p = root->FirstChildElement("CZ");
@@ -54,7 +49,7 @@ vector<wstring> Preklad::NacteniTextProfil(Profily data)
 
 	XMLElement* menu =jazyk_p->FirstChildElement("profil");
 	XMLElement* text = menu->FirstChildElement("string");
-	for (int i = 0; i < profil_stringu; i++)
+	while (text != nullptr)
 	{
 		const char* data = text->GetText();
 		string sdata = data;
@@ -73,11 +68,6 @@ vector<wstring> Preklad::NacteniTextHlavni(Profily data)
 	xmlDoc.LoadFile("Preklad.xml");
 
 	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* base = root->FirstChildElement("zaklad");
-
-	XMLElement* profil = base->FirstChildElement("hlavni");
-	profil->QueryIntText(&profil_stringu);
-
 	XMLElement*jazyk_p = root->FirstChildElement("CZ");
 	if (data.jazyk == CZ)
 		jazyk_p = root->FirstChildElement("CZ");
@@ -86,7 +76,7 @@ vector<wstring> Preklad::NacteniTextHlavni(Profily data)
 
 	XMLElement* menu =jazyk_p->FirstChildElement("hlavni");
 	XMLElement* text = menu->FirstChildElement("string");
-	for (int i = 0; i < profil_stringu; i++)
+	while (text != nullptr)
 	{
 		const char* data = text->GetText();
 		string sdata = data;
@@ -105,11 +95,6 @@ vector<wstring> Preklad::NacteniTextHerniMody(Profily data)
 	xmlDoc.LoadFile("Preklad.xml");
 
 	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* base = root->FirstChildElement("zaklad");
-
-	XMLElement* profil = base->FirstChildElement("herni_mody");
-	profil->QueryIntText(&profil_stringu);
-
 	XMLElement*jazyk_p = root->FirstChildElement("CZ");
 	if (data.jazyk == CZ)
 		jazyk_p = root->FirstChildElement("CZ");
@@ -118,7 +103,7 @@ vector<wstring> Preklad::NacteniTextHerniMody(Profily data)
 
 	XMLElement* menu =jazyk_p->FirstChildElement("herni_mody");
 	XMLElement* text = menu->FirstChildElement("string");
-	for (int i = 0; i < profil_stringu; i++)
+	while (text != nullptr)
 	{
 		const char* data = text->GetText();
 		string sdata = data;
@@ -137,11 +122,6 @@ vector<wstring> Preklad::NacteniTextVzhledPlosiny(Profily data)
 	xmlDoc.LoadFile("Preklad.xml");
 
 	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* base = root->FirstChildElement("zaklad");
-
-	XMLElement* profil = base->FirstChildElement("vzhled_plosiny");
-	profil->QueryIntText(&profil_stringu);
-
 	XMLElement*jazyk_p = root->FirstChildElement("CZ");
 	if (data.jazyk == CZ)
 		jazyk_p = root->FirstChildElement("CZ");
@@ -150,7 +130,7 @@ vector<wstring> Preklad::NacteniTextVzhledPlosiny(Profily data)
 
 	XMLElement* menu =jazyk_p->FirstChildElement("vzhled_plosiny");
 	XMLElement* text = menu->FirstChildElement("string");
-	for (int i = 0; i < profil_stringu; i++)
+	while (text != nullptr)
 	{
 		const char* data = text->GetText();
 		string sdata = data;
@@ -169,11 +149,6 @@ vector<wstring> Preklad::NacteniTextNastaveni(Profily data)
 	xmlDoc.LoadFile("Preklad.xml");
 
 	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* base = root->FirstChildElement("zaklad");
-
-	XMLElement* profil = base->FirstChildElement("nastaveni");
-	profil->QueryIntText(&profil_stringu);
-
 	XMLElement*jazyk_p = root->FirstChildElement("CZ");
 	if (data.jazyk == CZ)
 		jazyk_p = root->FirstChildElement("CZ");
@@ -182,7 +157,7 @@ vector<wstring> Preklad::NacteniTextNastaveni(Profily data)
 
 	XMLElement* menu =jazyk_p->FirstChildElement("nastaveni");
 	XMLElement* text = menu->FirstChildElement("string");
-	for (int i = 0; i < profil_stringu; i++)
+	while (text != nullptr)
 	{
 		const char* data = text->GetText();
 		string sdata = data;
@@ -201,11 +176,6 @@ vector<wstring> Preklad::NacteniTextOvladani(Profily data)
 	xmlDoc.LoadFile("Preklad.xml");
 
 	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* base = root->FirstChildElement("zaklad");
-
-	XMLElement* profil = base->FirstChildElement("ovladani");
-	profil->QueryIntText(&profil_stringu);
-
 	XMLElement*jazyk_p = root->FirstChildElement("CZ");
 	if (data.jazyk == CZ)
 		jazyk_p = root->FirstChildElement("CZ");
@@ -214,7 +184,7 @@ vector<wstring> Preklad::NacteniTextOvladani(Profily data)
 
 	XMLElement* menu =jazyk_p->FirstChildElement("ovladani");
 	XMLElement* text = menu->FirstChildElement("string");
-	for (int i = 0; i < profil_stringu; i++)
+	while (text != nullptr)
 	{
 		const char* data = text->GetText();
 		string sdata = data;
@@ -233,11 +203,6 @@ vector<wstring> Preklad::NacteniTextKonecKola(Profily data)
 	xmlDoc.LoadFile("Preklad.xml");
 
 	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* base = root->FirstChildElement("zaklad");
-
-	XMLElement* profil = base->FirstChildElement("konec_kola");
-	profil->QueryIntText(&profil_stringu);
-
 	XMLElement*jazyk_p = root->FirstChildElement("CZ");
 	if (data.jazyk == CZ)
 		jazyk_p = root->FirstChildElement("CZ");
@@ -246,7 +211,7 @@ vector<wstring> Preklad::NacteniTextKonecKola(Profily data)
 
 	XMLElement* menu =jazyk_p->FirstChildElement("konec_kola");
 	XMLElement* text = menu->FirstChildElement("string");
-	for (int i = 0; i < profil_stringu; i++)
+	while (text != nullptr)
 	{
 		const char* data = text->GetText();
 		string sdata = data;

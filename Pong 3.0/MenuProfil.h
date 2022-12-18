@@ -5,15 +5,16 @@ class MenuProfil : public Menu
 {
 public:
     Commands set;
-    Profily profil;
     Preklad transl;
 
-    MenuProfil() : Menu(profil_e, 10, 8, 8)
+    MenuProfil(Profily data) : Menu(data, profil_e, 10, 8, 8)
     {
         Preklad transl;
 
         SpodniZavoraSet();
         AktualNazevProfiluSTART();
+
+        ProfilVykresleni(data);
     }
 
     //-----------------------  Input  -----------------------//
@@ -24,6 +25,7 @@ public:
     //-----------------------  Vykresleni (public)  -----------------------//
 
     void ProfilVykresleni(Profily& data);
+    void RamecekVykresleni();
     void TextProfilVykresleni(Profily& data);
     void OtazkaVykresleni();
 

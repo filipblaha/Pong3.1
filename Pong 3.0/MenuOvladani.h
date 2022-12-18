@@ -5,12 +5,13 @@ class MenuOvladani : public Menu
 {
 public:
     Commands set;
-    Profily profil;
     Preklad transl;
 
-    MenuOvladani() : Menu(hlavni_e, 4, 12, 12, 15)
+    MenuOvladani(Profily data) : Menu(data, hlavni_e, 4, 12, 12, 15)
     {
         Preklad trans;
+
+        OvladaniVykresleni(data);
     }
 
     //-----------------------  Input  -----------------------//

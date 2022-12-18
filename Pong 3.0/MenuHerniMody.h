@@ -5,12 +5,13 @@ class MenuHerniMody : public Menu
 {
 public:
     Commands set;
-    Profily profil;
     Preklad transl;
 
-    MenuHerniMody() : Menu(hlavni_e, 4, 10, 10, 14)
+    MenuHerniMody(Profily data) : Menu(data, hlavni_e, 4, 10, 10, 14)
     {
         Preklad trans;
+
+        MenuHerniModyVykresleni(data);
     }
 
     //-----------------------  Input  -----------------------//

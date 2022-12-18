@@ -105,13 +105,27 @@ void Menu::OtazkaSmazani()
 	set.SetCursorPosition(26, 3);
 	wcout << "       ";
 }
+void Menu::VykresleniUroven(Profily data)
+{
+	text = transl.NacteniTextProfil(data);
+	set.SetCursorPosition(27, 17);
+	std::wcout << text.at(8) << data.level;
+	set.SetCursorPosition(17, 18);
+	for (int i = 0; i < exp_pole.size(); i++)
+	{
+		if (exp_pole.at(i) == 2)
+			std::wcout << L"\x2588";
+		if (exp_pole.at(i) == 0)
+			std::wcout << L"\x2591";
+	}
+}
 
 //-----------------------  Profil  -----------------------//
 
 int Menu::IndexProfilu(int inkrement)
 {
 	int index = 0;
-	list<string> temp = profil.NacteniJmenProfilu();
+	list<string> temp = data.NacteniJmenProfilu();
 	list<string>::iterator itr = temp.begin();
 	while (*itr != *aktual.begin())
 	{
@@ -134,7 +148,7 @@ int Menu::IndexProfilu(int inkrement)
 }
 void Menu::AktualNazevProfiluSTART()
 {
-	aktual = profil.NacteniJmenProfilu();
+	aktual = data.NacteniJmenProfilu();
 
 	while (aktual.size() > 3)
 	{
@@ -143,12 +157,12 @@ void Menu::AktualNazevProfiluSTART()
 }
 void Menu::AktualNazevProfilu(int index, int poradi, int inkrement, bool del)
 {
-	list<string> temp = profil.NacteniJmenProfilu();
+	list<string> temp = data.NacteniJmenProfilu();
 	list<string>::iterator itr = temp.begin();
 	
 	if (del)
 	{
-		if (poradi == 0 || (poradi == 2 && index == profil.pocet_profilu && profil.pocet_profilu >= 3) || (poradi == 1 && index + 1 == profil.pocet_profilu && profil.pocet_profilu > 3))
+		if (poradi == 0 || (poradi == 2 && index == data.pocet_profilu && data.pocet_profilu >= 3) || (poradi == 1 && index + 1 == data.pocet_profilu && data.pocet_profilu > 3))
 		{
 			inkrement = 1;
 		}
@@ -163,13 +177,28 @@ void Menu::AktualNazevProfilu(int index, int poradi, int inkrement, bool del)
 
 	aktual.clear();
 	int n = 0;
-	if (profil.pocet_profilu >= 3)
+	if (data.pocet_profilu >= 3)
 		n = 3;
 	else
-		n = profil.pocet_profilu;
+		n = data.pocet_profilu;
 	for (int i = 0; i < n; i++)
 	{
 		aktual.push_back(*itr);
 		itr++;
+	}
+}
+
+
+//-----------------------  Exp  -----------------------//
+
+void Menu::NaplneniExpBar(Profily data)
+{
+	for (int i = 0; i < data.exp; i++)
+	{
+		exp_pole.push_back(2);
+	}
+	for (int i = 0; i < 20 - data.exp; i++)
+	{
+		exp_pole.push_back(0);
 	}
 }

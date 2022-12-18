@@ -5,16 +5,17 @@ class MenuNastaveni : public Menu
 {
 public:
     Commands set;
-    Profily profil;
     Preklad transl;
 
-    MenuNastaveni() : Menu(nastaveni_e, 4, 10, 10, 14)
+    MenuNastaveni(Profily data) : Menu(data, nastaveni_e, 4, 10, 10, 14)
     {
         Preklad trans;
 
         balic = 0;
 
         SpodniZavoraSet();
+
+        NastaveniVykresleni(data);
     }
 
     //-----------------------  Input  -----------------------//

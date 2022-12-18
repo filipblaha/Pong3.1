@@ -78,6 +78,7 @@ void MenuOvladani::OvladaniVykresleni(Profily& data)
 		wcout << ".";
 
 	OznaceniVykresleni();
+	VykresleniUroven(data);
 	TextOvladaniVykresleni(data);
 }
 void MenuOvladani::TextOvladaniVykresleni(Profily& data)
