@@ -266,6 +266,7 @@ bool ProfilMenu()
 		}
 		case menu.exit:
 		{
+			data.UlozeniProfilu(data.jsem_v_profilu);
 			return 0;
 		}
 		default:
