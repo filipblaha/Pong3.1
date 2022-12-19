@@ -13,7 +13,10 @@ int MenuOvladani::VstupMenu()
 		{
 			oznaceni.at(y)--;
 		}
-		
+		else
+		{
+			oznaceni.at(y) = zavory.at(1);
+		}		
 		return posun;
 	}
 	case 's':
@@ -22,6 +25,10 @@ int MenuOvladani::VstupMenu()
 		if (oznaceni.at(y) < zavory.at(1))
 		{
 			oznaceni.at(y)++;
+		}
+		else
+		{
+			oznaceni.at(y) = zavory.at(0);
 		}
 		return posun;
 	}

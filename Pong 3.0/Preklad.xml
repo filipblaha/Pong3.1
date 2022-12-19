@@ -16,6 +16,7 @@
 			<string>Herni mody</string>
 			<string>Vzhled plosiny</string>
 			<string>Nastaveni</string>
+			<string>Zmenit profil</string>
 			<string>verze </string>
 		</hlavni>
 		<herni_mody>
@@ -81,6 +82,7 @@
 			<string>Game modes</string>
 			<string>Skins</string>
 			<string>Settings</string>
+			<string>Change Profile</string>
 			<string>version </string>
 		</hlavni>
 		<herni_mody>

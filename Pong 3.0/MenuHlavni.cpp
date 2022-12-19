@@ -4,17 +4,21 @@
 
 int MenuHlavni::Rozhodovac(Profily& data)
 {
-	if (oznaceni.at(y) == 10)
+	if (oznaceni.at(y) == 9)
 	{
 		return herni_mody_e;
 	}
-	if (oznaceni.at(y) == 12)
+	if (oznaceni.at(y) == 11)
 	{
 		return vzhled_plosiny_e;
 	}
-	if (oznaceni.at(y) == 14)
+	if (oznaceni.at(y) == 13)
 	{
 		return nastaveni_e;
+	}
+	if (oznaceni.at(y) == 15)
+	{
+		return profil_e;
 	}
 }
 
@@ -112,12 +116,14 @@ void MenuHlavni::TextHlavniVykresleni(Profily& data)
 
 	///-------  Text  -------//
 
-	set.SetCursorPosition(6, 10);
+	set.SetCursorPosition(6, 9);
 	wcout << text.at(0);
-	set.SetCursorPosition(6, 12);
+	set.SetCursorPosition(6, 11);
 	wcout << text.at(1);
-	set.SetCursorPosition(6, 14);
+	set.SetCursorPosition(6, 13);
 	wcout << text.at(2);
+	set.SetCursorPosition(6, 15);
+	wcout << text.at(3);
 	set.SetCursorPosition(2, 18);
-	wcout << text.at(3) << "3.0";
+	wcout << text.at(4) << "3.0";
 }

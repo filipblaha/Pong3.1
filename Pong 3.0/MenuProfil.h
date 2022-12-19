@@ -12,6 +12,7 @@ public:
         Preklad transl;
 
         SpodniZavoraSet(data);
+        oznaceni.at(y) = 7;
         AktualNazevProfiluSTART();
 
         data.VybraniProfilu(0);

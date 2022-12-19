@@ -26,17 +26,17 @@ bool HerniModyMenu(Profily &data)
 			{
 			case menu.klasik_e:
 			{
-				while (Klasik(data));
+				Klasik(data);
 				break;
 			}
 			/*case menu.bloky_padaji_e:
 			{
-				while (BlokyPadaji(data));
+				BlokyPadaji(data);
 				break;
 			}
 			case menu.rogue_like_e:
 			{
-				while (RogueLike(data));
+				RogueLike(data);
 				break;
 			}*/
 			}
@@ -136,7 +136,7 @@ bool NastaveniMenu(Profily& data)
 			{
 			case menu.ovladani_e:
 			{
-				while (OvladaniMenu(data));
+				OvladaniMenu(data);
 				menu.MenuSTARTVykresleni();
 				menu.NastaveniVykresleni(data);
 				break;
@@ -182,17 +182,23 @@ bool HlavniMenu(Profily &data)
 			{
 			case menu.herni_mody_e:
 			{
-				while (HerniModyMenu(data));
+				HerniModyMenu(data);
 				break;
 			}
 			case menu.vzhled_plosiny_e:
 			{
-				while (VzhledPlosinyMenu(data));
+				VzhledPlosinyMenu(data);
 				break;
 			}
 			case menu.nastaveni_e:
 			{
-				while (NastaveniMenu(data));
+				NastaveniMenu(data);
+				break;
+			}
+			case menu.profil_e:
+			{
+				data.UlozeniProfilu(data.jsem_v_profilu);
+				return 1;
 				break;
 			}
 			}
@@ -233,8 +239,10 @@ bool ProfilMenu()
 		case menu.enter:
 		{
 			menu.Rozhodovac(data, menu.enter);
-			while (HlavniMenu(data));
-			return 0;
+			if (!HlavniMenu(data))
+				return 0;
+			else
+				return 1;
 		}
 		case menu.del:
 		{
