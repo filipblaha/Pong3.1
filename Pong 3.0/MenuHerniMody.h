@@ -16,7 +16,7 @@ public:
 
     //-----------------------  Input  -----------------------//
 
-    int Rozhodovac(Profily& data, int prikaz);
+    int Rozhodovac(Profily& data);
 
     //-----------------------  Vykresleni  -----------------------//
 

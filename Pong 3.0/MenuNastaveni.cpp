@@ -2,7 +2,7 @@
 
 //-----------------------  Input  -----------------------//
 
-int MenuNastaveni::Rozhodovac(Profily& data, int prikaz)
+int MenuNastaveni::Rozhodovac(Profily& data)
 {
 	if (oznaceni.at(y) == 10)
 	{

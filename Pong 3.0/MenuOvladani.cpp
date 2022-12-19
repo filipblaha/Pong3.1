@@ -2,7 +2,7 @@
 
 //-----------------------  Input  -----------------------//
 
-int MenuOvladani::VstupMenu(int strana)
+int MenuOvladani::VstupMenu()
 {
 	switch (_getch())
 	{
@@ -36,20 +36,47 @@ int MenuOvladani::VstupMenu(int strana)
 	}
 	}
 }
-int MenuOvladani::Rozhodovac(Profily& data, int prikaz)
+void MenuOvladani::Rozhodovac(Profily& data)
 {
-	if (oznaceni.at(y) == 10)
-	{
-		return herni_mody_e;
-	}
 	if (oznaceni.at(y) == 12)
 	{
-		return vzhled_plosiny_e;
+		ZmenaOvladaniSmazani(12);
+		data.pohyb_vlevo = ZmenaOvladani();
 	}
-	if (oznaceni.at(y) == 14)
+	else if (oznaceni.at(y) == 13)
 	{
-		return nastaveni_e;
+		ZmenaOvladaniSmazani(13);
+		data.pohyb_vpravo = ZmenaOvladani();
 	}
+	else if (oznaceni.at(y) == 14)
+	{
+		ZmenaOvladaniSmazani(14);
+		data.pouziti_schopnosti = ZmenaOvladani();
+	}
+	else if (oznaceni.at(y) == 15)
+	{
+		ZmenaOvladaniSmazani(15);
+		data.pauza = ZmenaOvladani();
+	}
+
+	data.UlozeniProfilu(data.jsem_v_profilu);
+	set.Prechod();
+	MenuSTARTVykresleni();
+	OvladaniVykresleni(data);
+}
+
+void MenuOvladani::ZmenaOvladaniSmazani(int poradi)
+{
+	set.SetCursorPosition(29, poradi);
+	wcout << "        ";
+	set.SetCursorPosition(29, poradi);
+}
+char MenuOvladani::ZmenaOvladani()
+{
+	char zmena;
+	zmena = _getche();
+
+	return zmena;
 }
 
 //-----------------------  Vykresleni -----------------------//
@@ -64,18 +91,12 @@ void MenuOvladani::OvladaniVykresleni(Profily& data)
 	set.SetCursorPosition(26, 8);
 	wcout << "Q";
 
-	set.SetCursorPosition(7, 12);
-	for (int i = 0; i < 20;i++)
-		wcout << ".";
-	set.SetCursorPosition(7, 13);
-	for (int i = 0; i < 20;i++)
-		wcout << ".";
-	set.SetCursorPosition(7, 14);
-	for (int i = 0; i < 20;i++)
-		wcout << ".";
-	set.SetCursorPosition(7, 15);
-	for (int i = 0; i < 20;i++)
-		wcout << ".";
+	for (int  j= 12; j <= 15; j++)
+	{
+		set.SetCursorPosition(12, j);
+		for (int i = 0; i < 15;i++)
+			wcout << ".";
+	}
 
 	OznaceniVykresleni();
 	VykresleniUroven(data);
@@ -84,6 +105,7 @@ void MenuOvladani::OvladaniVykresleni(Profily& data)
 void MenuOvladani::TextOvladaniVykresleni(Profily& data)
 {
 	text = transl.NacteniTextOvladani(data);
+	vector<wstring> ovladani = BlbyZnakyCheck(data);
 
 	///-------  Text  -------//
 
@@ -98,21 +120,49 @@ void MenuOvladani::TextOvladaniVykresleni(Profily& data)
 	set.SetCursorPosition(7, 12);
 	wcout << text.at(4);
 	set.SetCursorPosition(29, 12);
-	
+	wcout << ovladani.at(0);
 	set.SetCursorPosition(7, 13);
 	wcout << text.at(5);
 	set.SetCursorPosition(29, 13);
-	
+	wcout << ovladani.at(1);
 	set.SetCursorPosition(7, 14);
 	wcout << text.at(6);
 	set.SetCursorPosition(29, 14);
-	
-	wcout << text.at(7);
-	//wcout << (char)set.Spouziti_schopnosti;
-
+	wcout << ovladani.at(2);
 	set.SetCursorPosition(7, 15);
-	wcout << text.at(8);
+	wcout << text.at(7);
 	set.SetCursorPosition(29, 15);
-	wcout << "Esc";
-	//wcout << (char)set.Spauza;
+	wcout << ovladani.at(3);
+}
+
+//-----------------------  Znak Check -----------------------//
+
+vector<wstring> MenuOvladani::BlbyZnakyCheck(Profily& data)
+{
+	vector<char> ovladani_char = data.NacteniOvladaniProfilu(data.jsem_v_profilu);
+	vector<wstring> ovladani_string;
+	vector<wstring> text = transl.NacteniTextOvladani(data);
+
+	for (int i = 0; i < ovladani_char.size(); i++)
+	{
+		wstring tempws;
+		if (ovladani_char.at(i) == 32)
+			ovladani_string.push_back(text.at(8));
+		else if (ovladani_char.at(i) == 8)
+			ovladani_string.push_back(text.at(9));
+		else if (ovladani_char.at(i) == 127)
+			ovladani_string.push_back(text.at(10));
+		else if (ovladani_char.at(i) == 27)
+			ovladani_string.push_back(text.at(11));
+		else if (ovladani_char.at(i) == 13)
+			ovladani_string.push_back(text.at(12));
+		else if (ovladani_char.at(i) == 9)
+			ovladani_string.push_back(text.at(13));
+		else
+		{
+			tempws.push_back(ovladani_char.at(i));
+			ovladani_string.push_back(tempws);
+		}
+	}
+	return ovladani_string;
 }

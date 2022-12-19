@@ -2,7 +2,7 @@
 
 //-----------------------  Input  -----------------------//
 
-int MenuHerniMody::Rozhodovac(Profily& data, int prikaz)
+int MenuHerniMody::Rozhodovac(Profily& data)
 {
 	if (oznaceni.at(y) == 10)
 	{

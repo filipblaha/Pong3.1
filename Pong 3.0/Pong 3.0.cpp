@@ -22,7 +22,7 @@ bool HerniModyMenu(Profily &data)
 		{
 		case menu.enter:
 		{
-			switch (menu.Rozhodovac(data, menu.enter))
+			switch (menu.Rozhodovac(data))
 			{
 			case menu.klasik_e:
 			{
@@ -66,11 +66,11 @@ bool VzhledPlosinyMenu(Profily &data)
 
 	while (VzhledPlosinyMenu)
 	{
-		switch (menu.VstupMenu(data, menu.herni_mody_e))
+		switch (menu.VstupMenu(data))
 		{
 		case menu.enter:
 		{
-			menu.Rozhodovac(data, menu.enter);
+			menu.Rozhodovac(data);
 			break;
 		}
 		case menu.posun:
@@ -97,23 +97,11 @@ bool OvladaniMenu(Profily& data)
 
 	while (OvladaniMenu)
 	{
-		switch (menu.VstupMenu(menu.ovladani_e))
+		switch (menu.VstupMenu())
 		{
 		case menu.enter:
 		{
-			switch (menu.Rozhodovac(data, menu.enter))
-			{
-			case menu.ovladani_e:
-			{
-
-				break;
-			}
-			case menu.balic_e:
-			{
-
-				break;
-			}
-			}
+			(menu.Rozhodovac(data));
 			break;
 		}
 		case menu.posun:
@@ -144,7 +132,7 @@ bool NastaveniMenu(Profily& data)
 		{
 		case menu.enter:
 		{
-			switch (menu.Rozhodovac(data, menu.enter))
+			switch (menu.Rozhodovac(data))
 			{
 			case menu.ovladani_e:
 			{
@@ -190,7 +178,7 @@ bool HlavniMenu(Profily &data)
 		{
 		case menu.enter:
 		{
-			switch (menu.Rozhodovac(data, menu.enter))
+			switch (menu.Rozhodovac(data))
 			{
 			case menu.herni_mody_e:
 			{
@@ -240,7 +228,7 @@ bool ProfilMenu()
 
 	while (ProfilMenu)
 	{
-		switch (menu.VstupMenu(data, menu.profil_e))
+		switch (menu.VstupMenu(data))
 		{
 		case menu.enter:
 		{
@@ -251,7 +239,7 @@ bool ProfilMenu()
 		case menu.del:
 		{
 			menu.OtazkaVykresleni();
-			if (menu.VstupMenu(data, menu.profil_e) == menu.enter)
+			if (menu.VstupMenu(data) == menu.enter)
 			{
 				menu.Rozhodovac(data, menu.del);
 			}

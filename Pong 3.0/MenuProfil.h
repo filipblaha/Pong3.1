@@ -20,7 +20,7 @@ public:
 
     //-----------------------  Input  -----------------------//
 
-    int VstupMenu(Profily& data, int strana);
+    int VstupMenu(Profily& data);
     void Rozhodovac(Profily &data, int prikaz, int inkrement = 0);
 
     //-----------------------  Vykresleni (public)  -----------------------//

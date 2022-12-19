@@ -2,7 +2,7 @@
 
 //-----------------------  Input  -----------------------//
 
-int MenuVzhledPlosiny::VstupMenu(Profily& data, int strana)
+int MenuVzhledPlosiny::VstupMenu(Profily& data)
 {
 	switch (_getch())
 	{
@@ -54,7 +54,7 @@ int MenuVzhledPlosiny::VstupMenu(Profily& data, int strana)
 	}
 	}
 }
-int MenuVzhledPlosiny::Rozhodovac(Profily& data, int prikaz)
+int MenuVzhledPlosiny::Rozhodovac(Profily& data)
 {
 	if (oznaceni.at(y) == 9)
 	{

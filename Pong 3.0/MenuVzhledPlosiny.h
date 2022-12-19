@@ -20,8 +20,8 @@ public:
 
     //-----------------------  Input  -----------------------//
 
-    int VstupMenu(Profily& data, int strana);
-    int Rozhodovac(Profily& data, int prikaz);
+    int VstupMenu(Profily& data);
+    int Rozhodovac(Profily& data);
 
     //-----------------------  Vykresleni  -----------------------//
 

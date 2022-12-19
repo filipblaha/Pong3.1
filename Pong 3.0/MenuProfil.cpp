@@ -2,7 +2,7 @@
 
 //-----------------------  Input  -----------------------//
 
-int MenuProfil::VstupMenu(Profily& data, int strana)
+int MenuProfil::VstupMenu(Profily& data)
 {
 	switch (_getch())
 	{

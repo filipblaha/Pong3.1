@@ -43,8 +43,13 @@
 			<string>Pohyb - vlevo</string>
 			<string>Pohyb - vpravo</string>
 			<string>Pouzit schopnost</string>
-			<string>Mezernik</string>
 			<string>Pauza</string>
+			<string>Mezernik</string>
+			<string>Backspace</string>
+			<string>Delete</string>
+			<string>Escape</string>
+			<string>Enter</string>
+			<string>Tab</string>
 		</ovladani>
 		<konec_kola>
 			<string>Zkus to znovu.</string>
@@ -103,8 +108,13 @@
 			<string>Movement - left</string>
 			<string>Movement - right</string>
 			<string>Use ability</string>
-			<string>Spacebar</string>
 			<string>Pause</string>
+			<string>Spacebar</string>
+			<string>Backspace</string>
+			<string>Delete</string>
+			<string>Escape</string>
+			<string>Enter</string>
+			<string>Tab</string>
 		</ovladani>
 		<konec_kola>
 			<string>Try again.</string>

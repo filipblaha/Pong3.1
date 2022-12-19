@@ -16,8 +16,11 @@ public:
 
     //-----------------------  Input  -----------------------//
 
-    int VstupMenu(int strana);
-    int Rozhodovac(Profily &data, int prikaz);
+    int VstupMenu();
+    void Rozhodovac(Profily &data);
+
+    void ZmenaOvladaniSmazani(int poradi);
+    char ZmenaOvladani();
 
     //-----------------------  Vykresleni  -----------------------//
 
@@ -25,4 +28,8 @@ public:
     void TextOvladaniVykresleni(Profily& data);
 
 private:
+
+    //-----------------------  Znak Check -----------------------//
+
+    vector<wstring> BlbyZnakyCheck(Profily& data);
 };
