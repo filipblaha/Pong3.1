@@ -17,7 +17,7 @@ int Menu::VstupMenu()
 		{
 			oznaceni.at(y) = zavory.at(1);
 		}
-		return posun;
+		return 1;
 	}
 	case 's':
 	{
@@ -30,8 +30,7 @@ int Menu::VstupMenu()
 		{
 			oznaceni.at(y) = zavory.at(0);
 		}
-		
-		return posun;
+		return 1;
 	}
 	case '\r':
 	{
@@ -117,7 +116,7 @@ void Menu::VykresleniUroven(Profily data)
 {
 	text = transl.NacteniTextProfil(data);
 	set.SetCursorPosition(27, 17);
-	std::wcout << text.at(8) << data.level;
+	std::wcout << text.at(9) << data.level;
 	set.SetCursorPosition(17, 18);
 	for (int i = 0; i < exp_pole.size(); i++)
 	{
@@ -153,17 +152,6 @@ int Menu::IndexProfilu(int inkrement)
 		itr--;
 	}
 	return index;
-}
-void Menu::AktualNazevProfiluSTART()
-{
-	aktual_nazvy = data.NacteniJmenProfilu();
-	aktual_urovne = data.NacteniUrovniProfilu();
-
-	while (aktual_nazvy.size() > 3 && aktual_urovne.size() > 3)
-	{
-		aktual_nazvy.pop_back();
-		aktual_urovne.pop_back();
-	}
 }
 void Menu::AktualNazevProfilu(Profily data, int index, int poradi, int inkrement, bool del)
 {

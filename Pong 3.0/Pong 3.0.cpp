@@ -42,11 +42,6 @@ bool HerniModyMenu(Profily &data)
 			}
 			break;
 		}
-		case menu.posun:
-		{
-			menu.OznaceniVykresleni();
-			break;
-		}
 		case menu.exit:
 		{
 			return 0;
@@ -73,11 +68,6 @@ bool VzhledPlosinyMenu(Profily &data)
 			menu.Rozhodovac(data);
 			break;
 		}
-		case menu.posun:
-		{
-			menu.OznaceniVykresleni();
-			break;
-		}
 		case menu.exit:
 		{
 			return 0;
@@ -102,11 +92,6 @@ bool OvladaniMenu(Profily& data)
 		case menu.enter:
 		{
 			(menu.Rozhodovac(data));
-			break;
-		}
-		case menu.posun:
-		{
-			menu.OznaceniVykresleni();
 			break;
 		}
 		case menu.exit:
@@ -148,11 +133,6 @@ bool NastaveniMenu(Profily& data)
 				break;
 			}
 			}
-			break;
-		}
-		case menu.posun:
-		{
-			menu.OznaceniVykresleni();
 			break;
 		}
 		case menu.exit:
@@ -207,11 +187,6 @@ bool HlavniMenu(Profily &data)
 			menu.OznaceniVykresleni();
 			break;
 		}
-		case menu.posun:
-		{
-			menu.OznaceniVykresleni();
-			break;
-		}
 		case menu.exit:
 		{
 			data.UlozeniProfilu(data.jsem_v_profilu);
@@ -252,16 +227,6 @@ bool ProfilMenu()
 				menu.Rozhodovac(data, menu.del);
 			}
 			menu.OtazkaSmazani();
-			break;
-		}
-		case menu.zmena_jazyka:
-		{
-			menu.Rozhodovac(data, menu.zmena_jazyka);
-		}
-		case menu.posun:
-		{
-			menu.OznaceniVykresleni();
-
 			break;
 		}
 		case menu.exit:

@@ -16,8 +16,8 @@ int MenuOvladani::VstupMenu()
 		else
 		{
 			oznaceni.at(y) = zavory.at(1);
-		}		
-		return posun;
+		}
+		return 1;
 	}
 	case 's':
 	{
@@ -30,7 +30,7 @@ int MenuOvladani::VstupMenu()
 		{
 			oznaceni.at(y) = zavory.at(0);
 		}
-		return posun;
+		return 1;
 	}
 	case '\r':
 	{

@@ -13,7 +13,7 @@ public:
 
         SpodniZavoraSet(data);
         oznaceni.at(y) = 7;
-        AktualNazevProfiluSTART();
+        AktualNazevProfilu(data, 0, 0);
 
         data.VybraniProfilu(0);
         ProfilVykresleni(data);

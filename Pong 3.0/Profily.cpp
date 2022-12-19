@@ -329,7 +329,7 @@ void Profily::VybraniProfilu(int profil)
 
 //-----------------------  Zmena jmena  -----------------------//
 
-void Profily::ZmenaJmena(string jmeno, int profil)
+void Profily::ZmenaNazvu(string jmeno, int profil)
 {
 	list<string> nazev_profil = NacteniJmenProfilu();
 	list<vector<char>> ovladani_profil;

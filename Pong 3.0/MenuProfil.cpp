@@ -13,15 +13,18 @@ int MenuProfil::VstupMenu(Profily& data)
 		{
 			oznaceni.at(y) -= 2;
 		}
+		else if(*data.NacteniJmenProfilu().begin() != *aktual_nazvy.begin())
+		{
+			Rozhodovac(data, 0, 1);
+			TextProfilVykresleni(data);
+		}
 		else
 		{
-			if (*data.NacteniJmenProfilu().begin() != *aktual_nazvy.begin())
-			{
-				Rozhodovac(data , 0, 1);
-				TextProfilVykresleni(data);
-			}
+			AktualNazevProfilu(data, data.pocet_profilu, 3);
+			oznaceni.at(y) = zavory.at(1);
+			TextProfilVykresleni(data);
 		}
-		return posun;
+		break;
 	}
 	case 's':
 	{
@@ -30,15 +33,18 @@ int MenuProfil::VstupMenu(Profily& data)
 		{
 			oznaceni.at(y) += 2;
 		}
+		else if (*data.NacteniJmenProfilu().rbegin() != *aktual_nazvy.rbegin())
+		{
+			Rozhodovac(data, 0, -1);
+			TextProfilVykresleni(data);
+		}
 		else
 		{
-			if (*data.NacteniJmenProfilu().rbegin() != *aktual_nazvy.rbegin())
-			{
-				Rozhodovac(data, 0, -1);
-				TextProfilVykresleni(data);
-			}
+			AktualNazevProfilu(data, 0, 0);
+			oznaceni.at(y) = zavory.at(0);
+			TextProfilVykresleni(data);
 		}
-		return posun;
+		break;
 	}
 	case '\r':
 	{
@@ -57,7 +63,7 @@ int MenuProfil::VstupMenu(Profily& data)
 	case 'r':
 	{
 		if (IndexProfilu() != 0 || oznaceni.at(y) != 8)
-			return zmena_jazyka;
+			Rozhodovac(data, zmena_nazvu);
 		break;
 		
 	}
@@ -118,11 +124,11 @@ void MenuProfil::Rozhodovac(Profily &data, int prikaz, int inkrement)
 		}
 		break;
 	}
-	case zmena_jazyka:
+	case zmena_nazvu:
 	{
 		if (index != 0)
 		{
-			data.ZmenaJmena(NazevProfiluSet(), index);
+			data.ZmenaNazvu(NazevProfiluSet(), index);
 			RamecekSmazani();
 			AktualNazevProfilu(data, index, poradi);
 			TextProfilVykresleni(data);

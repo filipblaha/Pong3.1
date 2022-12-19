@@ -68,7 +68,7 @@ public:
 
 	//-----------------------  Zmena jmena  -----------------------//
 
-	void ZmenaJmena(string jmeno, int profil);
+	void ZmenaNazvu(string jmeno, int profil);
 
 private:
 	list<string>::iterator itrs;

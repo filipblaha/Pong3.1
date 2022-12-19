@@ -13,8 +13,7 @@ int MenuVzhledPlosiny::VstupMenu(Profily& data)
 		{
 			oznaceni.at(y) -= 4;
 		}
-
-		return posun;
+		return 1;
 	}
 	case 's':
 	{
@@ -23,7 +22,7 @@ int MenuVzhledPlosiny::VstupMenu(Profily& data)
 		{
 			oznaceni.at(y) += 4;
 		}
-		return posun;
+		return 1;
 	}
 	case 'a':
 	{
@@ -32,7 +31,7 @@ int MenuVzhledPlosiny::VstupMenu(Profily& data)
 		{
 			oznaceni.at(x) -= 10;
 		}
-		return posun;
+		return 1;
 	}
 	case 'd':
 	{
@@ -41,7 +40,7 @@ int MenuVzhledPlosiny::VstupMenu(Profily& data)
 		{
 			oznaceni.at(x) += 10;
 		}
-		return posun;
+		return 1;
 	}
 	case '\r':
 	{
