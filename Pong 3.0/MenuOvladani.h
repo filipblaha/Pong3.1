@@ -7,7 +7,7 @@ public:
     Commands set;
     Preklad transl;
 
-    MenuOvladani(Profily data) : Menu(data, hlavni_e, 4, 12, 12, 15)
+    MenuOvladani(Profily& data) : Menu(data, hlavni_e, 4, 12, 12, 15)
     {
         Preklad trans;
 

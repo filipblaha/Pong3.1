@@ -15,7 +15,7 @@ int MenuProfil::VstupMenu(Profily& data, int strana)
 		}
 		else
 		{
-			if (*data.NacteniJmenProfilu().begin() != *aktual.begin())
+			if (*data.NacteniJmenProfilu().begin() != *aktual_nazvy.begin())
 			{
 				Rozhodovac(data , 0, 1);
 				TextProfilVykresleni(data);
@@ -32,7 +32,7 @@ int MenuProfil::VstupMenu(Profily& data, int strana)
 		}
 		else
 		{
-			if (*data.NacteniJmenProfilu().rbegin() != *aktual.rbegin())
+			if (*data.NacteniJmenProfilu().rbegin() != *aktual_nazvy.rbegin())
 			{
 				Rozhodovac(data, 0, -1);
 				TextProfilVykresleni(data);
@@ -278,9 +278,8 @@ void MenuProfil::TextProfilVykresleni(Profily& data)
 {
 	text = transl.NacteniTextProfil(data);
 
-	list<wstring> wl = transl.StringToWStringList(aktual);
-	list<int> p = data.NacteniUrovniProfilu();
-	vector<int> v = data.NacteniDatProfilu(0);
+	list<wstring> wl = transl.StringToWStringList(aktual_nazvy);
+	list<int> p = aktual_urovne;
 
 	list<wstring>::iterator itr;
 	list<int>::iterator itri;
@@ -296,22 +295,22 @@ void MenuProfil::TextProfilVykresleni(Profily& data)
 	wcout << text.at(0);
 
 	set.SetCursorPosition(12, 7);
-	if (*aktual.begin() == "Novy_profil")
+	if (*aktual_nazvy.begin() == "Novy_profil")
 		wcout << text.at(1);
 	else
-		wcout << *itr << "  (" << text.at(8) << *itri << ")";
+		wcout << *itr << " (" << text.at(8) << *itri << ")";
 	itr++;
 	itri++;
 	if (itr != wl.end())
 	{
 		set.SetCursorPosition(12, 9);
-		wcout << *itr << "  (" << text.at(8) << *itri << ")";
+		wcout << *itr << " (" << text.at(8) << *itri << ")";
 		itr++;
 		itri++;
 		if (itr != wl.end())
 		{
 			set.SetCursorPosition(12, 11);
-			wcout << *itr << "  (" << text.at(8) << *itri << ")";
+			wcout << *itr << " (" << text.at(8) << *itri << ")";
 		}
 	}
 	set.SetCursorPosition(7, 14);
@@ -377,7 +376,7 @@ string MenuProfil::NazevProfiluSet()
 	string nazev;
 	set.SetCursorPosition(10, 9);
 	cin >> nazev;
-	while (nazev.size() >= 12)
+	while (nazev.size() >= 10)
 	{
 		RamecekSmazani();
 		set.SetCursorPosition(10, 9);

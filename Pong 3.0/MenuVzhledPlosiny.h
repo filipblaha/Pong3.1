@@ -7,7 +7,7 @@ public:
     Commands set;
     Preklad transl;
 
-    MenuVzhledPlosiny(Profily data) : Menu(data, hlavni_e, 6, 9, 9, 13, 6, 26)
+    MenuVzhledPlosiny(Profily& data) : Menu(data, hlavni_e, 6, 9, 9, 13, 6, 26)
     {
         Preklad trans;
 

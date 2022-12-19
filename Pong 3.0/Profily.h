@@ -18,9 +18,7 @@ public:
 
 	Profily()
 	{
-		jsem_v_profilu = 0;
 		pocet_profilu = NacteniPoctuProfilu();
-		VybraniProfilu(0);
 	}
 
 	enum jazyk_e
@@ -39,23 +37,30 @@ public:
 	int highscore_cas;
 	int highscore_znicenych_bloku;
 
+	char pohyb_vlevo;
+	char pohyb_vpravo;
+	char pouziti_schopnosti;
+	char pauza;
+
 
 	//-----------------------  Ukladani profilu  -----------------------//
 
 	void UlozeniProfilu(int profil);
 	vector<int> VlozeniDatDoVektoru();
+	vector<char> VlozeniOvladaniDoVektoru();
 
 	void VytvoreniNovehoProfilu(string nazev_noveho_profilu);
 	void OdstraneniProfilu(int profil);
-
-	int ZapsaniProfilu(list<vector<int>> data, list<string> nazvy);
+	int ZapsaniProfilu(list<string> nazev, list<vector<int>> data, list<vector<char>> ovladani);
 
 	//-----------------------  Nacteni profilu  -----------------------//
 
 	vector<vector<int>> NacteniDat();
+	vector<vector<char>> NacteniOvladani();
 	int NacteniPoctuProfilu();
 	list<int> NacteniUrovniProfilu();
 	vector<int> NacteniDatProfilu(int profil);
+	vector<char> NacteniOvladaniProfilu(int profil);
 	list<string> NacteniJmenProfilu();
 
 	void VybraniProfilu(int profil);
@@ -66,6 +71,7 @@ public:
 	void ZmenaJmena(string jmeno, int profil);
 
 private:
-	list<string>::iterator itr;
+	list<string>::iterator itrs;
 	list<vector<int>>::iterator itri;
+	list<vector<char>>::iterator itrc;
 };

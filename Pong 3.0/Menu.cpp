@@ -127,7 +127,7 @@ int Menu::IndexProfilu(int inkrement)
 	int index = 0;
 	list<string> temp = data.NacteniJmenProfilu();
 	list<string>::iterator itr = temp.begin();
-	while (*itr != *aktual.begin())
+	while (*itr != *aktual_nazvy.begin())
 	{
 		itr++;
 	}
@@ -148,17 +148,21 @@ int Menu::IndexProfilu(int inkrement)
 }
 void Menu::AktualNazevProfiluSTART()
 {
-	aktual = data.NacteniJmenProfilu();
+	aktual_nazvy = data.NacteniJmenProfilu();
+	aktual_urovne = data.NacteniUrovniProfilu();
 
-	while (aktual.size() > 3)
+	while (aktual_nazvy.size() > 3 && aktual_urovne.size() > 3)
 	{
-		aktual.pop_back();
+		aktual_nazvy.pop_back();
+		aktual_urovne.pop_back();
 	}
 }
 void Menu::AktualNazevProfilu(Profily data, int index, int poradi, int inkrement, bool del)
 {
-	list<string> temp = data.NacteniJmenProfilu();
-	list<string>::iterator itr = temp.begin();
+	list<string> temps = data.NacteniJmenProfilu();
+	list<int> tempi = data.NacteniUrovniProfilu();
+	list<string>::iterator itrs = temps.begin();
+	list<int>::iterator itri = tempi.begin();
 	
 	if (del)
 	{
@@ -167,14 +171,22 @@ void Menu::AktualNazevProfilu(Profily data, int index, int poradi, int inkrement
 			inkrement = 1;
 		}
 	}
-	advance(itr, index - poradi);
+	advance(itrs, index - poradi);
+	advance(itri, index - poradi);
 	if (inkrement == -1)
-		itr++;
+	{
+		itrs++;
+		itri++;
+	}
 	if (inkrement == 1)
-		itr--;
+	{
+		itrs--;
+		itri--;
+	}
 	
 
-	aktual.clear();
+	aktual_nazvy.clear();
+	aktual_urovne.clear();
 	int n = 0;
 	if (data.pocet_profilu >= 3)
 		n = 3;
@@ -182,8 +194,10 @@ void Menu::AktualNazevProfilu(Profily data, int index, int poradi, int inkrement
 		n = data.pocet_profilu;
 	for (int i = 0; i < n; i++)
 	{
-		aktual.push_back(*itr);
-		itr++;
+		aktual_nazvy.push_back(*itrs);
+		itrs++;
+		aktual_urovne.push_back(*itri);
+		itri++;
 	}
 }
 

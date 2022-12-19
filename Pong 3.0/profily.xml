@@ -14,6 +14,9 @@
             <Pismeno>108</Pismeno>
         </Nazev_profilu>
         <Nazev_profilu>
+            <Pismeno>70</Pismeno>
+        </Nazev_profilu>
+        <Nazev_profilu>
             <Pismeno>77</Pismeno>
             <Pismeno>97</Pismeno>
             <Pismeno>114</Pismeno>
@@ -22,19 +25,51 @@
         </Nazev_profilu>
     </Zakladni>
     <Profil>
-        <Hodnota>0</Hodnota>
-        <Hodnota>0</Hodnota>
-        <Hodnota>0</Hodnota>
-        <Hodnota>0</Hodnota>
-        <Hodnota>0</Hodnota>
-        <Hodnota>0</Hodnota>
+        <Data>
+            <Hodnota>1</Hodnota>
+            <Hodnota>1</Hodnota>
+            <Hodnota>1</Hodnota>
+            <Hodnota>1</Hodnota>
+            <Hodnota>1</Hodnota>
+            <Hodnota>1</Hodnota>
+        </Data>
+        <Ovladani>
+            <Hodnota>97</Hodnota>
+            <Hodnota>100</Hodnota>
+            <Hodnota>32</Hodnota>
+            <Hodnota>112</Hodnota>
+        </Ovladani>
     </Profil>
     <Profil>
-        <Hodnota>0</Hodnota>
-        <Hodnota>3</Hodnota>
-        <Hodnota>15</Hodnota>
-        <Hodnota>2</Hodnota>
-        <Hodnota>0</Hodnota>
-        <Hodnota>0</Hodnota>
+        <Data>
+            <Hodnota>0</Hodnota>
+            <Hodnota>0</Hodnota>
+            <Hodnota>0</Hodnota>
+            <Hodnota>0</Hodnota>
+            <Hodnota>0</Hodnota>
+            <Hodnota>0</Hodnota>
+        </Data>
+        <Ovladani>
+            <Hodnota>97</Hodnota>
+            <Hodnota>100</Hodnota>
+            <Hodnota>32</Hodnota>
+            <Hodnota>112</Hodnota>
+        </Ovladani>
+    </Profil>
+    <Profil>
+        <Data>
+            <Hodnota>0</Hodnota>
+            <Hodnota>3</Hodnota>
+            <Hodnota>15</Hodnota>
+            <Hodnota>2</Hodnota>
+            <Hodnota>0</Hodnota>
+            <Hodnota>0</Hodnota>
+        </Data>
+        <Ovladani>
+            <Hodnota>97</Hodnota>
+            <Hodnota>100</Hodnota>
+            <Hodnota>32</Hodnota>
+            <Hodnota>112</Hodnota>
+        </Ovladani>
     </Profil>
 </root>

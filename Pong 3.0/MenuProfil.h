@@ -7,13 +7,14 @@ public:
     Commands set;
     Preklad transl;
 
-    MenuProfil(Profily data) : Menu(data, profil_e, 10, 7, 7)
+    MenuProfil(Profily& data) : Menu(data, profil_e, 10, 7, 7)
     {
         Preklad transl;
 
         SpodniZavoraSet(data);
         AktualNazevProfiluSTART();
 
+        data.VybraniProfilu(0);
         ProfilVykresleni(data);
     }
 

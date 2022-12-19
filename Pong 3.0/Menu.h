@@ -29,7 +29,7 @@ public:
 		set.Font(0, 20);
 		set.SetWindow(delka_menu, vyska_menu - 2);
 		set.Prechod();
-
+		
 		NaplneniExpBar(data);
 		MenuSTARTVykresleni();
 	}
@@ -79,7 +79,8 @@ public:
 	vector<int> exp_pole;
 	vector<wstring> text;
 
-	list<string> aktual;
+	list<string> aktual_nazvy;
+	list<int> aktual_urovne;
 
 	//-----------------------  Input  -----------------------//
 

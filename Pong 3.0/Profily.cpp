@@ -4,8 +4,9 @@
 
 void Profily::UlozeniProfilu(int profil)
 {
+	list<string> nazev_profil = NacteniJmenProfilu();
+	list<vector<char>> ovladani_profil;
 	list<vector<int>> data_profil;
-	list<string> nazev_profil;
 
 	for (int i = 0; i < pocet_profilu; i++)
 	{
@@ -15,9 +16,15 @@ void Profily::UlozeniProfilu(int profil)
 			data_profil.push_back(NacteniDatProfilu(i));
 	}
 
-	nazev_profil = NacteniJmenProfilu();
+	for (int i = 0; i < pocet_profilu; i++)
+	{
+		if (i == profil)
+			ovladani_profil.push_back(VlozeniOvladaniDoVektoru());
+		else
+			ovladani_profil.push_back(NacteniOvladaniProfilu(i));
+	} 
 
-	ZapsaniProfilu(data_profil, nazev_profil);
+	ZapsaniProfilu(nazev_profil, data_profil, ovladani_profil);
 }
 vector<int> Profily::VlozeniDatDoVektoru()
 {
@@ -32,15 +39,27 @@ vector<int> Profily::VlozeniDatDoVektoru()
 
 	return data_profil;
 }
+vector<char> Profily::VlozeniOvladaniDoVektoru()
+{
+	vector<char> ovladani_profil;
+
+	ovladani_profil.push_back(pohyb_vlevo);
+	ovladani_profil.push_back(pohyb_vpravo);
+	ovladani_profil.push_back(pouziti_schopnosti);
+	ovladani_profil.push_back(pauza);
+
+	return ovladani_profil;
+}
 
 void Profily::VytvoreniNovehoProfilu(string nazev_noveho_profilu)
 {
-	list<int> uroven_profil;
 	vector<int> data_noveho_profilu;
+	vector<char> ovladani_noveho_profilu;
 	list<vector<int>> data_profil;
+	list<vector<char>> ovladani_profil;
 
-	uroven_profil = NacteniUrovniProfilu();
-	uroven_profil.push_front(0);
+
+	list<string> nazev_profil = NacteniJmenProfilu();
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -48,53 +67,72 @@ void Profily::VytvoreniNovehoProfilu(string nazev_noveho_profilu)
 	}
 	for (int i = 0; i < pocet_profilu; i++)
 	{
-			data_profil.push_back(NacteniDatProfilu(i));
+		data_profil.push_back(NacteniDatProfilu(i));
 	}
-	list<string> nazev_profil = NacteniJmenProfilu();
+
+	ovladani_noveho_profilu.push_back('a');
+	ovladani_noveho_profilu.push_back('d');
+	ovladani_noveho_profilu.push_back(char(32));
+	ovladani_noveho_profilu.push_back('p');
+	for (int i = 0; i < pocet_profilu; i++)
+	{
+		ovladani_profil.push_back(NacteniOvladaniProfilu(i));
+	}
+
+	itrs = nazev_profil.begin();
+	itrs++;
+	nazev_profil.insert(itrs, nazev_noveho_profilu);
 
 	itri = data_profil.begin();
 	itri++;
 	data_profil.insert(itri, data_noveho_profilu);
 
-	itr = nazev_profil.begin();
-	itr++;
-	nazev_profil.insert(itr, nazev_noveho_profilu);
+	itrc = ovladani_profil.begin();
+	itrc++;
+	ovladani_profil.insert(itrc, ovladani_noveho_profilu);
 
 	pocet_profilu++;
 
-	ZapsaniProfilu(data_profil, nazev_profil);
+	ZapsaniProfilu(nazev_profil, data_profil, ovladani_profil);
 }
 void Profily::OdstraneniProfilu(int profil)
 {
-	list<int> uroven_profil = NacteniUrovniProfilu();
-	list<vector<int>> data_profil;
 	list<string> nazev_profil;
+	list<vector<char>> ovladani_profil;
+	list<vector<int>> data_profil;	
 
-	list<int>::iterator itrl = uroven_profil.begin();
-	advance(itrl, profil);
-	uroven_profil.erase(itrl);
-	
+
+	nazev_profil = NacteniJmenProfilu();
 
 	for (int i = 0; i < pocet_profilu; i++)
 	{
 		data_profil.push_back(NacteniDatProfilu(i));
 	}
-	nazev_profil = NacteniJmenProfilu();
+
+	for (int i = 0; i < pocet_profilu; i++)
+	{
+		ovladani_profil.push_back(NacteniOvladaniProfilu(i));
+	}
+
+	itrs = nazev_profil.begin();
+	advance(itrs, profil);
+	nazev_profil.erase(itrs);
+
+	itrc = ovladani_profil.begin();
+	advance(itrc, profil);
+	ovladani_profil.erase(itrc);
 
 	itri = data_profil.begin();
 	advance(itri, profil);
 	data_profil.erase(itri);
 
-	itr = nazev_profil.begin();
-	advance(itr, profil);
-	nazev_profil.erase(itr);
 
 	pocet_profilu--;
 
-	ZapsaniProfilu(data_profil, nazev_profil);
+	ZapsaniProfilu(nazev_profil, data_profil, ovladani_profil);
 }
 
-int Profily::ZapsaniProfilu(list<vector<int>> data, list<string> nazev)
+int Profily::ZapsaniProfilu(list<string> nazev, list<vector<int>> data, list<vector<char>> ovladani)
 {
 	XMLDocument xmlDoc;
 	XMLNode* root = xmlDoc.NewElement("root");
@@ -103,34 +141,52 @@ int Profily::ZapsaniProfilu(list<vector<int>> data, list<string> nazev)
 	XMLElement* base = xmlDoc.NewElement("Zakladni");
 	root->InsertEndChild(base);
 
-	string temp;
+	string temps;
 	XMLElement* profily_nazev;
-	for (itr = nazev.begin(); itr != nazev.end(); itr++)
+	for (itrs = nazev.begin(); itrs != nazev.end(); itrs++)
 	{
 		profily_nazev = xmlDoc.NewElement("Nazev_profilu");
-		temp = *itr;
-		for (int i = 0; i < temp.size(); i++)
+		temps = *itrs;
+		for (int i = 0; i < temps.size(); i++)
 		{
 			XMLElement* pismeno = xmlDoc.NewElement("Pismeno");
-			pismeno->SetText(temp.at(i));
+			pismeno->SetText(temps.at(i));
 			profily_nazev->InsertEndChild(pismeno);
 		}
 		base->InsertEndChild(profily_nazev);
 	}
 
 	vector<int> tempi;
+	vector<char> tempc;
+
 	XMLElement* profily_data;
-	for (itri = data.begin(); itri != data.end(); itri++)
+	XMLElement* profily_ovladani;
+	itri = data.begin();
+	itrc = ovladani.begin();
+	for (int j = 0; j < pocet_profilu; j++, itri++, itrc++)
 	{
-		profily_data = xmlDoc.NewElement("Profil");
+		XMLElement* prof = xmlDoc.NewElement("Profil");
+		root->InsertEndChild(prof);
+
+		profily_data = xmlDoc.NewElement("Data");
 		tempi = *itri;
+		tempc = *itrc;
 		for (int i = 0; i < tempi.size(); i++)
 		{
 			XMLElement* hodnoty = xmlDoc.NewElement("Hodnota");
 			hodnoty->SetText(tempi.at(i));
 			profily_data->InsertEndChild(hodnoty);
 		}
-		root->InsertEndChild(profily_data);
+		prof->InsertEndChild(profily_data);
+
+		profily_ovladani = xmlDoc.NewElement("Ovladani");
+		for (int i = 0; i < tempc.size(); i++)
+		{
+			XMLElement* hodnoty = xmlDoc.NewElement("Hodnota");
+			hodnoty->SetText(tempc.at(i));
+			profily_ovladani->InsertEndChild(hodnoty);
+		}
+		prof->InsertEndChild(profily_ovladani);
 	}
 
 	XMLError eResult = xmlDoc.SaveFile("profily.xml");
@@ -150,9 +206,10 @@ vector<vector<int>> Profily::NacteniDat()
 	xmlDoc.LoadFile("profily.xml");
 
 	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* profily_data = root->FirstChildElement("Profil");
-	while (profily_data != nullptr)
+	XMLElement* prof = root->FirstChildElement("Profil");
+	while (prof != nullptr)
 	{
+		XMLElement* profily_data = prof->FirstChildElement("Data");
 		XMLElement* hodnoty = profily_data->FirstChildElement("Hodnota");
 		while (hodnoty != nullptr)
 		{
@@ -162,9 +219,37 @@ vector<vector<int>> Profily::NacteniDat()
 		}
 		v_v_dat.push_back(vektor_dat);
 		vektor_dat.clear();
-		profily_data = profily_data->NextSiblingElement("Profil");
+		prof = prof->NextSiblingElement("Profil");
 	}
 	return v_v_dat;
+}
+vector<vector<char>> Profily::NacteniOvladani()
+{
+	XMLDocument xmlDoc;
+	int data;
+	vector<char> vektor_ovladani;
+	vector<vector<char>> v_v_ovladani;
+
+
+	xmlDoc.LoadFile("profily.xml");
+
+	XMLNode* root = xmlDoc.FirstChild();
+	XMLElement* prof = root->FirstChildElement("Profil");
+	while (prof != nullptr)
+	{
+		XMLElement* profily_data = prof->FirstChildElement("Ovladani");
+		XMLElement* hodnoty = profily_data->FirstChildElement("Hodnota");
+		while (hodnoty != nullptr)
+		{
+			hodnoty->QueryIntText(&data);
+			vektor_ovladani.push_back(data);
+			hodnoty = hodnoty->NextSiblingElement("Hodnota");
+		}
+		v_v_ovladani.push_back(vektor_ovladani);
+		vektor_ovladani.clear();
+		prof = prof->NextSiblingElement("Profil");
+	}
+	return v_v_ovladani;
 }
 int  Profily::NacteniPoctuProfilu()
 {
@@ -186,6 +271,11 @@ vector<int> Profily::NacteniDatProfilu(int profil)
 {
 	vector<vector<int>> v_v_dat = NacteniDat();
 	return v_v_dat.at(profil);
+}
+vector<char> Profily::NacteniOvladaniProfilu(int profil)
+{
+	vector<vector<char>> v_v_ovladani = NacteniOvladani();
+	return v_v_ovladani.at(profil);
 }
 list<string> Profily::NacteniJmenProfilu()
 {
@@ -220,6 +310,7 @@ list<string> Profily::NacteniJmenProfilu()
 void Profily::VybraniProfilu(int profil)
 {
 	vector<int> vektor_dat = NacteniDatProfilu(profil);
+	vector<char> vektor_ovladani = NacteniOvladaniProfilu(profil);
 
 	jsem_v_profilu = profil;
 
@@ -229,6 +320,11 @@ void Profily::VybraniProfilu(int profil)
 	plosina_skin = vektor_dat.at(3);
 	highscore_cas = vektor_dat.at(4);
 	highscore_znicenych_bloku = vektor_dat.at(5);
+
+	pohyb_vlevo = vektor_ovladani.at(0);
+	pohyb_vpravo = vektor_ovladani.at(1);
+	pouziti_schopnosti = vektor_ovladani.at(2);
+	pauza = vektor_ovladani.at(3);
 }
 
 //-----------------------  Zmena jmena  -----------------------//
@@ -236,16 +332,22 @@ void Profily::VybraniProfilu(int profil)
 void Profily::ZmenaJmena(string jmeno, int profil)
 {
 	list<string> nazev_profil = NacteniJmenProfilu();
-	itr = nazev_profil.begin();
-
-	advance(itr, profil);
-	*itr = jmeno;
-
+	list<vector<char>> ovladani_profil;
 	list<vector<int>> data_profil;
+	itrs = nazev_profil.begin();
+
+	advance(itrs, profil);
+	*itrs = jmeno;
+
 	for (int i = 0; i < pocet_profilu; i++)
 	{
 		data_profil.push_back(NacteniDatProfilu(i));
 	}
 
-	ZapsaniProfilu(data_profil, nazev_profil);
+	for (int i = 0; i < pocet_profilu; i++)
+	{
+		ovladani_profil.push_back(NacteniOvladaniProfilu(i));
+	}
+
+	ZapsaniProfilu(nazev_profil, data_profil, ovladani_profil);
 }
