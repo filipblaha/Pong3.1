@@ -6,7 +6,8 @@ class MenuProfil : public Menu
 public:
     Commands set;
     Preklad transl;
-
+    MenuProfil()
+    {}
     MenuProfil(Profily& data) : Menu(data, profil_e, 10, 7, 7)
     {
         Preklad transl;

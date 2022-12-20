@@ -12,8 +12,7 @@ public:
         Preklad trans;
 
         potrebna_uroven = { 0,1,2,3,4,5 };
-
-        NacteniSkiny();
+        skiny = data.NacteniSkiny();
 
         VzhledPlosinyVykresleni(data);
     }
@@ -30,7 +29,6 @@ public:
     void SkinyVykresleni(Profily data);
     void OznaceniVykresleni();
     void OznaceniSmazani();
-    void NacteniSkiny();
     void NedostatecnaUrovenVykresleni();
 
 private:

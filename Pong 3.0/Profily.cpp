@@ -1,4 +1,4 @@
-#include "Profily.h"
+﻿#include "Profily.h"
 
 //-----------------------  Ukladani profilu  -----------------------//
 
@@ -325,6 +325,27 @@ void Profily::VybraniProfilu(int profil)
 	pohyb_vpravo = vektor_ovladani.at(1);
 	pouziti_schopnosti = vektor_ovladani.at(2);
 	pauza = vektor_ovladani.at(3);
+}
+
+//-----------------------  Nacteni skinu  -----------------------//
+
+vector<wstring> Profily::NacteniSkiny()
+{
+	vector<wstring> skiny;
+
+	wstring s0 = L"??????";
+	wstring s1 = L"IIIIII";
+	wstring s2 = L"╒════╕";
+	wstring s3 = L"FELZCU";
+	wstring s4 = L"◄■■■■►";
+	wstring s5;
+	for (int i = 0; i < 3; i++)
+		s5.push_back(wchar_t(171));
+	for (int i = 0; i < 3; i++)
+		s5.push_back(wchar_t(187));
+	wstring s6 = L"______";
+
+	return skiny = { s0, s1, s2, s3, s4, s5 };
 }
 
 //-----------------------  Zmena jmena  -----------------------//

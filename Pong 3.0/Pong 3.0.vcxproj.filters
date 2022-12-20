@@ -54,6 +54,18 @@
     <ClCompile Include="MenuVzhledPlosiny.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HerniMody.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Objekt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HraciPole.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Menu.h">
@@ -96,6 +108,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MenuVzhledPlosiny.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HerniMody.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

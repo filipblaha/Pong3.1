@@ -1,17 +1,25 @@
 #pragma once
+#include "Profily.h"
+#include "HraciPole.h"
+
 class Plosina
 {
-public:/*
-	Hraci_pole pole;
-	int velikost_plosina;
-	int x_plosina;
+public:
+	Profily data;
+	HraciPole pole;
 
 	Plosina()
 	{
-		velikost_plosina = 6;
-		x_plosina = (pole.DELKA - velikost_plosina) / 2;
+		data.plosina_skin = 0;
+		skin = data.NacteniSkiny().at(4);
+
+		velikost = 6;
+		x = (pole.delka - velikost) / 2;
 	}
-*/
+
+	int velikost;
+	int x;
+	wstring skin;
 
 private:
 };

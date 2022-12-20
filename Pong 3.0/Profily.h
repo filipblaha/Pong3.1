@@ -66,6 +66,10 @@ public:
 	void VybraniProfilu(int profil);
 	void PrepsaniDat(int& jazyk_v,int& plosina_skin, int& highscore_cas, int& highscore_znicenych_bloku, int& level, int& exp);
 
+	//-----------------------  Nacteni Skinu  -----------------------//
+
+	vector<wstring> NacteniSkiny();
+
 	//-----------------------  Zmena jmena  -----------------------//
 
 	void ZmenaNazvu(string jmeno, int profil);

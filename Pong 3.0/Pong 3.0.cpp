@@ -4,11 +4,16 @@
 #include "MenuNastaveni.h"
 #include "MenuOvladani.h"
 #include "MenuVzhledPlosiny.h"
+#include "HerniMody.h"
 
 
 
 bool Klasik(Profily &data)
 {
+	//while (true)
+	{
+		HerniMody Klasik(data);
+	}
 	return 0;
 }
 
@@ -246,5 +251,7 @@ bool ProfilMenu()
 
 int main()
 {
-	while (ProfilMenu());
+	Profily data;
+	Klasik(data);
+	//while (ProfilMenu());
 }

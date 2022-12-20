@@ -203,22 +203,6 @@ void MenuVzhledPlosiny::OznaceniSmazani()
 		}
 	}
 }
-void MenuVzhledPlosiny::NacteniSkiny()
-{
-	wstring s0 = L"??????";
-	wstring s1 = L"IIIIII";
-	wstring s2 = L"======";
-	wstring s3 = L"FELZCU";
-	wstring s4 = L"8====D";
-	wstring s5;
-	for (int i = 0; i < 3; i++)
-		s5.push_back(wchar_t(171));
-	for (int i = 0; i < 3; i++)
-		s5.push_back(wchar_t(187));
-	wstring s6 = L"______";
-
-	skiny = { s0, s1, s2, s3, s4, s5 };
-}
 void MenuVzhledPlosiny::NedostatecnaUrovenVykresleni()
 {
 	set.SetCursorPosition(9, 7);
