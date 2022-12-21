@@ -6,11 +6,6 @@
 class HerniMody
 {
 public:
-	Commands set;
-	Profily data;
-	Plosina plosina;
-	HraciPole pole;
-	Mic mic;
 
 	HerniMody()
 	{}
@@ -28,6 +23,13 @@ public:
 		VykresleniHUD();
 	}
 
+protected:
+	Commands set;
+	Profily data;
+	Plosina plosina;
+	HraciPole pole;
+	Mic mic;
+
 	int pocet_bloku;
 	int pocet_zivotu;
 	int cas;
@@ -43,6 +45,4 @@ public:
 	void VykresleniPlosina();
 	void VykresleniMic();
 	void VykresleniHUD();
-
-private:
 };

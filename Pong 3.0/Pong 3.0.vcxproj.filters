@@ -66,6 +66,9 @@
     <ClCompile Include="HraciPole.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HerniModyKlasik.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Menu.h">
@@ -114,6 +117,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Mic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HerniModyKlasik.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

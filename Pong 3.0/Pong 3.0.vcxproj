@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="HerniMody.cpp" />
     <ClCompile Include="HraciPole.cpp" />
+    <ClCompile Include="HerniModyKlasik.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MenuHerniMody.cpp" />
     <ClCompile Include="MenuHlavni.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="Commands.h" />
     <ClInclude Include="HerniMody.h" />
     <ClInclude Include="HraciPole.h" />
+    <ClInclude Include="HerniModyKlasik.h" />
     <ClInclude Include="MenuNastaveni.h" />
     <ClInclude Include="MenuHerniMody.h" />
     <ClInclude Include="MenuHlavni.h" />

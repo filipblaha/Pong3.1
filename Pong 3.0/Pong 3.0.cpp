@@ -34,7 +34,7 @@ bool Klasik(Profily &data)
 {
 	while (1)
 	{
-		HerniMody Klasik(data);
+		HerniModyKlasik Klasik(data);
 		_getch();
 	}
 	return 0;
@@ -118,7 +118,7 @@ bool OvladaniMenu(Profily& data)
 		}
 		}
 	}
-	return 1;
+	return 0;
 }
 bool NastaveniMenu(Profily& data)
 {
@@ -176,7 +176,6 @@ bool HlavniMenu(Profily &data)
 			{
 				data.UlozeniProfilu(data.jsem_v_profilu);
 				return 1;
-				break;
 			}
 			}
 			menu.MenuSTARTVykresleni();
