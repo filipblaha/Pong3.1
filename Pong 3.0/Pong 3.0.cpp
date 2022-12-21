@@ -4,7 +4,7 @@
 #include "MenuNastaveni.h"
 #include "MenuOvladani.h"
 #include "MenuVzhledPlosiny.h"
-#include "HerniMody.h"
+#include "HerniModyKlasik.h"
 
 enum menu_strana
 {
@@ -32,10 +32,12 @@ enum vstup
 
 bool Klasik(Profily &data)
 {
-	while (1)
+	HerniModyKlasik hra(data, 2);
+	hra.VstupHra(1);
+
+	while (Klasik)
 	{
-		HerniModyKlasik Klasik(data);
-		_getch();
+		hra.VstupHra();
 	}
 	return 0;
 }
@@ -54,7 +56,7 @@ bool HerniModyMenu(Profily &data)
 			{
 			case klasik_e:
 			{
-				Klasik(data);
+				while (Klasik(data));
 				break;
 			}
 			/*case bloky_padaji_e:
@@ -232,7 +234,7 @@ bool ProfilMenu()
 
 int main()
 {
-	//Profily data;
-	//Klasik(data);
-	while (ProfilMenu());
+	Profily data;
+	Klasik(data);
+	//while (ProfilMenu());
 }

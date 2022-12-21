@@ -18,10 +18,13 @@ public:
 		cas = 0;
 
 		VykresleniPole();
+		VykresleniBloky();
 		VykresleniPlosina();
 		VykresleniMic();
 		VykresleniHUD();
 	}
+
+	void VstupHra(bool start = 0);
 
 protected:
 	Commands set;
@@ -34,6 +37,8 @@ protected:
 	int pocet_zivotu;
 	int cas;
 
+	//-----------------------  Skiny -----------------------//
+
 	const wchar_t* bomba_skin = L"\x263c";
 	const wchar_t* bomba_skin_start = L"\x25cc";
 	const wchar_t* slow_skin = L"\x25ca";
@@ -42,6 +47,7 @@ protected:
 	//-----------------------  Vykresleni -----------------------//
 
 	void VykresleniPole();
+	void VykresleniBloky();
 	void VykresleniPlosina();
 	void VykresleniMic();
 	void VykresleniHUD();

@@ -9,7 +9,6 @@ public:
 
 	Mic()
 	{
-		pohyb = 0;
 		x = pole.delka / 2;
 		y = pole.vyska - 5;
 		ax = 1;
@@ -17,7 +16,6 @@ public:
 		skin = L"\x058e";
 	}
 
-	int pohyb;
 	int x;
 	int y;
 	int ax;

@@ -42,3 +42,10 @@ void Commands::SetWindow(int delka, int vyska)
 	SetConsoleScreenBufferSize(Handle, coord);
 	SetConsoleWindowInfo(Handle, TRUE, &Rect);
 }
+int Commands::Random(int min, int max)
+{
+	random_device random_cislo;
+	mt19937 seed(random_cislo());
+	uniform_int_distribution<> rozmezi(min, max);
+	return rozmezi(seed);
+}

@@ -19,6 +19,8 @@ public:
 		set.Font(20, 20);
 		set.SetWindow(delka, vyska);
 		set.Prechod();
+
+		VytvoreniBloku();
 	}
 
 	const int delka = 20;
@@ -29,4 +31,8 @@ public:
 	const wchar_t* blok2_skin;
 	const wchar_t* blok3_skin;
 
+	vector<vector<int>> bloky;
+
+private:
+	void VytvoreniBloku();
 };

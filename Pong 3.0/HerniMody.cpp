@@ -1,5 +1,41 @@
 #include "HerniMody.h"
 
+//-----------------------  Input -----------------------//
+
+void HerniMody::VstupHra(bool start)
+{
+	if (GetAsyncKeyState(data.pohyb_vlevo)) //if (_getch() == 'd')
+	{
+		if (!(plosina.x == pole.delka - plosina.velikost - 1)) //zed vpravo
+		{
+			plosina.pohyb = 1;
+		}
+	}
+	else if (GetAsyncKeyState(data.pohyb_vpravo)) //else if (_getch() == 'a')
+	{
+		if (!(plosina.x == 1)) // zed vlevo
+		{
+			plosina.pohyb = -1;
+		}
+	}
+	/*else if (GetAsyncKeyState(data.pouziti_schopnosti))
+	{
+		if (navod.slow)
+		{
+			navod.slow = 0;
+			smazani_HUD_power_up(navod);
+			navod.trvani = 1;
+
+		}
+	}*/
+	else
+		plosina.pohyb = 0;
+	if (start)
+		mic.ax = plosina.pohyb;
+}
+
+//-----------------------  Vykresleni -----------------------//
+
 void HerniMody::VykresleniPole()
 {
 	set.SetCursorPosition(0, 0);
@@ -17,6 +53,33 @@ void HerniMody::VykresleniPole()
 			}
 		}
 		wcout << "\n";
+	}
+}
+void HerniMody::VykresleniBloky()
+{
+	for (int j = 0; j < pole.bloky.size(); j++)
+	{
+		for (int i = 0; i < pole.bloky.at(j).size(); i++)
+		{
+			if (pole.bloky.at(j).at(i) == 1)
+			{
+				set.SetCursorPosition(i, j);
+				std::wcout << pole.blok1_skin;
+				pocet_bloku++;
+			}
+			if (pole.bloky.at(j).at(i) == 2)
+			{
+				set.SetCursorPosition(i, j);
+				std::wcout << pole.blok2_skin;
+				pocet_bloku += 2;
+			}
+			if (pole.bloky.at(j).at(i) == 3)
+			{
+				set.SetCursorPosition(i, j);
+				std::wcout << pole.blok3_skin;
+				pocet_bloku +=  3;
+			}
+		}
 	}
 }
 void HerniMody::VykresleniPlosina()

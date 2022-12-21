@@ -6,6 +6,7 @@
 #include <Windows.h>
 #include <fcntl.h>
 #include <io.h>
+#include <random>
 
 using namespace std;
 
@@ -17,4 +18,5 @@ public:
 	void SetCursorPosition(int x, int y);
 	void Font(int f1, int f2);
 	void SetWindow(int delka, int vyska);
+	int Random(int min, int max);
 };
