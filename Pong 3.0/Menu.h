@@ -8,9 +8,7 @@
 class Menu
 {
 public:
-	Preklad transl;
-	Commands set;
-	Profily data;
+
 
 	Menu()
 	{}
@@ -34,9 +32,31 @@ public:
 		MenuSTARTVykresleni();
 	}
 
+
+	//-----------------------  Input  -----------------------//
+
+	int VstupMenu();
+	void JazykSet(Profily &data);
+
+	//-----------------------  Vykresleni Menu  -----------------------//
+
+	void MenuSTARTVykresleni();
+
+protected: ///////////////////////////////////  PROTECTED  /////////////////////////////////////////
+	Preklad transl;
+	Commands set;
+	Profily data;
+
 	const int delka_menu = 40;
 	const int vyska_menu = 20;
 
+	vector<int> zavory;
+	vector<int> oznaceni;
+	vector<int> exp_pole;
+	vector<wstring> text;
+
+	list<string> aktual_nazvy;
+	list<int> aktual_urovne;
 
 	enum jazyk_e
 	{
@@ -64,7 +84,6 @@ public:
 		exit = 13,
 		enter,
 		del,
-		balic_e,
 		zmena_nazvu,
 	};
 	enum souradnice
@@ -73,33 +92,16 @@ public:
 		y,
 	};
 
-	vector<int> zavory;
-	vector<int> oznaceni;
-	vector<int> exp_pole;
-	vector<wstring> text;
-
-	list<string> aktual_nazvy;
-	list<int> aktual_urovne;
-
-	//-----------------------  Input  -----------------------//
-
-	int VstupMenu();
-	void JazykSet(Profily &data);
-
 	//-----------------------  Vykresleni  -----------------------//
 
-	void MenuSTARTVykresleni();
 	void OznaceniVykresleni();
 	void OznaceniSmazani();
-	void OtazkaSmazani();
 	void VykresleniUroven(Profily data);
 
 	//-----------------------  Profil  -----------------------//
 
 	int IndexProfilu(int inkrement = 0);
 	void AktualNazevProfilu(Profily data, int index, int poradi, int inkrement = 0, bool del = 0);
-
-private:
 
 	//-----------------------  Exp  -----------------------//
 

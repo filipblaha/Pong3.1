@@ -6,13 +6,36 @@
 #include "MenuVzhledPlosiny.h"
 #include "HerniMody.h"
 
-
+enum menu_strana
+{
+	profil_e = 3,
+	hlavni_e,
+	herni_mody_e,
+	vzhled_plosiny_e,
+	nastaveni_e,
+	ovladani_e,
+	konec_kola_e,
+};
+enum herni_mody
+{
+	klasik_e = 10,
+	bloky_padaji_e,
+	rogue_like_e,
+};
+enum vstup
+{
+	ex = 13,
+	enter,
+	del,
+	zmena_nazvu,
+};
 
 bool Klasik(Profily &data)
 {
-	//while (true)
+	while (1)
 	{
 		HerniMody Klasik(data);
+		_getch();
 	}
 	return 0;
 }
@@ -25,21 +48,21 @@ bool HerniModyMenu(Profily &data)
 	{
 		switch (menu.VstupMenu())
 		{
-		case menu.enter:
+		case enter:
 		{
 			switch (menu.Rozhodovac(data))
 			{
-			case menu.klasik_e:
+			case klasik_e:
 			{
 				Klasik(data);
 				break;
 			}
-			/*case menu.bloky_padaji_e:
+			/*case bloky_padaji_e:
 			{
 				BlokyPadaji(data);
 				break;
 			}
-			case menu.rogue_like_e:
+			case rogue_like_e:
 			{
 				RogueLike(data);
 				break;
@@ -47,15 +70,10 @@ bool HerniModyMenu(Profily &data)
 			}
 			break;
 		}
-		case menu.exit:
+		case ex:
 		{
 			return 0;
 		}
-		default:
-		{
-			menu.OznaceniVykresleni();
-		}
-		break;
 		}
 	}
 	return 0;
@@ -68,20 +86,15 @@ bool VzhledPlosinyMenu(Profily &data)
 	{
 		switch (menu.VstupMenu(data))
 		{
-		case menu.enter:
+		case enter:
 		{
 			menu.Rozhodovac(data);
 			break;
 		}
-		case menu.exit:
+		case ex:
 		{
 			return 0;
 		}
-		default:
-		{
-			menu.OznaceniVykresleni();
-		}
-		break;
 		}
 	}
 	return 0;
@@ -94,20 +107,15 @@ bool OvladaniMenu(Profily& data)
 	{
 		switch (menu.VstupMenu())
 		{
-		case menu.enter:
+		case enter:
 		{
 			(menu.Rozhodovac(data));
 			break;
 		}
-		case menu.exit:
+		case ex:
 		{
 			return 0;
 		}
-		default:
-		{
-			menu.OznaceniVykresleni();
-		}
-		break;
 		}
 	}
 	return 1;
@@ -120,35 +128,19 @@ bool NastaveniMenu(Profily& data)
 	{
 		switch (menu.VstupMenu())
 		{
-		case menu.enter:
+		case enter:
 		{
-			switch (menu.Rozhodovac(data))
-			{
-			case menu.ovladani_e:
+			if (menu.Rozhodovac(data) == ovladani_e)
 			{
 				OvladaniMenu(data);
 				menu.MenuSTARTVykresleni();
-				menu.NastaveniVykresleni(data);
-				break;
+				menu.NastaveniVykresleni(data, 0);
 			}
-			case menu.balic_e:
-			{
-				menu.SpodniZavoraSet();
-				menu.NastaveniVykresleni(data);
-				break;
-			}
-			}
-			break;
 		}
-		case menu.exit:
+		case ex:
 		{
 			return 0;
 		}
-		default:
-		{
-			menu.OznaceniVykresleni();
-		}
-		break;
 		}
 	}
 	return 0;
@@ -161,26 +153,26 @@ bool HlavniMenu(Profily &data)
 	{
 		switch (menu.VstupMenu())
 		{
-		case menu.enter:
+		case enter:
 		{
 			switch (menu.Rozhodovac(data))
 			{
-			case menu.herni_mody_e:
+			case herni_mody_e:
 			{
 				HerniModyMenu(data);
 				break;
 			}
-			case menu.vzhled_plosiny_e:
+			case vzhled_plosiny_e:
 			{
 				VzhledPlosinyMenu(data);
 				break;
 			}
-			case menu.nastaveni_e:
+			case nastaveni_e:
 			{
 				NastaveniMenu(data);
 				break;
 			}
-			case menu.profil_e:
+			case profil_e:
 			{
 				data.UlozeniProfilu(data.jsem_v_profilu);
 				return 1;
@@ -189,17 +181,12 @@ bool HlavniMenu(Profily &data)
 			}
 			menu.MenuSTARTVykresleni();
 			menu.HlavniVykresleni(data);
-			menu.OznaceniVykresleni();
 			break;
 		}
-		case menu.exit:
+		case ex:
 		{
 			data.UlozeniProfilu(data.jsem_v_profilu);
 			return 0;
-		}
-		default:
-		{
-			menu.OznaceniVykresleni();
 		}
 		break;
 		}
@@ -216,34 +203,29 @@ bool ProfilMenu()
 	{
 		switch (menu.VstupMenu(data))
 		{
-		case menu.enter:
+		case enter:
 		{
-			menu.Rozhodovac(data, menu.enter);
+			menu.Rozhodovac(data, enter);
 			if (!HlavniMenu(data))
 				return 0;
 			else
 				return 1;
 		}
-		case menu.del:
+		case del:
 		{
 			menu.OtazkaVykresleni();
-			if (menu.VstupMenu(data) == menu.enter)
+			if (menu.VstupMenu(data) == enter)
 			{
-				menu.Rozhodovac(data, menu.del);
+				menu.Rozhodovac(data, del);
 			}
 			menu.OtazkaSmazani();
 			break;
 		}
-		case menu.exit:
+		case ex:
 		{
 			data.UlozeniProfilu(data.jsem_v_profilu);
 			return 0;
 		}
-		default:
-		{
-			menu.OznaceniVykresleni();
-		}
-		break;
 		}
 	}
 	return 0;
@@ -251,7 +233,7 @@ bool ProfilMenu()
 
 int main()
 {
-	Profily data;
-	Klasik(data);
-	//while (ProfilMenu());
+	//Profily data;
+	//Klasik(data);
+	while (ProfilMenu());
 }

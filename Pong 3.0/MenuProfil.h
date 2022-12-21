@@ -4,8 +4,6 @@
 class MenuProfil : public Menu
 {
 public:
-    Commands set;
-    Preklad transl;
     MenuProfil()
     {}
     MenuProfil(Profily& data) : Menu(data, profil_e, 10, 7, 7)
@@ -19,30 +17,29 @@ public:
         data.VybraniProfilu(0);
         ProfilVykresleni(data);
     }
-
-    //-----------------------  Input  -----------------------//
+    //-----------------------  Input / Output  -----------------------//
 
     int VstupMenu(Profily& data);
     void Rozhodovac(Profily &data, int prikaz, int inkrement = 0);
 
-    //-----------------------  Vykresleni (public)  -----------------------//
+    //-----------------------  Vykresleni Menu  -----------------------//
 
     void ProfilVykresleni(Profily& data);
-    void RamecekVykresleni();
-    void TextProfilVykresleni(Profily& data);
     void OtazkaVykresleni();
+    void OtazkaSmazani();
 
-private:
-
+private: ///////////////////////////////////  PRIVATE  /////////////////////////////////////////
     //-----------------------  Set  -----------------------//
 
     void SpodniZavoraSet(Profily data);
     void OznaceniSet(Profily data);
     string NazevProfiluSet();
 
-    //-----------------------  Vykresleni (private)  -----------------------//
+    //-----------------------  Vykresleni  -----------------------//
 
+    void TextProfilVykresleni(Profily& data);
     void ZadejProfilVykresleni();
     void RamecekSmazani();
+    void RamecekVykresleni();
 };
 

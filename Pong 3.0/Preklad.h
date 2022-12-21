@@ -7,14 +7,6 @@ class Preklad
 public:
 	Profily data;
 
-	enum jazyk_e
-	{
-		CZ,
-		EN,
-	};
-
-	vector<string> vektor_stringu;
-	vector<wstring> vektor_wstringu;
 
 	//-----------------------  Premena string na wstring  -----------------------//
 
@@ -30,6 +22,16 @@ public:
 	vector<wstring> NacteniTextNastaveni(Profily data);
 	vector<wstring> NacteniTextOvladani(Profily data);
 	vector<wstring> NacteniTextKonecKola(Profily data);
-private:
+
+private:///////////////////////////////////  PRIVATE  /////////////////////////////////////////
+
+	enum jazyk_e
+	{
+		CZ,
+		EN,
+	};
+
+	vector<string> vektor_stringu;
+	vector<wstring> vektor_wstringu;
 };
 

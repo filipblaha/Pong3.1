@@ -4,8 +4,6 @@
 class MenuVzhledPlosiny : public Menu
 {
 public:
-    Commands set;
-    Preklad transl;
 
     MenuVzhledPlosiny(Profily& data) : Menu(data, hlavni_e, 6, 9, 9, 13, 6, 26)
     {
@@ -22,16 +20,19 @@ public:
     int VstupMenu(Profily& data);
     int Rozhodovac(Profily& data);
 
-    //-----------------------  Vykresleni  -----------------------//
+    //-----------------------  Vykresleni Menu  -----------------------//
 
     void VzhledPlosinyVykresleni(Profily& data);
+
+private: ///////////////////////////////////  PRIVATE  /////////////////////////////////////////
+    vector<int> potrebna_uroven;
+    vector<wstring> skiny;
+
+    //-----------------------  Vykresleni  -----------------------//
+
     void TextVzhledPlosinyVykresleni(Profily& data);
     void SkinyVykresleni(Profily data);
     void OznaceniVykresleni();
     void OznaceniSmazani();
     void NedostatecnaUrovenVykresleni();
-
-private:
-    vector<int> potrebna_uroven;
-    vector<wstring> skiny;
 };

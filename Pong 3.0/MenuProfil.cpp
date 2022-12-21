@@ -24,6 +24,7 @@ int MenuProfil::VstupMenu(Profily& data)
 			oznaceni.at(y) = zavory.at(1);
 			TextProfilVykresleni(data);
 		}
+		OznaceniVykresleni();
 		break;
 	}
 	case 's':
@@ -44,6 +45,7 @@ int MenuProfil::VstupMenu(Profily& data)
 			oznaceni.at(y) = zavory.at(0);
 			TextProfilVykresleni(data);
 		}
+		OznaceniVykresleni();
 		break;
 	}
 	case '\r':
@@ -336,6 +338,13 @@ void MenuProfil::OtazkaVykresleni()
 	wcout << text.at(5);
 	set.SetCursorPosition(26, 3);
 	wcout << text.at(6);
+}
+void MenuProfil::OtazkaSmazani()
+{
+	set.SetCursorPosition(5, 2);
+	wcout << "                               ";
+	set.SetCursorPosition(26, 3);
+	wcout << "       ";
 }
 
 // private

@@ -8,43 +8,31 @@ int MenuNastaveni::Rozhodovac(Profily& data)
 	{
 		return ovladani_e;
 	}
-	if (oznaceni.at(y) == 12)
+	else if (oznaceni.at(y) == 12)
 	{
-		SpodniZavoraSet();
-		if (!balic)
-		{
-			balic = 1; 
-			return balic_e;
-		}
-		if (balic)
-		{
-			balic = 0;
-			return balic_e;
-		}
+		SpodniZavoraSet(1);
+		NastaveniVykresleni(data, 1);
 	}
-	if (oznaceni.at(y) == 14 || oznaceni.at(y) == 16)
+	else if (oznaceni.at(y) == 14 || oznaceni.at(y) == 16)
 	{
 		JazykSet(data);
-
-		balic = 0;
+		SpodniZavoraSet(0);
 
 		set.Prechod();
 		MenuSTARTVykresleni();
-		NastaveniVykresleni(data);
-
-		return balic_e;
+		NastaveniVykresleni(data, 0);
 	}
 }
 
 //-----------------------  Vykresleni -----------------------//
 
-void MenuNastaveni::NastaveniVykresleni(Profily& data)
+void MenuNastaveni::NastaveniVykresleni(Profily& data, bool balic)
 {
 	OznaceniVykresleni();
 	VykresleniUroven(data);
-	TextNastaveniVykresleni(data);
+	TextNastaveniVykresleni(data, balic);
 }
-void MenuNastaveni::TextNastaveniVykresleni(Profily& data)
+void MenuNastaveni::TextNastaveniVykresleni(Profily& data, bool balic)
 {
 	text = transl.NacteniTextNastaveni(data);
 
@@ -75,7 +63,7 @@ void MenuNastaveni::TextNastaveniVykresleni(Profily& data)
 
 //-----------------------  Set -----------------------//
 
-void MenuNastaveni::SpodniZavoraSet()
+void MenuNastaveni::SpodniZavoraSet(bool balic)
 {
 	OznaceniSmazani();
 	if (!balic)

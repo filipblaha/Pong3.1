@@ -4,8 +4,6 @@
 class MenuHlavni : public Menu
 {
 public:
-    Commands set;
-    Preklad transl;
 
     MenuHlavni(Profily& data) : Menu(data, hlavni_e, 4, 9, 9, 15)
     {
@@ -18,11 +16,13 @@ public:
 
     int Rozhodovac(Profily& data);
 
-    //-----------------------  Vykresleni  -----------------------//
+    //-----------------------  Vykresleni Menu  -----------------------//
 
     void HlavniVykresleni(Profily& data);
+
+private: ///////////////////////////////////  PRIVATE  /////////////////////////////////////////
+    //-----------------------  Vykresleni  -----------------------//
+
     void LogoHlavniVykresleni();
     void TextHlavniVykresleni(Profily& data);
-
-private:
 };

@@ -4,8 +4,6 @@
 class MenuOvladani : public Menu
 {
 public:
-    Commands set;
-    Preklad transl;
 
     MenuOvladani(Profily& data) : Menu(data, hlavni_e, 4, 12, 12, 15)
     {
@@ -19,15 +17,20 @@ public:
     int VstupMenu();
     void Rozhodovac(Profily &data);
 
+    //-----------------------  Vykresleni Menu -----------------------//
+
+    void OvladaniVykresleni(Profily& data);
+
+private: ///////////////////////////////////  PRIVATE  /////////////////////////////////////////
+    //-----------------------  Input  -----------------------//
+
     void ZmenaOvladaniSmazani(int poradi);
     char ZmenaOvladani();
 
     //-----------------------  Vykresleni  -----------------------//
 
-    void OvladaniVykresleni(Profily& data);
     void TextOvladaniVykresleni(Profily& data);
 
-private:
 
     //-----------------------  Znak Check -----------------------//
 

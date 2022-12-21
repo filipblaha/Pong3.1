@@ -21,12 +21,6 @@ public:
 		pocet_profilu = NacteniPoctuProfilu();
 	}
 
-	enum jazyk_e
-	{
-		CZ,
-		EN,
-	};
-
 	int pocet_profilu;
 	int jsem_v_profilu;
 
@@ -46,12 +40,9 @@ public:
 	//-----------------------  Ukladani profilu  -----------------------//
 
 	void UlozeniProfilu(int profil);
-	vector<int> VlozeniDatDoVektoru();
-	vector<char> VlozeniOvladaniDoVektoru();
 
 	void VytvoreniNovehoProfilu(string nazev_noveho_profilu);
 	void OdstraneniProfilu(int profil);
-	int ZapsaniProfilu(list<string> nazev, list<vector<int>> data, list<vector<char>> ovladani);
 
 	//-----------------------  Nacteni profilu  -----------------------//
 
@@ -64,7 +55,6 @@ public:
 	list<string> NacteniJmenProfilu();
 
 	void VybraniProfilu(int profil);
-	void PrepsaniDat(int& jazyk_v,int& plosina_skin, int& highscore_cas, int& highscore_znicenych_bloku, int& level, int& exp);
 
 	//-----------------------  Nacteni Skinu  -----------------------//
 
@@ -74,8 +64,18 @@ public:
 
 	void ZmenaNazvu(string jmeno, int profil);
 
-private:
+private: ///////////////////////////////////  PRIVATE  /////////////////////////////////////////
+	enum jazyk_e
+	{
+		CZ,
+		EN,
+	};
+
 	list<string>::iterator itrs;
 	list<vector<int>>::iterator itri;
 	list<vector<char>>::iterator itrc;
+
+	int ZapsaniProfilu(list<string> nazev, list<vector<int>> data, list<vector<char>> ovladani);
+	vector<int> VlozeniDatDoVektoru();
+	vector<char> VlozeniOvladaniDoVektoru();
 };

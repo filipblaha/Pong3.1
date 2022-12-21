@@ -4,33 +4,30 @@
 class MenuNastaveni : public Menu
 {
 public:
-    Commands set;
-    Preklad transl;
 
     MenuNastaveni(Profily& data) : Menu(data, nastaveni_e, 4, 10, 10, 14)
     {
         Preklad trans;
 
-        balic = 0;
+        SpodniZavoraSet(0);
 
-        SpodniZavoraSet();
-
-        NastaveniVykresleni(data);
+        NastaveniVykresleni(data, 0);
     }
 
     //-----------------------  Input  -----------------------//
 
     int Rozhodovac(Profily& data);
 
+    //-----------------------  Vykresleni Menu  -----------------------//
+
+    void NastaveniVykresleni(Profily& data, bool balic);
+
+private: ///////////////////////////////////  PRIVATE  /////////////////////////////////////////
     //-----------------------  Vykresleni  -----------------------//
 
-    void NastaveniVykresleni(Profily& data);
-    void TextNastaveniVykresleni(Profily& data);
+    void TextNastaveniVykresleni(Profily& data, bool balic);
 
     //-----------------------  Set -----------------------//
 
-    void SpodniZavoraSet();
-
-private:
-    bool balic;
+    void SpodniZavoraSet(bool balic);
 };

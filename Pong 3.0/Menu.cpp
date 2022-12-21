@@ -17,6 +17,7 @@ int Menu::VstupMenu()
 		{
 			oznaceni.at(y) = zavory.at(1);
 		}
+		OznaceniVykresleni();
 		return 1;
 	}
 	case 's':
@@ -30,6 +31,7 @@ int Menu::VstupMenu()
 		{
 			oznaceni.at(y) = zavory.at(0);
 		}
+		OznaceniVykresleni();
 		return 1;
 	}
 	case '\r':
@@ -104,13 +106,6 @@ void Menu::OznaceniSmazani()
 {
 	set.SetCursorPosition(oznaceni.at(x), oznaceni.at(y));
 	wcout << ' ';
-}
-void Menu::OtazkaSmazani()
-{
-	set.SetCursorPosition(5, 2);
-	wcout << "                               ";
-	set.SetCursorPosition(26, 3);
-	wcout << "       ";
 }
 void Menu::VykresleniUroven(Profily data)
 {
