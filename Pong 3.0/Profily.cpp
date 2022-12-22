@@ -70,8 +70,8 @@ void Profily::VytvoreniNovehoProfilu(string nazev_noveho_profilu)
 		data_profil.push_back(NacteniDatProfilu(i));
 	}
 
-	ovladani_noveho_profilu.push_back('a');
-	ovladani_noveho_profilu.push_back('d');
+	ovladani_noveho_profilu.push_back('A');
+	ovladani_noveho_profilu.push_back('D');
 	ovladani_noveho_profilu.push_back(char(32));
 	ovladani_noveho_profilu.push_back(char(27));
 	for (int i = 0; i < pocet_profilu; i++)

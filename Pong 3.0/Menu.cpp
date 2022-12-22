@@ -57,7 +57,6 @@ void Menu::JazykSet(Profily& data)
 
 void Menu::MenuSTARTVykresleni()
 {
-	_setmode(_fileno(stdout), _O_U16TEXT);  // nastaveni graficke vizualizace
 	set.SetCursorPosition(0, 0);
 	////////////    vykreslovani plocha    ////////////
 	for (int j = 0; j < vyska_menu; j++)

@@ -33,11 +33,17 @@ enum vstup
 bool Klasik(Profily &data)
 {
 	HerniModyKlasik hra(data, 2);
-	hra.VstupHra(1);
+	while (!_kbhit());
+	hra.VstupHra(data, 1);
 
 	while (Klasik)
 	{
-		hra.VstupHra();
+		hra.Smazani();
+		hra.Logika();
+		hra.Vykresleni();
+
+		Sleep(100);
+		hra.VstupHra(data);
 	}
 	return 0;
 }

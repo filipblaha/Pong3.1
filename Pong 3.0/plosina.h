@@ -10,18 +10,21 @@ public:
 
 	Plosina()
 	{
-		data.plosina_skin = 0;
-		skin = data.NacteniSkiny().at(4);
+		data.plosina_skin = 1; //SSSSSSSSSSSSSSSSSSSSSSSSSSSSSS//
 
 		pohyb = 0;
 		velikost = 6;
 		x = (pole.delka - velikost) / 2;
+		y = pole.vyska - 3;
+
+		FormovaniSkiny();
 	}
 
 	int pohyb;
 	int velikost;
 	int x;
-	wstring skin;
+	int y;
+	list<wchar_t> skin;
 
-private:
+	void FormovaniSkiny();
 };
