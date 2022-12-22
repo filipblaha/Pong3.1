@@ -69,6 +69,9 @@
     <ClCompile Include="HerniModyKlasik.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MenuKonecKola.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Menu.h">
@@ -120,6 +123,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HerniModyKlasik.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuKonecKola.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

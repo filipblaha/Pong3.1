@@ -14,9 +14,9 @@ class Commands
 {
 public:
 
-	void Prechod();
+	void Prechod(int delka, int vyska);
 	void SetCursorPosition(int x, int y);
-	void Font(int f1, int f2);
+	void SetFont(int f1, int f2);
 	void SetWindow(int delka, int vyska);
 	int Random(int min, int max);
 };

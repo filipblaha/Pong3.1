@@ -40,7 +40,6 @@ int Menu::VstupMenu()
 	}
 	case 'q':
 	{
-		set.Prechod();
 		return exit;
 	}
 	}

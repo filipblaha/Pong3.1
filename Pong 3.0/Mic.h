@@ -9,8 +9,8 @@ public:
 
 	Mic()
 	{
-		x = pole.delka / 2;
-		y = pole.vyska - 5;
+		x = start_x;
+		y = start_y;
 		ax = 1;
 		ay = -1;
 		skin = L"\x058e";
@@ -20,6 +20,9 @@ public:
 	int y;
 	int ax;
 	int ay;
+
+	const int start_x = pole.delka / 2;
+	const int start_y = pole.vyska - 5;
 
 	const wchar_t* skin;
 };

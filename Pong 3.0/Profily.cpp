@@ -1,6 +1,6 @@
 ﻿#include "Profily.h"
 
-//-----------------------  Ukladani profilu  -----------------------//
+//-----------------------  Ulozeni profilu  -----------------------//
 
 void Profily::UlozeniProfilu(int profil)
 {

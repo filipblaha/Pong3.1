@@ -9,11 +9,11 @@ public:
 
 	HerniMody()
 	{}
-	HerniMody(Profily& data)
+	HerniMody(Profily& data, int pocet_zivotu_v)
 	{
-		data.VybraniProfilu(1);
+		//data.VybraniProfilu(1);
 
-		pocet_zivotu = 2;
+		pocet_zivotu = pocet_zivotu_v;
 		cas = 0;
 
 		VykresleniPole();
@@ -26,7 +26,8 @@ public:
 	void VstupHra(Profily data, bool start = 0);
 	void Vykresleni();
 	void Smazani();
-	void Logika();
+	int Logika(Profily& data);
+
 
 
 protected:
@@ -45,6 +46,7 @@ protected:
 	int pocet_bloku = 0;
 	int pocet_rozbitych_bloku = 0;
 	int pocet_zivotu = 0;
+	int pocet_snimku = 0;
 	int cas = 0;
 	bool kolize_s_blokem = 0;
 
@@ -54,11 +56,6 @@ protected:
 	const wchar_t* bomba_skin_start = L"\x25cc";
 	const wchar_t* slow_skin = L"\x25ca";
 	const wchar_t* zivoty_skin = L"\x2665";
-
-	//-----------------------  Bloky  -----------------------//
-	
-	
-
 
 	//-----------------------  Vykresleni / Smazani -----------------------//
 
@@ -71,15 +68,24 @@ protected:
 	void SmazaniBloky();	
 	void SmazaniPlosina();
 	void SmazaniObjekt(int objekt_x, int objekt_y);
+
+	void ZmenaBlokyHUD();
+	void ZmenaZivotyHUD();
+	void ZmenaCasomiraHUD();
 	
 	//-----------------------  Logika -----------------------//
 
 	void KolizeObjekt(int& objekt_x, int& objekt_y, int& objekt_ax, int& objekt_ay);
 	void PosunPlosina();
 	void VypocetZrychleni(int& objekt_x, int& objekt_y, int& objekt_ax, int& objekt_ay);
+	void ZtrataZivotu();
+	bool Casomira();
+
+	//-----------------------  Ulozeni dat -----------------------//
+
+	void UlozeniDat(Profily& data);
 
 	//-----------------------  Vybuch -----------------------//
 
 	void BlokyVybuch(int objekt_x, int objekt_y, int objekt_ax, int objekt_ay, int vzdalenost);
-
 };

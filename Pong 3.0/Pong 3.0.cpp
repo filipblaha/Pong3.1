@@ -4,7 +4,7 @@
 #include "MenuNastaveni.h"
 #include "MenuOvladani.h"
 #include "MenuVzhledPlosiny.h"
-#include "HerniModyKlasik.h"
+#include "MenuKonecKola.h"
 
 enum menu_strana
 {
@@ -30,22 +30,53 @@ enum vstup
 	zmena_nazvu,
 };
 
+bool KonecKola(Profily& data, bool vyhra)
+{
+	MenuKonecKola konec(data);
+
+	konec.VykresleniKonecKola(data);
+	konec.Logika(data, vyhra);
+	konec.VykresleniLevelBar();
+	konec.TextVykresleniProhra(data);
+
+ 	if (konec.VstupKonecKola())
+		return 1;
+	else
+		return 0;
+}
+
 bool Klasik(Profily &data)
 {
-	HerniModyKlasik hra(data, 2);
+	HerniMody hra(data, 1);
+
 	while (!_kbhit());
 	hra.VstupHra(data, 1);
 
 	while (Klasik)
 	{
 		hra.Smazani();
-		hra.Logika();
-		hra.Vykresleni();
-
-		Sleep(100);
-		hra.VstupHra(data);
+		switch (hra.Logika(data))
+		{
+		case 1:
+		{
+			if (KonecKola(data, 1))
+				return 1;
+			else
+				return 0;
+		}
+		case 2:
+		{
+			if (KonecKola(data, 0))
+				return 1;
+			else
+				return 0;
+		}
+		default:
+			hra.Vykresleni();
+			Sleep(100);
+			hra.VstupHra(data);
+		}
 	}
-	return 0;
 }
 
 bool HerniModyMenu(Profily &data)
@@ -63,7 +94,7 @@ bool HerniModyMenu(Profily &data)
 			case klasik_e:
 			{
 				while (Klasik(data));
-				break;
+				return 0;
 			}
 			/*case bloky_padaji_e:
 			{
@@ -213,10 +244,10 @@ bool ProfilMenu()
 		case enter:
 		{
 			menu.Rozhodovac(data, enter);
-			if (!HlavniMenu(data))
-				return 0;
-			else
+			if (HlavniMenu(data))
 				return 1;
+			else
+				return 0;
 		}
 		case del:
 		{
@@ -240,7 +271,7 @@ bool ProfilMenu()
 
 int main()
 {
-	Profily data;
-	Klasik(data);
-	//while (ProfilMenu());
+	//Profily data;
+	//Klasik(data);
+	while (ProfilMenu());
 }

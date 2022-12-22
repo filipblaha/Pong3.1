@@ -16,9 +16,9 @@ public:
 		blok2_skin = L"\x2592";
 		blok3_skin = L"\x2593";
 
-		set.Font(20, 20);
+		set.Prechod(delka, vyska);
+		set.SetFont(20, 20);
 		set.SetWindow(delka, vyska);
-		set.Prechod();
 
 		VytvoreniBloku();
 	}

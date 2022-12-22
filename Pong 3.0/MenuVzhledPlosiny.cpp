@@ -48,7 +48,6 @@ int MenuVzhledPlosiny::VstupMenu(Profily& data)
 	}
 	case 'q':
 	{
-		set.Prechod();
 		return exit;
 	}
 	}

@@ -38,7 +38,6 @@ int MenuOvladani::VstupMenu()
 	}
 	case 'q':
 	{
-		set.Prechod();
 		return exit;
 	}
 	}
@@ -67,7 +66,6 @@ void MenuOvladani::Rozhodovac(Profily& data)
 	}
 
 	data.UlozeniProfilu(data.jsem_v_profilu);
-	set.Prechod();
 	MenuSTARTVykresleni();
 	OvladaniVykresleni(data);
 }

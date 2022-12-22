@@ -1,11 +1,11 @@
 #include "Commands.h"
 
-void Commands::Prechod()
+void Commands::Prechod(int delka, int vyska)
 	{
 	SetCursorPosition(0, 0);
-	for (int j = 0; j < 20; j++)
+	for (int j = 0; j < vyska; j++)
 	{
-		for (int i = 0; i < 40; i++)
+		for (int i = 0; i < delka; i++)
 		{
 			wcout << " ";
 		}
@@ -19,7 +19,7 @@ void Commands::SetCursorPosition(int x, int y)
 	COORD coord = { (SHORT)x, (SHORT)y };
 	SetConsoleCursorPosition(hOut, coord);
 }
-void Commands::Font(int f1, int f2)
+void Commands::SetFont(int f1, int f2)
 {
 	CONSOLE_FONT_INFOEX cfi;
 	cfi.cbSize = sizeof(cfi);

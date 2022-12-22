@@ -33,13 +33,17 @@ public:
 	int highscore_cas;
 	int highscore_znicenych_bloku;
 
+	int cas;
+	int pocet_bloku;
+	int pocet_rozbitych_bloku;
+
 	char pohyb_vlevo;
 	char pohyb_vpravo;
 	char pouziti_schopnosti;
 	char pauza;
 
 
-	//-----------------------  Ukladani profilu  -----------------------//
+	//-----------------------  Ulozeni profilu  -----------------------//
 
 	void UlozeniProfilu(int profil);
 

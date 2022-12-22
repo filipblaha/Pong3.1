@@ -24,9 +24,8 @@ public:
 		zavory.push_back(leva_z);
 		zavory.push_back(prava_z);
 
-		set.Font(0, 20);
+		set.SetFont(0, 20);
 		set.SetWindow(delka_menu, vyska_menu - 2);
-		set.Prechod();
 		
 		NaplneniExpBar(data);
 		MenuSTARTVykresleni();

@@ -18,7 +18,6 @@ int MenuNastaveni::Rozhodovac(Profily& data)
 		JazykSet(data);
 		SpodniZavoraSet(0);
 
-		set.Prechod();
 		MenuSTARTVykresleni();
 		NastaveniVykresleni(data, 0);
 	}

@@ -13,6 +13,10 @@ int MenuProfil::VstupMenu(Profily& data)
 		{
 			oznaceni.at(y) -= 2;
 		}
+		else if (data.pocet_profilu == 2)
+		{
+			oznaceni.at(y) += 2;
+		}
 		else if(*data.NacteniJmenProfilu().begin() != *aktual_nazvy.begin())
 		{
 			Rozhodovac(data, 0, 1);
@@ -72,7 +76,6 @@ int MenuProfil::VstupMenu(Profily& data)
 	case 'l':
 	{
 		JazykSet(data);
-		set.Prechod();
 		MenuSTARTVykresleni();
 		ProfilVykresleni(data);
 		break;

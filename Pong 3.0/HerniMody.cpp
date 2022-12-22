@@ -1,4 +1,5 @@
 #include "HerniMody.h"
+#include <conio.h>
 
 //-----------------------  Input -----------------------//
 
@@ -33,8 +34,7 @@ void HerniMody::VstupHra(Profily data, bool start)
 	if (start)
 		mic.ax = plosina.pohyb;
 }
-//#include <conio.h>
-//void HerniMody::VstupHra(bool start)
+//void HerniMody::VstupHra(Profily data, bool start)
 //{
 //	switch (_getch())
 //	{
@@ -89,6 +89,10 @@ void HerniMody::Smazani()
 	if (plosina.pohyb)
 		SmazaniPlosina();
 	SmazaniObjekt(mic.x, mic.y);
+	if (kolize_s_blokem)
+		ZmenaBlokyHUD();
+	if (Casomira())
+		ZmenaCasomiraHUD();
 }
 
 void HerniMody::VykresleniPole()
@@ -164,12 +168,12 @@ void HerniMody::VykresleniHUD()
 	set.SetCursorPosition(2, pole.vyska);
 	std::wcout << pole.blok2_skin << pocet_bloku;
 
-	set.SetCursorPosition(pole.delka - 4, pole.vyska);
-	std::wcout << cas;
-
 	set.SetCursorPosition(8, pole.vyska);
 	for (int i = 0; i < pocet_zivotu; i++)
 		std::wcout << zivoty_skin;
+
+	set.SetCursorPosition(pole.delka - 4, pole.vyska);
+	std::wcout << cas;
 }
 
 void HerniMody::SmazaniBloky()
@@ -437,13 +441,10 @@ void HerniMody::SmazaniBloky()
 }
 void HerniMody::SmazaniPlosina()
 {
-	if (plosina.pohyb)
+	set.SetCursorPosition(plosina.x, plosina.y);
+	for (int i = 0; i < plosina.velikost; i++)
 	{
-		set.SetCursorPosition(plosina.x, plosina.y);
-		for (int i = 0; i < plosina.velikost; i++)
-		{
-			std::wcout << " ";
-		}
+		std::wcout << " ";
 	}
 }
 void HerniMody::SmazaniObjekt(int objekt_x, int objekt_y)
@@ -452,13 +453,52 @@ void HerniMody::SmazaniObjekt(int objekt_x, int objekt_y)
 	std::wcout << " ";
 }
 
+void HerniMody::ZmenaBlokyHUD()
+{
+	set.SetCursorPosition(3, pole.vyska);
+	std::wcout << "    ";
+	set.SetCursorPosition(3, pole.vyska);
+	std::wcout << pocet_bloku;
+}
+void HerniMody::ZmenaZivotyHUD()
+{
+	set.SetCursorPosition(8, pole.vyska);
+	std::wcout << "    ";
+	set.SetCursorPosition(8, pole.vyska);
+	std::wcout << zivoty_skin;
+}
+void HerniMody::ZmenaCasomiraHUD()
+{
+	set.SetCursorPosition(pole.delka - 4, pole.vyska);
+	std::wcout << "    ";
+	set.SetCursorPosition(pole.delka - 4, pole.vyska);
+	std::wcout << cas;
+}
+
 //-----------------------  Logika -----------------------//
 
-void HerniMody::Logika()
+int HerniMody::Logika(Profily& data)
 {
+	pocet_snimku++;
+
+	if (mic.y == plosina.y_start + 1)
+	{
+		UlozeniDat(data);
+		if (pocet_zivotu == 1)
+			return 2;
+		else
+			ZtrataZivotu();
+		return 0;
+	}
+	if (pocet_bloku == 0)
+	{
+		UlozeniDat(data);
+		return 1;
+	}
 	PosunPlosina();
 	KolizeObjekt(mic.x, mic.y, mic.ax, mic.ay);
 	VypocetZrychleni(mic.x, mic.y, mic.ax, mic.ay);
+	return 0;
 }
 
 void HerniMody::PosunPlosina()
@@ -474,6 +514,8 @@ void HerniMody::PosunPlosina()
 }
 void HerniMody::KolizeObjekt(int& objekt_x, int& objekt_y, int& objekt_ax, int& objekt_ay)
 {
+	kolize_s_blokem = 0;
+
 	int C = pole.bloky.at(mic.y).at(mic.x);
 
 	int U = pole.bloky.at(mic.y - 1).at(mic.x);
@@ -607,13 +649,45 @@ void HerniMody::VypocetZrychleni(int& objekt_x, int& objekt_y, int& objekt_ax, i
 		objekt_y--;
 	}
 }
+void HerniMody::ZtrataZivotu()
+{
+	pocet_zivotu--;
+
+	SmazaniPlosina();
+	mic.x = mic.start_x;
+	mic.y = mic.start_y;
+	mic.ax = 0;
+	mic.ay = -1;
+	plosina.x = plosina.x_start;
+
+	VykresleniObjekt(mic.x, mic.y, mic.skin);
+	VykresleniPlosina();
+	ZmenaZivotyHUD();
+
+	while (!_kbhit());
+	VstupHra(data, 1);
+}
+bool HerniMody::Casomira()
+{
+	if (pocet_snimku % 20 == 0)
+		cas++;
+	return 1;
+}
+
+
+//-----------------------  Ulozeni dat -----------------------//
+
+void HerniMody::UlozeniDat(Profily& data)
+{
+	data.cas = cas;
+	data.pocet_rozbitych_bloku = pocet_rozbitych_bloku;
+	data.pocet_bloku = pocet_bloku;
+}
 
 //-----------------------  Vybuch -----------------------//
 
 void HerniMody::BlokyVybuch(int objekt_x, int objekt_y, int objekt_ax, int objekt_ay, int vzdalenost)
 {
-	int m, n;
-
 	int leva_hranice, prava_hranice, dolni_hranice, horni_hranice;
 
 	if (pole.vyska - objekt_y < vzdalenost)
