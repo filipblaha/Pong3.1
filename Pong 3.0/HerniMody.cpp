@@ -19,6 +19,20 @@ void HerniMody::VstupHra(Profily data, bool start)
 		else
 			plosina.pohyb = 0;
 	}
+	else if (GetAsyncKeyState(37))
+	{
+		if (plosina.x != pole.delka - plosina.velikost - 1) //zed vpravo
+			plosina.pohyb = 1;
+		else
+			plosina.pohyb = 0;
+	}
+	else if (GetAsyncKeyState(39))
+	{
+		if (plosina.x != 1) // zed vlevo
+			plosina.pohyb = -1;
+		else
+			plosina.pohyb = 0;
+	}
 	/*else if (GetAsyncKeyState(data.pouziti_schopnosti))
 	{
 		if (slow)

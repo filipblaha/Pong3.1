@@ -1,12 +1,12 @@
 #pragma once
 #include "Menu.h"
 #include "HerniMody.h"
-class MenuKonecKola : public Menu, HerniMody
+class MenuKonecKola : public Menu
 {
 public:
 	Commands set;
 
-	MenuKonecKola(Profily& data) : HerniMody()
+	MenuKonecKola(Profily& data)
 	{
 		n_exp = 0;
 

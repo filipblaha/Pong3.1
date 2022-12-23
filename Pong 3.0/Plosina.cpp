@@ -1,6 +1,6 @@
 #include "Plosina.h"
 
-void Plosina::FormovaniSkiny()
+void Plosina::FormovaniSkiny(Profily& data)
 {
 	skin.clear();
 	for (int i = 0; i < velikost; i++)

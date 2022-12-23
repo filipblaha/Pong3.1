@@ -34,5 +34,9 @@ private: ///////////////////////////////////  PRIVATE  /////////////////////////
     void SkinyVykresleni(Profily data);
     void OznaceniVykresleni();
     void OznaceniSmazani();
-    void NedostatecnaUrovenVykresleni();
+    void NedostatecnaUrovenVykresleni(int uroven);
+
+    //-----------------------  Vykresleni -----------------------//
+
+    void CustomSkin(Profily data);
 };

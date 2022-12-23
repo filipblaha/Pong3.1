@@ -57,12 +57,6 @@
     <ClCompile Include="HerniMody.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Objekt.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mic.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="HraciPole.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

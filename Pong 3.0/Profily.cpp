@@ -345,7 +345,7 @@ vector<wstring> Profily::NacteniSkiny()
 		s5.push_back(wchar_t(187));
 	wstring s6 = L"______";
 
-	return skiny = { s0, s1, s2, s3, s4, s5 };
+	return skiny = { s0, s1, s2, s3, s4, s5, s6} ;
 }
 
 //-----------------------  Zmena jmena  -----------------------//

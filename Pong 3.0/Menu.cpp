@@ -34,7 +34,39 @@ int Menu::VstupMenu()
 		OznaceniVykresleni();
 		return 1;
 	}
-	case '\r':
+	case 224:
+	{
+		switch(_getch())
+		{
+		case 72:
+			OznaceniSmazani();
+			if (oznaceni.at(y) > zavory.at(0))
+			{
+				oznaceni.at(y) -= 2;
+			}
+			else
+			{
+				oznaceni.at(y) = zavory.at(1);
+			}
+			OznaceniVykresleni();
+			return 1;
+			break;
+		case 80:
+			OznaceniSmazani();
+			if (oznaceni.at(y) < zavory.at(1))
+			{
+				oznaceni.at(y) += 2;
+			}
+			else
+			{
+				oznaceni.at(y) = zavory.at(0);
+			}
+			OznaceniVykresleni();
+			return 1;
+		break;
+		}
+	}
+	case '\r': case ' ':
 	{
 		return enter;
 	}
@@ -43,6 +75,7 @@ int Menu::VstupMenu()
 		return exit;
 	}
 	}
+
 }
 void Menu::JazykSet(Profily& data)
 {

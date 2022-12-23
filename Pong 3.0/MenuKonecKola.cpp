@@ -25,16 +25,18 @@ void MenuKonecKola::Logika(Profily& data, bool vyhra)
 
 	if (vyhra)
 		n_exp += 7;
-	n_exp += pocet_rozbitych_bloku / 5;
+	n_exp += data.pocet_rozbitych_bloku;
 
 	//-------  Highscore  -------//
-
-	if (data.highscore_cas == 0)
-		data.highscore_cas = cas;
-	if (cas < data.highscore_cas)
+	if (vyhra)
 	{
-		data.highscore_cas = cas;
-		n_exp = +4;
+		if (data.highscore_cas == 0)
+			data.highscore_cas = data.cas;
+		if (data.cas < data.highscore_cas)
+		{
+			data.highscore_cas = data.cas;
+			n_exp = +4;
+		}
 	}
 
 	//-------  Level bar  -------//

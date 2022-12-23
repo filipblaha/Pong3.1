@@ -38,9 +38,9 @@
     </Profil>
     <Profil>
         <Data>
-            <Hodnota>0</Hodnota>
-            <Hodnota>3</Hodnota>
-            <Hodnota>15</Hodnota>
+            <Hodnota>1</Hodnota>
+            <Hodnota>7</Hodnota>
+            <Hodnota>7</Hodnota>
             <Hodnota>2</Hodnota>
             <Hodnota>0</Hodnota>
             <Hodnota>0</Hodnota>
@@ -48,8 +48,8 @@
         <Ovladani>
             <Hodnota>65</Hodnota>
             <Hodnota>68</Hodnota>
-            <Hodnota>32</Hodnota>
-            <Hodnota>112</Hodnota>
+            <Hodnota>9</Hodnota>
+            <Hodnota>27</Hodnota>
         </Ovladani>
     </Profil>
 </root>

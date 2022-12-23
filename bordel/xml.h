@@ -472,7 +472,7 @@ namespace tinyxml2
         static const wchar_t* ReadBOM(const wchar_t* p, bool* hasBOM);
         // p is the starting location,
         // the UTF-8 value of the entity will be placed in value, and length filled in.
-        static const wchar_t* GetCharacterRef(const wchar_t* p, wchar_t* value, int* length);
+        static const wchar_t* _getcharacterRef(const wchar_t* p, wchar_t* value, int* length);
         static void ConvertUTF32ToUTF8(unsigned long input, wchar_t* output, int* length);
 
         // converts primitive types to strings

@@ -127,8 +127,10 @@ bool VzhledPlosinyMenu(Profily &data)
 		{
 		case enter:
 		{
-			menu.Rozhodovac(data);
-			break;
+			if (menu.Rozhodovac(data))
+				break;
+			else
+				return 0;
 		}
 		case ex:
 		{
@@ -175,6 +177,7 @@ bool NastaveniMenu(Profily& data)
 				menu.MenuSTARTVykresleni();
 				menu.NastaveniVykresleni(data, 0);
 			}
+			break;
 		}
 		case ex:
 		{

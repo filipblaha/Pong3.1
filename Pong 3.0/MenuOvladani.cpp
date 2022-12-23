@@ -17,6 +17,7 @@ int MenuOvladani::VstupMenu()
 		{
 			oznaceni.at(y) = zavory.at(1);
 		}
+		OznaceniVykresleni();
 		return 1;
 	}
 	case 's':
@@ -30,7 +31,38 @@ int MenuOvladani::VstupMenu()
 		{
 			oznaceni.at(y) = zavory.at(0);
 		}
+		OznaceniVykresleni();
 		return 1;
+	}
+	case 224:
+	{
+		switch (_getch())
+		{
+		case 72:
+			OznaceniSmazani();
+			if (oznaceni.at(y) > zavory.at(0))
+			{
+				oznaceni.at(y)--;
+			}
+			else
+			{
+				oznaceni.at(y) = zavory.at(1);
+			}
+			OznaceniVykresleni();
+			return 1;
+		case 80:
+			OznaceniSmazani();
+			if (oznaceni.at(y) < zavory.at(1))
+			{
+				oznaceni.at(y)++;
+			}
+			else
+			{
+				oznaceni.at(y) = zavory.at(0);
+			}
+			OznaceniVykresleni();
+			return 1;
+		}
 	}
 	case '\r':
 	{
@@ -48,26 +80,30 @@ void MenuOvladani::Rozhodovac(Profily& data)
 	{
 		ZmenaOvladaniSmazani(12);
 		data.pohyb_vlevo = ZmenaOvladani();
+		data.UlozeniProfilu(data.jsem_v_profilu);
+		wcout << BlbyZnakyCheck(data).at(0);
 	}
 	else if (oznaceni.at(y) == 13)
 	{
 		ZmenaOvladaniSmazani(13);
 		data.pohyb_vpravo = ZmenaOvladani();
+		data.UlozeniProfilu(data.jsem_v_profilu);
+		wcout << BlbyZnakyCheck(data).at(1);
 	}
 	else if (oznaceni.at(y) == 14)
 	{
 		ZmenaOvladaniSmazani(14);
 		data.pouziti_schopnosti = ZmenaOvladani();
+		data.UlozeniProfilu(data.jsem_v_profilu);
+		wcout << BlbyZnakyCheck(data).at(2);
 	}
 	else if (oznaceni.at(y) == 15)
 	{
 		ZmenaOvladaniSmazani(15);
 		data.pauza = ZmenaOvladani();
+		data.UlozeniProfilu(data.jsem_v_profilu);
+		wcout << BlbyZnakyCheck(data).at(3);
 	}
-
-	data.UlozeniProfilu(data.jsem_v_profilu);
-	MenuSTARTVykresleni();
-	OvladaniVykresleni(data);
 }
 
 void MenuOvladani::ZmenaOvladaniSmazani(int poradi)
@@ -78,8 +114,27 @@ void MenuOvladani::ZmenaOvladaniSmazani(int poradi)
 }
 char MenuOvladani::ZmenaOvladani()
 {
-	char zmena;
-	zmena = _getche();
+	int zmena = _getch();
+	if (zmena == 224)
+	{
+		switch (_getch())
+		{
+		case 72:
+			zmena = 38;
+			break;
+		case 75:
+			zmena = 37;
+			break;
+		case 77:
+			zmena = 39;
+			break;
+		case 80:
+			zmena = 40;
+			break;
+		}
+	}
+	else if (zmena >= 97 && zmena <= 122)
+		zmena -= 32;
 
 	return zmena;
 }
@@ -153,6 +208,16 @@ vector<wstring> MenuOvladani::BlbyZnakyCheck(Profily& data)
 		wstring tempws;
 		if (ovladani_char.at(i) == 32)
 			ovladani_string.push_back(text.at(8));
+
+		else if (ovladani_char.at(i) == 37)
+			ovladani_string.push_back(L"\x2190");
+		else if (ovladani_char.at(i) == 38)
+			ovladani_string.push_back(L"\x2191");
+		else if (ovladani_char.at(i) == 39)
+			ovladani_string.push_back(L"\x2192");
+		else if (ovladani_char.at(i) == 40)
+			ovladani_string.push_back(L"\x2193");
+
 		else if (ovladani_char.at(i) == 8)
 			ovladani_string.push_back(text.at(9));
 		else if (ovladani_char.at(i) == 127)

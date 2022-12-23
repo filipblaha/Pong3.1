@@ -38,6 +38,10 @@ int MenuProfil::VstupMenu(Profily& data)
 		{
 			oznaceni.at(y) += 2;
 		}
+		else if (data.pocet_profilu == 2)
+		{
+			oznaceni.at(y) -= 2;
+		}
 		else if (*data.NacteniJmenProfilu().rbegin() != *aktual_nazvy.rbegin())
 		{
 			Rozhodovac(data, 0, -1);
@@ -52,7 +56,61 @@ int MenuProfil::VstupMenu(Profily& data)
 		OznaceniVykresleni();
 		break;
 	}
-	case '\r':
+	case 224:
+	{
+		switch (_getch())
+		{
+		case 72:
+			OznaceniSmazani();
+			if (oznaceni.at(y) > zavory.at(0))
+			{
+				oznaceni.at(y) -= 2;
+			}
+			else if (data.pocet_profilu == 2)
+			{
+				oznaceni.at(y) += 2;
+			}
+			else if (*data.NacteniJmenProfilu().begin() != *aktual_nazvy.begin())
+			{
+				Rozhodovac(data, 0, 1);
+				TextProfilVykresleni(data);
+			}
+			else
+			{
+				AktualNazevProfilu(data, data.pocet_profilu, 3);
+				oznaceni.at(y) = zavory.at(1);
+				TextProfilVykresleni(data);
+			}
+			OznaceniVykresleni();
+			break;
+		case 80:
+			OznaceniSmazani();
+			if (oznaceni.at(y) < zavory.at(1))
+			{
+				oznaceni.at(y) += 2;
+			}
+			else if (data.pocet_profilu == 2)
+			{
+				oznaceni.at(y) -= 2;
+			}
+			else if (*data.NacteniJmenProfilu().rbegin() != *aktual_nazvy.rbegin())
+			{
+				Rozhodovac(data, 0, -1);
+				TextProfilVykresleni(data);
+			}
+			
+			else
+			{
+				AktualNazevProfilu(data, 0, 0);
+				oznaceni.at(y) = zavory.at(0);
+				TextProfilVykresleni(data);
+			}
+			OznaceniVykresleni();
+			break;
+		}
+		break;
+	}
+	case '\r': case ' ':
 	{
 		return enter;
 	}

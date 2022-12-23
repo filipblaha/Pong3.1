@@ -13,6 +13,7 @@ int MenuVzhledPlosiny::VstupMenu(Profily& data)
 		{
 			oznaceni.at(y) -= 4;
 		}
+		OznaceniVykresleni();
 		return 1;
 	}
 	case 's':
@@ -22,6 +23,7 @@ int MenuVzhledPlosiny::VstupMenu(Profily& data)
 		{
 			oznaceni.at(y) += 4;
 		}
+		OznaceniVykresleni();
 		return 1;
 	}
 	case 'a':
@@ -31,6 +33,7 @@ int MenuVzhledPlosiny::VstupMenu(Profily& data)
 		{
 			oznaceni.at(x) -= 10;
 		}
+		OznaceniVykresleni();
 		return 1;
 	}
 	case 'd':
@@ -40,6 +43,7 @@ int MenuVzhledPlosiny::VstupMenu(Profily& data)
 		{
 			oznaceni.at(x) += 10;
 		}
+		OznaceniVykresleni();
 		return 1;
 	}
 	case '\r':
@@ -59,23 +63,41 @@ int MenuVzhledPlosiny::Rozhodovac(Profily& data)
 		if (oznaceni.at(x) == 6)
 		{
 			if (data.level < potrebna_uroven.at(0))
-				NedostatecnaUrovenVykresleni();
+			{
+				NedostatecnaUrovenVykresleni(potrebna_uroven.at(0));
+				return 1;
+			}
 			else
-				data.plosina_skin = 0;
+			{
+				data.plosina_skin = 1;
+				return 0;
+			}
 		}
 		if (oznaceni.at(x) == 16) 
 		{
 			if (data.level < potrebna_uroven.at(1))
-				NedostatecnaUrovenVykresleni();
+			{
+				NedostatecnaUrovenVykresleni(potrebna_uroven.at(1));
+				return 1;
+			}
 			else
-				data.plosina_skin = 1;
+			{
+				data.plosina_skin = 2;
+				return 0;
+			}
 		}
 		if (oznaceni.at(x) == 26)
 		{
 			if (data.level < potrebna_uroven.at(2))
-				NedostatecnaUrovenVykresleni();
+			{
+				NedostatecnaUrovenVykresleni(potrebna_uroven.at(2));
+				return 1;
+			}
 			else
-				data.plosina_skin = 2;
+			{
+				data.plosina_skin = 3;
+				return 0;
+			}
 		}
 	}
 	else if (oznaceni.at(y) == 13)
@@ -83,27 +105,44 @@ int MenuVzhledPlosiny::Rozhodovac(Profily& data)
 
 		if (oznaceni.at(x) == 6)
 		{
-			if (data.level < potrebna_uroven.at(3))
-				NedostatecnaUrovenVykresleni();
+			if(data.level < potrebna_uroven.at(3))
+			{
+				NedostatecnaUrovenVykresleni(potrebna_uroven.at(3));
+				return 1;
+			}
 			else
-				data.plosina_skin = 3;
+			{
+				data.plosina_skin = 4;
+				return 0;
+			}
 		}
 		if (oznaceni.at(x) == 16)
 		{
 			if (data.level < potrebna_uroven.at(4))
-				NedostatecnaUrovenVykresleni();
+			{
+				NedostatecnaUrovenVykresleni(potrebna_uroven.at(4));
+				return 1;
+			}
 			else
-				data.plosina_skin = 4;
+			{
+				data.plosina_skin = 5;
+				return 0;
+			}
 		}
 		if (oznaceni.at(x) == 26)
 		{
 			if (data.level < potrebna_uroven.at(5))
-				NedostatecnaUrovenVykresleni();
+			{
+				NedostatecnaUrovenVykresleni(potrebna_uroven.at(5));
+				return 1;
+			}
 			else
-				data.plosina_skin = 5;
+			{
+				data.plosina_skin = 6;
+				return 0;
+			}
 		}
 	}
-	return 1;
 }
 
 //-----------------------  Vykresleni -----------------------//
@@ -202,8 +241,15 @@ void MenuVzhledPlosiny::OznaceniSmazani()
 		}
 	}
 }
-void MenuVzhledPlosiny::NedostatecnaUrovenVykresleni()
+void MenuVzhledPlosiny::NedostatecnaUrovenVykresleni(int uroven)
 {
 	set.SetCursorPosition(9, 7);
-	wcout << text.at(1);
+	wcout << text.at(1) << uroven;
+}
+
+//-----------------------  Vykresleni -----------------------//
+
+void MenuVzhledProfily(Profily& data)
+{
+
 }

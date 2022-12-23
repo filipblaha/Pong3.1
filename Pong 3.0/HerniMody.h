@@ -13,8 +13,11 @@ public:
 	{
 		//data.VybraniProfilu(1);
 
+		plosina.pohyb = 0;
 		pocet_zivotu = pocet_zivotu_v;
 		cas = 0;
+
+		plosina.FormovaniSkiny(data);
 
 		VykresleniPole();
 		VykresleniBloky();

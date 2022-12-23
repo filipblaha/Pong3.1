@@ -5,34 +5,26 @@
 class Plosina
 {
 public:
-	Profily data;
 	HraciPole pole;
-
 	Plosina()
 	{
-		data.plosina_skin = 1; //SSSSSSSSSSSSSSSSSSSSSSSSSSSSSS//
-
-
 		pohyb = 0;
 		velikost = 6;
 		x_start = (pole.delka - velikost) / 2;
 		x = x_start;
 		y = y_start;
-
-
-		FormovaniSkiny();
 	}
 
-	int pohyb;
-	int velikost;
-	int x;
-	int y;
+	int pohyb = 0;
+	int velikost = 0;
+	int x = 0;
+	int y = 0;
 
-	int x_start;
+	int x_start = 0;
 	const int y_start = pole.vyska - 3;
 
 
 	list<wchar_t> skin;
 
-	void FormovaniSkiny();
+	void FormovaniSkiny(Profily& data);
 };

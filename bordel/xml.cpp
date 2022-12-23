@@ -199,7 +199,7 @@ namespace tinyxml2
                         if (*(p + 1) == '#') {
                             wchar_t buf[10] = { 0 };
                             int len;
-                            p = const_cast<wchar_t*>(XMLUtil::GetCharacterRef(p, buf, &len));
+                            p = const_cast<wchar_t*>(XMLUtil::_getcharacterRef(p, buf, &len));
                             for (int i = 0; i < len; ++i) {
                                 *q++ = buf[i];
                             }
@@ -310,7 +310,7 @@ namespace tinyxml2
     }
 
 
-    const wchar_t* XMLUtil::GetCharacterRef(const wchar_t* p, wchar_t* value, int* length)
+    const wchar_t* XMLUtil::_getcharacterRef(const wchar_t* p, wchar_t* value, int* length)
     {
         // Presume an entity, and pull it out.
         *length = 0;
