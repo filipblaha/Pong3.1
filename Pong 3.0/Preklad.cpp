@@ -1,41 +1,11 @@
 #include "Preklad.h"
 
-//-----------------------  Premena string na wstring  -----------------------//
-
-vector<wstring> Preklad::StringToWString(vector<string> s)
-{
-	string sTmp;
-	vector<wstring> ws;
-	for (int i = 0; i < s.size(); i++)
-	{
-		sTmp = s.at(i);
-		wstring wsTmp(sTmp.begin(), sTmp.end());
-		ws.push_back(wsTmp);
-	}
-	return ws;
-}
-list<wstring> Preklad::StringToWStringList(list<string> s)
-{
-	string sTmp;
-	list<wstring> ws;
-	list<string>::iterator itr;
-	for (itr = s.begin(); itr != s.end(); itr++)
-	{
-		sTmp = *itr;
-		wstring wsTmp(sTmp.begin(), sTmp.end());
-		ws.push_back(wsTmp);
-	}
-	return ws;
-}
-
 //-----------------------  Nacteni textu  -----------------------//
 
 vector<wstring> Preklad::NacteniTextProfil(Profily data)
 {
 	XMLDocument xmlDoc;
-
-
-	vector<int> vektor_poctu_stringu;
+	
 	vektor_stringu.clear();
 
 	xmlDoc.LoadFile("Preklad.xml");
@@ -56,13 +26,12 @@ vector<wstring> Preklad::NacteniTextProfil(Profily data)
 		vektor_stringu.push_back(sdata);
 		text = text->NextSiblingElement("string");
 	}
-	return StringToWString(vektor_stringu);
+	return set.StringToWString(vektor_stringu);
 }
 vector<wstring> Preklad::NacteniTextHlavni(Profily data)
 {
 	XMLDocument xmlDoc;
 
-	vector<int> vektor_poctu_stringu;
 	vektor_stringu.clear();
 
 	xmlDoc.LoadFile("Preklad.xml");
@@ -83,13 +52,12 @@ vector<wstring> Preklad::NacteniTextHlavni(Profily data)
 		vektor_stringu.push_back(sdata);
 		text = text->NextSiblingElement("string");
 	}
-	return StringToWString(vektor_stringu);
+	return set.StringToWString(vektor_stringu);
 }
 vector<wstring> Preklad::NacteniTextHerniMody(Profily data)
 {
 	XMLDocument xmlDoc;
 
-	vector<int> vektor_poctu_stringu;
 	vektor_stringu.clear();
 
 	xmlDoc.LoadFile("Preklad.xml");
@@ -110,13 +78,12 @@ vector<wstring> Preklad::NacteniTextHerniMody(Profily data)
 		vektor_stringu.push_back(sdata);
 		text = text->NextSiblingElement("string");
 	}
-	return StringToWString(vektor_stringu);
+	return set.StringToWString(vektor_stringu);
 }
 vector<wstring> Preklad::NacteniTextVzhledPlosiny(Profily data)
 {
 	XMLDocument xmlDoc;
 
-	vector<int> vektor_poctu_stringu;
 	vektor_stringu.clear();
 
 	xmlDoc.LoadFile("Preklad.xml");
@@ -137,13 +104,12 @@ vector<wstring> Preklad::NacteniTextVzhledPlosiny(Profily data)
 		vektor_stringu.push_back(sdata);
 		text = text->NextSiblingElement("string");
 	}
-	return StringToWString(vektor_stringu);
+	return set.StringToWString(vektor_stringu);
 }
 vector<wstring> Preklad::NacteniTextNastaveni(Profily data)
 {
 	XMLDocument xmlDoc;
-
-	vector<int> vektor_poctu_stringu;
+	
 	vektor_stringu.clear();
 
 	xmlDoc.LoadFile("Preklad.xml");
@@ -164,13 +130,12 @@ vector<wstring> Preklad::NacteniTextNastaveni(Profily data)
 		vektor_stringu.push_back(sdata);
 		text = text->NextSiblingElement("string");
 	}
-	return StringToWString(vektor_stringu);
+	return set.StringToWString(vektor_stringu);
 }
 vector<wstring> Preklad::NacteniTextOvladani(Profily data)
 {
 	XMLDocument xmlDoc;
 
-	vector<int> vektor_poctu_stringu;
 	vektor_stringu.clear();
 
 	xmlDoc.LoadFile("Preklad.xml");
@@ -191,13 +156,12 @@ vector<wstring> Preklad::NacteniTextOvladani(Profily data)
 		vektor_stringu.push_back(sdata);
 		text = text->NextSiblingElement("string");
 	}
-	return StringToWString(vektor_stringu);
+	return set.StringToWString(vektor_stringu);
 }
 vector<wstring> Preklad::NacteniTextKonecKola(Profily data)
 {
 	XMLDocument xmlDoc;
-
-	vector<int> vektor_poctu_stringu;
+	
 	vektor_stringu.clear();
 
 	xmlDoc.LoadFile("Preklad.xml");
@@ -218,5 +182,5 @@ vector<wstring> Preklad::NacteniTextKonecKola(Profily data)
 		vektor_stringu.push_back(sdata);
 		text = text->NextSiblingElement("string");
 	}
-	return StringToWString(vektor_stringu);
+	return set.StringToWString(vektor_stringu);
 }

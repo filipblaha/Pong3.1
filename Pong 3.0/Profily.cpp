@@ -189,7 +189,7 @@ int Profily::ZapsaniProfilu(list<string> nazev, list<vector<int>> data, list<vec
 		prof->InsertEndChild(profily_ovladani);
 	}
 
-	XMLError eResult = xmlDoc.SaveFile("profily.xml");
+	XMLError eResult = xmlDoc.SaveFile("Profily.xml");
 	XMLCheckResult(eResult);
 }
 
@@ -203,7 +203,7 @@ vector<vector<int>> Profily::NacteniDat()
 	vector<vector<int>> v_v_dat;
 
 
-	xmlDoc.LoadFile("profily.xml");
+	xmlDoc.LoadFile("Profily.xml");
 
 	XMLNode* root = xmlDoc.FirstChild();
 	XMLElement* prof = root->FirstChildElement("Profil");
@@ -231,7 +231,7 @@ vector<vector<char>> Profily::NacteniOvladani()
 	vector<vector<char>> v_v_ovladani;
 
 
-	xmlDoc.LoadFile("profily.xml");
+	xmlDoc.LoadFile("Profily.xml");
 
 	XMLNode* root = xmlDoc.FirstChild();
 	XMLElement* prof = root->FirstChildElement("Profil");
@@ -284,7 +284,7 @@ list<string> Profily::NacteniJmenProfilu()
 	string vektor_pismen;
 	list<string> v_v_pismen;
 
-	xmlDoc.LoadFile("profily.xml");
+	xmlDoc.LoadFile("Profily.xml");
 
 	NacteniPoctuProfilu();
 

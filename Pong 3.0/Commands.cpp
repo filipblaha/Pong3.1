@@ -42,10 +42,40 @@ void Commands::SetWindow(int delka, int vyska)
 	SetConsoleScreenBufferSize(Handle, coord);
 	SetConsoleWindowInfo(Handle, TRUE, &Rect);
 }
+
 int Commands::Random(int min, int max)
 {
 	random_device random_cislo;
 	mt19937 seed(random_cislo());
 	uniform_int_distribution<> rozmezi(min, max);
 	return rozmezi(seed);
+}
+
+
+//-----------------------  Premena string na wstring  -----------------------//
+
+vector<wstring> Commands::StringToWString(vector<string> s)
+{
+	string sTmp;
+	vector<wstring> ws;
+	for (int i = 0; i < s.size(); i++)
+	{
+		sTmp = s.at(i);
+		wstring wsTmp(sTmp.begin(), sTmp.end());
+		ws.push_back(wsTmp);
+	}
+	return ws;
+}
+list<wstring> Commands::StringToWStringList(list<string> s)
+{
+	string sTmp;
+	list<wstring> ws;
+	list<string>::iterator itr;
+	for (itr = s.begin(); itr != s.end(); itr++)
+	{
+		sTmp = *itr;
+		wstring wsTmp(sTmp.begin(), sTmp.end());
+		ws.push_back(wsTmp);
+	}
+	return ws;
 }

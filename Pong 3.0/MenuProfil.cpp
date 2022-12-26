@@ -347,7 +347,7 @@ void MenuProfil::TextProfilVykresleni(Profily& data)
 {
 	text = transl.NacteniTextProfil(data);
 
-	list<wstring> wl = transl.StringToWStringList(aktual_nazvy);
+	list<wstring> wl = transl.set.StringToWStringList(aktual_nazvy);
 	list<int> p = aktual_urovne;
 
 	list<wstring>::iterator itr;

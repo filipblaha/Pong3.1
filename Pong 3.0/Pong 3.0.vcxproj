@@ -143,6 +143,7 @@
     <ClCompile Include="Profily.cpp" />
     <ClCompile Include="Plosina.cpp" />
     <ClCompile Include="Commands.cpp" />
+    <ClCompile Include="Skiny.cpp" />
     <ClCompile Include="Tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -163,11 +164,13 @@
     <ClInclude Include="Preklad.h" />
     <ClInclude Include="Profily.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="Skiny.h" />
     <ClInclude Include="Tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="profily.xml" />
+    <Xml Include="Profily.xml" />
     <Xml Include="Preklad.xml" />
+    <Xml Include="Skiny.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -6,12 +6,7 @@ class Preklad
 {
 public:
 	Profily data;
-
-
-	//-----------------------  Premena string na wstring  -----------------------//
-
-	vector<wstring> StringToWString(vector<string> s);
-	list<wstring> StringToWStringList(list<string> s);
+	Commands set;
 
 	//-----------------------  Nacteni textu  -----------------------//
 
@@ -32,6 +27,5 @@ private:///////////////////////////////////  PRIVATE  //////////////////////////
 	};
 
 	vector<string> vektor_stringu;
-	vector<wstring> vektor_wstringu;
 };
 

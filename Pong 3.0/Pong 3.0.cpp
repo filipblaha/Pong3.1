@@ -1,10 +1,11 @@
-#include "Menuprofil.h"
+﻿#include "Menuprofil.h"
 #include "MenuHlavni.h"
 #include "MenuHerniMody.h"
 #include "MenuNastaveni.h"
 #include "MenuOvladani.h"
 #include "MenuVzhledPlosiny.h"
 #include "MenuKonecKola.h"
+#include "Skiny.h"
 
 enum menu_strana
 {
@@ -274,7 +275,14 @@ bool ProfilMenu()
 
 int main()
 {
-	//Profily data;
+	Profily data;
 	//Klasik(data);
-	while (ProfilMenu());
+	//while (ProfilMenu());
+	Skiny s;
+	s.PridaniSkinMic(L'■');
+	vector<wchar_t> Skiny = s.NacteniSkinyMic();
+	for (size_t i = 0; i < Skiny.size(); i++)
+	{
+		wcout << Skiny.at(i) << '\n';
+	}
 }

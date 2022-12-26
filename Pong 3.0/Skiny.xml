@@ -1,0 +1,31 @@
+<root>
+    <Plosina>
+        <Skin>
+            <znak>112</znak>
+            <znak>97</znak>
+            <znak>110</znak>
+            <znak>97</znak>
+            <znak>107</znak>
+        </Skin>
+        <Skin>
+            <znak>98</znak>
+            <znak>108</znak>
+            <znak>98</znak>
+            <znak>101</znak>
+            <znak>99</znak>
+        </Skin>
+        <Skin>
+            <znak>108</znak>
+            <znak>97</znak>
+            <znak>109</znak>
+            <znak>112</znak>
+            <znak>97</znak>
+        </Skin>
+    </Plosina>
+    <Mic>
+        <Skin>100</Skin>
+        <Skin>101</Skin>
+        <Skin>63</Skin>
+        <Skin>9632</Skin>
+    </Mic>
+</root>

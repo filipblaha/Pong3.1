@@ -66,6 +66,9 @@
     <ClCompile Include="MenuKonecKola.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Skiny.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Menu.h">
@@ -122,12 +125,18 @@
     <ClInclude Include="MenuKonecKola.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Skiny.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="profily.xml">
+    <Xml Include="Profily.xml">
       <Filter>Resource Files</Filter>
     </Xml>
     <Xml Include="Preklad.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Skiny.xml">
       <Filter>Resource Files</Filter>
     </Xml>
   </ItemGroup>
