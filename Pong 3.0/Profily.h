@@ -58,7 +58,7 @@ public:
 	list<int> NacteniUrovniProfilu();
 	vector<int> NacteniDatProfilu(int profil);
 	vector<char> NacteniOvladaniProfilu(int profil);
-	list<string> NacteniJmenProfilu();
+	list<string> NacteniNazvuProfilu();
 
 	void VybraniProfilu(int profil);
 
@@ -81,7 +81,9 @@ private: ///////////////////////////////////  PRIVATE  /////////////////////////
 	list<vector<int>>::iterator itri;
 	list<vector<char>>::iterator itrc;
 
-	int ZapsaniProfilu(list<string> nazev, list<vector<int>> data, list<vector<char>> ovladani);
+	void ZapsaniProfilu(list<string> nazev, list<vector<int>> data, list<vector<char>> ovladani);
+	void ZapsaniDatAOvladaniProfilu(list<vector<int>> data, list<vector<char>> ovladani);
+	void ZapsaniNazvuProfilu(list<string> nazev);
 	vector<int> VlozeniDatDoVektoru();
 	vector<char> VlozeniOvladaniDoVektoru();
 };

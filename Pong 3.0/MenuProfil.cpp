@@ -17,7 +17,7 @@ int MenuProfil::VstupMenu(Profily& data)
 		{
 			oznaceni.at(y) += 2;
 		}
-		else if(*data.NacteniJmenProfilu().begin() != *aktual_nazvy.begin())
+		else if(*data.NacteniNazvuProfilu().begin() != *aktual_nazvy.begin())
 		{
 			Rozhodovac(data, 0, 1);
 			TextProfilVykresleni(data);
@@ -42,7 +42,7 @@ int MenuProfil::VstupMenu(Profily& data)
 		{
 			oznaceni.at(y) -= 2;
 		}
-		else if (*data.NacteniJmenProfilu().rbegin() != *aktual_nazvy.rbegin())
+		else if (*data.NacteniNazvuProfilu().rbegin() != *aktual_nazvy.rbegin())
 		{
 			Rozhodovac(data, 0, -1);
 			TextProfilVykresleni(data);
@@ -70,7 +70,7 @@ int MenuProfil::VstupMenu(Profily& data)
 			{
 				oznaceni.at(y) += 2;
 			}
-			else if (*data.NacteniJmenProfilu().begin() != *aktual_nazvy.begin())
+			else if (*data.NacteniNazvuProfilu().begin() != *aktual_nazvy.begin())
 			{
 				Rozhodovac(data, 0, 1);
 				TextProfilVykresleni(data);
@@ -93,7 +93,7 @@ int MenuProfil::VstupMenu(Profily& data)
 			{
 				oznaceni.at(y) -= 2;
 			}
-			else if (*data.NacteniJmenProfilu().rbegin() != *aktual_nazvy.rbegin())
+			else if (*data.NacteniNazvuProfilu().rbegin() != *aktual_nazvy.rbegin())
 			{
 				Rozhodovac(data, 0, -1);
 				TextProfilVykresleni(data);

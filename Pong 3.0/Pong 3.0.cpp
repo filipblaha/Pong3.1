@@ -46,7 +46,7 @@ bool KonecKola(Profily& data, bool vyhra)
 		return 0;
 }
 
-bool Klasik(Profily &data)
+bool Klasik(Profily& data)
 {
 	HerniMody hra(data, 1);
 
@@ -277,12 +277,12 @@ int main()
 {
 	Profily data;
 	//Klasik(data);
-	//while (ProfilMenu());
-	Skiny s;
+	while (ProfilMenu());
+	/*Skiny s;
 	s.PridaniSkinMic(L'■');
 	vector<wchar_t> Skiny = s.NacteniSkinyMic();
 	for (size_t i = 0; i < Skiny.size(); i++)
 	{
 		wcout << Skiny.at(i) << '\n';
-	}
+	}*/
 }

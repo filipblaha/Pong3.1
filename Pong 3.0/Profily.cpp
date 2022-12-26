@@ -1,10 +1,12 @@
 ﻿#include "Profily.h"
 
+XMLDocument xmlDoc;
+
 //-----------------------  Ulozeni profilu  -----------------------//
 
 void Profily::UlozeniProfilu(int profil)
 {
-	list<string> nazev_profil = NacteniJmenProfilu();
+	list<string> nazev_profil = NacteniNazvuProfilu();
 	list<vector<char>> ovladani_profil;
 	list<vector<int>> data_profil;
 
@@ -59,7 +61,7 @@ void Profily::VytvoreniNovehoProfilu(string nazev_noveho_profilu)
 	list<vector<char>> ovladani_profil;
 
 
-	list<string> nazev_profil = NacteniJmenProfilu();
+	list<string> nazev_profil = NacteniNazvuProfilu();
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -102,7 +104,7 @@ void Profily::OdstraneniProfilu(int profil)
 	list<vector<int>> data_profil;	
 
 
-	nazev_profil = NacteniJmenProfilu();
+	nazev_profil = NacteniNazvuProfilu();
 
 	for (int i = 0; i < pocet_profilu; i++)
 	{
@@ -132,45 +134,55 @@ void Profily::OdstraneniProfilu(int profil)
 	ZapsaniProfilu(nazev_profil, data_profil, ovladani_profil);
 }
 
-int Profily::ZapsaniProfilu(list<string> nazev, list<vector<int>> data, list<vector<char>> ovladani)
+void Profily::ZapsaniProfilu(list<string> nazev, list<vector<int>> data, list<vector<char>> ovladani)
 {
-	XMLDocument xmlDoc;
-	XMLNode* root = xmlDoc.NewElement("root");
-	xmlDoc.InsertFirstChild(root);
+	ZapsaniNazvuProfilu(nazev);
+	ZapsaniDatAOvladaniProfilu(data, ovladani);
+}
+void Profily::ZapsaniNazvuProfilu(list<string> nazev)
+{
+	xmlDoc.LoadFile("Profily.xml");
 
-	XMLElement* base = xmlDoc.NewElement("Zakladni");
-	root->InsertEndChild(base);
+	XMLNode* root = xmlDoc.FirstChild();
+	XMLElement* base = root->FirstChildElement("Zakladni");
+	XMLElement* profily_nazev = base->FirstChildElement("Nazev_profilu");
 
-	string temps;
-	XMLElement* profily_nazev;
+	profily_nazev->Parent()->DeleteChildren();
+
 	for (itrs = nazev.begin(); itrs != nazev.end(); itrs++)
 	{
 		profily_nazev = xmlDoc.NewElement("Nazev_profilu");
-		temps = *itrs;
-		for (int i = 0; i < temps.size(); i++)
+		string temp = *itrs;
+		for (int i = 0; i < temp.size(); i++)
 		{
 			XMLElement* pismeno = xmlDoc.NewElement("Pismeno");
-			pismeno->SetText(temps.at(i));
+			pismeno->SetText(temp.at(i));
 			profily_nazev->InsertEndChild(pismeno);
 		}
 		base->InsertEndChild(profily_nazev);
 	}
+	xmlDoc.SaveFile("Profily.xml");
+}
+void Profily::ZapsaniDatAOvladaniProfilu(list<vector<int>> data, list<vector<char>> ovladani)
+{
+	xmlDoc.LoadFile("Profily.xml");
+
+	XMLNode* root = xmlDoc.FirstChild();
+	XMLElement* profily = root->FirstChildElement("Profily");
+	XMLElement* prof = profily->FirstChildElement("Profil");
+	prof->Parent()->DeleteChildren();
+
 
 	vector<int> tempi;
 	vector<char> tempc;
 
-	XMLElement* profily_data;
-	XMLElement* profily_ovladani;
 	itri = data.begin();
 	itrc = ovladani.begin();
 	for (int j = 0; j < pocet_profilu; j++, itri++, itrc++)
 	{
-		XMLElement* prof = xmlDoc.NewElement("Profil");
-		root->InsertEndChild(prof);
-
-		profily_data = xmlDoc.NewElement("Data");
+		prof = xmlDoc.NewElement("Profil");
+		XMLElement* profily_data = xmlDoc.NewElement("Data");
 		tempi = *itri;
-		tempc = *itrc;
 		for (int i = 0; i < tempi.size(); i++)
 		{
 			XMLElement* hodnoty = xmlDoc.NewElement("Hodnota");
@@ -179,7 +191,8 @@ int Profily::ZapsaniProfilu(list<string> nazev, list<vector<int>> data, list<vec
 		}
 		prof->InsertEndChild(profily_data);
 
-		profily_ovladani = xmlDoc.NewElement("Ovladani");
+		XMLElement* profily_ovladani = xmlDoc.NewElement("Ovladani");
+		tempc = *itrc;
 		for (int i = 0; i < tempc.size(); i++)
 		{
 			XMLElement* hodnoty = xmlDoc.NewElement("Hodnota");
@@ -187,26 +200,52 @@ int Profily::ZapsaniProfilu(list<string> nazev, list<vector<int>> data, list<vec
 			profily_ovladani->InsertEndChild(hodnoty);
 		}
 		prof->InsertEndChild(profily_ovladani);
+		profily->InsertEndChild(prof);
 	}
-
-	XMLError eResult = xmlDoc.SaveFile("Profily.xml");
-	XMLCheckResult(eResult);
+	xmlDoc.SaveFile("Profily.xml");
 }
 
-//-----------------------  Nacteni profilu  -----------------------//
+//-----------------------  Nacteni vsech profilu  -----------------------//
 
+list<string> Profily::NacteniNazvuProfilu()
+{
+	int data = 0;
+	string vektor_pismen;
+	list<string> v_v_pismen;
+
+	xmlDoc.LoadFile("Profily.xml");
+
+	NacteniPoctuProfilu();
+
+	XMLNode* root = xmlDoc.FirstChild();
+	XMLElement* base = root->FirstChildElement("Zakladni");
+	XMLElement* profily_nazev = base->FirstChildElement("Nazev_profilu");
+	while (profily_nazev != nullptr)
+	{
+		XMLElement* hodnoty = profily_nazev->FirstChildElement("Pismeno");
+		while (hodnoty != nullptr)
+		{
+			hodnoty->QueryIntText(&data);
+			vektor_pismen.push_back(data);
+			hodnoty = hodnoty->NextSiblingElement("Pismeno");
+		}
+		v_v_pismen.push_back(vektor_pismen);
+		vektor_pismen.clear();
+		profily_nazev = profily_nazev->NextSiblingElement("Nazev_profilu");
+	}
+	return v_v_pismen;
+}
 vector<vector<int>> Profily::NacteniDat()
 {
-	XMLDocument xmlDoc;
 	int data = 0;
 	vector<int> vektor_dat;
 	vector<vector<int>> v_v_dat;
 
-
 	xmlDoc.LoadFile("Profily.xml");
 
 	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* prof = root->FirstChildElement("Profil");
+	XMLElement* profily = root->FirstChildElement("Profily");
+	XMLElement* prof = profily->FirstChildElement("Profil");
 	while (prof != nullptr)
 	{
 		XMLElement* profily_data = prof->FirstChildElement("Data");
@@ -225,20 +264,19 @@ vector<vector<int>> Profily::NacteniDat()
 }
 vector<vector<char>> Profily::NacteniOvladani()
 {
-	XMLDocument xmlDoc;
 	int data;
 	vector<char> vektor_ovladani;
 	vector<vector<char>> v_v_ovladani;
 
-
 	xmlDoc.LoadFile("Profily.xml");
 
 	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* prof = root->FirstChildElement("Profil");
+	XMLElement* profily = root->FirstChildElement("Profily");
+	XMLElement* prof = profily->FirstChildElement("Profil");
 	while (prof != nullptr)
 	{
-		XMLElement* profily_data = prof->FirstChildElement("Ovladani");
-		XMLElement* hodnoty = profily_data->FirstChildElement("Hodnota");
+		XMLElement* profily_ovladani = prof->FirstChildElement("Ovladani");
+		XMLElement* hodnoty = profily_ovladani->FirstChildElement("Hodnota");
 		while (hodnoty != nullptr)
 		{
 			hodnoty->QueryIntText(&data);
@@ -251,7 +289,8 @@ vector<vector<char>> Profily::NacteniOvladani()
 	}
 	return v_v_ovladani;
 }
-int  Profily::NacteniPoctuProfilu()
+
+int Profily::NacteniPoctuProfilu()
 {
 	vector<vector<int>> v_v_dat = NacteniDat();
 	return v_v_dat.size();
@@ -267,6 +306,8 @@ list<int> Profily::NacteniUrovniProfilu()
 	}
 	return list_dat;
 }
+
+//-----  Nacteni vybreneho profilu  -----//
 vector<int> Profily::NacteniDatProfilu(int profil)
 {
 	vector<vector<int>> v_v_dat = NacteniDat();
@@ -276,35 +317,6 @@ vector<char> Profily::NacteniOvladaniProfilu(int profil)
 {
 	vector<vector<char>> v_v_ovladani = NacteniOvladani();
 	return v_v_ovladani.at(profil);
-}
-list<string> Profily::NacteniJmenProfilu()
-{
-	XMLDocument xmlDoc;
-	int data = 0;
-	string vektor_pismen;
-	list<string> v_v_pismen;
-
-	xmlDoc.LoadFile("Profily.xml");
-
-	NacteniPoctuProfilu();
-
-	XMLNode* root = xmlDoc.FirstChild();
-	XMLElement* base = root->FirstChildElement("Zakladni");
-	XMLElement* profily_jmena = base->FirstChildElement("Nazev_profilu");
-	while (profily_jmena != nullptr)
-	{
-		XMLElement* hodnoty = profily_jmena->FirstChildElement("Pismeno");
-		while (hodnoty != nullptr)
-		{
-			hodnoty->QueryIntText(&data);
-			vektor_pismen.push_back(data);
-			hodnoty = hodnoty->NextSiblingElement("Pismeno");
-		}
-		v_v_pismen.push_back(vektor_pismen);
-		vektor_pismen.clear();
-		profily_jmena = profily_jmena->NextSiblingElement("Nazev_profilu");
-	}
-	return v_v_pismen;
 }
 
 void Profily::VybraniProfilu(int profil)
@@ -352,7 +364,7 @@ vector<wstring> Profily::NacteniSkiny()
 
 void Profily::ZmenaNazvu(string jmeno, int profil)
 {
-	list<string> nazev_profil = NacteniJmenProfilu();
+	list<string> nazev_profil = NacteniNazvuProfilu();
 	list<vector<char>> ovladani_profil;
 	list<vector<int>> data_profil;
 	itrs = nazev_profil.begin();

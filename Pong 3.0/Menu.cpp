@@ -158,7 +158,7 @@ void Menu::VykresleniUroven(Profily data)
 int Menu::IndexProfilu(int inkrement)
 {
 	int index = 0;
-	list<string> temp = data.NacteniJmenProfilu();
+	list<string> temp = data.NacteniNazvuProfilu();
 	list<string>::iterator itr = temp.begin();
 	while (*itr != *aktual_nazvy.begin())
 	{
@@ -181,7 +181,7 @@ int Menu::IndexProfilu(int inkrement)
 }
 void Menu::AktualNazevProfilu(Profily data, int index, int poradi, int inkrement, bool del)
 {
-	list<string> temps = data.NacteniJmenProfilu();
+	list<string> temps = data.NacteniNazvuProfilu();
 	list<int> tempi = data.NacteniUrovniProfilu();
 	list<string>::iterator itrs = temps.begin();
 	list<int>::iterator itri = tempi.begin();
