@@ -133,9 +133,10 @@ int MenuProfil::VstupMenu(Profily& data)
 	}
 	case 'l':
 	{
-		JazykSet(data);
+		JazykSet(data, -1);
 		MenuSTARTVykresleni();
 		ProfilVykresleni(data);
+		data.UlozeniProfilu(0);
 		break;
 	}
 	}

@@ -35,7 +35,7 @@ public:
 	//-----------------------  Input  -----------------------//
 
 	int VstupMenu();
-	void JazykSet(Profily &data);
+	void JazykSet(Profily &data, int zmena);
 
 	//-----------------------  Vykresleni Menu  -----------------------//
 

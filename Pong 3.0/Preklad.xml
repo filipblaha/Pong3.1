@@ -22,8 +22,7 @@
 		<herni_mody>
 			<string>HERNI MODY</string>
 			<string>Klasik</string>
-			<string>Bloky padaji</string>
-			<string>Rogue like - zatim nefunkcni</string>
+			<string>Rogue like</string>
 		</herni_mody>
 		<vzhled_plosiny>
 			<string>VZHLED PLOSINY</string>
@@ -88,8 +87,7 @@
 		<herni_mody>
 			<string>GAME MODES</string>
 			<string>Classic</string>
-			<string>Falling blocks</string>
-			<string>Rogue like - zatim nefunkcni</string>
+			<string>Rogue like</string>
 		</herni_mody>
 		<vzhled_plosiny>
 			<string>SKINS</string>

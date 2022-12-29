@@ -36,8 +36,6 @@ void MenuHerniMody::TextHerniModyVykresleni(Profily& data)
 	wcout << text.at(0);
 	set.SetCursorPosition(6, 10);
 	wcout << text.at(1);
-	set.SetCursorPosition(6, 12);
-	wcout << text.at(2);
-	set.SetCursorPosition(6, 14);
-	wcout << text.at(3);
+	//set.SetCursorPosition(6, 12);
+	//wcout << text.at(2);
 }

@@ -14,11 +14,10 @@
             <Pismeno>108</Pismeno>
         </Nazev_profilu>
         <Nazev_profilu>
-            <Pismeno>109</Pismeno>
-            <Pismeno>97</Pismeno>
-            <Pismeno>114</Pismeno>
+            <Pismeno>84</Pismeno>
             <Pismeno>101</Pismeno>
-            <Pismeno>107</Pismeno>
+            <Pismeno>115</Pismeno>
+            <Pismeno>116</Pismeno>
         </Nazev_profilu>
     </Zakladni>
     <Profily>
@@ -40,7 +39,7 @@
         </Profil>
         <Profil>
             <Data>
-                <Hodnota>1</Hodnota>
+                <Hodnota>0</Hodnota>
                 <Hodnota>6</Hodnota>
                 <Hodnota>3</Hodnota>
                 <Hodnota>6</Hodnota>

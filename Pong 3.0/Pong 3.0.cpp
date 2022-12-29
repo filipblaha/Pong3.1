@@ -278,11 +278,4 @@ int main()
 	Profily data;
 	//Klasik(data);
 	while (ProfilMenu());
-	/*Skiny s;
-	s.PridaniSkinMic(L'■');
-	vector<wchar_t> Skiny = s.NacteniSkinyMic();
-	for (size_t i = 0; i < Skiny.size(); i++)
-	{
-		wcout << Skiny.at(i) << '\n';
-	}*/
 }

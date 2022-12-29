@@ -15,7 +15,10 @@ int MenuNastaveni::Rozhodovac(Profily& data)
 	}
 	else if (oznaceni.at(y) == 14 || oznaceni.at(y) == 16)
 	{
-		JazykSet(data);
+		if (oznaceni.at(y) == 14)
+			JazykSet(data, CZ);
+		else if (oznaceni.at(y) == 16)
+			JazykSet(data, EN);
 		SpodniZavoraSet(0);
 
 		MenuSTARTVykresleni();

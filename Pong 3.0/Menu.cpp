@@ -77,12 +77,19 @@ int Menu::VstupMenu()
 	}
 
 }
-void Menu::JazykSet(Profily& data)
+void Menu::JazykSet(Profily& data, int zmena)
 {
-	if (data.jazyk == CZ)
-		data.jazyk = EN;
-	else if (data.jazyk == EN)
+	if (zmena == -1)
+	{
+		if (data.jazyk == CZ)
+			data.jazyk = EN;
+		else if (data.jazyk == EN)
+			data.jazyk = CZ;
+	}
+	else if (zmena == CZ)
 		data.jazyk = CZ;
+	else if (zmena == EN)
+		data.jazyk = EN;
 }
 
 //-----------------------  Vykresleni  -----------------------//
