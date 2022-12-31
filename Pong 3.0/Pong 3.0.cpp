@@ -55,7 +55,6 @@ bool Klasik(Profily& data)
 
 	while (!hra.VstupHra(data, 1));
 	hra.Smazani();
-
 	while (Klasik)
 	{
 		switch (hra.Logika(data))

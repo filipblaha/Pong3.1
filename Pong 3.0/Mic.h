@@ -10,6 +10,8 @@ public:
 		y = y_d = start_y;
 		ax = 1;
 		ay = -1;
+		rychlost = 2;
+
 		skin = L"\x058e";
 	}
 

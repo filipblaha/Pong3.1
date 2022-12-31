@@ -101,13 +101,13 @@ void HerniMody::Vykresleni()
 	if (plosina.pohyb)
 		VykresleniPlosina();
 
-	if (pocet_snimku % kvocient_rychlosti_hry == 0)
-	{
-		if (kolize_s_blokem)
-			VykresleniBloky();
-		VykresleniObjekt(mic.x, mic.y, mic.skin);
-	}
+	if (kolize_s_blokem)
+		VykresleniBloky();
+	if (pocet_snimku % mic.rychlost == 0)
+		VykresleniObjekt(mic_e, mic.x, mic.y, mic.skin);
 
+	if (pocet_snimku % bomba.rychlost == 0 && bomba.existence)
+		VykresleniObjekt(bomba_e, bomba.x, bomba.y, bomba.skin);
 }
 void HerniMody::Smazani()
 {
@@ -116,12 +116,14 @@ void HerniMody::Smazani()
 	if (plosina.pohyb)
 		SmazaniPlosina();
 
-	if (pocet_snimku % kvocient_rychlosti_hry == kvocient_rychlosti_hry - 1)
-	{
-		SmazaniObjekt(mic.x, mic.y);
-		if (kolize_s_blokem)
-			ZmenaBlokyHUD();
-	}
+	if (kolize_s_blokem)
+		ZmenaBlokyHUD();
+
+	if (pocet_snimku % mic.rychlost == mic.rychlost - 1)
+		SmazaniObjekt(mic_e, mic.x, mic.y);
+
+	if (pocet_snimku % bomba.rychlost == bomba.rychlost - 1 && bomba.existence)
+		SmazaniObjekt(bomba_e, bomba.x, bomba.y);
 }
 
 void HerniMody::VykresleniPole()
@@ -181,7 +183,7 @@ void HerniMody::VykresleniPlosina()
 		wcout << *itr;
 	}
 }
-void HerniMody::VykresleniObjekt(int objekt_x, int objekt_y, const wchar_t* skin)
+void HerniMody::VykresleniObjekt(int objekt, int objekt_x, int objekt_y, const wchar_t* skin)
 {
 	set.SetCursorPosition(objekt_x, objekt_y);
 	wcout << skin;
@@ -214,7 +216,7 @@ void HerniMody::SmazaniPlosina()
 		std::wcout << " ";
 	}
 }
-void HerniMody::SmazaniObjekt(int objekt_x, int objekt_y)
+void HerniMody::SmazaniObjekt(int objekt, int objekt_x, int objekt_y)
 {
 	set.SetCursorPosition(objekt_x, objekt_y);
 	std::wcout << " ";
@@ -267,15 +269,33 @@ int HerniMody::Logika(Profily& data)
 	//--------  Plosina  --------//
 	PosunPlosina();
 
-	if (pocet_snimku % kvocient_rychlosti_hry == 0)
+	//--------  Mic  --------//
+	if (pocet_snimku % mic.rychlost == 0)
 	{
-		//--------  Mic  --------//
-		KolizeObjekt(mic.x_d, mic.y_d, mic.x, mic.y, mic.ax, mic.ay);
-		VypocetZrychleni(mic.x_d, mic.y_d, mic.x, mic.y, mic.ax, mic.ay);
+		
+		KolizeObjekt(mic_e, mic.x_d, mic.y_d, mic.x, mic.y, mic.ax, mic.ay);
+		VypocetZrychleni(mic_e, mic.x_d, mic.y_d, mic.x, mic.y, mic.ax, mic.ay);
+	}
 
-		//--------  Bomba  --------//
-		//KolizeObjekt(bomba.x_d, bomba.y_d, bomba.x, bomba.y, bomba.ax, bomba.ay);
-		//VypocetZrychleni(bomba.x_d, bomba.y_d, bomba.x, bomba.y, bomba.ax, bomba.ay);
+	//--------  Bomba  --------//
+	if (pocet_snimku % bomba.rychlost == 0)
+	{
+		if (pocet_snimku == bomba.spawn_cas)
+		{
+			bomba.Start();
+			bomba.existence = 1;
+			bomba.SpawnPozice();
+		}
+		if (bomba.existence)
+		{
+			if (pocet_snimku == bomba.spawn_cas + 200)
+				BombaZaniknuti();
+
+			KolizeObjekt(bomba_e, bomba.x_d, bomba.y_d, bomba.x, bomba.y, bomba.ax, bomba.ay);
+			VypocetZrychleni(bomba_e, bomba.x_d, bomba.y_d, bomba.x, bomba.y, bomba.ax, bomba.ay);
+		}
+		if (bomba.y == plosina.y_start + 1 && bomba.existence)
+			BombaZaniknuti();
 	}
 	return 2;
 }
@@ -291,34 +311,33 @@ void HerniMody::PosunPlosina()
 		plosina.x--;
 	}
 }
-void HerniMody::KolizeObjekt(double objekt_x_d, double objekt_y_d, int objekt_x, int objekt_y, int& objekt_ax, int& objekt_ay)
+void HerniMody::KolizeObjekt(int objekt, double objekt_x_d, double objekt_y_d, int objekt_x, int objekt_y, int& objekt_ax, int& objekt_ay)
 {
-	kolize_s_blokem = 0;
+	KolizeObjektPlosina(mic_e, objekt_x, objekt_y, objekt_ax, objekt_ay);
+	KolizeObjektStena(mic_e, objekt_x, objekt_y, objekt_ax, objekt_ay);
 
-	int temp = 0;
+	if (objekt == mic_e)
+		BlokyJednotlive(mic_e, objekt_x_d, objekt_y_d, objekt_x, objekt_y, objekt_ax, objekt_ay);
 
-	int U = pole.bloky.at(objekt_y - 1).at(objekt_x);
-	int D = pole.bloky.at(objekt_y + 1).at(objekt_x);
-	int L = pole.bloky.at(objekt_y).at(objekt_x - 1);
-	int R = pole.bloky.at(objekt_y).at(objekt_x + 1);
+	else if (objekt == bomba_e)
+		if (objekt_x )
+			if (BlokyVybuch(bomba_e, objekt_x, objekt_y, objekt_ax, objekt_ay, 3))
+			{
+				kolize_s_blokem = 1;
+				BombaZaniknuti();
+			}
 
-	int DR = pole.bloky.at(objekt_y + 1).at(objekt_x + 1);
-	int UL = pole.bloky.at(objekt_y - 1).at(objekt_x - 1);
-	int UR = pole.bloky.at(objekt_y - 1).at(objekt_x + 1);
-	int DL = pole.bloky.at(objekt_y + 1).at(objekt_x - 1);
-
+}
+void HerniMody::KolizeObjektPlosina(int objekt, int objekt_x, int objekt_y, int& objekt_ax, int& objekt_ay)
+{
 	bool platform = (objekt_y == plosina.y - 1);
-	bool wallU = (objekt_y == 1);
-	bool wallL = (objekt_x == 1);
-	bool wallR = (objekt_x == pole.delka - 2);
 
-	//--------  Plosina  --------//
 	if (platform)
 	{
 		if (objekt_x == plosina.x - 1) // kraj vlevo
 		{
 			objekt_ax = -1;
-			objekt_ay = -3; 
+			objekt_ay = -3;
 		}
 		else if (objekt_x == plosina.x) // vlevo
 		{
@@ -357,27 +376,118 @@ void HerniMody::KolizeObjekt(double objekt_x_d, double objekt_y_d, int objekt_x,
 			objekt_ax = 1;
 			objekt_ay = -3;
 		}
-
 	}
+}
+void HerniMody::KolizeObjektStena(int objekt, int objekt_x, int objekt_y, int& objekt_ax, int& objekt_ay)
+{
+	bool wallU = (objekt_y == 1);
+	bool wallL = (objekt_x == 1);
+	bool wallR = (objekt_x == pole.delka - 2);
+
+	if (wallR || wallL || wallU)
+	{
+
+		if (wallR || wallL) // prava / leva wall
+		{
+			objekt_ax = -objekt_ax;
+		}
+		if (wallU) // horni wall
+		{
+			objekt_ay = -objekt_ay;
+		}
+	}
+}
+void HerniMody::BombaZaniknuti()
+{
+	bomba.existence = 0;
+	bomba.spawn_cas = bomba.SpawnCas() + pocet_snimku;
+	SmazaniObjekt(bomba_e, bomba.x, bomba.y);
+}
+void HerniMody::VypocetZrychleni(int objekt, double& objekt_x_d, double& objekt_y_d, int& objekt_x, int& objekt_y, int& objekt_ax, int& objekt_ay)
+{
+	if (objekt_ax != 0)
+		objekt_x_d += (1 / static_cast<double>(objekt_ax));
+	if (objekt_ay != 0)
+		objekt_y_d += (1 / static_cast<double>(objekt_ay));
+
+	objekt_x = objekt_x_d;
+	objekt_y = objekt_y_d;
+}
+void HerniMody::ZtrataZivotu(Profily& data)
+{
+	pocet_zivotu--;
+
+	SmazaniPlosina();
+	SmazaniObjekt(mic_e, mic.x, mic.y);
+	mic.x = mic.x_d = mic.start_x;
+	mic.y = mic.y_d = mic.start_y;
+	mic.ax = 0;
+	mic.ay = -1;
+	plosina.x = plosina.x_start;
+
+	VykresleniObjekt(mic_e, mic.x, mic.y, mic.skin);
+	VykresleniPlosina();
+	ZmenaZivotyHUD();
+
+	Sleep(800);
+	while (!VstupHra(data, 1));
+}
+bool HerniMody::Casomira()
+{
+	if (pocet_snimku % 20 == 0)
+	{
+		cas++;
+		return 1;
+	}
+	else
+		return 0;
+}
+void HerniMody::SpocitaniBloku()
+{
+	for (int j = 0; j < pole.bloky.size(); j++)
+	{
+		for (int i = 0; i < pole.bloky.at(j).size(); i++)
+		{
+			if (pole.bloky.at(j).at(i) == 1)
+				pocet_bloku++;
+			if (pole.bloky.at(j).at(i) == 2)
+				pocet_bloku += 2;
+			if (pole.bloky.at(j).at(i) == 3)
+				pocet_bloku += 3;
+		}
+	}
+}
+
+//-----------------------  Ulozeni dat -----------------------//
+
+void HerniMody::UlozeniDat(Profily& data)
+{
+	data.cas = cas;
+	data.pocet_rozbitych_bloku = pocet_rozbitych_bloku;
+	data.pocet_bloku = pocet_bloku;
+}
+
+//-----------------------  Bloky Kolize -----------------------//
+
+void HerniMody::BlokyJednotlive(int objekt, double objekt_x_d, double objekt_y_d, int objekt_x, int objekt_y, int& objekt_ax, int& objekt_ay)
+{
+	kolize_s_blokem = 0;
+
+	int temp = 0;
+
+	int U = pole.bloky.at(objekt_y - 1).at(objekt_x);
+	int D = pole.bloky.at(objekt_y + 1).at(objekt_x);
+	int L = pole.bloky.at(objekt_y).at(objekt_x - 1);
+	int R = pole.bloky.at(objekt_y).at(objekt_x + 1);
+
+	int DR = pole.bloky.at(objekt_y + 1).at(objekt_x + 1);
+	int UL = pole.bloky.at(objekt_y - 1).at(objekt_x - 1);
+	int UR = pole.bloky.at(objekt_y - 1).at(objekt_x + 1);
+	int DL = pole.bloky.at(objekt_y + 1).at(objekt_x - 1);
+
 	while (pole.bloky.at(objekt_y_d + (1 / static_cast<double>(objekt_ay))).at(objekt_x_d + (1 / static_cast<double>(objekt_ax))) > 0 || pole.bloky.at(objekt_y_d).at(objekt_x_d + (1 / static_cast<double>(objekt_ax))) > 0 ||
 		pole.bloky.at(objekt_y_d + (1 / static_cast<double>(objekt_ay))).at(objekt_x_d) > 0 || (objekt_x_d + (1 / static_cast<double>(objekt_ax)) >= pole.delka - 1) || (objekt_x_d + (1 / static_cast<double>(objekt_ax)) < 1) || (objekt_y_d + (1 / static_cast<double>(objekt_ay)) < 1))
 	{
-		//--------  Steny  --------//
-
-		if (wallR || wallL || wallU)
-		{
-
-			if (wallR || wallL) // prava / leva wall
-			{
-				objekt_ax = -objekt_ax;
-			}
-			if (wallU) // horni wall
-			{
-				objekt_ay = -objekt_ay;
-			}
-		}
-		//--------  Bloky  --------//
-
 		if (L > 0 || R > 0 || U > 0 || D > 0)
 		{
 			if (L > 0 && objekt_ax < 0) // levy
@@ -443,110 +553,45 @@ void HerniMody::KolizeObjekt(double objekt_x_d, double objekt_y_d, int objekt_x,
 		}
 	}
 }
-void HerniMody::VypocetZrychleni(double& objekt_x_d, double& objekt_y_d, int& objekt_x, int& objekt_y, int& objekt_ax, int& objekt_ay)
+bool HerniMody::BlokyVybuch(int objekt, int objekt_x, int objekt_y, int objekt_ax, int objekt_ay, int vzdalenost)
 {
-	objekt_x_d += (1 / static_cast<double>(objekt_ax));
-	objekt_y_d += (1 / static_cast<double>(objekt_ay));
+	kolize_s_blokem = 0;
 
-	objekt_x = objekt_x_d;
-	objekt_y = objekt_y_d;
-}
-void HerniMody::ZtrataZivotu(Profily& data)
-{
-	pocet_zivotu--;
-
-	SmazaniPlosina();
-	SmazaniObjekt(mic.x, mic.y);
-	mic.x = mic.x_d = mic.start_x;
-	mic.y = mic.y_d = mic.start_y;
-	mic.ax = 0;
-	mic.ay = -1;
-	plosina.x = plosina.x_start;
-
-	VykresleniObjekt(mic.x, mic.y, mic.skin);
-	VykresleniPlosina();
-	ZmenaZivotyHUD();
-
-	Sleep(800);
-	while (!VstupHra(data, 1));
-}
-bool HerniMody::Casomira()
-{
-	if (pocet_snimku % 20 == 0)
+	if (pole.bloky.at(objekt_y).at(objekt_x))
 	{
-		cas++;
-		return 1;
-	}
-	else
-		return 0;
-}
-void HerniMody::SpocitaniBloku()
-{
-	for (int j = 0; j < pole.bloky.size(); j++)
-	{
-		for (int i = 0; i < pole.bloky.at(j).size(); i++)
+		int leva_hranice, prava_hranice, dolni_hranice, horni_hranice;
+
+		if (pole.vyska - objekt_y < vzdalenost)
+			dolni_hranice = pole.vyska - objekt_y;
+		else
+			dolni_hranice = vzdalenost;
+
+		if (objekt_y < vzdalenost)
+			horni_hranice = objekt_y;
+		else
+			horni_hranice = vzdalenost;
+
+		if (pole.vyska - objekt_x < vzdalenost)
+			leva_hranice = pole.vyska - objekt_x;
+		else
+			leva_hranice = vzdalenost;
+
+		if (objekt_x < vzdalenost)
+			prava_hranice = objekt_x;
+		else
+			prava_hranice = vzdalenost;
+
+		for (int j = -leva_hranice; j < prava_hranice; j++)
 		{
-			if (pole.bloky.at(j).at(i) == 1)
-				pocet_bloku++;
-			if (pole.bloky.at(j).at(i) == 2)
-				pocet_bloku += 2;
-			if (pole.bloky.at(j).at(i) == 3)
-				pocet_bloku += 3;
-		}
-	}
-}
-
-//-----------------------  Ulozeni dat -----------------------//
-
-void HerniMody::UlozeniDat(Profily& data)
-{
-	data.cas = cas;
-	data.pocet_rozbitych_bloku = pocet_rozbitych_bloku;
-	data.pocet_bloku = pocet_bloku;
-}
-
-//-----------------------  Bloky Kolize -----------------------//
-
-void HerniMody::BlokyJednotlive(double objekt_x_d, double objekt_y_d, int objekt_x, int objekt_y, int& objekt_ax, int& objekt_ay)
-{
-
-}
-void HerniMody::BlokyVybuch(int objekt_x, int objekt_y, int objekt_ax, int objekt_ay, int vzdalenost)
-{
-	int leva_hranice, prava_hranice, dolni_hranice, horni_hranice;
-
-	if (pole.vyska - objekt_y < vzdalenost)
-		dolni_hranice = pole.vyska - objekt_y;
-	else
-		dolni_hranice = vzdalenost;
-
-	if (objekt_y < vzdalenost)
-		horni_hranice = objekt_y;
-	else
-		horni_hranice = vzdalenost;
-
-	if (pole.vyska - objekt_x < vzdalenost)
-		leva_hranice = pole.vyska - objekt_x;
-	else
-		leva_hranice = vzdalenost;
-
-	if (objekt_x < vzdalenost)
-		prava_hranice = objekt_x;
-	else
-		prava_hranice = vzdalenost;
-
-	for (int j = -leva_hranice; j < prava_hranice; j++)
-	{
-		for (int i = -dolni_hranice; i < horni_hranice; i++)
-		{
-			if ((abs(i) + abs(j)) <= vzdalenost)
+			for (int i = -dolni_hranice; i < horni_hranice; i++)
 			{
-				pole.bloky.at(objekt_ax - j).at(objekt_y - i)--;
+				if ((abs(i) + abs(j)) <= vzdalenost && pole.bloky.at(objekt_y - j).at(objekt_x - i) > 0)
+				{
+					pole.bloky.at(objekt_y - j).at(objekt_x - i)--;
+				}
 			}
 		}
+		return 1;
 	}
-
-
-
-
+	return 0;
 }

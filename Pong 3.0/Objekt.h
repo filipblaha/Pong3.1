@@ -17,7 +17,9 @@ public:
 	double y_d = 0;
 	int ax = 0;
 	int ay = 0;
+	int rychlost = 0;
 
+	bool existence = 0;
 
 	const wchar_t* skin = 0;
 };

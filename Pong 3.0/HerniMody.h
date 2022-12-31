@@ -17,15 +17,15 @@ public:
 		plosina.pohyb = 0;
 		pocet_zivotu = pocet_zivotu_v;
 		cas = 0;
-		kvocient_rychlosti_hry = 2;
 
 		plosina.FormovaniSkiny(data);
+		bomba.spawn_cas = bomba.SpawnCas();
 
 		VykresleniPole();
 		VykresleniBloky();
 		SpocitaniBloku();
 		VykresleniPlosina();
-		VykresleniObjekt(mic.x, mic.y, mic.skin);
+		VykresleniObjekt(mic_e, mic.x, mic.y, mic.skin);
 		VykresleniHUD();
 	}
 
@@ -55,7 +55,7 @@ protected:
 	int pocet_zivotu = 0;
 	int pocet_snimku = 0;
 	int cas = 0;
-	int kvocient_rychlosti_hry = 0;
+
 	bool kolize_s_blokem = 0;
 	bool rozdil_rychlosti = 0;
 
@@ -71,11 +71,11 @@ protected:
 	void VykresleniPole();
 	void VykresleniBloky();
 	void VykresleniPlosina();
-	void VykresleniObjekt(int objekt_x, int objekt_y, const wchar_t* skin);
+	void VykresleniObjekt(int objekt, int objekt_x, int objekt_y, const wchar_t* skin);
 	void VykresleniHUD();
 
 	void SmazaniPlosina();
-	void SmazaniObjekt(int objekt_x, int objekt_y);
+	void SmazaniObjekt(int objekt, int objekt_x, int objekt_y);
 
 	void ZmenaBlokyHUD();
 	void ZmenaZivotyHUD();
@@ -83,9 +83,12 @@ protected:
 	
 	//-----------------------  Logika -----------------------//
 
-	void KolizeObjekt(double objekt_x_d, double objekt_y_d, int objekt_x, int objekt_y, int& objekt_ax, int& objekt_ay);
+	void KolizeObjekt(int objekt, double objekt_x_d, double objekt_y_d, int objekt_x, int objekt_y, int& objekt_ax, int& objekt_ay);
+	void KolizeObjektPlosina(int objekt, int objekt_x, int objekt_y, int& objekt_ax, int& objekt_ay);
+	void KolizeObjektStena(int objekt, int objekt_x, int objekt_y, int& objekt_ax, int& objekt_ay);
+	void BombaZaniknuti();
 	void PosunPlosina();
-	void VypocetZrychleni(double& objekt_x_d, double& objekt_y_d, int& objekt_x, int& objekt_y, int& objekt_ax, int& objekt_ay);
+	void VypocetZrychleni(int objekt, double& objekt_x_d, double& objekt_y_d, int& objekt_x, int& objekt_y, int& objekt_ax, int& objekt_ay);
 	void ZtrataZivotu(Profily& data);
 	bool Casomira();
 	void SpocitaniBloku();
@@ -96,6 +99,6 @@ protected:
 
 	//-----------------------  Vybuch -----------------------//
 
-	void BlokyJednotlive(double objekt_x_d, double objekt_y_d, int objekt_x, int objekt_y, int& objekt_ax, int& objekt_ay);
-	void BlokyVybuch(int objekt_x, int objekt_y, int objekt_ax, int objekt_ay, int vzdalenost);
+	void BlokyJednotlive(int objekt, double objekt_x_d, double objekt_y_d, int objekt_x, int objekt_y, int& objekt_ax, int& objekt_ay);
+	bool BlokyVybuch(int objekt, int objekt_x, int objekt_y, int objekt_ax, int objekt_ay, int vzdalenost);
 };
