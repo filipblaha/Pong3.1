@@ -38,7 +38,10 @@ bool KonecKola(Profily& data, bool vyhra)
 	konec.VykresleniKonecKola(data);
 	konec.Logika(data, vyhra);
 	konec.VykresleniLevelBar();
-	konec.TextVykresleniProhra(data);
+	if (vyhra)
+		konec.TextVykresleniVyhra(data);
+	else
+		konec.TextVykresleniProhra(data);
 
  	if (konec.VstupKonecKola())
 		return 1;
@@ -48,16 +51,22 @@ bool KonecKola(Profily& data, bool vyhra)
 
 bool Klasik(Profily& data)
 {
-	HerniMody hra(data, 1);
+	HerniMody hra(data, 2);
 
-	while (!_kbhit());
-	hra.VstupHra(data, 1);
+	while (!hra.VstupHra(data, 1));
+	hra.Smazani();
 
 	while (Klasik)
 	{
-		hra.Smazani();
 		switch (hra.Logika(data))
 		{
+		case 0:
+		{
+			if (KonecKola(data, 0))
+				return 1;
+			else
+				return 0;
+		}
 		case 1:
 		{
 			if (KonecKola(data, 1))
@@ -65,17 +74,11 @@ bool Klasik(Profily& data)
 			else
 				return 0;
 		}
-		case 2:
-		{
-			if (KonecKola(data, 0))
-				return 1;
-			else
-				return 0;
-		}
 		default:
 			hra.Vykresleni();
-			Sleep(100);
+			Sleep(50);
 			hra.VstupHra(data);
+			hra.Smazani();
 		}
 	}
 }
@@ -276,6 +279,6 @@ bool ProfilMenu()
 int main()
 {
 	Profily data;
-	//Klasik(data);
-	while (ProfilMenu());
+	Klasik(data);
+	//while (ProfilMenu());
 }

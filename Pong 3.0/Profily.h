@@ -21,6 +21,7 @@ public:
 		_setmode(_fileno(stdout), _O_U16TEXT);  // nastaveni graficke vizualizace
 
 		pocet_profilu = NacteniPoctuProfilu();
+		VybraniProfilu(0);
 	}
 
 	int pocet_profilu;

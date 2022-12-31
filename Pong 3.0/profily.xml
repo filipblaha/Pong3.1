@@ -26,7 +26,7 @@
                 <Hodnota>1</Hodnota>
                 <Hodnota>0</Hodnota>
                 <Hodnota>0</Hodnota>
-                <Hodnota>0</Hodnota>
+                <Hodnota>1</Hodnota>
                 <Hodnota>0</Hodnota>
                 <Hodnota>0</Hodnota>
             </Data>
@@ -40,10 +40,10 @@
         <Profil>
             <Data>
                 <Hodnota>0</Hodnota>
-                <Hodnota>6</Hodnota>
-                <Hodnota>3</Hodnota>
-                <Hodnota>6</Hodnota>
-                <Hodnota>0</Hodnota>
+                <Hodnota>10</Hodnota>
+                <Hodnota>13</Hodnota>
+                <Hodnota>1</Hodnota>
+                <Hodnota>1</Hodnota>
                 <Hodnota>0</Hodnota>
             </Data>
             <Ovladani>

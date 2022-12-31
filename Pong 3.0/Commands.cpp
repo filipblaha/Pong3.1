@@ -1,5 +1,7 @@
 #include "Commands.h"
 
+//-----------------------  Visual  -----------------------//
+
 void Commands::Prechod(int delka, int vyska)
 	{
 	SetCursorPosition(0, 0);
@@ -43,6 +45,8 @@ void Commands::SetWindow(int delka, int vyska)
 	SetConsoleWindowInfo(Handle, TRUE, &Rect);
 }
 
+//-----------------------  Game function  -----------------------//
+
 int Commands::Random(int min, int max)
 {
 	random_device random_cislo;
@@ -50,7 +54,6 @@ int Commands::Random(int min, int max)
 	uniform_int_distribution<> rozmezi(min, max);
 	return rozmezi(seed);
 }
-
 
 //-----------------------  Premena string na wstring  -----------------------//
 

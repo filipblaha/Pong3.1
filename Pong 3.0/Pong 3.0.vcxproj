@@ -147,6 +147,7 @@
     <ClCompile Include="Tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bomba.h" />
     <ClInclude Include="Commands.h" />
     <ClInclude Include="HerniMody.h" />
     <ClInclude Include="HraciPole.h" />

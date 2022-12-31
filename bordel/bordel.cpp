@@ -11,40 +11,12 @@ using namespace std;
 
 int main()
 {
-	while (1)
-	{
-		/*char zmena = _getch();
-		if (zmena == 224)
-		{
-			switch (_getch())
-			{
-			case 72:
-				cout << "up\n";
-				break;
-			case 75:
-				cout << "left\n";
-				break;
-			case 77:
-				cout << "right\n";
-				break;
-			case 80:
-				cout << "down\n";
-				break;
-			}
-		}
-		else
-			cout << "invalid\n";*/
-		if (GetAsyncKeyState(37))
-		{
-			cout << "left\n";
-		}
+	int a = 1;
+	int b = -2;
+	double c;
 
-		else if (GetAsyncKeyState(39))
-		{
-			cout << "right\n";
-		}
-		0x28;
-		0x26
-	}
+	c = 5;
+	c += 1 / static_cast<double>(b);
+	cout << c;
 
 }

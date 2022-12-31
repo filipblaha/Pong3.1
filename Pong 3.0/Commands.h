@@ -14,11 +14,15 @@ using namespace std;
 class Commands
 {
 public:
+	//-----------------------  Visual  -----------------------//
 
 	void Prechod(int delka, int vyska);
 	void SetCursorPosition(int x, int y);
 	void SetFont(int f1, int f2);
 	void SetWindow(int delka, int vyska);
+
+	//-----------------------  Game function  -----------------------//
+
 	int Random(int min, int max);
 
 	//-----------------------  Premena string na wstring  -----------------------//

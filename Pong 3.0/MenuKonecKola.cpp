@@ -136,7 +136,7 @@ void MenuKonecKola::VykresleniLevelBar()
 }
 void MenuKonecKola::TextVykresleniVyhra(Profily& data)
 {
-	text = transl.NacteniTextHlavni(data);
+	text = transl.NacteniTextKonecKola(data);
 
 	///-------  Text  -------//
 
