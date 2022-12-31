@@ -2,6 +2,7 @@
 #include "Profily.h"
 #include "Plosina.h"
 #include "Mic.h"
+#include "Bomba.h"
 
 class HerniMody
 {
@@ -41,6 +42,7 @@ protected:
 	Plosina plosina;
 	HraciPole pole;
 	Mic mic;
+	Bomba bomba;
 
 	enum objekt_e
 	{
@@ -94,5 +96,6 @@ protected:
 
 	//-----------------------  Vybuch -----------------------//
 
+	void BlokyJednotlive(double objekt_x_d, double objekt_y_d, int objekt_x, int objekt_y, int& objekt_ax, int& objekt_ay);
 	void BlokyVybuch(int objekt_x, int objekt_y, int objekt_ax, int objekt_ay, int vzdalenost);
 };

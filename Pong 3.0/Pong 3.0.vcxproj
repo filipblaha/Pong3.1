@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bomba.cpp" />
     <ClCompile Include="HerniMody.cpp" />
     <ClCompile Include="HraciPole.cpp" />
     <ClCompile Include="HerniModyKlasik.cpp" />

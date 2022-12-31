@@ -5,9 +5,10 @@ class Objekt
 {
 public:
 	HraciPole pole;
+	Commands set;
 	Objekt()
 	{
-	
+
 	}
 
 	int x = 0;
@@ -18,5 +19,5 @@ public:
 	int ay = 0;
 
 
-	const wchar_t* skin;
+	const wchar_t* skin = 0;
 };

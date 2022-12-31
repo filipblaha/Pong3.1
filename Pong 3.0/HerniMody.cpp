@@ -19,14 +19,14 @@ bool HerniMody::VstupHra(Profily data, bool start)
 		else
 			plosina.pohyb = 0;
 	}
-	else if (GetAsyncKeyState(37))
+	else if (GetAsyncKeyState(39))
 	{
 		if (plosina.x != pole.delka - plosina.velikost - 1) //zed vpravo
 			plosina.pohyb = 1;
 		else
 			plosina.pohyb = 0;
 	}
-	else if (GetAsyncKeyState(39))
+	else if (GetAsyncKeyState(37))
 	{
 		if (plosina.x != 1) // zed vlevo
 			plosina.pohyb = -1;
@@ -248,6 +248,7 @@ int HerniMody::Logika(Profily& data)
 {
 	pocet_snimku++;
 
+	//--------  Prohra / Vyhra  --------//
 	if (pocet_bloku == 0)
 	{
 		UlozeniDat(data);
@@ -255,19 +256,26 @@ int HerniMody::Logika(Profily& data)
 	}
 	if (mic.y == plosina.y_start + 1)
 	{
-		UlozeniDat(data);
+		UlozeniDat(data); 
 		if (pocet_zivotu == 1)
 			return 0;
 		else
 			ZtrataZivotu(data);
 		return 2;
 	}
+	
+	//--------  Plosina  --------//
 	PosunPlosina();
 
 	if (pocet_snimku % kvocient_rychlosti_hry == 0)
 	{
+		//--------  Mic  --------//
 		KolizeObjekt(mic.x_d, mic.y_d, mic.x, mic.y, mic.ax, mic.ay);
 		VypocetZrychleni(mic.x_d, mic.y_d, mic.x, mic.y, mic.ax, mic.ay);
+
+		//--------  Bomba  --------//
+		//KolizeObjekt(bomba.x_d, bomba.y_d, bomba.x, bomba.y, bomba.ax, bomba.ay);
+		//VypocetZrychleni(bomba.x_d, bomba.y_d, bomba.x, bomba.y, bomba.ax, bomba.ay);
 	}
 	return 2;
 }
@@ -288,7 +296,6 @@ void HerniMody::KolizeObjekt(double objekt_x_d, double objekt_y_d, int objekt_x,
 	kolize_s_blokem = 0;
 
 	int temp = 0;
-	int C = pole.bloky.at(objekt_y).at(objekt_x);
 
 	int U = pole.bloky.at(objekt_y - 1).at(objekt_x);
 	int D = pole.bloky.at(objekt_y + 1).at(objekt_x);
@@ -300,20 +307,12 @@ void HerniMody::KolizeObjekt(double objekt_x_d, double objekt_y_d, int objekt_x,
 	int UR = pole.bloky.at(objekt_y - 1).at(objekt_x + 1);
 	int DL = pole.bloky.at(objekt_y + 1).at(objekt_x - 1);
 
-	int SCX = objekt_x;
-	int SCY = objekt_y;
-
-	int SU = objekt_y - 1;
-	int SL = objekt_x - 1;
-	int SR = objekt_x + 1;
-	int SD = objekt_y + 1;
-	
 	bool platform = (objekt_y == plosina.y - 1);
 	bool wallU = (objekt_y == 1);
 	bool wallL = (objekt_x == 1);
 	bool wallR = (objekt_x == pole.delka - 2);
 
-	////  plosina  ////
+	//--------  Plosina  --------//
 	if (platform)
 	{
 		if (objekt_x == plosina.x - 1) // kraj vlevo
@@ -361,9 +360,9 @@ void HerniMody::KolizeObjekt(double objekt_x_d, double objekt_y_d, int objekt_x,
 
 	}
 	while (pole.bloky.at(objekt_y_d + (1 / static_cast<double>(objekt_ay))).at(objekt_x_d + (1 / static_cast<double>(objekt_ax))) > 0 || pole.bloky.at(objekt_y_d).at(objekt_x_d + (1 / static_cast<double>(objekt_ax))) > 0 ||
-		pole.bloky.at(objekt_y_d + (1 / static_cast<double>(objekt_ay))).at(objekt_x_d) > 0 || (objekt_x_d + (1 / static_cast<double>(objekt_ax)) >= pole.delka - 1) || (objekt_x_d + (1 / static_cast<double>(objekt_ax)) < 1) || (objekt_y_d + (1 / static_cast<double>(objekt_ay)) <= 0))
+		pole.bloky.at(objekt_y_d + (1 / static_cast<double>(objekt_ay))).at(objekt_x_d) > 0 || (objekt_x_d + (1 / static_cast<double>(objekt_ax)) >= pole.delka - 1) || (objekt_x_d + (1 / static_cast<double>(objekt_ax)) < 1) || (objekt_y_d + (1 / static_cast<double>(objekt_ay)) < 1))
 	{
-		////  steny ////
+		//--------  Steny  --------//
 
 		if (wallR || wallL || wallU)
 		{
@@ -377,7 +376,7 @@ void HerniMody::KolizeObjekt(double objekt_x_d, double objekt_y_d, int objekt_x,
 				objekt_ay = -objekt_ay;
 			}
 		}
-		////  bloky  ////
+		//--------  Bloky  --------//
 
 		if (L > 0 || R > 0 || U > 0 || D > 0)
 		{
@@ -468,6 +467,7 @@ void HerniMody::ZtrataZivotu(Profily& data)
 	VykresleniPlosina();
 	ZmenaZivotyHUD();
 
+	Sleep(800);
 	while (!VstupHra(data, 1));
 }
 bool HerniMody::Casomira()
@@ -505,8 +505,12 @@ void HerniMody::UlozeniDat(Profily& data)
 	data.pocet_bloku = pocet_bloku;
 }
 
-//-----------------------  Vybuch -----------------------//
+//-----------------------  Bloky Kolize -----------------------//
 
+void HerniMody::BlokyJednotlive(double objekt_x_d, double objekt_y_d, int objekt_x, int objekt_y, int& objekt_ax, int& objekt_ay)
+{
+
+}
 void HerniMody::BlokyVybuch(int objekt_x, int objekt_y, int objekt_ax, int objekt_ay, int vzdalenost)
 {
 	int leva_hranice, prava_hranice, dolni_hranice, horni_hranice;

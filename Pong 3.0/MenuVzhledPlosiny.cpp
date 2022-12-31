@@ -46,6 +46,52 @@ int MenuVzhledPlosiny::VstupMenu(Profily& data)
 		OznaceniVykresleni();
 		return 1;
 	}
+	case 224:
+	{
+		switch (_getch())
+		{
+		case 72:
+		{
+			OznaceniSmazani();
+			if (oznaceni.at(y) > zavory.at(0))
+			{
+				oznaceni.at(y) -= 4;
+			}
+			OznaceniVykresleni();
+			return 1;
+		}
+		case 80:
+		{
+			OznaceniSmazani();
+			if (oznaceni.at(y) < zavory.at(1))
+			{
+				oznaceni.at(y) += 4;
+			}
+			OznaceniVykresleni();
+			return 1;
+		}
+		case 75:
+		{
+			OznaceniSmazani();
+			if (oznaceni.at(x) > zavory.at(2))
+			{
+				oznaceni.at(x) -= 10;
+			}
+			OznaceniVykresleni();
+			return 1;
+		}
+		case 77:
+		{
+			OznaceniSmazani();
+			if (oznaceni.at(x) < zavory.at(3))
+			{
+				oznaceni.at(x) += 10;
+			}
+			OznaceniVykresleni();
+			return 1;
+		}
+		}
+	}
 	case '\r':
 	{
 		return enter;

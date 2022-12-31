@@ -279,6 +279,6 @@ bool ProfilMenu()
 int main()
 {
 	Profily data;
-	Klasik(data);
-	//while (ProfilMenu());
+	//Klasik(data);
+	while (ProfilMenu());
 }

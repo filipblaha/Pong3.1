@@ -39,6 +39,7 @@ int MenuOvladani::VstupMenu()
 		switch (_getch())
 		{
 		case 72:
+		{
 			OznaceniSmazani();
 			if (oznaceni.at(y) > zavory.at(0))
 			{
@@ -50,7 +51,9 @@ int MenuOvladani::VstupMenu()
 			}
 			OznaceniVykresleni();
 			return 1;
+		}
 		case 80:
+		{
 			OznaceniSmazani();
 			if (oznaceni.at(y) < zavory.at(1))
 			{
@@ -62,6 +65,7 @@ int MenuOvladani::VstupMenu()
 			}
 			OznaceniVykresleni();
 			return 1;
+		}
 		}
 	}
 	case '\r':

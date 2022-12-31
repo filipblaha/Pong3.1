@@ -65,7 +65,10 @@ void Profily::VytvoreniNovehoProfilu(string nazev_noveho_profilu)
 
 	for (int i = 0; i < 6; i++)
 	{
-		data_noveho_profilu.push_back(0);
+		if (i == 3)
+			data_noveho_profilu.push_back(1);
+		else
+			data_noveho_profilu.push_back(0);
 	}
 	for (int i = 0; i < pocet_profilu; i++)
 	{
