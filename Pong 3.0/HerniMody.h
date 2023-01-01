@@ -86,6 +86,7 @@ protected:
 	void KolizeObjekt(int objekt, double objekt_x_d, double objekt_y_d, int objekt_x, int objekt_y, int& objekt_ax, int& objekt_ay);
 	void KolizeObjektPlosina(int objekt, int objekt_x, int objekt_y, int& objekt_ax, int& objekt_ay);
 	void KolizeObjektStena(int objekt, int objekt_x, int objekt_y, int& objekt_ax, int& objekt_ay);
+	void KolizeObjektObjekt(int objekt_1, double& objekt_1_x_d, double& objekt_1_y_d, int& objekt_1_x, int& objekt_1_y, int& objekt_1_ax, int& objekt_1_ay, int objekt_2, double& objekt_2_x_d, double& objekt_2_y_d, int& objekt_2_x, int& objekt_2_y, int& objekt_2_ax, int& objekt_2_ay);
 	void BombaZaniknuti();
 	void PosunPlosina();
 	void VypocetZrychleni(int objekt, double& objekt_x_d, double& objekt_y_d, int& objekt_x, int& objekt_y, int& objekt_ax, int& objekt_ay);

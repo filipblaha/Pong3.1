@@ -14,15 +14,19 @@
             <Pismeno>108</Pismeno>
         </Nazev_profilu>
         <Nazev_profilu>
-            <Pismeno>100</Pismeno>
-            <Pismeno>97</Pismeno>
-            <Pismeno>115</Pismeno>
+            <Pismeno>107</Pismeno>
+            <Pismeno>109</Pismeno>
         </Nazev_profilu>
         <Nazev_profilu>
-            <Pismeno>84</Pismeno>
-            <Pismeno>101</Pismeno>
             <Pismeno>115</Pismeno>
-            <Pismeno>116</Pismeno>
+            <Pismeno>109</Pismeno>
+            <Pismeno>111</Pismeno>
+            <Pismeno>117</Pismeno>
+            <Pismeno>108</Pismeno>
+            <Pismeno>105</Pismeno>
+            <Pismeno>110</Pismeno>
+            <Pismeno>101</Pismeno>
+            <Pismeno>107</Pismeno>
         </Nazev_profilu>
     </Zakladni>
     <Profily>
@@ -45,8 +49,8 @@
         <Profil>
             <Data>
                 <Hodnota>0</Hodnota>
-                <Hodnota>2</Hodnota>
-                <Hodnota>17</Hodnota>
+                <Hodnota>0</Hodnota>
+                <Hodnota>0</Hodnota>
                 <Hodnota>1</Hodnota>
                 <Hodnota>0</Hodnota>
                 <Hodnota>0</Hodnota>
