@@ -92,7 +92,7 @@ int MenuVzhledPlosiny::VstupMenu(Profily& data)
 		}
 		}
 	}
-	case '\r':
+	case '\r': case ' ':
 	{
 		return enter;
 	}

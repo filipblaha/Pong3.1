@@ -13,5 +13,5 @@ void Bomba::SpawnPozice()
 }
 int Bomba::SpawnCas()
 {
-	return rychlost * set.Random(10, 20);
+	return rychlost * set.Random(40, 80);
 }

@@ -1,4 +1,5 @@
-﻿#include "Menuprofil.h"
+﻿#include "Intro.h"
+#include "Menuprofil.h"
 #include "MenuHlavni.h"
 #include "MenuHerniMody.h"
 #include "MenuNastaveni.h"
@@ -278,6 +279,8 @@ bool ProfilMenu()
 int main()
 {
 	Profily data;
-	//Klasik(data);
+	Intro intro;
+	intro.IntroDo();
+
 	while (ProfilMenu());
 }

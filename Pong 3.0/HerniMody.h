@@ -57,6 +57,7 @@ protected:
 	int cas = 0;
 
 	bool kolize_s_blokem = 0;
+	bool kolize_s_blokem_vybuch = 0;
 	bool rozdil_rychlosti = 0;
 
 	//-----------------------  Skiny -----------------------//
@@ -73,6 +74,7 @@ protected:
 	void VykresleniPlosina();
 	void VykresleniObjekt(int objekt, int objekt_x, int objekt_y, const wchar_t* skin);
 	void VykresleniHUD();
+	void VykresleniVybuch(int vzdalenost);
 
 	void SmazaniPlosina();
 	void SmazaniObjekt(int objekt, int objekt_x, int objekt_y);

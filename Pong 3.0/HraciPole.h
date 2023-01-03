@@ -32,6 +32,7 @@ public:
 	const wchar_t* blok3_skin;
 
 	vector<vector<int>> bloky;
+	vector<vector<vector<int>>> vybuch;
 
 private:
 	void VytvoreniBloku();

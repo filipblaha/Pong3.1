@@ -9,14 +9,17 @@
 
 using namespace std;
 
+void a()
+{
+	int a = 0;
+}
+void b()
+{
+
+}
+
 int main()
 {
-	int a = 1;
-	int b = -2;
-	double c;
-
-	c = 5;
-	c += 1 / static_cast<double>(b);
-	cout << c;
+	
 
 }
