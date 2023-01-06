@@ -22,7 +22,8 @@ void HraciPole::VytvoreniBloku()
 					temp.push_back(1);
 			}
 			else
-				temp.push_back(0);
+				temp.push_back(-1);
+
 		}
 		bloky.push_back(temp);
 	}

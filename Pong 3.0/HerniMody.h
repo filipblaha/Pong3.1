@@ -74,7 +74,7 @@ protected:
 	void VykresleniPlosina();
 	void VykresleniObjekt(int objekt, int objekt_x, int objekt_y, const wchar_t* skin);
 	void VykresleniHUD();
-	void VykresleniVybuch(int vzdalenost);
+	void VykresleniVybuch(bool vybuch, int vzdalenost);
 
 	void SmazaniPlosina();
 	void SmazaniObjekt(int objekt, int objekt_x, int objekt_y);
@@ -103,5 +103,5 @@ protected:
 	//-----------------------  Vybuch -----------------------//
 
 	void BlokyJednotlive(int objekt, double objekt_x_d, double objekt_y_d, int objekt_x, int objekt_y, int& objekt_ax, int& objekt_ay);
-	bool BlokyVybuch(int objekt, int objekt_x, int objekt_y, int objekt_ax, int objekt_ay, int vzdalenost);
+	void BlokyVybuch(int objekt, int objekt_x, int objekt_y, int vzdalenost);
 };

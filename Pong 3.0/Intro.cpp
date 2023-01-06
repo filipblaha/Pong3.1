@@ -52,17 +52,17 @@ bool Intro::IntroDo()
 		}
 		for (int i = 0; i < n; i++, a++)
 		{
-			if (a >= 21)
+			if (a >= 24)
 			{
 				VykresleniVybuchIntro(a - 21);
 			}
-			if (j >= 5 && a < 21)
+			if (a > 14 && a < 19)
 			{
-				if (a > 14 && a < 18)
-				{
-					SmazaniHoupacka();
-					VykresleniHoupacka(a - 14);
-				}
+				SmazaniHoupacka();
+				VykresleniHoupacka(a - 14);
+			}
+			if (a > 14 && a < 23)
+			{				
 				VykresleniObjekt(bomba_e, bomba.x, bomba.y, bomba.skin);
 			}
 			if (a < 25)
@@ -72,29 +72,19 @@ bool Intro::IntroDo()
 			Sleep(200);
 			if (VstupIntro())
 			{
-				if (j >= 5 && a < 21)
+				if (a > 15 && a < 23)
 					SmazaniObjekt(bomba_e, bomba.x, bomba.y);
 				if (a < 25)
 					SmazaniObjekt(mic_e, mic.x, mic.y);
 				VypocetZrychleni(mic_e, mic.x_d, mic.y_d, mic.x, mic.y, mic.ax, mic.ay);
-				if (j == 5 )
+				if (a >= 15 && a <= 23)
 				{
 					bomba.y--;
-					if (i == 2)
+					if (a == 17 || a == 19 || a == 21)
 						bomba.x--;
 				}
-				else if (j == 6)
-				{
-					bomba.y--;
-					if (i == 1)
-						bomba.x--;
-				}
-				else if (j == 7)
-				{
-					bomba.y--;
-					if (i == 1)
-						bomba.x--;
-				}
+				
+
 			}
 			else
 				return 0;

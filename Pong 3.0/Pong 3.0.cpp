@@ -275,7 +275,6 @@ bool ProfilMenu()
 	}
 	return 0;
 }
-
 int main()
 {
 	Profily data;
