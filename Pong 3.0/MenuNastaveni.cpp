@@ -30,7 +30,7 @@ int MenuNastaveni::Rozhodovac(Profily& data)
 
 void MenuNastaveni::NastaveniVykresleni(Profily& data, bool balic)
 {
-	OznaceniVykresleni();
+	OznaceniVykresleni(0);
 	VykresleniUroven(data);
 	TextNastaveniVykresleni(data, balic);
 }

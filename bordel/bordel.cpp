@@ -20,6 +20,7 @@ void b()
 
 int main()
 {
+	_setmode(_fileno(stdout), _O_U16TEXT);  // nastaveni graficke vizualizace
 	
-
+	wcout << L"\x25ba";
 }

@@ -13,7 +13,7 @@ public:
 	vector<wstring> NacteniTextProfil(Profily data);
 	vector<wstring> NacteniTextHlavni(Profily data);
 	vector<wstring> NacteniTextHerniMody(Profily data);
-	vector<wstring> NacteniTextVzhledPlosiny(Profily data);
+	vector<wstring> NacteniTextSkiny(Profily data);
 	vector<wstring> NacteniTextNastaveni(Profily data);
 	vector<wstring> NacteniTextOvladani(Profily data);
 	vector<wstring> NacteniTextKonecKola(Profily data);

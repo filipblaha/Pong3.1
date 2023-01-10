@@ -14,23 +14,25 @@
             <Pismeno>108</Pismeno>
         </Nazev_profilu>
         <Nazev_profilu>
-            <Pismeno>115</Pismeno>
-            <Pismeno>109</Pismeno>
-            <Pismeno>111</Pismeno>
-            <Pismeno>117</Pismeno>
-            <Pismeno>108</Pismeno>
-            <Pismeno>105</Pismeno>
-            <Pismeno>110</Pismeno>
-            <Pismeno>101</Pismeno>
             <Pismeno>107</Pismeno>
+            <Pismeno>102</Pismeno>
+            <Pismeno>100</Pismeno>
+            <Pismeno>115</Pismeno>
+        </Nazev_profilu>
+        <Nazev_profilu>
+            <Pismeno>84</Pismeno>
+            <Pismeno>101</Pismeno>
+            <Pismeno>115</Pismeno>
+            <Pismeno>116</Pismeno>
         </Nazev_profilu>
     </Zakladni>
     <Profily>
         <Profil>
             <Data>
                 <Hodnota>0</Hodnota>
+                <Hodnota>9</Hodnota>
                 <Hodnota>0</Hodnota>
-                <Hodnota>0</Hodnota>
+                <Hodnota>1</Hodnota>
                 <Hodnota>1</Hodnota>
                 <Hodnota>0</Hodnota>
                 <Hodnota>0</Hodnota>
@@ -44,9 +46,27 @@
         </Profil>
         <Profil>
             <Data>
+                <Hodnota>1</Hodnota>
+                <Hodnota>0</Hodnota>
+                <Hodnota>0</Hodnota>
+                <Hodnota>1</Hodnota>
+                <Hodnota>1</Hodnota>
+                <Hodnota>0</Hodnota>
+                <Hodnota>0</Hodnota>
+            </Data>
+            <Ovladani>
+                <Hodnota>65</Hodnota>
+                <Hodnota>68</Hodnota>
+                <Hodnota>32</Hodnota>
+                <Hodnota>27</Hodnota>
+            </Ovladani>
+        </Profil>
+        <Profil>
+            <Data>
                 <Hodnota>0</Hodnota>
                 <Hodnota>10</Hodnota>
                 <Hodnota>13</Hodnota>
+                <Hodnota>1</Hodnota>
                 <Hodnota>1</Hodnota>
                 <Hodnota>1</Hodnota>
                 <Hodnota>0</Hodnota>

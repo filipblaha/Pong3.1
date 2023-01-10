@@ -29,6 +29,7 @@ public:
 	int level;
 	int exp;
 	int plosina_skin;
+	int mic_skin;
 	int highscore_cas;
 	int highscore_znicenych_bloku;
 
@@ -63,7 +64,8 @@ public:
 
 	//-----------------------  Nacteni Skinu  -----------------------//
 
-	vector<wstring> NacteniSkiny();
+	vector<wstring> NacteniSkinyPlosina();
+	vector<wchar_t> NacteniSkinyMic();
 
 	//-----------------------  Zmena jmena  -----------------------//
 

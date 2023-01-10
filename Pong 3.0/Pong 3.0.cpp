@@ -4,9 +4,9 @@
 #include "MenuHerniMody.h"
 #include "MenuNastaveni.h"
 #include "MenuOvladani.h"
-#include "MenuVzhledPlosiny.h"
+#include "MenuSkiny.h"
 #include "MenuKonecKola.h"
-#include "Skiny.h"
+#include "SkinyManipulace.h"
 
 enum menu_strana
 {
@@ -121,26 +121,15 @@ bool HerniModyMenu(Profily &data)
 	}
 	return 0;
 }
-bool VzhledPlosinyMenu(Profily &data)
+bool SkinyMenu(Profily &data)
 {
-	MenuVzhledPlosiny menu(data);
+	MenuSkiny menu(data);
 
-	while (VzhledPlosinyMenu)
+	while (SkinyMenu)
 	{
-		switch (menu.VstupMenu(data))
-		{
-		case enter:
-		{
-			if (menu.Rozhodovac(data))
-				break;
-			else
-				return 0;
-		}
-		case ex:
-		{
+		if (!menu.VstupMenu(data))
 			return 0;
-		}
-		}
+		menu.Rozhodovac(data);
 	}
 	return 0;
 }
@@ -210,7 +199,7 @@ bool HlavniMenu(Profily &data)
 			}
 			case vzhled_plosiny_e:
 			{
-				VzhledPlosinyMenu(data);
+				SkinyMenu(data);
 				break;
 			}
 			case nastaveni_e:
@@ -271,15 +260,23 @@ bool ProfilMenu()
 			data.UlozeniProfilu(data.jsem_v_profilu);
 			return 0;
 		}
+		default:
+			Sleep(50);
+			menu.OznaceniVykresleni(menu.Blikani());
 		}
 	}
 	return 0;
 }
 int main()
 {
-	Profily data;
 	Intro intro;
-	intro.IntroDo();
+	Profily data;
 
 	while (ProfilMenu());
+
+	/*Profily data;
+	Commands set;
+	set.SetFont(0, 20);
+	set.SetWindow(40, 20 - 2);
+	SkinyMenu(data);*/
 }

@@ -17,7 +17,7 @@ int Menu::VstupMenu()
 		{
 			oznaceni.at(y) = zavory.at(1);
 		}
-		OznaceniVykresleni();
+		OznaceniVykresleni(0);
 		return 1;
 	}
 	case 's':
@@ -31,7 +31,7 @@ int Menu::VstupMenu()
 		{
 			oznaceni.at(y) = zavory.at(0);
 		}
-		OznaceniVykresleni();
+		OznaceniVykresleni(0);
 		return 1;
 	}
 	case 224:
@@ -49,7 +49,7 @@ int Menu::VstupMenu()
 			{
 				oznaceni.at(y) = zavory.at(1);
 			}
-			OznaceniVykresleni();
+			OznaceniVykresleni(0);
 			return 1;
 		}
 		case 80:
@@ -63,7 +63,7 @@ int Menu::VstupMenu()
 			{
 				oznaceni.at(y) = zavory.at(0);
 			}
-			OznaceniVykresleni();
+			OznaceniVykresleni(0);
 			return 1;
 		}
 		}
@@ -76,6 +76,8 @@ int Menu::VstupMenu()
 	{
 		return exit;
 	}
+	default:
+		return -5;
 	}
 
 }
@@ -92,6 +94,19 @@ void Menu::JazykSet(Profily& data, int zmena)
 		data.jazyk = CZ;
 	else if (zmena == EN)
 		data.jazyk = EN;
+}
+bool Menu::Blikani()
+{
+	if (blikani)
+	{
+		blikani = 0;
+		return 0;
+	}
+	else
+	{
+		blikani = 1;
+		return 1;
+	}
 }
 
 //-----------------------  Vykresleni  -----------------------//
@@ -137,10 +152,13 @@ void Menu::MenuSTARTVykresleni()
 			wcout << '\n';
 	}
 }
-void Menu::OznaceniVykresleni()
+void Menu::OznaceniVykresleni(bool stav)
 {
 	set.SetCursorPosition(oznaceni.at(x), oznaceni.at(y));
-	wcout << L"\x25ba";
+	if (stav)
+		wcout << L"\x25b8";
+	else
+		wcout << L"\x25ba";
 }
 void Menu::OznaceniSmazani()
 {

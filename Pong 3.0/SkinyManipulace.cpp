@@ -1,6 +1,6 @@
-﻿#include "Skiny.h"
+﻿#include "SkinyManipulace.h"
 
-void Skiny::ZapsaniSkinyPlosina(vector<wstring> vektor)
+void SkinyManipulace::ZapsaniSkinyPlosina(vector<wstring> vektor)
 {
 	xmlDoc.LoadFile("Skiny.xml");
 
@@ -26,7 +26,7 @@ void Skiny::ZapsaniSkinyPlosina(vector<wstring> vektor)
 
 //-----------------------  Plosina  -----------------------//
 
-vector<wstring> Skiny::NacteniSkinyPlosina()
+vector<wstring> SkinyManipulace::NacteniSkinyPlosina()
 {
 	vector<wstring> vektor_stringu;
 	wstring temp;
@@ -53,7 +53,7 @@ vector<wstring> Skiny::NacteniSkinyPlosina()
 	}
 	return vektor_stringu;
 }
-void Skiny::PridaniSkinPlosina(wstring skin)
+void SkinyManipulace::PridaniSkinPlosina(wstring skin)
 {
 	vector<wstring> vektor = NacteniSkinyPlosina();
 	vektor.push_back(skin);
@@ -62,7 +62,7 @@ void Skiny::PridaniSkinPlosina(wstring skin)
 
 //-----------------------  Mic  -----------------------//
 
-vector<wchar_t> Skiny::NacteniSkinyMic()
+vector<wchar_t> SkinyManipulace::NacteniSkinyMic()
 {
 	vector<wchar_t> vektor_stringu;
 	int data = 0;
@@ -81,13 +81,13 @@ vector<wchar_t> Skiny::NacteniSkinyMic()
 	}
 	return vektor_stringu;
 }
-void Skiny::PridaniSkinMic(wchar_t skin)
+void SkinyManipulace::PridaniSkinMic(wchar_t skin)
 {
 	vector<wchar_t> vektor = NacteniSkinyMic();
 	vektor.push_back(skin);
 	ZapsaniSkinyMic(vektor);
 }
-void Skiny::ZapsaniSkinyMic(vector<wchar_t> vektor)
+void SkinyManipulace::ZapsaniSkinyMic(vector<wchar_t> vektor)
 {
 	xmlDoc.LoadFile("Skiny.xml");
 

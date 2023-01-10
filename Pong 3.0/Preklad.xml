@@ -14,9 +14,9 @@
 		</profil>
 		<hlavni>
 			<string>Herni mody</string>
-			<string>Vzhled plosiny</string>
+			<string>Zmena vzhledu</string>
 			<string>Nastaveni</string>
-			<string>Zmenit profil</string>
+			<string>Zmena profilu</string>
 			<string>verze </string>
 		</hlavni>
 		<herni_mody>
@@ -25,7 +25,9 @@
 			<string>Rogue like</string>
 		</herni_mody>
 		<vzhled_plosiny>
-			<string>VZHLED PLOSINY</string>
+			<string>ZMENA VZHLEDU</string>
+			<string>Plosina</string>
+			<string>Mic</string>
 			<string>Odemkne se na urovni  </string>
 		</vzhled_plosiny>
 		<nastaveni>
@@ -91,7 +93,9 @@
 		</herni_mody>
 		<vzhled_plosiny>
 			<string>SKINS</string>
-			<string>Unlocks after level </string>
+			<string>Platform</string>
+			<string>Ball</string>
+			<string>Unlocks on level </string>
 		</vzhled_plosiny>
 		<nastaveni>
 			<string>SETTINGS</string>

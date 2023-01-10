@@ -80,7 +80,7 @@ vector<wstring> Preklad::NacteniTextHerniMody(Profily data)
 	}
 	return set.StringToWString(vektor_stringu);
 }
-vector<wstring> Preklad::NacteniTextVzhledPlosiny(Profily data)
+vector<wstring> Preklad::NacteniTextSkiny(Profily data)
 {
 	XMLDocument xmlDoc;
 

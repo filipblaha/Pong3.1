@@ -25,6 +25,8 @@ public:
 		VykresleniBlokyIntro();
 
 		Sleep(1000);
+		
+		IntroDo();
 	}
 	~Intro()
 	{}

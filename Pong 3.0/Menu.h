@@ -16,6 +16,8 @@ public:
 	{
 		Commands set;
 
+		blikani = 0;
+
 		oznaceni.push_back(x);
 		oznaceni.push_back(y);
 
@@ -34,10 +36,12 @@ public:
 
 	int VstupMenu();
 	void JazykSet(Profily &data, int zmena);
+	bool Blikani();
 
 	//-----------------------  Vykresleni Menu  -----------------------//
 
 	void MenuSTARTVykresleni();
+	void OznaceniVykresleni(bool stav);
 
 protected: ///////////////////////////////////  PROTECTED  /////////////////////////////////////////
 	Preklad transl;
@@ -46,6 +50,8 @@ protected: ///////////////////////////////////  PROTECTED  /////////////////////
 
 	const int delka_menu = 40;
 	const int vyska_menu = 20;
+
+	bool blikani;
 
 	vector<int> zavory;
 	vector<int> oznaceni;
@@ -91,7 +97,6 @@ protected: ///////////////////////////////////  PROTECTED  /////////////////////
 
 	//-----------------------  Vykresleni  -----------------------//
 
-	void OznaceniVykresleni();
 	void OznaceniSmazani();
 	void VykresleniUroven(Profily data);
 

@@ -51,7 +51,7 @@
     <ClCompile Include="MenuOvladani.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MenuVzhledPlosiny.cpp">
+    <ClCompile Include="MenuSkiny.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HerniMody.cpp">
@@ -66,7 +66,7 @@
     <ClCompile Include="MenuKonecKola.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Skiny.cpp">
+    <ClCompile Include="SkinyManipulace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Bomba.cpp">
@@ -116,7 +116,7 @@
     <ClInclude Include="MenuOvladani.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MenuVzhledPlosiny.h">
+    <ClInclude Include="MenuSkiny.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HerniMody.h">
@@ -131,7 +131,7 @@
     <ClInclude Include="MenuKonecKola.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Skiny.h">
+    <ClInclude Include="SkinyManipulace.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Bomba.h">

@@ -36,6 +36,7 @@ vector<int> Profily::VlozeniDatDoVektoru()
 	data_profil.push_back(level);
 	data_profil.push_back(exp);
 	data_profil.push_back(plosina_skin);
+	data_profil.push_back(mic_skin);
 	data_profil.push_back(highscore_cas);
 	data_profil.push_back(highscore_znicenych_bloku);
 
@@ -63,9 +64,9 @@ void Profily::VytvoreniNovehoProfilu(string nazev_noveho_profilu)
 
 	list<string> nazev_profil = NacteniNazvuProfilu();
 
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 7; i++)
 	{
-		if (i == 3)
+		if (i == 3 || i == 4)
 			data_noveho_profilu.push_back(1);
 		else
 			data_noveho_profilu.push_back(0);
@@ -333,8 +334,9 @@ void Profily::VybraniProfilu(int profil)
 	level = vektor_dat.at(1);
 	exp = vektor_dat.at(2);
 	plosina_skin = vektor_dat.at(3);
-	highscore_cas = vektor_dat.at(4);
-	highscore_znicenych_bloku = vektor_dat.at(5);
+	mic_skin = vektor_dat.at(4);
+	highscore_cas = vektor_dat.at(5);
+	highscore_znicenych_bloku = vektor_dat.at(6);
 
 	pohyb_vlevo = vektor_ovladani.at(0);
 	pohyb_vpravo = vektor_ovladani.at(1);
@@ -344,7 +346,7 @@ void Profily::VybraniProfilu(int profil)
 
 //-----------------------  Nacteni skinu  -----------------------//
 
-vector<wstring> Profily::NacteniSkiny()
+vector<wstring> Profily::NacteniSkinyPlosina()
 {
 	vector<wstring> skiny;
 
@@ -361,6 +363,20 @@ vector<wstring> Profily::NacteniSkiny()
 	wstring s6 = L"______";
 
 	return skiny = { s0, s1, s2, s3, s4, s5, s6} ;
+}
+vector<wchar_t> Profily::NacteniSkinyMic()
+{
+	vector<wchar_t> skiny;
+
+	wchar_t s0 = '?';
+	wchar_t s1 = '0';
+	wchar_t s2 = 'a';
+	wchar_t s3 = 'b';
+	wchar_t s4 = 'c';
+	wchar_t s5 = 'd';
+	wchar_t s6 = 'e';
+
+	return skiny = { s0, s1, s2, s3, s4, s5, s6 };
 }
 
 //-----------------------  Zmena jmena  -----------------------//

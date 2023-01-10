@@ -28,7 +28,7 @@ int MenuProfil::VstupMenu(Profily& data)
 			oznaceni.at(y) = zavory.at(1);
 			TextProfilVykresleni(data);
 		}
-		OznaceniVykresleni();
+		OznaceniVykresleni(0);
 		break;
 	}
 	case 's':
@@ -53,7 +53,7 @@ int MenuProfil::VstupMenu(Profily& data)
 			oznaceni.at(y) = zavory.at(0);
 			TextProfilVykresleni(data);
 		}
-		OznaceniVykresleni();
+		OznaceniVykresleni(0);
 		break;
 	}
 	case 224:
@@ -81,7 +81,7 @@ int MenuProfil::VstupMenu(Profily& data)
 				oznaceni.at(y) = zavory.at(1);
 				TextProfilVykresleni(data);
 			}
-			OznaceniVykresleni();
+			OznaceniVykresleni(0);
 			break;
 		case 80:
 			OznaceniSmazani();
@@ -105,7 +105,7 @@ int MenuProfil::VstupMenu(Profily& data)
 				oznaceni.at(y) = zavory.at(0);
 				TextProfilVykresleni(data);
 			}
-			OznaceniVykresleni();
+			OznaceniVykresleni(0);
 			break;
 		}
 		break;
@@ -357,7 +357,7 @@ void MenuProfil::TextProfilVykresleni(Profily& data)
 	itri = p.begin();
 
 	RamecekSmazani();
-	OznaceniVykresleni();
+	OznaceniVykresleni(0);
 
 	///-------  Text  -------//
 

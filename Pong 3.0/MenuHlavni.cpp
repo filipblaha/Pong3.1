@@ -27,7 +27,7 @@ int MenuHlavni::Rozhodovac(Profily& data)
 void MenuHlavni::HlavniVykresleni(Profily& data)
 {
 	LogoHlavniVykresleni();
-	OznaceniVykresleni();
+	OznaceniVykresleni(0);
 	VykresleniUroven(data);
 	TextHlavniVykresleni(data);
 }

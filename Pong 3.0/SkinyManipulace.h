@@ -1,7 +1,7 @@
 #pragma once
 #include "Profily.h"
 
-class Skiny
+class SkinyManipulace
 {
 public:
 	Profily data;

@@ -122,7 +122,7 @@ void HerniMody::Smazani()
 	if (plosina.pohyb)
 		SmazaniPlosina();
 
-	if (kolize_s_blokem)
+	if (kolize_s_blokem || kolize_s_blokem_vybuch)
 		ZmenaBlokyHUD();
 
 	if (pocet_snimku % mic.rychlost == mic.rychlost - 1)
@@ -408,7 +408,8 @@ void HerniMody::KolizeObjekt(int objekt, double objekt_x_d, double objekt_y_d, i
 		int UR = pole.bloky.at(objekt_y - 1).at(objekt_x + 1);
 		int DL = pole.bloky.at(objekt_y + 1).at(objekt_x - 1);
 
-		if (L > 0 || R > 0 || U > 0 || D > 0 || UL > 0 || UR > 0 || DL > 0 || DR > 0)
+		if (L > 0 || R > 0 || U > 0 || D > 0 || UL > 0 && objekt_ax < 0 && objekt_ay < 0 || UR > 0 && objekt_ax > 0 && objekt_ay < 0 
+			|| DL > 0 && objekt_ax < 0 && objekt_ay > 0 || DR > 0 && objekt_ax > 0 && objekt_ay > 0)
 		{
 			BlokyVybuch(bomba_e, objekt_x, objekt_y, 3);
 			BombaZaniknuti();
@@ -728,13 +729,19 @@ void HerniMody::BlokyVybuch(int objekt, int objekt_x, int objekt_y, int vzdaleno
 			{
 				if (pole.bloky.at(objekt_y - j).at(objekt_x - i) > 0)
 				{
-					if ((abs(i) + abs(j) == 0) && pole.bloky.at(objekt_y - j).at(objekt_x - i) > 2)
+					if ((abs(i) + abs(j) == 1) && pole.bloky.at(objekt_y - j).at(objekt_x - i) == 3)
 					{
 						pole.bloky.at(objekt_y - j).at(objekt_x - i) -= 3;
 						pocet_bloku -= 3;
 						pocet_rozbitych_bloku += 3;
 					}
-					else if (abs(i) + abs(j) == 1 || abs(i) + abs(j) <= 2 && pole.bloky.at(objekt_y - j).at(objekt_x - i) > 1)
+					if ((abs(i) + abs(j) == 1) && pole.bloky.at(objekt_y - j).at(objekt_x - i) == 2)
+					{
+						pole.bloky.at(objekt_y - j).at(objekt_x - i) -= 2;
+						pocet_bloku -= 2;
+						pocet_rozbitych_bloku += 2;
+					}
+					else if (abs(i) + abs(j) == 2 && pole.bloky.at(objekt_y - j).at(objekt_x - i) >=  2)
 					{
 						pole.bloky.at(objekt_y - j).at(objekt_x - i) -= 2;
 						pocet_bloku -= 2;

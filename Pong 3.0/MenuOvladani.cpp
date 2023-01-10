@@ -17,7 +17,7 @@ int MenuOvladani::VstupMenu()
 		{
 			oznaceni.at(y) = zavory.at(1);
 		}
-		OznaceniVykresleni();
+		OznaceniVykresleni(0);
 		return 1;
 	}
 	case 's':
@@ -31,7 +31,7 @@ int MenuOvladani::VstupMenu()
 		{
 			oznaceni.at(y) = zavory.at(0);
 		}
-		OznaceniVykresleni();
+		OznaceniVykresleni(0);
 		return 1;
 	}
 	case 224:
@@ -49,7 +49,7 @@ int MenuOvladani::VstupMenu()
 			{
 				oznaceni.at(y) = zavory.at(1);
 			}
-			OznaceniVykresleni();
+			OznaceniVykresleni(0);
 			return 1;
 		}
 		case 80:
@@ -63,7 +63,7 @@ int MenuOvladani::VstupMenu()
 			{
 				oznaceni.at(y) = zavory.at(0);
 			}
-			OznaceniVykresleni();
+			OznaceniVykresleni(0);
 			return 1;
 		}
 		}
@@ -162,7 +162,7 @@ void MenuOvladani::OvladaniVykresleni(Profily& data)
 			wcout << ".";
 	}
 
-	OznaceniVykresleni();
+	OznaceniVykresleni(0);
 	VykresleniUroven(data);
 	TextOvladaniVykresleni(data);
 }
